@@ -17,3 +17,6 @@ hs_err_pid*
 nbproject/jfx-impl_backup_*.xml
 nbproject/jfx-impl_backup.xml
 nbproject/jfx-impl.xml
+/MyVolunteer/nbproject/private/
+/MyVolunteer/build/
+/MyVolunteer/dist/
