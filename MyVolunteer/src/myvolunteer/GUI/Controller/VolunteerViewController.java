@@ -43,7 +43,7 @@ public class VolunteerViewController implements Initializable
     @FXML
     private void handleUserImage(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Timer", "GUI/View/HoursView.fxml");
+        mainViewModel.changeView("Indtast timer", "GUI/View/HoursView.fxml");
 
         // Closes the primary stage
         Stage stage = (Stage) btnTest.getScene().getWindow();

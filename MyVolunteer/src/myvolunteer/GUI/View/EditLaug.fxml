@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.EditLaugController">
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.EditLaugController">
    <children>
       <Text layoutX="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laug navn:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <Text layoutX="10.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tovholder" AnchorPane.leftAnchor="10.0" />
@@ -20,7 +20,7 @@
       <ListView layoutX="211.0" layoutY="165.0" prefHeight="160.0" prefWidth="125.0" AnchorPane.rightAnchor="10.0" />
       <Text layoutX="215.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valgte frivillige:" />
       <TextField layoutX="218.0" layoutY="325.0" prefHeight="25.0" prefWidth="125.0" text="søg" AnchorPane.rightAnchor="10.0" />
-      <Button layoutX="278.0" layoutY="374.0" mnemonicParsing="false" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Button fx:id="btnGodkend" layoutX="278.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
       <Button layoutX="154.0" layoutY="200.0" mnemonicParsing="false" text="Tilføj" />
       <Button layoutX="154.0" layoutY="268.0" mnemonicParsing="false" text="Fjern" />
       <ComboBox layoutX="10.0" layoutY="36.0" prefHeight="25.0" prefWidth="125.0" promptText="Vælg laug" AnchorPane.leftAnchor="10.0" />
