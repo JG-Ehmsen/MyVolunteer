@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
  *
  * @author jeppe
  */
-public class MainViewController implements Initializable
+public class LaugViewController implements Initializable
 {
 
     /**
