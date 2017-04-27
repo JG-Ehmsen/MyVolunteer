@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="515.0" prefWidth="490.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="myvolunteer.GUI.Controller.AdminViewController">
+   <children>
+      <ComboBox fx:id="comboBoxGuild" layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="200.0" promptText="Vælg laug" />
+      <ListView fx:id="volunteerList" layoutX="10.0" layoutY="43.0" prefHeight="390.0" prefWidth="166.0" />
+      <Label layoutX="190.0" layoutY="50.0" prefHeight="17.0" prefWidth="115.0" text="Laug information:" underline="true" />
+      <Label layoutX="190.0" layoutY="70.0" text="Tovholder:" />
+      <Label layoutX="190.0" layoutY="90.0" text="Total antal timer:" />
+      <Label layoutX="190.0" layoutY="110.0" text="Frivillige:" />
+      <Separator layoutX="176.0" layoutY="143.0" prefHeight="3.0" prefWidth="315.0" />
+      <Label layoutX="190.0" layoutY="150.0" prefHeight="17.0" prefWidth="138.0" text="Personlig information:" underline="true" />
+      <Label layoutX="190.0" layoutY="270.0" text="Nationalitet:" />
+      <Label layoutX="190.0" layoutY="170.0" text="Fulde navn:" />
+      <Label layoutX="190.0" layoutY="230.0" text="Telefon:" />
+      <Label layoutX="190.0" layoutY="250.0" text="Email:" />
+      <Label layoutX="190.0" layoutY="290.0" text="Timer:" />
+      <Label layoutX="190.0" layoutY="310.0" text="Note:" />
+      <Label layoutX="190.0" layoutY="190.0" text="Køn: " />
+      <Label layoutX="190.0" layoutY="210.0" text="Alder:" />
+      <Label layoutX="189.0" layoutY="327.0" prefHeight="118.0" prefWidth="274.0" text="NOTE LABEL &lt;" />
+      <TextField fx:id="searchBar" layoutX="10.0" layoutY="437.0" prefHeight="27.0" prefWidth="166.0" />
+      <Button layoutX="250.0" layoutY="470.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Opret frivillig" AnchorPane.bottomAnchor="10.0" />
+      <Button layoutX="10.0" layoutY="470.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Opret laug" AnchorPane.bottomAnchor="10.0" />
+      <Button layoutX="370.0" layoutY="470.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Rediger frivillig" AnchorPane.bottomAnchor="10.0" />
+      <Button layoutX="130.0" layoutY="470.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Rediger laug" AnchorPane.bottomAnchor="10.0" />
+   </children>
 </AnchorPane>
