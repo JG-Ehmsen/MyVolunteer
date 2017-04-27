@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.LaugViewController">
-    
+
+<AnchorPane id="AnchorPane" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="myvolunteer.GUI.Controller.LaugViewController">
+   <children>
+      <StackPane layoutY="36.0" prefHeight="370.0" prefWidth="600.0" />
+      <Button fx:id="btnLogin" layoutX="542.0" layoutY="2.0" mnemonicParsing="false" text="adminView" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+   </children>
 </AnchorPane>
