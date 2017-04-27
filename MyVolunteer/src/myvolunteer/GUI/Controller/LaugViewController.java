@@ -40,7 +40,7 @@ public class LaugViewController implements Initializable
     @FXML
     private void handleIngelise(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Volunteer", "GUI/View/VolunteerView.fxml");
+        mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
 
         // Closes the primary stage
         Stage stage = (Stage) ingelise.getScene().getWindow();
@@ -50,7 +50,7 @@ public class LaugViewController implements Initializable
     @FXML
     private void handleLogin(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Admin", "GUI/View/AdminLogin.fxml");
+        mainViewModel.changeView("Admin login", "GUI/View/AdminLogin.fxml");
 
         // Closes the primary stage
         Stage stage = (Stage) btnLogin.getScene().getWindow();

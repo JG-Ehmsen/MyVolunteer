@@ -39,6 +39,14 @@ public class AdminViewController implements Initializable
     private TextField searchBar;
     @FXML
     private Button btnBack;
+    @FXML
+    private Button opretFrivillig;
+    @FXML
+    private Button opretLaug;
+    @FXML
+    private Button redigerFrivillig;
+    @FXML
+    private Button redigerLaug;
 
     /**
      * Initializes the controller class.
@@ -56,6 +64,46 @@ public class AdminViewController implements Initializable
 
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void handleOpretFrivillig(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Opret frivillig", "GUI/View/AddVolunteer.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) opretFrivillig.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void handleOpretLaug(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Opret laug", "GUI/View/AddLaug.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) opretLaug.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void handleRedigerFrivillig(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) redigerFrivillig.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void handleRedigerLaug(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Rediger Laug", "GUI/View/EditLaug.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) redigerLaug.getScene().getWindow();
         stage.close();
     }
 

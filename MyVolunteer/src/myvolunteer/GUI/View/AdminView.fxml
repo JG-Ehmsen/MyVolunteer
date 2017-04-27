@@ -28,10 +28,10 @@
       <Label layoutX="190.0" layoutY="255.0" text="Alder:" />
       <Label layoutX="189.0" layoutY="372.0" prefHeight="118.0" prefWidth="274.0" text="NOTE LABEL &lt;" />
       <TextField fx:id="searchBar" layoutX="10.0" layoutY="482.0" prefHeight="27.0" prefWidth="166.0" />
-      <Button layoutX="250.0" layoutY="470.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Opret frivillig" AnchorPane.bottomAnchor="10.0" />
-      <Button layoutX="10.0" layoutY="470.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Opret laug" AnchorPane.bottomAnchor="10.0" />
-      <Button layoutX="370.0" layoutY="470.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Rediger frivillig" AnchorPane.bottomAnchor="10.0" />
-      <Button layoutX="130.0" layoutY="470.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Rediger laug" AnchorPane.bottomAnchor="10.0" />
+      <Button fx:id="opretFrivillig" layoutX="250.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleOpretFrivillig" prefHeight="30.0" prefWidth="110.0" text="Opret frivillig" AnchorPane.bottomAnchor="10.0" />
+      <Button fx:id="opretLaug" layoutX="10.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleOpretLaug" prefHeight="30.0" prefWidth="110.0" text="Opret laug" AnchorPane.bottomAnchor="10.0" />
+      <Button fx:id="redigerFrivillig" layoutX="370.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleRedigerFrivillig" prefHeight="30.0" prefWidth="110.0" text="Rediger frivillig" AnchorPane.bottomAnchor="10.0" />
+      <Button fx:id="redigerLaug" layoutX="130.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleRedigerLaug" prefHeight="30.0" prefWidth="110.0" text="Rediger laug" AnchorPane.bottomAnchor="10.0" />
       <Separator layoutY="52.0" prefHeight="3.0" prefWidth="491.0" />
       <Button fx:id="btnBack" layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" text="&lt;-" />
    </children>

@@ -18,9 +18,9 @@ import myvolunteer.GUI.Model.MainViewModel;
 /**
  * FXML Controller class
  *
- * @author jonas
+ * @author Kristoffers
  */
-public class EditLaugController implements Initializable
+public class EditVolunteerController implements Initializable
 {
 
     /**
