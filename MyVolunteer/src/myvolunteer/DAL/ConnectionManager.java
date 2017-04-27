@@ -7,7 +7,13 @@ package myvolunteer.DAL;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,27 +21,47 @@ import java.sql.Connection;
  */
 public class ConnectionManager
 {
-    private final SQLServerDataSource ds =
-            new SQLServerDataSource();
+
+    private final SQLServerDataSource ds
+            = new SQLServerDataSource();
+
+    String DB_Properties = "src/myvolunteer/DAL/Resource/DB.cfg";
 
     public ConnectionManager()
     {
         setupDB();
     }
-    
+
     public Connection getConnection() throws SQLServerException
     {
         return ds.getConnection();
     }
-    
-    private void setupDB()
+
+    public void setupDB()
     {
-        ds.setDatabaseName("CS2016B_12_Volunteer");
-        
-        ds.setUser("CS2016B_12");
-        ds.setPassword("CS2016B_12");
-        
-        ds.setServerName("10.176.111.31");
-        ds.setPortNumber(1433);
+        try
+        {
+            FileReader fr;
+            try
+            {
+                fr = new FileReader(DB_Properties);
+                Properties prop = new Properties();
+                prop.load(fr);
+
+                ds.setDatabaseName(prop.getProperty("SERVER"));
+
+                ds.setUser(prop.getProperty("USER"));
+                ds.setPassword(prop.getProperty("PASS"));
+
+                ds.setServerName(prop.getProperty("IP"));
+                ds.setPortNumber(Integer.parseInt(prop.getProperty("PORT")));
+            } catch (FileNotFoundException ex)
+            {
+                Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
