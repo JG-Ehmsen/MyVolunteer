@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+<AnchorPane id="AnchorPane" prefHeight="403.0" prefWidth="327.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AddVolunteerController">
+   <children>
+      <Label layoutX="15.0" layoutY="15.0" text="Navn:" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="276.0" AnchorPane.topAnchor="15.0" />
+      <TextField layoutX="15.0" layoutY="32.0" />
+      <TextField alignment="CENTER" layoutX="15.0" layoutY="83.0" prefHeight="27.0" prefWidth="111.0" text="DD-MM-YYYY" />
+      <Label layoutX="15.0" layoutY="66.0" text="Fødselsdato:" />
+      <Label layoutX="16.0" layoutY="119.0" text="Køn:" />
+      <RadioButton layoutX="14.0" layoutY="137.0" mnemonicParsing="false" text="Mand" />
+      <RadioButton layoutX="15.0" layoutY="163.0" mnemonicParsing="false" text="Kvinde" />
+      <Label layoutX="15.0" layoutY="192.0" text="Telefon:" />
+      <TextField layoutX="71.0" layoutY="187.0" prefHeight="27.0" prefWidth="158.0" AnchorPane.rightAnchor="98.0" />
+      <Label layoutX="15.0" layoutY="227.0" text="Email:" />
+      <TextField layoutX="54.0" layoutY="222.0" prefHeight="27.0" prefWidth="175.0" AnchorPane.rightAnchor="98.0" />
+      <Label layoutX="15.0" layoutY="255.0" text="Nationalitet:" />
+      <TextField layoutX="15.0" layoutY="272.0" prefHeight="27.0" prefWidth="165.0" />
+      <Label layoutX="15.0" layoutY="301.0" text="Note:" />
+      <TextArea layoutX="15.0" layoutY="315.0" prefHeight="77.0" prefWidth="167.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="145.0" />
+      <Button layoutX="157.0" layoutY="410.0" mnemonicParsing="false" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <ImageView fitHeight="67.0" fitWidth="79.0" layoutX="229.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="207.0" layoutY="83.0" mnemonicParsing="false" text="Upload billede" AnchorPane.rightAnchor="10.0" />
+      <Button layoutX="269.0" layoutY="318.0" mnemonicParsing="false" text="Slet frivillig" AnchorPane.rightAnchor="6.0" />
+   </children>
 </AnchorPane>
