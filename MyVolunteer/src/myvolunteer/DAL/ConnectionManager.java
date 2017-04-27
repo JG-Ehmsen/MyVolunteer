@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package myvolunteer.DAL;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
@@ -15,10 +10,6 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author jeppjleemoritzled
- */
 public class ConnectionManager
 {
 
@@ -49,7 +40,7 @@ public class ConnectionManager
                 prop.load(fr);
 
                 ds.setDatabaseName(prop.getProperty("SERVER"));
-
+                
                 ds.setUser(prop.getProperty("USER"));
                 ds.setPassword(prop.getProperty("PASS"));
 
