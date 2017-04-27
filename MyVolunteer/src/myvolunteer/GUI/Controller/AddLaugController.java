@@ -8,6 +8,7 @@ package myvolunteer.GUI.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import myvolunteer.GUI.Model.MainViewModel;
 
 /**
  * FXML Controller class
@@ -23,7 +24,7 @@ public class AddLaugController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
-    }    
+    }
+
     
 }
