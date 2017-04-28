@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package myvolunteer.GUI.Controller;
 
 import java.io.IOException;
@@ -7,15 +12,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import myvolunteer.GUI.Model.MainViewModel;
 
 /**
  * FXML Controller class
  *
- * @author jeppe
+ * @author Kristoffers
  */
-public class LaugViewController implements Initializable
+public class HoursViewController implements Initializable
 {
 
     /**
@@ -24,9 +30,9 @@ public class LaugViewController implements Initializable
     MainViewModel mainViewModel = MainViewModel.getInstance();
 
     @FXML
-    private Button btnLogin;
+    private Button btnConfirmHours;
     @FXML
-    private Button ingelise;
+    private DatePicker datePicker;
 
     /**
      * Initializes the controller class.
@@ -38,22 +44,12 @@ public class LaugViewController implements Initializable
     }
 
     @FXML
-    private void handleIngelise(ActionEvent event) throws IOException
+    private void handleConfirmHours(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
+        mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
 
         // Closes the primary stage
-        Stage stage = (Stage) ingelise.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    private void handleLogin(ActionEvent event) throws IOException
-    {
-        mainViewModel.changeView("Admin login", "GUI/View/AdminLogin.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnLogin.getScene().getWindow();
+        Stage stage = (Stage) btnConfirmHours.getScene().getWindow();
         stage.close();
     }
 

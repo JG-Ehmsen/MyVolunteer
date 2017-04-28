@@ -26,7 +26,7 @@ public class App extends Application
 
         Scene scene = new Scene(root);
 
-        primaryStage.setTitle("View");
+        primaryStage.setTitle("Laug");
 
         primaryStage.setScene(scene);
         primaryStage.show();
