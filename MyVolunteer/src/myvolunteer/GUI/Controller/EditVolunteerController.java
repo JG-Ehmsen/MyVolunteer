@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import myvolunteer.GUI.Model.MainViewModel;
 
@@ -21,7 +20,7 @@ import myvolunteer.GUI.Model.MainViewModel;
  *
  * @author Kristoffers
  */
-public class HoursViewController implements Initializable
+public class EditVolunteerController implements Initializable
 {
 
     /**
@@ -30,9 +29,7 @@ public class HoursViewController implements Initializable
     MainViewModel mainViewModel = MainViewModel.getInstance();
 
     @FXML
-    private Button btnConfirmHours;
-    @FXML
-    private DatePicker datePicker;
+    private Button btnGodkend;
 
     /**
      * Initializes the controller class.
@@ -44,12 +41,12 @@ public class HoursViewController implements Initializable
     }
 
     @FXML
-    private void handleConfirmHours(ActionEvent event) throws IOException
+    private void handleGodkend(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
+        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
 
         // Closes the primary stage
-        Stage stage = (Stage) btnConfirmHours.getScene().getWindow();
+        Stage stage = (Stage) btnGodkend.getScene().getWindow();
         stage.close();
     }
 

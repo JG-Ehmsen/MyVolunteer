@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="350.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="myvolunteer.GUI.Controller.AdminLoginController">
+<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AdminLoginController">
    <children>
       <TextField fx:id="UsernameField" layoutX="101.0" layoutY="130.0" text="Brugernavn" />
       <TextField fx:id="codeField" layoutX="101.0" layoutY="165.0" text="Kode" />
@@ -19,7 +18,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnLoginAdminView" layoutX="204.0" layoutY="200.0" mnemonicParsing="false" text="Login" />
+      <Button fx:id="btnLogin" layoutX="204.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
       <CheckBox fx:id="RememberMeCB" layoutX="101.0" layoutY="200.0" mnemonicParsing="false" text="Husk mig" />
    </children>
 </AnchorPane>
