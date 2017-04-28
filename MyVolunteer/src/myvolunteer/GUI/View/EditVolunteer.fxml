@@ -8,26 +8,28 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="403.0" prefWidth="327.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.EditVolunteerController">
+<AnchorPane id="AnchorPane" prefHeight="484.0" prefWidth="327.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.EditVolunteerController">
    <children>
-      <Label layoutX="15.0" layoutY="15.0" text="Navn:" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="276.0" AnchorPane.topAnchor="15.0" />
-      <TextField layoutX="15.0" layoutY="32.0" />
-      <TextField alignment="CENTER" layoutX="15.0" layoutY="83.0" prefHeight="27.0" prefWidth="111.0" text="DD-MM-YYYY" />
-      <Label layoutX="15.0" layoutY="66.0" text="Fødselsdato:" />
-      <Label layoutX="16.0" layoutY="119.0" text="Køn:" />
-      <RadioButton layoutX="14.0" layoutY="137.0" mnemonicParsing="false" text="Mand" />
-      <RadioButton layoutX="15.0" layoutY="163.0" mnemonicParsing="false" text="Kvinde" />
-      <Label layoutX="15.0" layoutY="192.0" text="Telefon:" />
-      <TextField layoutX="71.0" layoutY="187.0" prefHeight="27.0" prefWidth="158.0" AnchorPane.rightAnchor="98.0" />
-      <Label layoutX="15.0" layoutY="227.0" text="Email:" />
-      <TextField layoutX="54.0" layoutY="222.0" prefHeight="27.0" prefWidth="175.0" AnchorPane.rightAnchor="98.0" />
-      <Label layoutX="15.0" layoutY="255.0" text="Nationalitet:" />
-      <TextField layoutX="15.0" layoutY="272.0" prefHeight="27.0" prefWidth="165.0" />
-      <Label layoutX="15.0" layoutY="301.0" text="Note:" />
-      <TextArea layoutX="15.0" layoutY="315.0" prefHeight="77.0" prefWidth="167.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="145.0" />
-      <Button fx:id="btnGodkend" layoutX="157.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Label layoutX="16.0" layoutY="11.0" text="Navn:" AnchorPane.topAnchor="11.0" />
+      <TextField layoutX="15.0" layoutY="28.0" prefHeight="25.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
+      <TextField alignment="CENTER" layoutX="15.0" layoutY="120.0" prefHeight="27.0" prefWidth="167.0" text="DD-MM-YYYY" AnchorPane.leftAnchor="15.0" />
+      <Label layoutX="15.0" layoutY="103.0" text="Fødselsdato:" AnchorPane.leftAnchor="15.0" />
+      <Label layoutX="15.0" layoutY="156.0" text="Køn:" AnchorPane.leftAnchor="15.0" />
+      <RadioButton layoutX="15.0" layoutY="174.0" mnemonicParsing="false" text="Mand" AnchorPane.leftAnchor="15.0" />
+      <RadioButton layoutX="15.0" layoutY="200.0" mnemonicParsing="false" text="Kvinde" AnchorPane.leftAnchor="15.0" />
+      <Label layoutX="15.0" layoutY="224.0" text="Telefon:" AnchorPane.leftAnchor="15.0" />
+      <TextField layoutX="15.0" layoutY="241.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
+      <Label layoutX="15.0" layoutY="273.0" text="Email:" AnchorPane.leftAnchor="15.0" />
+      <TextField layoutX="15.0" layoutY="290.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
+      <Label layoutX="16.0" layoutY="322.0" text="Nationalitet:" AnchorPane.leftAnchor="16.0" />
+      <TextField layoutX="15.0" layoutY="339.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
+      <Label layoutX="16.0" layoutY="371.0" text="Note:" AnchorPane.leftAnchor="15.0" />
+      <TextArea layoutX="15.0" layoutY="365.0" prefHeight="77.0" prefWidth="167.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+      <Button fx:id="btnGodkend" layoutX="157.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleGodkend" prefHeight="25.0" prefWidth="75.0" text="Godkend" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
       <ImageView fitHeight="67.0" fitWidth="79.0" layoutX="229.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="207.0" layoutY="83.0" mnemonicParsing="false" text="Upload billede" AnchorPane.rightAnchor="10.0" />
-      <Button layoutX="269.0" layoutY="318.0" mnemonicParsing="false" text="Slet frivillig" AnchorPane.rightAnchor="6.0" />
+      <Button layoutX="207.0" layoutY="83.0" mnemonicParsing="false" text="Upload billede" AnchorPane.rightAnchor="15.0" />
+      <Label layoutX="16.0" layoutY="59.0" text="Efternavn:" AnchorPane.leftAnchor="15.0" />
+      <TextField layoutX="17.0" layoutY="73.0" prefHeight="25.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
+      <Button layoutX="243.0" layoutY="392.0" mnemonicParsing="false" text="Slet frivillig" AnchorPane.rightAnchor="15.0" />
    </children>
 </AnchorPane>
