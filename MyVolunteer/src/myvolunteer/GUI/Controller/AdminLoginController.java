@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -51,11 +52,24 @@ public class AdminLoginController implements Initializable
     @FXML
     private void handleLogin(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
+        if (UsernameField.getText().isEmpty() || codeField.getText().isEmpty())
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Indtast brugernavn og kode");
 
-        // Closes the primary stage
-        Stage stage = (Stage) btnLogin.getScene().getWindow();
-        stage.close();
+            alert.showAndWait();
+
+        } else
+        {
+            mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
+
+            // Closes the primary stage
+            Stage stage = (Stage) btnLogin.getScene().getWindow();
+            stage.close();
+        }
+
     }
 
 }
