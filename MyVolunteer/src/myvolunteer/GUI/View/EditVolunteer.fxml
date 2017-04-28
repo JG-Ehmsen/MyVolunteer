@@ -12,7 +12,7 @@
    <children>
       <Label layoutX="15.0" layoutY="15.0" text="Navn:" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="276.0" AnchorPane.topAnchor="15.0" />
       <TextField layoutX="15.0" layoutY="32.0" />
-      <TextField alignment="CENTER" layoutX="15.0" layoutY="83.0" prefHeight="27.0" prefWidth="111.0" text="DD-MM-YYYY" />
+      <TextField alignment="CENTER" layoutX="15.0" layoutY="83.0" prefHeight="27.0" prefWidth="111.0" promptText="DD-MM-YYYY" />
       <Label layoutX="15.0" layoutY="66.0" text="Fødselsdato:" />
       <Label layoutX="16.0" layoutY="119.0" text="Køn:" />
       <RadioButton layoutX="14.0" layoutY="137.0" mnemonicParsing="false" text="Mand" />
