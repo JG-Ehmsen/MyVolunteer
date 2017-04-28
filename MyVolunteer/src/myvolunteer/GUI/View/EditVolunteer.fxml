@@ -25,7 +25,7 @@
       <TextField layoutX="15.0" layoutY="339.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
       <Label layoutX="16.0" layoutY="371.0" text="Note:" AnchorPane.leftAnchor="15.0" />
       <TextArea layoutX="15.0" layoutY="365.0" prefHeight="77.0" prefWidth="167.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-      <Button fx:id="btnGodkend" layoutX="157.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleGodkend" prefHeight="25.0" prefWidth="75.0" text="Godkend" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+      <Button fx:id="btnGodkend" defaultButton="true" layoutX="157.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleGodkend" prefHeight="25.0" prefWidth="75.0" text="Godkend" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
       <ImageView fitHeight="67.0" fitWidth="79.0" layoutX="229.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="207.0" layoutY="83.0" mnemonicParsing="false" text="Upload billede" AnchorPane.rightAnchor="15.0" />
       <Label layoutX="16.0" layoutY="59.0" text="Efternavn:" AnchorPane.leftAnchor="15.0" />

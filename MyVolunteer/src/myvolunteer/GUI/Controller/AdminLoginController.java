@@ -57,7 +57,6 @@ public class AdminLoginController implements Initializable
             alert.setContentText("Indtast brugernavn og kode");
 
             alert.showAndWait();
-
         } else
         {
             mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
@@ -66,7 +65,6 @@ public class AdminLoginController implements Initializable
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.close();
         }
-
     }
 
 }

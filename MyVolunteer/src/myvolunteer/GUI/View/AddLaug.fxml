@@ -21,7 +21,7 @@
       <ListView layoutX="211.0" layoutY="165.0" prefHeight="160.0" prefWidth="125.0" AnchorPane.rightAnchor="10.0" />
       <Text layoutX="215.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valgte frivillige:" />
       <TextField layoutX="218.0" layoutY="325.0" prefHeight="25.0" prefWidth="125.0" promptText="Søg" AnchorPane.rightAnchor="10.0" />
-      <Button fx:id="btnGodkend" layoutX="264.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.rightAnchor="10.0" />
+      <Button fx:id="btnGodkend" defaultButton="true" layoutX="264.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.rightAnchor="10.0" />
       <Button layoutX="154.0" layoutY="200.0" mnemonicParsing="false" text="Tilføj" />
       <Button layoutX="154.0" layoutY="268.0" mnemonicParsing="false" text="Fjern" />
    </children>
