@@ -30,6 +30,8 @@ public class VolunteerViewController implements Initializable
 
     @FXML
     private Button btnTest;
+    @FXML
+    private Button btnBack;
 
     /**
      * Initializes the controller class.
@@ -46,7 +48,17 @@ public class VolunteerViewController implements Initializable
         mainViewModel.changeView("Indtast timer", "GUI/View/HoursView.fxml");
 
         // Closes the primary stage
-        Stage stage = (Stage) btnTest.getScene().getWindow();
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void handleBack(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
 
