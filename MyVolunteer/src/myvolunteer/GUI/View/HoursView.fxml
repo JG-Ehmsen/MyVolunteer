@@ -7,17 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="169.0" prefWidth="230.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="myvolunteer.GUI.Controller.HoursViewController">
+<AnchorPane id="AnchorPane" prefHeight="137.0" prefWidth="285.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.HoursViewController">
    <children>
-      <TextField layoutX="89.0" layoutY="84.0" prefHeight="27.0" prefWidth="127.0" />
-      <Label layoutX="14.0" layoutY="89.0" text="Tast timer:" />
-      <Button fx:id="btnConfirmHours" layoutX="125.0" layoutY="119.0" mnemonicParsing="false" onAction="#handleConfirmHours" prefHeight="36.0" prefWidth="91.0" text="Godkend" textAlignment="CENTER">
+      <TextField fx:id="txtFieldHours" layoutX="91.0" layoutY="14.0" prefHeight="27.0" prefWidth="183.0" AnchorPane.bottomAnchor="95.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0" />
+      <Label layoutX="16.0" layoutY="19.0" text="Tast timer:" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="15.0" />
+      <Button fx:id="btnConfirmHours" layoutX="182.0" layoutY="63.0" mnemonicParsing="false" onAction="#handleConfirmHours" prefHeight="64.0" prefWidth="93.0" text="Godkend" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="63.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Label layoutX="12.0" layoutY="14.0" prefHeight="17.0" prefWidth="183.0" text="Sidste gang du tastede timer:" />
-      <DatePicker fx:id="datePicker" layoutX="14.0" layoutY="42.0" prefHeight="27.0" prefWidth="201.0" />
+      <Label layoutX="16.0" layoutY="60.0" prefHeight="17.0" prefWidth="183.0" text="Sidst opdateret:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="60.0" />
+      <DatePicker fx:id="datePicker" layoutX="12.0" layoutY="94.0" prefHeight="27.0" prefWidth="143.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="95.0" />
    </children>
 </AnchorPane>

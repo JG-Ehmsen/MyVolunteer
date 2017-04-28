@@ -46,12 +46,16 @@ public class VolunteerViewController implements Initializable
     private void handleUserImage(ActionEvent event) throws IOException
     {
         mainViewModel.changeView("Indtast timer", "GUI/View/HoursView.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Indtast timer", "GUI/View/HoursView.fxml");
+        mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
 
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();

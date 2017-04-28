@@ -11,8 +11,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import myvolunteer.GUI.Model.MainViewModel;
 
@@ -33,6 +36,8 @@ public class HoursViewController implements Initializable
     private Button btnConfirmHours;
     @FXML
     private DatePicker datePicker;
+    @FXML
+    private TextField txtFieldHours;
 
     /**
      * Initializes the controller class.
@@ -46,11 +51,22 @@ public class HoursViewController implements Initializable
     @FXML
     private void handleConfirmHours(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
+        if (txtFieldHours.getText().isEmpty())
+        {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Indtast timer");
+            alert.setHeaderText(null);
+            alert.setContentText("Indtast timer");
 
-        // Closes the primary stage
-        Stage stage = (Stage) btnConfirmHours.getScene().getWindow();
-        stage.close();
+            alert.showAndWait();
+        } else
+        {
+            mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
+
+            // Closes the primary stage
+            Stage stage = (Stage) btnConfirmHours.getScene().getWindow();
+            stage.close();
+        }
     }
 
 }

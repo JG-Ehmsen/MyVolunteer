@@ -51,9 +51,9 @@ public class LaugViewController implements Initializable
     private void handleLogin(ActionEvent event) throws IOException
     {
         mainViewModel.changeView("Admin login", "GUI/View/AdminLogin.fxml");
-        
+
         // Closes the primary stage
-        Stage stage = (Stage) ingelise.getScene().getWindow();
+        Stage stage = (Stage) btnLogin.getScene().getWindow();
         stage.close();
     }
 
