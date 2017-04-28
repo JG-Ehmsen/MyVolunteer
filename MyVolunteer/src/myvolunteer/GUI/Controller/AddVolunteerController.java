@@ -43,8 +43,6 @@ public class AddVolunteerController implements Initializable
     @FXML
     private void handleGodkend(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
-
         // Closes the primary stage
         Stage stage = (Stage) btnGodkend.getScene().getWindow();
         stage.close();
