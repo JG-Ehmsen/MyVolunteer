@@ -2,8 +2,6 @@ package myvolunteer.BE;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -16,7 +14,7 @@ public class User
     private StringProperty profileImage = new SimpleStringProperty();
     private StringProperty email = new SimpleStringProperty();
     protected StringProperty phoneNumber = new SimpleStringProperty();
-    protected Image image = new BufferedImage(100, 100, 0);
+    //protected Image image = new BufferedImage(100, 100, 0);
 
     public User(int id)
     {
@@ -78,13 +76,13 @@ public class User
         phoneNumber.set(value);
     }
 
-    public Image getImage()
-    {
-        return image;
-    }
-
-    public void setImage(Image image)
-    {
-        this.image = image;
-    }
+//    public Image getImage()
+//    {
+//        return image;
+//    }
+//
+//    public void setImage(Image image)
+//    {
+//        this.image = image;
+//    }
 }
