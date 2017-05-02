@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package myvolunteer.GUI.Controller;
 
 import java.io.IOException;
@@ -12,14 +7,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Utility.PictureButton;
 
-/**
- * FXML Controller class
- *
- * @author jonas
- */
 public class VolunteerViewController implements Initializable
 {
 
@@ -32,6 +25,8 @@ public class VolunteerViewController implements Initializable
     private Button btnTest;
     @FXML
     private Button btnBack;
+    @FXML
+    private FlowPane MainFlowPane;
 
     /**
      * Initializes the controller class.
@@ -39,7 +34,11 @@ public class VolunteerViewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        Volunteer user = new Volunteer(10, "Jonas", "11111111");
+        PictureButton button = new PictureButton(user);
+
+        MainFlowPane.getChildren().add(button);
+
     }
 
     @FXML
