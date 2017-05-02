@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import myvolunteer.DAL.ConnectionManager;
+import myvolunteer.DAL.DALFacade;
 
 /**
  *
@@ -30,6 +31,9 @@ public class App extends Application
 
         primaryStage.setScene(scene);
         primaryStage.show();
+        
+        DALFacade dalFacade = DALFacade.getInstance();
+        dalFacade.getUsers();
     }
 
     /**

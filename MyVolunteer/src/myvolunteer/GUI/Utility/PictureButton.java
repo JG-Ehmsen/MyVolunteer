@@ -7,7 +7,9 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import myvolunteer.BE.Manager;
 import myvolunteer.BE.User;
+import myvolunteer.BE.Volunteer;
 
 /**
  *
@@ -18,6 +20,7 @@ public class PictureButton extends javafx.scene.control.Button
     
     User user;
     
+    
     public PictureButton(User user)
     {
         this.user = user;
@@ -26,8 +29,16 @@ public class PictureButton extends javafx.scene.control.Button
     
     private void initialize()
     {
+        if (user.getClass().equals(Volunteer.class))
+        {
         this.setMinWidth(100);
         this.setMinHeight(100);
+        }
+        else if (user.getClass().equals(Manager.class))
+        {
+            this.setMinHeight(100);
+            this.setMinWidth(200);
+        }
         this.setText(user.getFirstName());
         ImageView image = new ImageView(new Image("myvolunteer/GUI/View/Resource/Picture.png"));
         this.setGraphic(image);
