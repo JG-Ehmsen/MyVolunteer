@@ -33,6 +33,8 @@ public class AdminLoginController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
 
+    private Stage previousStage;
+    
     @FXML
     private TextField UsernameField;
     @FXML
@@ -64,10 +66,17 @@ public class AdminLoginController implements Initializable
         {
             mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
 
+            
+            previousStage.close();
             // Closes the primary stage
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.close();
         }
+    }
+    
+    public void setPreviousStage(Stage stage)
+    {
+        previousStage = stage;
     }
 
 }

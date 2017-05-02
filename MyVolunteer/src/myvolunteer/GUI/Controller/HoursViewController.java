@@ -5,9 +5,12 @@
  */
 package myvolunteer.GUI.Controller;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,6 +41,9 @@ public class HoursViewController implements Initializable
     private DatePicker datePicker;
     @FXML
     private TextField txtFieldHours;
+    
+    // Validation file
+    private String file = "numberValidation.txt";
 
     /**
      * Initializes the controller class.
@@ -51,22 +57,57 @@ public class HoursViewController implements Initializable
     @FXML
     private void handleConfirmHours(ActionEvent event) throws IOException
     {
-        if (txtFieldHours.getText().isEmpty())
-        {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Indtast timer");
-            alert.setHeaderText(null);
-            alert.setContentText("Indtast timer");
-
-            alert.showAndWait();
-        } else
-        {
-            mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
-
-            // Closes the primary stage
-            Stage stage = (Stage) btnConfirmHours.getScene().getWindow();
-            stage.close();
-        }
+        // Validates that the input is valid (Only integers between 1-24)
+        validateInput();
     }
 
+    /**
+     *
+     * @throws IOException
+     */
+    public void validateInput() throws IOException
+    {
+        // Creates a new scanner and loads the numberValidation.txt file.
+        Scanner s = null;
+        s = new Scanner(new BufferedReader(new FileReader(file)));
+
+        // Boolean isFound is set to true if there is a match
+        boolean isFound = false;
+        while (s.hasNext())
+        {
+            String input = s.next();
+            if (txtFieldHours.getText().equals(input))
+            {
+                isFound = true;
+
+                //Handle UI action request so data can be saved to Database
+                //NB only if validated as correct input
+                saveToDatabase();
+
+                //Change view to mainView (LaugView) after validation has been confirmed
+                mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
+                // Closes the primary stage
+                Stage stage = (Stage) btnConfirmHours.getScene().getWindow();
+                stage.close();
+
+                break;
+            }
+        }
+        if (!isFound)
+        {
+            // Displays an alertbox if the hours typed are incorrect.
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Forkert input");
+            alert.setHeaderText(null);
+            alert.setContentText("Indtast venligst hele timer mellem 1 - 24 ");
+            alert.showAndWait();
+        }
+        // Closes the scanner
+        s.close();
+    }
+
+    public void saveToDatabase()
+    {
+
+    }
 }
