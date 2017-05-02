@@ -51,6 +51,8 @@ public class MainViewModel
         dialogStage.setScene(scene);
         dialogStage.setTitle(title);
 
+        //dialogStage.setOnCloseRequest(value);
+        
         dialogStage.show();
     }
 

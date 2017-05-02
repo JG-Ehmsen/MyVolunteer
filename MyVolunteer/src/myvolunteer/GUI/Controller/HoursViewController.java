@@ -5,9 +5,13 @@
  */
 package myvolunteer.GUI.Controller;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,6 +43,10 @@ public class HoursViewController implements Initializable
     @FXML
     private TextField txtFieldHours;
 
+    private int hoursSpent;
+
+    private String file;
+
     /**
      * Initializes the controller class.
      */
@@ -51,22 +59,50 @@ public class HoursViewController implements Initializable
     @FXML
     private void handleConfirmHours(ActionEvent event) throws IOException
     {
-        if (txtFieldHours.getText().isEmpty())
-        {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Indtast timer");
-            alert.setHeaderText(null);
-            alert.setContentText("Indtast timer");
-
-            alert.showAndWait();
-        } else
-        {
-            mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
-
-            // Closes the primary stage
-            Stage stage = (Stage) btnConfirmHours.getScene().getWindow();
-            stage.close();
-        }
+        validateInput();
     }
 
+    public void validateInput() throws IOException
+    {
+        Scanner s = null;
+        s = new Scanner(new BufferedReader(new FileReader("numberValidation.txt")));
+
+        boolean isFound = false;
+        while (s.hasNext())
+        {
+            String input = s.next();
+            if (txtFieldHours.getText().equals(input))
+            {
+                isFound = true;
+
+                //Handle UI action request so data can be saved to Database
+                //NB only if validated as correct input
+                saveToDatabase();
+                
+                //Change view to mainView (LaugView) after validation has been confirmed
+                mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
+                // Closes the primary stage
+                Stage stage = (Stage) btnConfirmHours.getScene().getWindow();
+                stage.close();
+
+                System.out.println("JA DAAA");
+                break;
+            }
+        }
+        if (!isFound)
+        {
+            System.out.println("Det er forkert");
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Forkert input");
+            alert.setHeaderText(null);
+            alert.setContentText("Indtast venligst hele timer mellem 1 - 24 ");
+            alert.showAndWait();
+        }
+        s.close();
+    }
+
+    public void saveToDatabase()
+    {
+
+    }
 }
