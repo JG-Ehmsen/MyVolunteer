@@ -1,11 +1,16 @@
 package myvolunteer.DAL;
 
+import java.util.List;
+import myvolunteer.BE.Guild;
+import myvolunteer.BE.User;
+
 /**
  *
  * @author jeppe
  */
 public class DALFacade
 {
+
     // Private field for the Facade singleton instance.
     private static DALFacade instance;
 
@@ -33,5 +38,17 @@ public class DALFacade
     private DALFacade()
     {
 
+    }
+
+    private DBTransactions db = new DBTransactions();
+
+    public List<Guild> getGuilds()
+    {
+        return db.getGuilds();
+    }
+
+    public List<User> getUsers()
+    {
+        return db.getUsers();
     }
 }
