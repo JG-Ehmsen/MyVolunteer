@@ -7,6 +7,7 @@ package myvolunteer.GUI.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +15,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
+import javax.swing.text.NumberFormatter;
 import myvolunteer.GUI.Model.MainViewModel;
 
 /**
@@ -45,7 +48,7 @@ public class AdminLoginController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        
     }
 
     @FXML
