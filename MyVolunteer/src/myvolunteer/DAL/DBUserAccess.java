@@ -10,10 +10,6 @@ import myvolunteer.BE.Manager;
 import myvolunteer.BE.User;
 import myvolunteer.BE.Volunteer;
 
-/**
- *
- * @author jeppe
- */
 public class DBUserAccess
 {
 

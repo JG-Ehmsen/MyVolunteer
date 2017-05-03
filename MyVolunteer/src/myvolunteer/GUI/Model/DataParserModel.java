@@ -5,6 +5,11 @@
  */
 package myvolunteer.GUI.Model;
 
+import java.util.List;
+import myvolunteer.BE.Guild;
+import myvolunteer.BE.User;
+import myvolunteer.BLL.BLLFacade;
+
 /**
  *
  * @author Fjord82
@@ -22,12 +27,22 @@ public class DataParserModel
         }
         return instance;
     }
-    
+
     private DataParserModel()
     {
-        
+
     }
-    
-    
+
+    BLLFacade bllFacade = BLLFacade.getInstance();
+
+    public List<Guild> getGuilds()
+    {
+        return bllFacade.getGuilds();
+    }
+
+    public List<User> getUsers()
+    {
+        return bllFacade.getUsers();
+    }
 
 }
