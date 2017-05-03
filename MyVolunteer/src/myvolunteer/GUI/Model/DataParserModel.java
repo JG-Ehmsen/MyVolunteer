@@ -5,6 +5,8 @@
  */
 package myvolunteer.GUI.Model;
 
+import myvolunteer.BLL.BLLFacade;
+
 /**
  *
  * @author Fjord82
@@ -26,6 +28,14 @@ public class DataParserModel
     private DataParserModel()
     {
         
+    }
+    
+    BLLFacade bllfacade = BLLFacade.getInstance();
+    
+    public void writeHoursToDatabase()
+    {
+        //reference to writeToDatabase method in BLL Facade
+        bllfacade.writeHoursToDatabase();
     }
     
     
