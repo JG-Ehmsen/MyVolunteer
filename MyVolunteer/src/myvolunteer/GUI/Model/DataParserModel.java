@@ -5,9 +5,11 @@
  */
 package myvolunteer.GUI.Model;
 
+import java.util.List;
+import myvolunteer.BE.Guild;
+import myvolunteer.BE.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.Date;
-import myvolunteer.BE.Guild;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.BLL.BLLFacade;
 
@@ -28,20 +30,29 @@ public class DataParserModel
         }
         return instance;
     }
-    
+
     private DataParserModel()
     {
-        
+
     }
-    
-    BLLFacade bllfacade = BLLFacade.getInstance();
+
+    BLLFacade bllFacade = BLLFacade.getInstance();
+
+    public List<Guild> getGuilds()
+    {
+        return bllFacade.getGuilds();
+    }
+
+    public List<User> getUsers()
+    {
+        return bllFacade.getUsers();
+    }
     
     public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
     {
         //reference to writeToDatabase method in BLL Facade
         bllfacade.writeHoursToDatabase(volunteer, hours, guild, date);
     }
-    
     
 
 }

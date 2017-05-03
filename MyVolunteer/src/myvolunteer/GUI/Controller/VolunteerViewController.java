@@ -9,7 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import myvolunteer.BE.Guild;
+import myvolunteer.BE.User;
 import myvolunteer.BE.Volunteer;
+import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
 import myvolunteer.GUI.Utility.PictureButton;
 
@@ -20,6 +23,7 @@ public class VolunteerViewController implements Initializable
      * Gets the singleton instance of the model.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
+    DataParserModel dp = DataParserModel.getInstance();
 
     @FXML
     private Button btnTest;
@@ -28,16 +32,22 @@ public class VolunteerViewController implements Initializable
     @FXML
     private FlowPane MainFlowPane;
 
+    Guild guild;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        Volunteer user = new Volunteer(10, "Jonas", "11111111");
-        PictureButton button = new PictureButton(user);
-
-        MainFlowPane.getChildren().add(button);
+        for (User u : dp.getUsers())
+        {
+            if (u.getClass().equals(Volunteer.class))
+            {
+                PictureButton button = new PictureButton(u);
+                MainFlowPane.getChildren().add(button);
+            }
+        }
 
     }
 
