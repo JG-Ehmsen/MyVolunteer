@@ -28,7 +28,7 @@ public class DBGuildAccess
         
         while(rs.next())
         {
-            int ID = rs.getInt("GID");
+            int ID = rs.getInt("GID")   ;
             String name = rs.getString("GName");
             String description = rs.getString("Description");
             

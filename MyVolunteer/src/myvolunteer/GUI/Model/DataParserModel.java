@@ -51,7 +51,7 @@ public class DataParserModel
     public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
     {
         //reference to writeToDatabase method in BLL Facade
-        bllfacade.writeHoursToDatabase(volunteer, hours, guild, date);
+        bllFacade.writeHoursToDatabase(volunteer, hours, guild, date);
     }
     
 

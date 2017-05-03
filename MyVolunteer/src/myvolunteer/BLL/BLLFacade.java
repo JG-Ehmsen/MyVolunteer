@@ -54,6 +54,7 @@ public class BLLFacade
     public List<User> getUsers()
     {
         return dalFacade.getUsers();
+    }
     
     public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
     {
