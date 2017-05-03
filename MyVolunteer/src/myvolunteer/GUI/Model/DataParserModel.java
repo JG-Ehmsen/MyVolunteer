@@ -32,10 +32,10 @@ public class DataParserModel
     
     BLLFacade bllfacade = BLLFacade.getInstance();
     
-    public void writeHoursToDatabase()
+    public void writeHoursToDatabase(int ID, int hours)
     {
         //reference to writeToDatabase method in BLL Facade
-        bllfacade.writeHoursToDatabase();
+        bllfacade.writeHoursToDatabase(ID, hours);
     }
     
     

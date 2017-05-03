@@ -43,11 +43,10 @@ public class HoursViewController implements Initializable
     @FXML
     private TextField txtFieldHours;
 
-    
     DataParserModel dataParserModel = DataParserModel.getInstance();
-    
+
     // Validation file
-    private String file = "numberValidation.txt";
+    private String validationFile = "numberValidation.txt";
 
     /**
      * Initializes the controller class.
@@ -73,7 +72,7 @@ public class HoursViewController implements Initializable
     {
         // Creates a new scanner and loads the numberValidation.txt file.
         Scanner s = null;
-        s = new Scanner(new BufferedReader(new FileReader(file)));
+        s = new Scanner(new BufferedReader(new FileReader(validationFile)));
 
         // Boolean isFound is set to true if there is a match
         boolean isFound = false;
@@ -82,12 +81,14 @@ public class HoursViewController implements Initializable
             String input = s.next();
             if (txtFieldHours.getText().equals(input))
             {
+                int hoursToWrite = Integer.parseInt(txtFieldHours.getText());
+
                 isFound = true;
 
                 //Handle UI action request so data can be saved to Database
                 //NB only if validated as correct input
-                writeHoursToDatabase();
-                
+                writeHoursToDatabase(0, hoursToWrite);
+
                 //Change view to mainView (LaugView) after validation has been confirmed
                 mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
                 // Closes the primary stage
@@ -110,9 +111,9 @@ public class HoursViewController implements Initializable
         s.close();
     }
 
-    public void writeHoursToDatabase()
+    public void writeHoursToDatabase(int ID, int hours)
     {
         //reference to writeToDatabase method in DataParserModel
-        dataParserModel.writeHoursToDatabase();
+        dataParserModel.writeHoursToDatabase(ID, hours);
     }
 }
