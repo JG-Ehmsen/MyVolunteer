@@ -39,9 +39,9 @@ public class BLLFacade
     
     DALFacade dalFacade = DALFacade.getInstance();
     
-    public void writeHoursToDatabase()
+    public void writeHoursToDatabase(int ID, int hours)
     {
         //reference to writeToDatabase method in DAL Facade
-        dalFacade.writeHoursToDatabase();
+        dalFacade.writeHoursToDatabase(ID, hours);
     }
 }

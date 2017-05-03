@@ -56,9 +56,9 @@ public class ConnectionManager
         }
     }
     
-    public void writeHoursToDatabase()
+    public void writeHoursToDatabase(int ID, int hours)
     {
-        //TODO Method logic that write data to database
+        
         
     }
 }
