@@ -1,11 +1,14 @@
 package myvolunteer.DAL;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
 import myvolunteer.BE.User;
 import myvolunteer.BE.Volunteer;
@@ -58,5 +61,41 @@ public class DBUserAccess
             }
         }
         return userList;
+    }
+
+    public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
+    {
+
+        //SELECT gr.GRID
+        //FROM GuildRelation gr, Guild g, Users u
+        //WHERE gr.GID = g.GID AND gr.UID = u.UID
+        
+        //SELECT DID
+        //FROM Dates
+        //WHERE Date = '2015-05-03'
+        
+        //INSERT INTO Dates(Date)
+        //VALUES(?)
+        
+        //SELECT Hours
+        //FROM DateRelation
+        //WHERE GRID = ? AND DID = ?
+        
+        //INSERT INTO Dates(Date)
+        //VALUES(?)
+
+        //SELECT Hours
+        //FROM DateRelation
+        //WHERE GRID = ? AND DID = ?
+        
+        //INSERT INTO DateRelation(Hours)
+        //VALUES (?)
+        //WHERE GRID = ? AND DID = ?
+        
+        //INSERT INTO DateRelation(GRID, DID, Hours)
+        //VALUES (?, ?, ?)
+        
+        //PreparedStatement ps = con.prepareStatement(sql);
+
     }
 }
