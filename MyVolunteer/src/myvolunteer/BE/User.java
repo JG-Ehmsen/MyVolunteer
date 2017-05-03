@@ -14,7 +14,7 @@ public class User
     private StringProperty profileImage = new SimpleStringProperty();
     private StringProperty email = new SimpleStringProperty();
     protected StringProperty phoneNumber = new SimpleStringProperty();
-    //protected Image image = new BufferedImage(100, 100, 0);
+    private String image = "myvolunteer/GUI/View/Resource/UserPicture.png";
 
     public User(int id)
     {
@@ -74,6 +74,11 @@ public class User
     public void setPhoneNumber(String value)
     {
         phoneNumber.set(value);
+    }
+
+    public String getImage()
+    {
+        return image;
     }
 
 //    public Image getImage()

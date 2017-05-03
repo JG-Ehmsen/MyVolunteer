@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,50 +9,7 @@
 
 <AnchorPane id="AnchorPane" maxWidth="570.0" prefHeight="400.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.VolunteerViewController">
    <children>
-      <FlowPane fx:id="MainFlowPane" layoutX="4.0" layoutY="100.0" prefHeight="300.0" prefWidth="570.0">
-         <children>
-            <Button fx:id="btnTest" mnemonicParsing="false" onAction="#handleUserImage" prefHeight="60.0" prefWidth="60.0">
-               <FlowPane.margin>
-                  <Insets left="30.0" top="30.0" />
-               </FlowPane.margin>
-               <graphic>
-                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0">
-               <FlowPane.margin>
-                  <Insets left="30.0" top="30.0" />
-               </FlowPane.margin>
-               <graphic>
-                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0">
-               <FlowPane.margin>
-                  <Insets left="30.0" top="30.0" />
-               </FlowPane.margin>
-               <graphic>
-                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0">
-               <FlowPane.margin>
-                  <Insets left="30.0" top="30.0" />
-               </FlowPane.margin>
-               <graphic>
-                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0">
-               <graphic>
-                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-               <FlowPane.margin>
-                  <Insets left="30.0" top="30.0" />
-               </FlowPane.margin>
-            </Button>
-         </children>
-      </FlowPane>
+      <FlowPane fx:id="MainFlowPane" layoutX="4.0" layoutY="100.0" prefHeight="300.0" prefWidth="570.0" />
       <ImageView fitHeight="100.0" fitWidth="304.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="btnBack" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="46.0" prefWidth="43.0" text="⃔">
          <font>
@@ -105,6 +61,11 @@
                   <Image url="file:/Users/Kristoffers/Desktop/Previous%20-%20Free%20arrows%20icons_files/JA%20DA%203.png" />
                </image>
             </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnTest" layoutX="484.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleUserImage" prefHeight="33.0" prefWidth="29.0">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
       </Button>
    </children>

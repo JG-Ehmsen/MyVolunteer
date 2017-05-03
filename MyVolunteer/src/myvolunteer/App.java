@@ -32,8 +32,6 @@ public class App extends Application
         primaryStage.setScene(scene);
         primaryStage.show();
         
-        DALFacade dalFacade = DALFacade.getInstance();
-        dalFacade.getUsers();
     }
 
     /**

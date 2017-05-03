@@ -20,6 +20,8 @@ public class Guild
 
     private List<Integer> memberList = new ArrayList();
 
+    private String image = "myvolunteer/GUI/View/Resource/GuildPicture.png";
+
     public Guild(int ID, String name)
     {
         this.ID = ID;
@@ -59,6 +61,11 @@ public class Guild
     public void setMemberList(List<Integer> memberList)
     {
         this.memberList = memberList;
+    }
+
+    public String getImage()
+    {
+        return image;
     }
 
 }
