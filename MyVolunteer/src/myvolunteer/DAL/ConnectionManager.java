@@ -55,4 +55,10 @@ public class ConnectionManager
             Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void writeHoursToDatabase()
+    {
+        //TODO Method logic that write data to database
+        
+    }
 }

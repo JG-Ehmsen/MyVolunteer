@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
 
 /**
@@ -41,6 +42,9 @@ public class HoursViewController implements Initializable
     private DatePicker datePicker;
     @FXML
     private TextField txtFieldHours;
+
+    
+    DataParserModel dataParserModel = DataParserModel.getInstance();
     
     // Validation file
     private String file = "numberValidation.txt";
@@ -82,8 +86,8 @@ public class HoursViewController implements Initializable
 
                 //Handle UI action request so data can be saved to Database
                 //NB only if validated as correct input
-                saveToDatabase();
-
+                writeHoursToDatabase();
+                
                 //Change view to mainView (LaugView) after validation has been confirmed
                 mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
                 // Closes the primary stage
@@ -106,8 +110,9 @@ public class HoursViewController implements Initializable
         s.close();
     }
 
-    public void saveToDatabase()
+    public void writeHoursToDatabase()
     {
-
+        //reference to writeToDatabase method in DataParserModel
+        dataParserModel.writeHoursToDatabase();
     }
 }
