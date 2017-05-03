@@ -1,5 +1,7 @@
 package myvolunteer.BLL;
 
+import myvolunteer.DAL.DALFacade;
+
 /**
  *
  * @author jeppe
@@ -33,5 +35,13 @@ public class BLLFacade
     private BLLFacade()
     {
 
+    }
+    
+    DALFacade dalFacade = DALFacade.getInstance();
+    
+    public void writeHoursToDatabase()
+    {
+        //reference to writeToDatabase method in DAL Facade
+        dalFacade.writeHoursToDatabase();
     }
 }
