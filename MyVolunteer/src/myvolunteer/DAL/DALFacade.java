@@ -42,11 +42,11 @@ public class DALFacade
     
     ConnectionManager connectionManager = new ConnectionManager();
     
-    public void writeHoursToDatabase()
+    public void writeHoursToDatabase(int ID, int hours)
     {
         //reference to writeToDatabase method in DAL ConnectionManager
-        connectionManager.writeHoursToDatabase();
-        
+        connectionManager.writeHoursToDatabase(ID, hours);
+    }
 
     private DBTransactions db = new DBTransactions();
 
