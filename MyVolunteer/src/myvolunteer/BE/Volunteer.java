@@ -74,5 +74,4 @@ public class Volunteer extends User
         return note.get();
     }
     
-    
 }
