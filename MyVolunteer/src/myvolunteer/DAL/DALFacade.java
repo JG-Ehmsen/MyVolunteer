@@ -1,8 +1,11 @@
 package myvolunteer.DAL;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.util.Date;
 import java.util.List;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.User;
+import myvolunteer.BE.Volunteer;
 
 /**
  *
@@ -40,12 +43,12 @@ public class DALFacade
 
     }
     
-    ConnectionManager connectionManager = new ConnectionManager();
+    DBUserAccess dbUserAccess = new DBUserAccess();
     
-    public void writeHoursToDatabase(int ID, int hours)
+    public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
     {
         //reference to writeToDatabase method in DAL ConnectionManager
-        connectionManager.writeHoursToDatabase(ID, hours);
+        dbUserAccess.writeHoursToDatabase(volunteer, hours, guild, date);
     }
 
     private DBTransactions db = new DBTransactions();

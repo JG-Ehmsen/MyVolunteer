@@ -5,10 +5,12 @@
  */
 package myvolunteer.GUI.Controller;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.event.ActionEvent;
@@ -20,6 +22,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import myvolunteer.BE.Guild;
+import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
 
@@ -58,17 +62,26 @@ public class HoursViewController implements Initializable
     }
 
     @FXML
-    private void handleConfirmHours(ActionEvent event) throws IOException
+    private void handleConfirmHours(ActionEvent event) throws IOException, SQLServerException
     {
+        int hoursToWrite = Integer.parseInt(txtFieldHours.getText());
+
+        Volunteer testVlounteer = new Volunteer(2, "Anders", "25252525");
+        Guild testGuild = new Guild(1, "Bakery");
+        Date testDate = new Date();
+
         // Validates that the input is valid (Only integers between 1-24)
-        validateInput();
+        if(validateInput())
+        {
+        writeHoursToDatabase(testVlounteer, hoursToWrite, testGuild, testDate);
+        }
     }
 
     /**
      *
      * @throws IOException
      */
-    public void validateInput() throws IOException
+    public boolean validateInput() throws IOException
     {
         // Creates a new scanner and loads the numberValidation.txt file.
         Scanner s = null;
@@ -81,14 +94,11 @@ public class HoursViewController implements Initializable
             String input = s.next();
             if (txtFieldHours.getText().equals(input))
             {
-                int hoursToWrite = Integer.parseInt(txtFieldHours.getText());
 
                 isFound = true;
 
                 //Handle UI action request so data can be saved to Database
                 //NB only if validated as correct input
-                writeHoursToDatabase(0, hoursToWrite);
-
                 //Change view to mainView (LaugView) after validation has been confirmed
                 mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
                 // Closes the primary stage
@@ -109,11 +119,12 @@ public class HoursViewController implements Initializable
         }
         // Closes the scanner
         s.close();
+        return isFound;
     }
 
-    public void writeHoursToDatabase(int ID, int hours)
+    public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
     {
         //reference to writeToDatabase method in DataParserModel
-        dataParserModel.writeHoursToDatabase(ID, hours);
+        dataParserModel.writeHoursToDatabase(volunteer, hours, guild, date);
     }
 }
