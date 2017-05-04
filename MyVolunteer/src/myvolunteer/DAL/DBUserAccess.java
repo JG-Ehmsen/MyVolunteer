@@ -47,7 +47,6 @@ public class DBUserAccess
                 user.setGender(gender);
                 user.setNationality(nationality);
                 user.setNote(note);
-                System.out.println("Adding volunteer with ID " + ID);
                 userList.add(user);
             } else
             {
@@ -56,7 +55,6 @@ public class DBUserAccess
                 user.setFirstName(fName);
                 user.setLastName(lName);
                 user.setPhoneNumber(phoneNumber);
-                System.out.println("Adding manager with ID " + ID);
                 userList.add(user);
             }
         }
@@ -69,34 +67,25 @@ public class DBUserAccess
         //SELECT gr.GRID
         //FROM GuildRelation gr, Guild g, Users u
         //WHERE gr.GID = g.GID AND gr.UID = u.UID
-        
         //SELECT DID
         //FROM Dates
         //WHERE Date = '2015-05-03'
-        
         //INSERT INTO Dates(Date)
         //VALUES(?)
-        
         //SELECT Hours
         //FROM DateRelation
         //WHERE GRID = ? AND DID = ?
-        
         //INSERT INTO Dates(Date)
         //VALUES(?)
-
         //SELECT Hours
         //FROM DateRelation
         //WHERE GRID = ? AND DID = ?
-        
         //INSERT INTO DateRelation(Hours)
         //VALUES (?)
         //WHERE GRID = ? AND DID = ?
-        
         //INSERT INTO DateRelation(GRID, DID, Hours)
         //VALUES (?, ?, ?)
-        
         //PreparedStatement ps = con.prepareStatement(sql);
-
     }
     
     public void CreateNewUser(Volunteer user, Connection con) throws SQLException 
