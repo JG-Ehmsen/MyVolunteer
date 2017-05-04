@@ -63,7 +63,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnTest" layoutX="484.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleUserImage" prefHeight="33.0" prefWidth="29.0">
+      <Button fx:id="btnTest" layoutX="484.0" layoutY="10.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="29.0">
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>

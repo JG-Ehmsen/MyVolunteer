@@ -20,9 +20,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
+import myvolunteer.BE.User;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
@@ -39,6 +41,7 @@ public class HoursViewController implements Initializable
      * Gets the singleton instance of the model.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
+    DataParserModel dataParserModel = DataParserModel.getInstance();
 
     @FXML
     private Button btnConfirmHours;
@@ -46,8 +49,11 @@ public class HoursViewController implements Initializable
     private DatePicker datePicker;
     @FXML
     private TextField txtFieldHours;
+    @FXML
+    private Label lblLastUpdated;
 
-    DataParserModel dataParserModel = DataParserModel.getInstance();
+    User user;
+    Guild guild;
 
     // Validation file
     private String validationFile = "numberValidation.txt";
@@ -59,6 +65,8 @@ public class HoursViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
+        user = mainViewModel.getLastSelectedUser();
+        guild = mainViewModel.getLastSelectedGuild();
     }
 
     @FXML
@@ -71,9 +79,9 @@ public class HoursViewController implements Initializable
         Date testDate = new Date();
 
         // Validates that the input is valid (Only integers between 1-24)
-        if(validateInput())
+        if (validateInput())
         {
-        writeHoursToDatabase(testVlounteer, hoursToWrite, testGuild, testDate);
+            writeHoursToDatabase(testVlounteer, hoursToWrite, testGuild, testDate);
         }
     }
 
