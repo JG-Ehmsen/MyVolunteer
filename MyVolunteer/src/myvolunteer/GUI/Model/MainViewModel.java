@@ -9,6 +9,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import myvolunteer.App;
 import myvolunteer.BE.Guild;
+import myvolunteer.BE.User;
 import myvolunteer.BLL.BLLFacade;
 
 /**
@@ -41,6 +42,9 @@ public class MainViewModel
 
     }
 
+    User lastSelectedUser;
+    Guild lastSelectedGuild;
+
     public void changeView(String title, String path) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
@@ -55,10 +59,27 @@ public class MainViewModel
         dialogStage.setTitle(title);
 
         //dialogStage.setOnCloseRequest(value);
-        
         dialogStage.show();
     }
-    
 
+    public User getLastSelectedUser()
+    {
+        return lastSelectedUser;
+    }
+
+    public void setLastSelectedUser(User lastSelectedUser)
+    {
+        this.lastSelectedUser = lastSelectedUser;
+    }
+
+    public Guild getLastSelectedGuild()
+    {
+        return lastSelectedGuild;
+    }
+
+    public void setLastSelectedGuild(Guild lasSelectedGuild)
+    {
+        this.lastSelectedGuild = lasSelectedGuild;
+    }
 
 }

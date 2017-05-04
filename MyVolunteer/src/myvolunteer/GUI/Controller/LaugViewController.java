@@ -3,7 +3,11 @@ package myvolunteer.GUI.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -45,18 +49,35 @@ public class LaugViewController implements Initializable
         for (Guild g : dp.getGuilds())
         {
             PictureButton b = new PictureButton(g);
+            b.setOnAction(new EventHandler()
+            {
+                @Override
+                public void handle(Event event)
+                {
+                    mainViewModel.setLastSelectedGuild(b.getGuild());
+                    handleGuildClick();
+                }
+            }
+            );
             MainFlowPane.getChildren().add(b);
         }
     }
 
     @FXML
-    private void handleIngelise(ActionEvent event) throws IOException
+    private void handleGuildClick()
     {
-        mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
+        try
+        {
 
-        // Closes the primary stage
-        Stage stage = (Stage) ingelise.getScene().getWindow();
-        stage.close();
+            mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
+
+            // Closes the primary stage
+            Stage stage = (Stage) MainFlowPane.getScene().getWindow();
+            stage.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(LaugViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -65,7 +86,7 @@ public class LaugViewController implements Initializable
         mainViewModel.changeView("Admin login", "GUI/View/AdminLogin.fxml");
 
         // Closes the primary stage
-        Stage stage = (Stage) btnLogin.getScene().getWindow();
+        Stage stage = (Stage) MainFlowPane.getScene().getWindow();
         stage.close();
     }
 
