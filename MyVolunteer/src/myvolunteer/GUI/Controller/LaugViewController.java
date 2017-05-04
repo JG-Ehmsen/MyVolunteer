@@ -35,8 +35,6 @@ public class LaugViewController implements Initializable
     @FXML
     private Button btnLogin;
     @FXML
-    private Button ingelise;
-    @FXML
     private FlowPane MainFlowPane;
 
     /**
@@ -63,12 +61,10 @@ public class LaugViewController implements Initializable
         }
     }
 
-    @FXML
     private void handleGuildClick()
     {
         try
         {
-
             mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
 
             // Closes the primary stage
