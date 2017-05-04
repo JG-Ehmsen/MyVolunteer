@@ -98,4 +98,22 @@ public class DBUserAccess
         //PreparedStatement ps = con.prepareStatement(sql);
 
     }
+    
+    public void CreateNewUser(Volunteer user, Connection con) throws SQLException 
+    {
+        String sql = ""
+                + "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, Manager, Note)"
+                + "VALUES (?, ?, ?, ?, ?, ?, 0, ?)";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, user.getFirstName());
+        ps.setString(2, user.getLastName());
+        ps.setString(3, user.getGender());
+        ps.setString(4, user.getNationality());
+        ps.setString(5, user.getEmail());
+        ps.setString(6, user.getPhoneNumber());
+        ps.setString(7, user.getNote());
+        
+        ps.execute();
+    }
 }

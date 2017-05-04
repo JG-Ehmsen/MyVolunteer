@@ -62,4 +62,9 @@ public class DALFacade
     {
         return db.getUsers();
     }
+    
+    public void CreateNewUser(Volunteer user)
+    {
+        db.CreateNewUser(user);
+    }
 }

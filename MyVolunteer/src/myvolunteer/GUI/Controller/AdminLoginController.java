@@ -67,7 +67,7 @@ public class AdminLoginController implements Initializable
             mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
 
             
-            previousStage.close();
+            //previousStage.close();
             // Closes the primary stage
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.close();
