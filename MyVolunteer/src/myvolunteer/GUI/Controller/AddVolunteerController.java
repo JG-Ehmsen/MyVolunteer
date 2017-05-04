@@ -53,13 +53,13 @@ public class AddVolunteerController implements Initializable
     @FXML
     private TextArea txtNote;
     @FXML
-    private Button btnUploadImage;
-    @FXML
     private TextField txtLName;
     
     DataParserModel dp = DataParserModel.getInstance();
     
     final ToggleGroup tg = new ToggleGroup();
+    @FXML
+    private Button btnUploadImage;
 
     /**
      * Initializes the controller class.

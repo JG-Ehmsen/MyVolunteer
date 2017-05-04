@@ -5,32 +5,34 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="484.0" prefWidth="327.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AddVolunteerController">
     <children>
-        <TextField layoutX="15.0" layoutY="28.0" prefHeight="25.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
-        <TextField layoutX="17.0" layoutY="73.0" prefHeight="25.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
-        <TextField alignment="CENTER" layoutX="15.0" layoutY="120.0" prefHeight="27.0" prefWidth="167.0" promptText="DD-MM-YYYY" AnchorPane.leftAnchor="15.0" />
-        <RadioButton layoutX="15.0" layoutY="174.0" mnemonicParsing="false" text="Mand" AnchorPane.leftAnchor="15.0" />
-        <RadioButton layoutX="15.0" layoutY="200.0" mnemonicParsing="false" text="Kvinde" AnchorPane.leftAnchor="15.0" />
-        <TextField layoutX="15.0" layoutY="241.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />              
-        <TextField layoutX="15.0" layoutY="241.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
-        <TextField layoutX="15.0" layoutY="290.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
-        <TextField layoutX="15.0" layoutY="339.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
-        <TextArea layoutX="15.0" layoutY="365.0" prefHeight="77.0" prefWidth="167.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />       
+        <TextField fx:id="txtFName" layoutX="15.0" layoutY="28.0" prefHeight="25.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
+        <TextField fx:id="txtLName" layoutX="17.0" layoutY="73.0" prefHeight="25.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
+        <TextField fx:id="txtBday" alignment="CENTER" layoutX="15.0" layoutY="120.0" prefHeight="27.0" prefWidth="167.0" promptText="DD-MM-YYYY" AnchorPane.leftAnchor="15.0" />
+        <RadioButton fx:id="rbMale" layoutX="15.0" layoutY="174.0" mnemonicParsing="false" text="Mand" AnchorPane.leftAnchor="15.0" />
+        <RadioButton fx:id="rbFemale" layoutX="15.0" layoutY="200.0" mnemonicParsing="false" text="Kvinde" AnchorPane.leftAnchor="15.0" />
+        <TextField fx:id="txtPhoneNumber" layoutX="15.0" layoutY="241.0" prefHeight="27.0" prefWidth="167.0" promptText="+4512345678" AnchorPane.leftAnchor="15.0" />              
+        <TextField fx:id="txtEmail" layoutX="15.0" layoutY="290.0" prefHeight="27.0" prefWidth="167.0" promptText="eksempel@domæne.dk" AnchorPane.leftAnchor="15.0" />
+        <TextField fx:id="txtNationalitet" layoutX="15.0" layoutY="339.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
+        <TextArea fx:id="txtNote" layoutX="15.0" layoutY="365.0" prefHeight="77.0" prefWidth="167.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
         <Button fx:id="btnGodkend" defaultButton="true" layoutX="157.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
-        <Label layoutX="16.0" layoutY="371.0" text="Note:" AnchorPane.leftAnchor="15.0" />       
-        <ImageView fitHeight="67.0" fitWidth="79.0" layoutX="229.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
-        <Button layoutX="207.0" layoutY="83.0" mnemonicParsing="false" text="Upload billede" AnchorPane.rightAnchor="15.0" />
+        <ImageView fitHeight="67.0" fitWidth="79.0" layoutX="229.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/Users/Kristoffers/Desktop/School/Projects/MyVolunteer/MyVolunteer/src/myvolunteer/GUI/View/Resource/UserPicture.png" />
+         </image></ImageView>
+        <Button fx:id="btnUploadImage" layoutX="207.0" layoutY="83.0" mnemonicParsing="false" text="Upload billede" AnchorPane.rightAnchor="15.0" />
         <Label layoutX="16.0" layoutY="11.0" text="Navn:" AnchorPane.topAnchor="11.0" />
         <Label layoutX="16.0" layoutY="59.0" text="Efternavn:" AnchorPane.leftAnchor="15.0" />
+        <Label layoutX="16.0" layoutY="371.0" text="Note:" AnchorPane.leftAnchor="15.0" />
         <Label layoutX="15.0" layoutY="103.0" text="Fødselsdato:" AnchorPane.leftAnchor="15.0" />
         <Label layoutX="15.0" layoutY="156.0" text="Køn:" AnchorPane.leftAnchor="15.0" />
         <Label layoutX="15.0" layoutY="224.0" text="Telefon:" AnchorPane.leftAnchor="15.0" />
         <Label layoutX="15.0" layoutY="273.0" text="Email:" AnchorPane.leftAnchor="15.0" />
         <Label layoutX="16.0" layoutY="322.0" text="Nationalitet:" AnchorPane.leftAnchor="16.0" />
-        <Label layoutX="16.0" layoutY="59.0" text="Efternavn:" AnchorPane.leftAnchor="15.0" />
     </children>
 </AnchorPane>
