@@ -61,4 +61,9 @@ public class BLLFacade
         //reference to writeToDatabase method in DAL Facade
         dalFacade.writeHoursToDatabase(volunteer, hours, guild, date);
     }
+    
+    public void CreateNewUser(Volunteer user)
+    {
+        dalFacade.CreateNewUser(user);
+    }
 }

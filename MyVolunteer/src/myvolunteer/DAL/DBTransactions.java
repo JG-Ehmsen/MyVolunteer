@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.User;
+import myvolunteer.BE.Volunteer;
 
 /**
  *
@@ -86,6 +87,21 @@ public class DBTransactions
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
         return returnList;
+    }
+    
+    public void CreateNewUser(Volunteer user)
+    {
+        try
+        {
+            startTransaction();
+            
+            ua.CreateNewUser(user, cm.getConnection());
+            
+            commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
