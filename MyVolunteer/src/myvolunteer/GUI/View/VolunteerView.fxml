@@ -19,7 +19,16 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnTest" layoutX="484.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleUserImage" prefHeight="33.0" prefWidth="29.0">
+      <Button layoutX="428.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="24.0">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/Users/Kristoffers/Desktop/Previous%20-%20Free%20arrows%20icons_files/JA%20DA%203.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnTest" layoutX="484.0" layoutY="10.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="29.0">
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
