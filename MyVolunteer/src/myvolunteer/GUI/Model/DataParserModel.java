@@ -54,5 +54,9 @@ public class DataParserModel
         bllFacade.writeHoursToDatabase(volunteer, hours, guild, date);
     }
     
+    public void CreateNewUser(Volunteer user)
+    {
+        bllFacade.CreateNewUser(user);
+    }
 
 }
