@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="137.0" prefWidth="285.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.HoursViewController">
+<AnchorPane id="AnchorPane" prefHeight="137.0" prefWidth="285.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.HoursViewController">
    <children>
       <TextField fx:id="txtFieldHours" layoutX="91.0" layoutY="14.0" prefHeight="27.0" prefWidth="183.0" AnchorPane.bottomAnchor="95.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0" />
       <Label layoutX="16.0" layoutY="19.0" text="Tast timer:" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="15.0" />
@@ -16,7 +16,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Label layoutX="16.0" layoutY="60.0" prefHeight="17.0" prefWidth="183.0" text="Sidst opdateret:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="60.0" />
+      <Label fx:id="lblLastUpdated" layoutX="16.0" layoutY="60.0" prefHeight="17.0" prefWidth="183.0" text="Sidst opdateret:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="60.0" />
       <DatePicker fx:id="datePicker" layoutX="12.0" layoutY="94.0" prefHeight="27.0" prefWidth="143.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="95.0" />
    </children>
 </AnchorPane>

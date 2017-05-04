@@ -20,7 +20,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="ingelise" layoutX="469.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleIngelise" text="Ingelise" />
+      <Button fx:id="ingelise" layoutX="469.0" layoutY="20.0" mnemonicParsing="false" text="Ingelise" />
       <BorderPane layoutX="200.0" layoutY="136.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
          <center>
             <FlowPane fx:id="MainFlowPane" maxWidth="210.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
