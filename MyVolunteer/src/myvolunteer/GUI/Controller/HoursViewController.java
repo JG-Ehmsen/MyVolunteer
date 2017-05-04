@@ -72,16 +72,27 @@ public class HoursViewController implements Initializable
     @FXML
     private void handleConfirmHours(ActionEvent event) throws IOException, SQLServerException
     {
-        int hoursToWrite = Integer.parseInt(txtFieldHours.getText());
-
-        Volunteer testVlounteer = new Volunteer(2, "Anders", "25252525");
-        Guild testGuild = new Guild(1, "Bakery");
-        Date testDate = new Date();
-
-        // Validates that the input is valid (Only integers between 1-24)
-        if (validateInput())
+        if (!txtFieldHours.getText().isEmpty())
         {
-            writeHoursToDatabase(testVlounteer, hoursToWrite, testGuild, testDate);
+            int hoursToWrite = Integer.parseInt(txtFieldHours.getText());
+
+            Volunteer testVlounteer = new Volunteer(2, "Anders", "25252525");
+            Guild testGuild = new Guild(1, "Bakery");
+            Date testDate = new Date();
+
+            // Validates that the input is valid (Only integers between 1-24)
+            if (validateInput())
+            {
+                writeHoursToDatabase(testVlounteer, hoursToWrite, testGuild, testDate);
+            }
+        } else
+        {
+            // Displays an alertbox if the hours typed are incorrect.
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Forkert input");
+            alert.setHeaderText(null);
+            alert.setContentText("Indtast venligst hele timer mellem 1 - 24 ");
+            alert.showAndWait();
         }
     }
 
@@ -102,11 +113,8 @@ public class HoursViewController implements Initializable
             String input = s.next();
             if (txtFieldHours.getText().equals(input))
             {
-
                 isFound = true;
 
-                //Handle UI action request so data can be saved to Database
-                //NB only if validated as correct input
                 //Change view to mainView (LaugView) after validation has been confirmed
                 mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
                 // Closes the primary stage
