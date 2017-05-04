@@ -13,6 +13,7 @@ public class Volunteer extends User
     private StringProperty gender = new SimpleStringProperty();
     private StringProperty nationality = new SimpleStringProperty();
     private StringProperty lastInputDate = new SimpleStringProperty();
+    private StringProperty note = new SimpleStringProperty();
     
     private boolean isActive;
 
@@ -63,5 +64,14 @@ public class Volunteer extends User
         this.isActive = status;
     }
     
+    public void setNote(String note)
+    {
+        this.note.set(note);
+    }
+    
+    public String getNote()
+    {
+        return note.get();
+    }
     
 }

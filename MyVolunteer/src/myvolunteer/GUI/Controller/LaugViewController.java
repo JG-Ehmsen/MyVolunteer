@@ -7,8 +7,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import myvolunteer.BE.Guild;
+import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Utility.PictureButton;
 
 /**
  * FXML Controller class
@@ -22,11 +26,14 @@ public class LaugViewController implements Initializable
      * Gets the singleton instance of the model.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
+    DataParserModel dp = DataParserModel.getInstance();
 
     @FXML
     private Button btnLogin;
     @FXML
     private Button ingelise;
+    @FXML
+    private FlowPane MainFlowPane;
 
     /**
      * Initializes the controller class.
@@ -35,6 +42,11 @@ public class LaugViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
+        for (Guild g : dp.getGuilds())
+        {
+            PictureButton b = new PictureButton(g);
+            MainFlowPane.getChildren().add(b);
+        }
     }
 
     @FXML

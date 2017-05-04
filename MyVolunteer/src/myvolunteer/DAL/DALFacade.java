@@ -1,11 +1,19 @@
 package myvolunteer.DAL;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.util.Date;
+import java.util.List;
+import myvolunteer.BE.Guild;
+import myvolunteer.BE.User;
+import myvolunteer.BE.Volunteer;
+
 /**
  *
  * @author jeppe
  */
 public class DALFacade
 {
+
     // Private field for the Facade singleton instance.
     private static DALFacade instance;
 
@@ -33,5 +41,25 @@ public class DALFacade
     private DALFacade()
     {
 
+    }
+    
+    DBUserAccess dbUserAccess = new DBUserAccess();
+    
+    public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
+    {
+        //reference to writeToDatabase method in DAL ConnectionManager
+        dbUserAccess.writeHoursToDatabase(volunteer, hours, guild, date);
+    }
+
+    private DBTransactions db = new DBTransactions();
+
+    public List<Guild> getGuilds()
+    {
+        return db.getGuilds();
+    }
+
+    public List<User> getUsers()
+    {
+        return db.getUsers();
     }
 }

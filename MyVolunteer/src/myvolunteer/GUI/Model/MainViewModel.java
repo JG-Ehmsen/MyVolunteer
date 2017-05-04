@@ -1,12 +1,15 @@
 package myvolunteer.GUI.Model;
 
 import java.io.IOException;
+import java.util.List;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import myvolunteer.App;
+import myvolunteer.BE.Guild;
+import myvolunteer.BLL.BLLFacade;
 
 /**
  *
@@ -51,7 +54,11 @@ public class MainViewModel
         dialogStage.setScene(scene);
         dialogStage.setTitle(title);
 
+        //dialogStage.setOnCloseRequest(value);
+        
         dialogStage.show();
     }
+    
+
 
 }

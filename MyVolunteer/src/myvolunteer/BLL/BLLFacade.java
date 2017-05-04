@@ -1,11 +1,20 @@
 package myvolunteer.BLL;
 
+import java.util.List;
+import myvolunteer.BE.Guild;
+import myvolunteer.BE.User;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.util.Date;
+import myvolunteer.BE.Volunteer;
+import myvolunteer.DAL.DALFacade;
+
 /**
  *
  * @author jeppe
  */
 public class BLLFacade
 {
+
     // Private field for the Facade singleton instance.
     private static BLLFacade instance;
 
@@ -33,5 +42,23 @@ public class BLLFacade
     private BLLFacade()
     {
 
+    }
+
+    DALFacade dalFacade = DALFacade.getInstance();
+
+    public List<Guild> getGuilds()
+    {
+        return dalFacade.getGuilds();
+    }
+
+    public List<User> getUsers()
+    {
+        return dalFacade.getUsers();
+    }
+    
+    public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
+    {
+        //reference to writeToDatabase method in DAL Facade
+        dalFacade.writeHoursToDatabase(volunteer, hours, guild, date);
     }
 }

@@ -6,9 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import myvolunteer.BE.Guild;
+import myvolunteer.BE.Volunteer;
 
 public class ConnectionManager
 {
@@ -55,4 +58,5 @@ public class ConnectionManager
             Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 }
