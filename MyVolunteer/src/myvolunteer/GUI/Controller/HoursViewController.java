@@ -52,7 +52,7 @@ public class HoursViewController implements Initializable
     @FXML
     private Label lblLastUpdated;
 
-    User user;
+    Volunteer user;
     Guild guild;
 
     // Validation file
@@ -76,14 +76,12 @@ public class HoursViewController implements Initializable
         {
             int hoursToWrite = Integer.parseInt(txtFieldHours.getText());
 
-            Volunteer testVlounteer = new Volunteer(2, "Anders", "25252525");
-            Guild testGuild = new Guild(1, "Bakery");
-            Date testDate = new Date();
+            Date defaultDate = new Date();
 
             // Validates that the input is valid (Only integers between 1-24)
             if (validateInput())
             {
-                writeHoursToDatabase(testVlounteer, hoursToWrite, testGuild, testDate);
+                writeHoursToDatabase(user, hoursToWrite, guild, defaultDate);
             }
         } else
         {
