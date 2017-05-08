@@ -51,7 +51,7 @@ public class BLLFacade
         return dalFacade.getGuilds();
     }
 
-    public List<User> getUsers()
+    public List<Volunteer> getUsers()
     {
         return dalFacade.getUsers();
     }

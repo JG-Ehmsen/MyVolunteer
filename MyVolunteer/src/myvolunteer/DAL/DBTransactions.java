@@ -1,8 +1,10 @@
 package myvolunteer.DAL;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -71,10 +73,10 @@ public class DBTransactions
         }
         return returnList;
     }
-    
-    public List<User> getUsers()
+
+    public List<Volunteer> getUsers()
     {
-        List<User> returnList = new ArrayList();
+        List<Volunteer> returnList = new ArrayList();
         try
         {
             startTransaction();
@@ -88,15 +90,15 @@ public class DBTransactions
         }
         return returnList;
     }
-    
+
     public void CreateNewUser(Volunteer user)
     {
         try
         {
             startTransaction();
-            
+
             ua.CreateNewUser(user, cm.getConnection());
-            
+
             commitTransaction();
         } catch (SQLException ex)
         {
@@ -113,6 +115,47 @@ public class DBTransactions
             ga.CreateNewLaug(guild, cm.getConnection());
             
             commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public int getDateID(Date date)
+    {
+        int returnInt = 0;
+
+        try
+        {
+            startTransaction();
+
+            returnInt = ua.getDateID(date, cm.getConnection());
+
+            commitTransaction();
+
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return returnInt;
+    }
+
+    public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date)
+    {
+        try
+        {
+            startTransaction();
+
+            ua.writeHoursToDatabase(volunteer, hours, guild, date, cm.getConnection());
+
+            commitTransaction();
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex)
         {
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);

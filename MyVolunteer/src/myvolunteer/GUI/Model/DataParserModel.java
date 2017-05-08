@@ -43,7 +43,7 @@ public class DataParserModel
         return bllFacade.getGuilds();
     }
 
-    public List<User> getUsers()
+    public List<Volunteer> getUsers()
     {
         return bllFacade.getUsers();
     }

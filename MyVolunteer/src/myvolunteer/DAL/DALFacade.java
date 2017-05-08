@@ -48,7 +48,7 @@ public class DALFacade
     public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
     {
         //reference to writeToDatabase method in DAL ConnectionManager
-        dbUserAccess.writeHoursToDatabase(volunteer, hours, guild, date);
+        db.writeHoursToDatabase(volunteer, hours, guild, date);
     }
 
     private DBTransactions db = new DBTransactions();
@@ -58,7 +58,7 @@ public class DALFacade
         return db.getGuilds();
     }
 
-    public List<User> getUsers()
+    public List<Volunteer> getUsers()
     {
         return db.getUsers();
     }
@@ -73,4 +73,8 @@ public class DALFacade
         db.CreateNewLaug(guild);
     }
     
+    public int getDateID(Date date)
+    {
+        return db.getDateID(date);
+    }
 }

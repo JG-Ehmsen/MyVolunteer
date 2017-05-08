@@ -19,10 +19,10 @@ import myvolunteer.BE.Volunteer;
 public class PictureButton extends javafx.scene.control.Button
 {
 
-    User user;
+    Volunteer user;
     Guild guild;
 
-    public PictureButton(User user)
+    public PictureButton(Volunteer user)
     {
         this.user = user;
         InitUser();
@@ -72,7 +72,7 @@ public class PictureButton extends javafx.scene.control.Button
         });
     }
 
-    public User getUser()
+    public Volunteer getUser()
     {
         return user;
     }

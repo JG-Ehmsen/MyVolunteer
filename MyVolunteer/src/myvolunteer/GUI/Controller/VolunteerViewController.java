@@ -51,7 +51,7 @@ public class VolunteerViewController implements Initializable
 
     private void generateButtons()
     {
-        for (User u : dp.getUsers())
+        for (Volunteer u : dp.getUsers())
         {
             for (Integer i : guild.getMemberList())
             {
@@ -59,6 +59,7 @@ public class VolunteerViewController implements Initializable
                 {
                     if (u.getClass().equals(Volunteer.class))
                     {
+                        
                         PictureButton button = new PictureButton(u);
                         button.setOnAction(new EventHandler()
                         {
