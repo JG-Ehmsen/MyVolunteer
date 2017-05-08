@@ -58,5 +58,10 @@ public class DataParserModel
     {
         bllFacade.CreateNewUser(user);
     }
+    
+    public void CreateNewLaug(Guild guild)
+    {
+        bllFacade.CreateNewLaug(guild);
+    }
 
 }
