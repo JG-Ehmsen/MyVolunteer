@@ -72,6 +72,7 @@ public class HoursViewController implements Initializable
         guild = mainViewModel.getLastSelectedGuild();
         
         datePicker.setValue(LocalDate.now());
+        lblLastUpdated.setText("Sidst opdateret: " + user.getLastInputDate().toString());
     }
 
     @FXML
