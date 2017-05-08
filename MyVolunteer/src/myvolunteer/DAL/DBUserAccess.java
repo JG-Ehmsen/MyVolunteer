@@ -116,14 +116,16 @@ public class DBUserAccess
         int returnInt = 0;
 
         returnInt = fetchDateID(date, con);
+        System.out.println("Got dateID = " + returnInt);
 
-        if (returnInt != -1)
+        if (returnInt != 0)
         {
             return returnInt;
         } else
         {
             createNewDate(date, con);
             returnInt = fetchDateID(date, con);
+            System.out.println("Returning " + returnInt);
             return returnInt;
         }
     }
@@ -142,7 +144,7 @@ public class DBUserAccess
 
         if (rs.getFetchSize() == 0)
         {
-            returnInt = -1;
+            returnInt = 0;
         } else
         {
             while (rs.next())
