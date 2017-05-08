@@ -5,6 +5,7 @@ import myvolunteer.BE.Guild;
 import myvolunteer.BE.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.Date;
+import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.DAL.DALFacade;
 
@@ -55,21 +56,31 @@ public class BLLFacade
     {
         return dalFacade.getUsers();
     }
-    
+
     public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
     {
         //reference to writeToDatabase method in DAL Facade
         dalFacade.writeHoursToDatabase(volunteer, hours, guild, date);
     }
-    
+
     public void CreateNewUser(Volunteer user)
     {
         dalFacade.CreateNewUser(user);
     }
-    
+
     public void CreateNewLaug(Guild guild)
     {
         dalFacade.CreateNewLaug(guild);
     }
-    
+
+    public Manager getManagerForGuild(Guild guild)
+    {
+        return dalFacade.getManagerForGuild(guild);
+    }
+
+    public List<Manager> getManagers()
+    {
+        return dalFacade.getManagers();
+    }
+
 }

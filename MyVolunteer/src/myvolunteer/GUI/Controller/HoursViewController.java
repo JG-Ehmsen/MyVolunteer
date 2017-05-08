@@ -13,7 +13,9 @@ import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.event.ActionEvent;
@@ -70,7 +72,7 @@ public class HoursViewController implements Initializable
         // TODO
         user = mainViewModel.getLastSelectedUser();
         guild = mainViewModel.getLastSelectedGuild();
-        
+
         datePicker.setValue(LocalDate.now());
         lblLastUpdated.setText("Sidst opdateret: " + user.getLastInputDate().toString());
     }
@@ -80,15 +82,14 @@ public class HoursViewController implements Initializable
     {
         if (!txtFieldHours.getText().isEmpty())
         {
-            int hoursToWrite = Integer.parseInt(txtFieldHours.getText());
 
             Instant instant = Instant.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()));
             Date date = Date.from(instant);
-            
 
             // Validates that the input is valid (Only integers between 1-24)
             if (validateInput())
             {
+                int hoursToWrite = Integer.parseInt(txtFieldHours.getText());
                 writeHoursToDatabase(user, hoursToWrite, guild, date);
             }
         } else
@@ -108,16 +109,12 @@ public class HoursViewController implements Initializable
      */
     public boolean validateInput() throws IOException
     {
-        // Creates a new scanner and loads the numberValidation.txt file.
-        Scanner s = null;
-        s = new Scanner(new BufferedReader(new FileReader(validationFile)));
-
-        // Boolean isFound is set to true if there is a match
         boolean isFound = false;
-        while (s.hasNext())
+
+        for (int i = 1; i < 25; i++)
         {
-            String input = s.next();
-            if (txtFieldHours.getText().equals(input))
+            String iString = Integer.toString(i);
+            if (txtFieldHours.getText().equals(iString))
             {
                 isFound = true;
 
@@ -130,6 +127,7 @@ public class HoursViewController implements Initializable
                 break;
             }
         }
+        // Boolean isFound is set to true if there is a match
         if (!isFound)
         {
             // Displays an alertbox if the hours typed are incorrect.
@@ -140,7 +138,6 @@ public class HoursViewController implements Initializable
             alert.showAndWait();
         }
         // Closes the scanner
-        s.close();
         return isFound;
     }
 
