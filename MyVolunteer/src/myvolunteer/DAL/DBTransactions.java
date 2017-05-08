@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import myvolunteer.BE.Guild;
+import myvolunteer.BE.Manager;
 import myvolunteer.BE.User;
 import myvolunteer.BE.Volunteer;
 
@@ -105,15 +106,15 @@ public class DBTransactions
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void CreateNewLaug(Guild guild)
     {
         try
         {
             startTransaction();
-            
+
             ga.CreateNewLaug(guild, cm.getConnection());
-            
+
             commitTransaction();
         } catch (SQLException ex)
         {
@@ -160,6 +161,51 @@ public class DBTransactions
         {
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public Manager getManagerForGuild(Guild guild)
+    {
+        Manager manager;
+        try
+        {
+            startTransaction();
+
+            manager = ua.getManagerForGuild(guild, cm.getConnection());
+
+            commitTransaction();
+
+            return manager;
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    public List<Manager> getManagers()
+    {
+        List<Manager> returnList = new ArrayList<>();
+        try
+        {
+            startTransaction();
+
+            returnList = ua.getManagers(cm.getConnection());
+
+            commitTransaction();
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return returnList;
     }
 
 }

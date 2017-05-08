@@ -57,23 +57,21 @@ public class VolunteerViewController implements Initializable
             {
                 if (u.getId() == i)
                 {
-                    if (u.getClass().equals(Volunteer.class))
-                    {
-                        
-                        PictureButton button = new PictureButton(u);
-                        button.setOnAction(new EventHandler()
-                        {
-                            @Override
-                            public void handle(Event event)
-                            {
-                                mainViewModel.setLastSelectedUser(button.getUser());
-                                handleUserImage();
 
-                            }
+                    PictureButton button = new PictureButton(u);
+                    button.setOnAction(new EventHandler()
+                    {
+                        @Override
+                        public void handle(Event event)
+                        {
+                            mainViewModel.setLastSelectedUser(button.getUser());
+                            handleUserImage();
+
                         }
-                        );
-                        MainFlowPane.getChildren().add(button);
                     }
+                    );
+                    MainFlowPane.getChildren().add(button);
+
                 }
             }
 
