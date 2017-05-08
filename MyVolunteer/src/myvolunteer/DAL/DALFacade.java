@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
-import myvolunteer.BE.User;
 import myvolunteer.BE.Volunteer;
 
 /**

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package myvolunteer.BE;
 
 import java.util.Date;
@@ -75,5 +70,4 @@ public class Volunteer extends User
     {
         return note.get();
     }
-
 }

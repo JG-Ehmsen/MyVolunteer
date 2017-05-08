@@ -2,7 +2,6 @@ package myvolunteer.BLL;
 
 import java.util.List;
 import myvolunteer.BE.Guild;
-import myvolunteer.BE.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.Date;
 import myvolunteer.BE.Manager;

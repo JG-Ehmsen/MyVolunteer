@@ -43,8 +43,8 @@ public class MainViewModel
 
     }
 
-    Volunteer lastSelectedUser;
-    Guild lastSelectedGuild;
+    private Volunteer lastSelectedUser;
+    private Guild lastSelectedGuild;
 
     public void changeView(String title, String path) throws IOException
     {
