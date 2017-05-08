@@ -66,4 +66,10 @@ public class BLLFacade
     {
         dalFacade.CreateNewUser(user);
     }
+    
+    public void CreateNewLaug(Guild guild)
+    {
+        dalFacade.CreateNewLaug(guild);
+    }
+    
 }

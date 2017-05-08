@@ -105,6 +105,21 @@ public class DBTransactions
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void CreateNewLaug(Guild guild)
+    {
+        try
+        {
+            startTransaction();
+            
+            ga.CreateNewLaug(guild, cm.getConnection());
+            
+            commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public int getDateID(Date date)
     {

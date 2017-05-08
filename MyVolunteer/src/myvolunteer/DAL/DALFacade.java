@@ -68,6 +68,11 @@ public class DALFacade
         db.CreateNewUser(user);
     }
     
+    public void CreateNewLaug(Guild guild)
+    {
+        db.CreateNewLaug(guild);
+    }
+    
     public int getDateID(Date date)
     {
         return db.getDateID(date);
