@@ -67,4 +67,10 @@ public class DALFacade
     {
         db.CreateNewUser(user);
     }
+    
+    public void CreateNewLaug(Guild guild)
+    {
+        db.CreateNewLaug(guild);
+    }
+    
 }
