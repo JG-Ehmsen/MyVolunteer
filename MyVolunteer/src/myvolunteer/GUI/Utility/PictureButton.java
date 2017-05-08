@@ -43,14 +43,6 @@ public class PictureButton extends javafx.scene.control.Button
         this.setGraphic(image);
         this.setText(user.getFirstName());
         this.setContentDisplay(ContentDisplay.TOP);
-        this.setOnAction(new EventHandler()
-        {
-            @Override
-            public void handle(Event event)
-            {
-                HandleClickUser();
-            }
-        });
     }
 
     private void InitGuild()
@@ -62,14 +54,6 @@ public class PictureButton extends javafx.scene.control.Button
         this.setGraphic(image);
         this.setText(guild.getName());
         this.setContentDisplay(ContentDisplay.TOP);
-        this.setOnAction(new EventHandler()
-        {
-            @Override
-            public void handle(Event event)
-            {
-                HandleClickGuild();
-            }
-        });
     }
 
     public Volunteer getUser()
@@ -81,15 +65,4 @@ public class PictureButton extends javafx.scene.control.Button
     {
         return guild;
     }
-
-    public void HandleClickUser()
-    {
-        System.out.println(user.getFirstName());
-    }
-
-    public void HandleClickGuild()
-    {
-        System.out.println(guild.getName());
-    }
-
 }

@@ -10,6 +10,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -67,6 +70,9 @@ public class HoursViewController implements Initializable
         // TODO
         user = mainViewModel.getLastSelectedUser();
         guild = mainViewModel.getLastSelectedGuild();
+        
+        datePicker.setValue(LocalDate.now());
+        lblLastUpdated.setText("Sidst opdateret: " + user.getLastInputDate().toString());
     }
 
     @FXML
@@ -76,12 +82,14 @@ public class HoursViewController implements Initializable
         {
             int hoursToWrite = Integer.parseInt(txtFieldHours.getText());
 
-            Date defaultDate = new Date();
+            Instant instant = Instant.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()));
+            Date date = Date.from(instant);
+            
 
             // Validates that the input is valid (Only integers between 1-24)
             if (validateInput())
             {
-                writeHoursToDatabase(user, hoursToWrite, guild, defaultDate);
+                writeHoursToDatabase(user, hoursToWrite, guild, date);
             }
         } else
         {
