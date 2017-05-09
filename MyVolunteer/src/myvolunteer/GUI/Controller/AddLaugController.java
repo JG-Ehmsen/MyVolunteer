@@ -21,6 +21,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
+import myvolunteer.BE.Manager;
+import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
 
