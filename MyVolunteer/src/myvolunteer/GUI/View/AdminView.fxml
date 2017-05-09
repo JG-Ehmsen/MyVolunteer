@@ -43,9 +43,7 @@
                </image>
             </ImageView>
          </graphic>
-         <font>
-            <Font size="15.0" />
-         </font></Button>
+         </Button>
       <ImageView fitHeight="11.0" fitWidth="491.0" layoutX="13.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="75.0">
          <image>
             <Image url="file:/Users/Fjord82/Documents/MyVolunteer/MyVolunteer/src/myvolunteer/GUI/View/Resource/toolsmenu_bg.png" />
