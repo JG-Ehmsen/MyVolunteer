@@ -30,9 +30,10 @@ public class AddLaugController implements Initializable
 {
 
     /**
-     * Gets the singleton instance of the model.
+     * Gets the singleton instance of the model and date parser.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
+    DataParserModel dp = DataParserModel.getInstance();
 
     @FXML
     private Button btnGodkend;
@@ -44,30 +45,28 @@ public class AddLaugController implements Initializable
     private TextField txtLaugName;
     @FXML
     private TextField txtLaugInfo;
-
-    DataParserModel dp = DataParserModel.getInstance();
     @FXML
     private Button btnBack;
-    private ListView<Volunteer> listAvailableVolunteers;
     @FXML
     private TextField txtSearchAvailable;
     @FXML
     private ListView<Volunteer> listChosenVolunteer;
     @FXML
     private TextField txtSeachChosen;
+    @FXML
+    private ComboBox<Manager> comboManager;
+    @FXML
+    private ListView<Volunteer> listAvailableVolunteers;
 
     List<Volunteer> allVolunteerList = new ArrayList<>();
     List<Manager> managerList = new ArrayList<>();
     ObservableList allUsers = FXCollections.observableArrayList();
     ObservableList chosenUsers = FXCollections.observableArrayList();
     ObservableList managers = FXCollections.observableArrayList();
-    @FXML
-    private ComboBox<Manager> comboManager;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-
         allVolunteerList = dp.getUsers();
         allUsers.setAll(allVolunteerList);
         listAvailableVolunteers.setItems(allUsers);
@@ -114,7 +113,7 @@ public class AddLaugController implements Initializable
     @FXML
     private void handleAddVolunteer(ActionEvent event)
     {
-        if(listAvailableVolunteers.getSelectionModel().getSelectedItem()!= null)
+        if (listAvailableVolunteers.getSelectionModel().getSelectedItem() != null)
         {
             Volunteer volunteer = listAvailableVolunteers.getSelectionModel().getSelectedItem();
             chosenUsers.add(volunteer);
@@ -125,7 +124,7 @@ public class AddLaugController implements Initializable
     @FXML
     private void handleRemoveVolunteer(ActionEvent event)
     {
-        if(listChosenVolunteer.getSelectionModel().getSelectedItem()!= null)
+        if (listChosenVolunteer.getSelectionModel().getSelectedItem() != null)
         {
             Volunteer volunteer = listChosenVolunteer.getSelectionModel().getSelectedItem();
             allUsers.add(volunteer);
