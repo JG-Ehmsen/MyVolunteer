@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import myvolunteer.App;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.User;
+import myvolunteer.BE.Volunteer;
 import myvolunteer.BLL.BLLFacade;
 
 /**
@@ -42,7 +43,7 @@ public class MainViewModel
 
     }
 
-    User lastSelectedUser;
+    Volunteer lastSelectedUser;
     Guild lastSelectedGuild;
 
     public void changeView(String title, String path) throws IOException
@@ -62,12 +63,12 @@ public class MainViewModel
         dialogStage.show();
     }
 
-    public User getLastSelectedUser()
+    public Volunteer getLastSelectedUser()
     {
         return lastSelectedUser;
     }
 
-    public void setLastSelectedUser(User lastSelectedUser)
+    public void setLastSelectedUser(Volunteer lastSelectedUser)
     {
         this.lastSelectedUser = lastSelectedUser;
     }

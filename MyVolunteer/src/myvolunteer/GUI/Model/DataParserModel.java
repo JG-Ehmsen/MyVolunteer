@@ -7,9 +7,9 @@ package myvolunteer.GUI.Model;
 
 import java.util.List;
 import myvolunteer.BE.Guild;
-import myvolunteer.BE.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.Date;
+import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.BLL.BLLFacade;
 
@@ -43,7 +43,7 @@ public class DataParserModel
         return bllFacade.getGuilds();
     }
 
-    public List<User> getUsers()
+    public List<Volunteer> getUsers()
     {
         return bllFacade.getUsers();
     }
@@ -57,6 +57,16 @@ public class DataParserModel
     public void CreateNewUser(Volunteer user)
     {
         bllFacade.CreateNewUser(user);
+    }
+    
+    public void CreateNewLaug(Guild guild)
+    {
+        bllFacade.CreateNewLaug(guild);
+    }
+    
+        public Manager getManagerForGuild(Guild guild)
+    {
+        return bllFacade.getManagerForGuild(guild);
     }
 
 }

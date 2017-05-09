@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import myvolunteer.BE.Guild;
+import myvolunteer.BE.Volunteer;
 
 /**
  *
@@ -65,6 +66,18 @@ public class DBGuildAccess
         
         
         return guildList;
+    }
+    
+    public void CreateNewLaug(Guild guild, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "INSERT INTO Guild(GName, Description) VALUES(?, ?)";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, guild.getName());
+        ps.setString(2, guild.getDescription());
+        
+        ps.execute();
     }
     
 }

@@ -4,6 +4,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.Date;
 import java.util.List;
 import myvolunteer.BE.Guild;
+import myvolunteer.BE.Manager;
 import myvolunteer.BE.User;
 import myvolunteer.BE.Volunteer;
 
@@ -42,13 +43,13 @@ public class DALFacade
     {
 
     }
-    
+
     DBUserAccess dbUserAccess = new DBUserAccess();
-    
+
     public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
     {
         //reference to writeToDatabase method in DAL ConnectionManager
-        dbUserAccess.writeHoursToDatabase(volunteer, hours, guild, date);
+        db.writeHoursToDatabase(volunteer, hours, guild, date);
     }
 
     private DBTransactions db = new DBTransactions();
@@ -58,13 +59,33 @@ public class DALFacade
         return db.getGuilds();
     }
 
-    public List<User> getUsers()
+    public List<Volunteer> getUsers()
     {
         return db.getUsers();
     }
-    
+
     public void CreateNewUser(Volunteer user)
     {
         db.CreateNewUser(user);
+    }
+
+    public void CreateNewLaug(Guild guild)
+    {
+        db.CreateNewLaug(guild);
+    }
+
+    public int getDateID(Date date)
+    {
+        return db.getDateID(date);
+    }
+
+    public Manager getManagerForGuild(Guild guild)
+    {
+        return db.getManagerForGuild(guild);
+    }
+
+    public List<Manager> getManagers()
+    {
+        return db.getManagers();
     }
 }

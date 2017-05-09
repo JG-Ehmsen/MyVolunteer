@@ -19,10 +19,10 @@ import myvolunteer.BE.Volunteer;
 public class PictureButton extends javafx.scene.control.Button
 {
 
-    User user;
+    Volunteer user;
     Guild guild;
 
-    public PictureButton(User user)
+    public PictureButton(Volunteer user)
     {
         this.user = user;
         InitUser();
@@ -43,14 +43,6 @@ public class PictureButton extends javafx.scene.control.Button
         this.setGraphic(image);
         this.setText(user.getFirstName());
         this.setContentDisplay(ContentDisplay.TOP);
-        this.setOnAction(new EventHandler()
-        {
-            @Override
-            public void handle(Event event)
-            {
-                HandleClickUser();
-            }
-        });
     }
 
     private void InitGuild()
@@ -62,17 +54,9 @@ public class PictureButton extends javafx.scene.control.Button
         this.setGraphic(image);
         this.setText(guild.getName());
         this.setContentDisplay(ContentDisplay.TOP);
-        this.setOnAction(new EventHandler()
-        {
-            @Override
-            public void handle(Event event)
-            {
-                HandleClickGuild();
-            }
-        });
     }
 
-    public User getUser()
+    public Volunteer getUser()
     {
         return user;
     }
@@ -81,15 +65,4 @@ public class PictureButton extends javafx.scene.control.Button
     {
         return guild;
     }
-
-    public void HandleClickUser()
-    {
-        System.out.println(user.getFirstName());
-    }
-
-    public void HandleClickGuild()
-    {
-        System.out.println(guild.getName());
-    }
-
 }
