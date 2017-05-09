@@ -11,12 +11,12 @@
    <children>
       <TextField fx:id="txtFieldHours" layoutX="91.0" layoutY="14.0" prefHeight="27.0" prefWidth="183.0" AnchorPane.bottomAnchor="95.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0" />
       <Label layoutX="16.0" layoutY="19.0" text="Tast timer:" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="15.0" />
-      <Button fx:id="btnConfirmHours" defaultButton="true" layoutX="182.0" layoutY="63.0" mnemonicParsing="false" onAction="#handleConfirmHours" prefHeight="64.0" prefWidth="93.0" text="Godkend" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="63.0">
+      <Button fx:id="btnConfirmHours" defaultButton="true" layoutX="189.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleConfirmHours" prefHeight="47.0" prefWidth="86.0" text="Godkend" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="lblLastUpdated" layoutX="16.0" layoutY="60.0" prefHeight="17.0" prefWidth="183.0" text="Sidst opdateret:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="60.0" />
+      <Label fx:id="lblLastUpdated" layoutX="15.0" layoutY="53.0" prefHeight="17.0" prefWidth="183.0" text="Sidst opdateret:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="53.0" />
       <DatePicker fx:id="datePicker" layoutX="12.0" layoutY="94.0" prefHeight="27.0" prefWidth="143.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="95.0" />
    </children>
 </AnchorPane>
