@@ -54,6 +54,8 @@ public class VolunteerViewController implements Initializable
 
     private void generateButtons()
     {
+        MainFlowPane.setVgap(20);
+        MainFlowPane.setHgap(30);
         for (Volunteer u : dp.getUsers())
         {
             for (Integer i : guild.getMemberList())

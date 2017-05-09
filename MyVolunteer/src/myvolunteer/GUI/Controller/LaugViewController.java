@@ -45,6 +45,8 @@ public class LaugViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
+        MainFlowPane.setVgap(10);
+
         initGuildButtons();
 
     }
@@ -54,6 +56,7 @@ public class LaugViewController implements Initializable
         for (Guild g : dp.getGuilds())
         {
             PictureButton b = new PictureButton(g);
+            
             b.setOnAction(new EventHandler()
             {
                 @Override
