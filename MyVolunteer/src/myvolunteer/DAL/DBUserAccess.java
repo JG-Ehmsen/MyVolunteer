@@ -40,6 +40,7 @@ public class DBUserAccess
                 String gender = rs.getString("Gender");
                 String nationality = rs.getString("Nationality");
                 String note = rs.getString("Note");
+                Date date = rs.getDate("LastDate");
 
                 Volunteer user = new Volunteer(ID, fName, phoneNumber);
                 user.setLastName(lName);
@@ -47,6 +48,7 @@ public class DBUserAccess
                 user.setGender(gender);
                 user.setNationality(nationality);
                 user.setNote(note);
+                user.setLastInputDate(date);
                 userList.add(user);
             }
 //else
@@ -64,22 +66,16 @@ public class DBUserAccess
 
     public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date, Connection con) throws SQLServerException, SQLException
     {
-        System.out.println("Starting to add hours.");
         int DRID = 0;
 
-        
         DRID = getDateRelationID(guild, volunteer, date, con);
-        System.out.println("DRID = " + DRID);
 
         if (DRID == -1)
         {
-            System.out.println("Creating new date relation");
             createNewDateRelation(guild, volunteer, date, con);
             DRID = getDateRelationID(guild, volunteer, date, con);
-            System.out.println("Got DRID for new DR = " + DRID);
         }
         int startingHours = getDateRelationHours(DRID, con);
-        System.out.println("Got starting hours");
 
         String sql = "UPDATE DateRelation SET Hours = ? WHERE DRID = ?";
 
@@ -88,7 +84,8 @@ public class DBUserAccess
         ps.setInt(2, DRID);
 
         ps.execute();
-        System.out.println("Executed query");
+
+        updateLastDate(volunteer, con);
     }
 
     public int getGuildRelationID(Volunteer volunteer, Guild guild, Connection con) throws SQLException
@@ -116,7 +113,6 @@ public class DBUserAccess
         int returnInt = 0;
 
         returnInt = fetchDateID(date, con);
-        System.out.println("Got dateID = " + returnInt);
 
         if (returnInt != 0)
         {
@@ -125,7 +121,6 @@ public class DBUserAccess
         {
             createNewDate(date, con);
             returnInt = fetchDateID(date, con);
-            System.out.println("Returning " + returnInt);
             return returnInt;
         }
     }
@@ -205,19 +200,16 @@ public class DBUserAccess
             returnInt = -1;
             if (rs.getInt("GRID") == GRID && rs.getInt("DID") == DID)
             {
-                System.out.println("Returning an ID");
                 returnInt = rs.getInt("DRID");
                 return returnInt;
             }
         }
         return returnInt;
 
-
     }
 
     private void createNewDateRelation(Guild guild, Volunteer volunteer, Date date, Connection con) throws SQLException
     {
-        System.out.println("Creating new guild relation");
         int DID = getDateID(date, con);
         int GRID = getGuildRelationID(volunteer, guild, con);
 
@@ -246,6 +238,87 @@ public class DBUserAccess
             returnInt = rs.getInt("Hours");
         }
         return returnInt;
+    }
+
+    private void updateLastDate(Volunteer user, Connection con) throws SQLException
+    {
+        Date date = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+        String sql = ""
+                + "UPDATE Users "
+                + "SET LastDate = ? "
+                + "WHERE UID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setDate(1, sqlDate);
+        ps.setInt(2, user.getId());
+    }
+
+    public Manager getManagerForGuild(Guild guild, Connection con) throws SQLException
+    {
+
+        String sql = ""
+                + "SELECT * "
+                + "FROM Users u, GuildRelation gr "
+                + "WHERE u.UID = gr.UID AND u.Manager = 1 AND gr.GID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, guild.getID());
+
+        ResultSet rs = ps.executeQuery();
+
+        int ID = 0;
+        String phoneNumber = "";
+        String eMail = "";
+        String fName = "";
+        String lName = "";
+
+        while (rs.next())
+        {
+            ID = rs.getInt("UID");
+            phoneNumber = rs.getString("TLF");
+            eMail = rs.getString("EMail");
+            fName = rs.getString("FName");
+            lName = rs.getString("LName");
+
+        }
+        Manager manager = new Manager(ID);
+        manager.setEmail(eMail);
+        manager.setPhoneNumber(phoneNumber);
+        manager.setFirstName(fName);
+        manager.setLastName(lName);
+
+        return manager;
+    }
+
+    public List<Manager> getManagers(Connection con) throws SQLException
+    {
+        List<Manager> returnList = new ArrayList<>();
+
+        String sql = ""
+                + "SELECT * "
+                + "FROM Users "
+                + "WHERE Manager = 1";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            Manager manager = new Manager(rs.getInt("UID"));
+            manager.setEmail(rs.getString("EMail"));
+            manager.setPhoneNumber(rs.getString("TLF"));
+            manager.setFirstName(rs.getString("FName"));
+            manager.setLastName(rs.getString("LName"));
+            
+            returnList.add(manager);
+        }
+
+        return returnList;
     }
 
 }

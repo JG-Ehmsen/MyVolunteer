@@ -10,6 +10,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
@@ -45,6 +46,13 @@ public class LaugViewController implements Initializable
     {
         // TODO
         MainFlowPane.setVgap(10);
+
+        initGuildButtons();
+
+    }
+
+    private void initGuildButtons()
+    {
         for (Guild g : dp.getGuilds())
         {
             PictureButton b = new PictureButton(g);

@@ -81,6 +81,12 @@ public class User
         return image;
     }
 
+    @Override
+    public String toString()
+    {
+        return firstName + " " + lastName;
+    }
+
 //    public Image getImage()
 //    {
 //        return image;
