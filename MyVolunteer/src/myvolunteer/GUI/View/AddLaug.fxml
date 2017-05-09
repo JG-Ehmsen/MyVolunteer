@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="419.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AddLaugController">
+<AnchorPane id="AnchorPane" prefHeight="419.0" prefWidth="350.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AddLaugController">
    <children>
       <Text layoutX="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laug navn:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <TextField fx:id="txtLaugName" layoutX="14.0" layoutY="31.0" maxWidth="125.0" prefHeight="25.0" prefWidth="125.0" promptText="Indtast laug navn" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="215.0" />
