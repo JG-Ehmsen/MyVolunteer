@@ -10,13 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
-import myvolunteer.BE.User;
 import myvolunteer.BE.Volunteer;
 
-/**
- *
- * @author jeppe
- */
 public class DBTransactions
 {
 
@@ -27,6 +22,10 @@ public class DBTransactions
 
     private Connection transactionConnection;
 
+    /**
+     * Attempts to start a new transaction, using a connection gotten from the
+     * connection manager.
+     */
     private void startTransaction()
     {
         try
@@ -40,6 +39,10 @@ public class DBTransactions
         }
     }
 
+    /**
+     * Attempts to commit a previously started transaction. If failed, will
+     * rollback any changes made.
+     */
     private void commitTransaction()
     {
         try
@@ -65,7 +68,7 @@ public class DBTransactions
         {
             startTransaction();
 
-            returnList = ga.getGuilds(cm.getConnection());
+            returnList = ga.getGuilds(transactionConnection);
 
             commitTransaction();
         } catch (SQLException ex)
@@ -82,7 +85,7 @@ public class DBTransactions
         {
             startTransaction();
 
-            returnList = ua.getUsers(cm.getConnection());
+            returnList = ua.getUsers(transactionConnection);
 
             commitTransaction();
         } catch (SQLException ex)
@@ -98,7 +101,7 @@ public class DBTransactions
         {
             startTransaction();
 
-            ua.CreateNewUser(user, cm.getConnection());
+            ua.CreateNewUser(user, transactionConnection);
 
             commitTransaction();
         } catch (SQLException ex)
@@ -113,7 +116,7 @@ public class DBTransactions
         {
             startTransaction();
 
-            ga.CreateNewLaug(guild, cm.getConnection());
+            ga.CreateNewLaug(guild, transactionConnection);
 
             commitTransaction();
         } catch (SQLException ex)
@@ -130,7 +133,7 @@ public class DBTransactions
         {
             startTransaction();
 
-            returnInt = ua.getDateID(date, cm.getConnection());
+            returnInt = ua.getDateID(date, transactionConnection);
 
             commitTransaction();
 
@@ -151,7 +154,7 @@ public class DBTransactions
         {
             startTransaction();
 
-            ua.writeHoursToDatabase(volunteer, hours, guild, date, cm.getConnection());
+            ua.writeHoursToDatabase(volunteer, hours, guild, date, transactionConnection);
 
             commitTransaction();
         } catch (SQLServerException ex)
@@ -170,7 +173,7 @@ public class DBTransactions
         {
             startTransaction();
 
-            manager = ua.getManagerForGuild(guild, cm.getConnection());
+            manager = ua.getManagerForGuild(guild, transactionConnection);
 
             commitTransaction();
 
@@ -193,7 +196,7 @@ public class DBTransactions
         {
             startTransaction();
 
-            returnList = ua.getManagers(cm.getConnection());
+            returnList = ua.getManagers(transactionConnection);
 
             commitTransaction();
         } catch (SQLServerException ex)
@@ -206,6 +209,66 @@ public class DBTransactions
             return null;
         }
         return returnList;
+    }
+
+    public int getHoursWorkedForGuild(Guild guild)
+    {
+        int returnInt = 0;
+        try
+        {
+            startTransaction();
+
+            returnInt = ga.getHoursWorkedForGuild(guild, transactionConnection);
+
+            commitTransaction();
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return returnInt;
+    }
+
+    public int getTotalHoursWorked()
+    {
+        int returnInt = 0;
+        try
+        {
+            startTransaction();
+
+            returnInt = ga.getTotalHoursWorked(transactionConnection);
+
+            commitTransaction();
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return returnInt;
+    }
+
+    public int getHoursWorkedForVolunteer(Volunteer volunteer)
+    {
+        int returnInt = 0;
+        try
+        {
+            startTransaction();
+
+            returnInt = ua.getHoursWorkedForVolunteer(volunteer, transactionConnection);
+
+            commitTransaction();
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return returnInt;
     }
 
 }
