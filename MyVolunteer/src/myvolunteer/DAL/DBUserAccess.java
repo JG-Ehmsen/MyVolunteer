@@ -10,12 +10,20 @@ import java.util.Date;
 import java.util.List;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
-import myvolunteer.BE.User;
 import myvolunteer.BE.Volunteer;
 
 public class DBUserAccess
 {
 
+    /**
+     * Given a database connection, queries the database for every user entry,
+     * disregards ones that are noted as managers and interprets the data into
+     * Volunteer BE's, then returns them in a list.
+     *
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public List<Volunteer> getUsers(Connection con) throws SQLException
     {
         List<Volunteer> userList = new ArrayList();
@@ -51,27 +59,30 @@ public class DBUserAccess
                 user.setLastInputDate(date);
                 userList.add(user);
             }
-//else
-//            {
-//                Manager user = new Manager(ID);
-//                user.setEmail(email);
-//                user.setFirstName(fName);
-//                user.setLastName(lName);
-//                user.setPhoneNumber(phoneNumber);
-//                userList.add(user);
-//            }
         }
         return userList;
     }
 
+    /**
+     * Given a volunteer BE, a guild BE, an amount of hours and a date, writes
+     * the amount of hours done on a particular date, for a particular volunteer
+     * in a particular guild.
+     *
+     * @param volunteer
+     * @param hours
+     * @param guild
+     * @param date
+     * @param con
+     * @throws SQLServerException
+     * @throws SQLException
+     */
     public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date, Connection con) throws SQLServerException, SQLException
     {
         int DRID = 0;
 
-        
         DRID = getDateRelationID(guild, volunteer, date, con);
 
-        if (DRID == -1)
+        if (DRID == 0)
         {
             createNewDateRelation(guild, volunteer, date, con);
             DRID = getDateRelationID(guild, volunteer, date, con);
@@ -85,10 +96,20 @@ public class DBUserAccess
         ps.setInt(2, DRID);
 
         ps.execute();
-        
+
         updateLastDate(volunteer, con);
     }
 
+    /**
+     * Given a Guild and Volunteer BE, returns either the ID of a matching
+     * GuildRelation on the DB, or if no matching entry exists, returns 0.
+     *
+     * @param volunteer
+     * @param guild
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public int getGuildRelationID(Volunteer volunteer, Guild guild, Connection con) throws SQLException
     {
         int returnInt = 0;
@@ -109,6 +130,17 @@ public class DBUserAccess
 
     }
 
+    /**
+     * Queries the database for the ID of a given data entry by referencing a
+     * date. Returns the date ID if a matching entry exists. If not, makes a
+     * method call for creating a new entry, and then queries the database again
+     * to get the newly created ID.
+     *
+     * @param date
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public int getDateID(Date date, Connection con) throws SQLException
     {
         int returnInt = 0;
@@ -126,6 +158,15 @@ public class DBUserAccess
         }
     }
 
+    /**
+     * Queries the database for the ID of a given data entry by referencing a
+     * date. Returns the date ID if a matching entry exists. If not, returns 0.
+     *
+     * @param date
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     private int fetchDateID(Date date, Connection con) throws SQLException
     {
         int returnInt = 0;
@@ -138,10 +179,7 @@ public class DBUserAccess
 
         ResultSet rs = ps.executeQuery();
 
-        if (rs.getFetchSize() == 0)
-        {
-            returnInt = 0;
-        } else
+        if (rs.getFetchSize() != 0)
         {
             while (rs.next())
             {
@@ -155,6 +193,13 @@ public class DBUserAccess
         return returnInt;
     }
 
+    /**
+     * Given a data, creates a new entry on the database for a given date.
+     *
+     * @param date
+     * @param con
+     * @throws SQLException
+     */
     private void createNewDate(Date date, Connection con) throws SQLException
     {
         String sql = "INSERT INTO Dates(Date) VALUES (?)";
@@ -167,6 +212,13 @@ public class DBUserAccess
         ps.execute();
     }
 
+    /**
+     * Given a Volunteer BE, writes all the attributes of it to the database.
+     *
+     * @param user
+     * @param con
+     * @throws SQLException
+     */
     public void CreateNewUser(Volunteer user, Connection con) throws SQLException
     {
         String sql = "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, Manager, Note) VALUES (?, ?, ?, ?, ?, ?, 0, ?)";
@@ -183,9 +235,22 @@ public class DBUserAccess
         ps.execute();
     }
 
+    /**
+     * Given a guild and volunteer BE, and a date, utilizes other method calls
+     * to get a date ID and a guild relation ID. Then queries the DB with these
+     * as parameters and attempt to find a matching date relation. If found,
+     * returns the ID of said relation. If not, returns 0.
+     *
+     * @param guild
+     * @param volunteer
+     * @param date
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     private int getDateRelationID(Guild guild, Volunteer volunteer, Date date, Connection con) throws SQLException
     {
-        int returnInt = -1;
+        int returnInt = 0;
 
         String sql = "SELECT DID, GRID, DRID FROM DateRelation";
 
@@ -198,7 +263,6 @@ public class DBUserAccess
 
         while (rs.next())
         {
-            returnInt = -1;
             if (rs.getInt("GRID") == GRID && rs.getInt("DID") == DID)
             {
                 returnInt = rs.getInt("DRID");
@@ -207,9 +271,18 @@ public class DBUserAccess
         }
         return returnInt;
 
-
     }
 
+    /**
+     * Creates a new date relation for a particular volunteer in a particular
+     * guild, on a particular date. Sets the starting hours to 0.
+     *
+     * @param guild
+     * @param volunteer
+     * @param date
+     * @param con
+     * @throws SQLException
+     */
     private void createNewDateRelation(Guild guild, Volunteer volunteer, Date date, Connection con) throws SQLException
     {
         int DID = getDateID(date, con);
@@ -225,6 +298,15 @@ public class DBUserAccess
 
     }
 
+    /**
+     * Queries the DB with a particular date relation ID, and returns the number
+     * of hours logged for that relation.
+     *
+     * @param DRID
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     private int getDateRelationHours(int DRID, Connection con) throws SQLException
     {
         int returnInt = 0;
@@ -241,21 +323,136 @@ public class DBUserAccess
         }
         return returnInt;
     }
-    
+
+    /**
+     * Updates the 'LastDate' attribute for a given volunteer to the current
+     * date.
+     *
+     * @param user
+     * @param con
+     * @throws SQLException
+     */
     private void updateLastDate(Volunteer user, Connection con) throws SQLException
     {
         Date date = new Date();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        
+
         String sql = ""
                 + "UPDATE Users "
                 + "SET LastDate = ? "
                 + "WHERE UID = ?";
-        
+
         PreparedStatement ps = con.prepareStatement(sql);
-        
+
         ps.setDate(1, sqlDate);
         ps.setInt(2, user.getId());
+    }
+
+    /**
+     * Given a particular Guild BE, returns a Manager BE containing the
+     * information about the manager of said guild.
+     *
+     * @param guild
+     * @param con
+     * @return
+     * @throws SQLException
+     */
+    public Manager getManagerForGuild(Guild guild, Connection con) throws SQLException
+    {
+
+        String sql = ""
+                + "SELECT * "
+                + "FROM Users u, GuildRelation gr "
+                + "WHERE u.UID = gr.UID AND u.Manager = 1 AND gr.GID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, guild.getID());
+
+        ResultSet rs = ps.executeQuery();
+
+        int ID = 0;
+        String phoneNumber = "";
+        String eMail = "";
+        String fName = "";
+        String lName = "";
+
+        while (rs.next())
+        {
+            ID = rs.getInt("UID");
+            phoneNumber = rs.getString("TLF");
+            eMail = rs.getString("EMail");
+            fName = rs.getString("FName");
+            lName = rs.getString("LName");
+
+        }
+        Manager manager = new Manager(ID);
+        manager.setEmail(eMail);
+        manager.setPhoneNumber(phoneNumber);
+        manager.setFirstName(fName);
+        manager.setLastName(lName);
+
+        return manager;
+    }
+
+    /**
+     * Queries the database for all tuples in the User table on the DB where
+     * Manager = 1, that is it returns information about all managers. Then
+     * interprets this into Manager BE's and returns them all in a list.
+     *
+     * @param con
+     * @return
+     * @throws SQLException
+     */
+    public List<Manager> getManagers(Connection con) throws SQLException
+    {
+        List<Manager> returnList = new ArrayList<>();
+
+        String sql = ""
+                + "SELECT * "
+                + "FROM Users "
+                + "WHERE Manager = 1";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            Manager manager = new Manager(rs.getInt("UID"));
+            manager.setEmail(rs.getString("EMail"));
+            manager.setPhoneNumber(rs.getString("TLF"));
+            manager.setFirstName(rs.getString("FName"));
+            manager.setLastName(rs.getString("LName"));
+
+            returnList.add(manager);
+        }
+
+        return returnList;
+    }
+
+    public int getHoursWorkedForVolunteer(Volunteer volunteer, Connection con) throws SQLException
+    {
+        int returnInt = 0;
+
+        String sql = ""
+                + "SELECT Hours "
+                + "FROM DateRelation dr, GuildRelation gr "
+                + "WHERE dr.GRID = gr.GRID AND gr.UID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, volunteer.getId());
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            int hours = rs.getInt("Hours");
+
+            returnInt = returnInt + hours;
+        }
+        return returnInt;
     }
 
 }

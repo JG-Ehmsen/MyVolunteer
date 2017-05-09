@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
+import myvolunteer.BE.Manager;
 import myvolunteer.BE.User;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
@@ -37,6 +38,7 @@ public class VolunteerViewController implements Initializable
     private FlowPane MainFlowPane;
 
     Guild guild;
+    Manager manager;
 
     /**
      * Initializes the controller class.
@@ -45,35 +47,36 @@ public class VolunteerViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         guild = mainViewModel.getLastSelectedGuild();
+        manager = dp.getManagerForGuild(guild);
 
         generateButtons();
     }
 
     private void generateButtons()
     {
+        MainFlowPane.setVgap(20);
+        MainFlowPane.setHgap(30);
         for (Volunteer u : dp.getUsers())
         {
             for (Integer i : guild.getMemberList())
             {
                 if (u.getId() == i)
                 {
-                    if (u.getClass().equals(Volunteer.class))
-                    {
-                        
-                        PictureButton button = new PictureButton(u);
-                        button.setOnAction(new EventHandler()
-                        {
-                            @Override
-                            public void handle(Event event)
-                            {
-                                mainViewModel.setLastSelectedUser(button.getUser());
-                                handleUserImage();
 
-                            }
+                    PictureButton button = new PictureButton(u);
+                    button.setOnAction(new EventHandler()
+                    {
+                        @Override
+                        public void handle(Event event)
+                        {
+                            mainViewModel.setLastSelectedUser(button.getUser());
+                            handleUserImage();
+
                         }
-                        );
-                        MainFlowPane.getChildren().add(button);
                     }
+                    );
+                    MainFlowPane.getChildren().add(button);
+
                 }
             }
 

@@ -1,7 +1,5 @@
 package myvolunteer.BE;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -81,13 +79,9 @@ public class User
         return image;
     }
 
-//    public Image getImage()
-//    {
-//        return image;
-//    }
-//
-//    public void setImage(Image image)
-//    {
-//        this.image = image;
-//    }
+    @Override
+    public String toString()
+    {
+        return firstName.get() + " " + lastName.get();
+    }
 }
