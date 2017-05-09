@@ -21,8 +21,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
-import myvolunteer.BE.Manager;
-import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
 
@@ -47,6 +45,7 @@ public class AddLaugController implements Initializable
 
     DataParserModel dp = DataParserModel.getInstance();
     @FXML
+    private Button btnBack;
     private ListView<Volunteer> listAvailableVolunteers;
     @FXML
     private TextField txtSearchAvailable;
@@ -66,6 +65,7 @@ public class AddLaugController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+
         allVolunteerList = dp.getUsers();
         allUsers.setAll(allVolunteerList);
         listAvailableVolunteers.setItems(allUsers);
@@ -79,6 +79,8 @@ public class AddLaugController implements Initializable
     private void handleGodkend(ActionEvent event) throws IOException
     {
         handleLaugInfo();
+
+        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
 
         // Closes the primary stage
         Stage stage = (Stage) btnGodkend.getScene().getWindow();
@@ -127,5 +129,15 @@ public class AddLaugController implements Initializable
             allUsers.add(volunteer);
             chosenUsers.remove(volunteer);
         }
+    }
+
+    @FXML
+    private void handleBack(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Laug", "GUI/View/AdminView.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        stage.close();
     }
 }

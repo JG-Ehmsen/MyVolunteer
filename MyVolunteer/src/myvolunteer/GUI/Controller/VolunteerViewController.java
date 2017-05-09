@@ -13,9 +13,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
-import myvolunteer.BE.User;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
@@ -89,7 +89,7 @@ public class VolunteerViewController implements Initializable
         try
         {
             mainViewModel.changeView("Indtast timer", "GUI/View/HoursView.fxml");
-
+            
             // Closes the primary stage
             Stage stage = (Stage) btnBack.getScene().getWindow();
             stage.close();
