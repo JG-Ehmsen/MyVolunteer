@@ -25,7 +25,7 @@ public class VolunteerViewController implements Initializable
 {
 
     /**
-     * Gets the singleton instance of the model.
+     * Gets the singleton instance of the model and dateParser.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();

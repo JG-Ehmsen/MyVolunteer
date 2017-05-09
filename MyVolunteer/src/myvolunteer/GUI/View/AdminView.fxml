@@ -9,8 +9,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-
 
 <AnchorPane id="AnchorPane" prefHeight="625.0" prefWidth="501.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AdminViewController">
    <children>
@@ -32,11 +30,11 @@
       <Label fx:id="lblVolunteerAge" layoutX="190.0" layoutY="255.0" text="Alder:" />
       <Label fx:id="lblVolunteerNote" alignment="TOP_LEFT" layoutX="189.0" layoutY="372.0" prefHeight="118.0" prefWidth="274.0" text="NOTE LABEL &lt;" />
       <TextField fx:id="searchBar" layoutX="10.0" layoutY="482.0" prefHeight="27.0" prefWidth="166.0" promptText="Søg" />
-      <Button fx:id="opretFrivillig" layoutX="250.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleOpretFrivillig" prefHeight="30.0" prefWidth="110.0" text="Opret frivillig" AnchorPane.bottomAnchor="10.0" />
-      <Button fx:id="opretLaug" layoutX="10.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleOpretLaug" prefHeight="30.0" prefWidth="110.0" text="Opret laug" AnchorPane.bottomAnchor="10.0" />
-      <Button fx:id="redigerFrivillig" layoutX="370.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleRedigerFrivillig" prefHeight="30.0" prefWidth="110.0" text="Rediger frivillig" AnchorPane.bottomAnchor="10.0" />
-      <Button fx:id="redigerLaug" layoutX="130.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleRedigerLaug" prefHeight="30.0" prefWidth="110.0" text="Rediger laug" AnchorPane.bottomAnchor="10.0" />
-      <Separator layoutY="46.0" prefHeight="3.0" prefWidth="491.0" />
+      <Button id="adminbutton" fx:id="opretFrivillig" layoutX="250.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleOpretFrivillig" prefHeight="30.0" prefWidth="110.0" text="Opret frivillig" AnchorPane.bottomAnchor="10.0" />
+      <Button id="adminbutton" fx:id="opretLaug" layoutX="10.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleOpretLaug" prefHeight="30.0" prefWidth="110.0" text="Opret laug" AnchorPane.bottomAnchor="10.0" />
+      <Button id="adminbutton" fx:id="redigerFrivillig" layoutX="370.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleRedigerFrivillig" prefHeight="30.0" prefWidth="110.0" text="Rediger frivillig" AnchorPane.bottomAnchor="10.0" />
+      <Button id="adminbutton" fx:id="redigerLaug" layoutX="130.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleRedigerLaug" prefHeight="30.0" prefWidth="110.0" text="Rediger laug" AnchorPane.bottomAnchor="10.0" />
+      <Separator layoutY="46.0" prefHeight="3.0" prefWidth="491.0" AnchorPane.topAnchor="75.0" />
       <Button fx:id="btnBack" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <graphic>
             <ImageView fitHeight="17.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
@@ -51,6 +49,11 @@
       <ImageView fitHeight="11.0" fitWidth="491.0" layoutX="13.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="75.0">
          <image>
             <Image url="file:/Users/Fjord82/Documents/MyVolunteer/MyVolunteer/src/myvolunteer/GUI/View/Resource/toolsmenu_bg.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="48.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0">
+         <image>
+            <Image url="@Resource/icon_visited.gif" />
          </image>
       </ImageView>
    </children>
