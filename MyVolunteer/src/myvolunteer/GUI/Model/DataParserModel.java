@@ -83,4 +83,9 @@ public class DataParserModel
     {
         return bllFacade.getHoursWorkedForVolunteer(volunteer);
     }
+    
+    public List<Manager> getManagers()
+    {
+        return bllFacade.getManagers();
+    }
 }

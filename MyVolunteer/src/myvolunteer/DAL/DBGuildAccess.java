@@ -85,6 +85,49 @@ public class DBGuildAccess
         ps.setString(2, guild.getDescription());
 
         ps.execute();
+        
+        int GID = getGuildID(guild, con);
+
+        if (!guild.getMemberList().isEmpty())
+        {
+            for (Integer i : guild.getMemberList())
+            {
+                createGuildRelation(GID, i, con);
+            }
+        }
+    }
+    
+    private int getGuildID(Guild guild, Connection con) throws SQLException
+    {
+        int returnInt = 0;
+        String sql = ""
+                + "SELECT GID "
+                + "FROM Guild "
+                + "WHERE GName = ?";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, guild.getName());
+        
+        ResultSet rs = ps.executeQuery();
+        
+        while(rs.next())
+        {
+            returnInt = rs.getInt("GID");
+        }
+        return returnInt;
+    }
+
+    private void createGuildRelation(int GID, int UID, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "INSERT INTO GuildRelation(UID, GID) "
+                + "VALUES(?, ?)";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, UID);
+        ps.setInt(2, GID);
+
+        ps.execute();
     }
 
     public int getHoursWorkedForGuild(Guild guild, Connection con) throws SQLException

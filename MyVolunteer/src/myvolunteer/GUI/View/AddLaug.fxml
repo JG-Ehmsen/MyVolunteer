@@ -13,20 +13,20 @@
       <Text layoutX="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laug navn:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <TextField fx:id="txtLaugName" layoutX="14.0" layoutY="31.0" maxWidth="125.0" prefHeight="25.0" prefWidth="125.0" promptText="Indtast laug navn" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="215.0" />
       <Text layoutX="10.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tovholder" AnchorPane.leftAnchor="10.0" />
-      <ComboBox layoutX="14.0" layoutY="97.0" maxWidth="125.0" prefHeight="25.0" prefWidth="125.0" promptText="Vælg tovholder" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="215.0" />
+      <ComboBox fx:id="comboManager" layoutX="14.0" layoutY="97.0" maxWidth="125.0" prefHeight="25.0" prefWidth="125.0" promptText="Vælg tovholder" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="215.0" />
       <Text layoutX="14.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg Frivillig:" AnchorPane.leftAnchor="10.0" />
-      <ListView layoutX="10.0" layoutY="165.0" prefHeight="160.0" prefWidth="125.0" />
-      <TextField layoutX="10.0" layoutY="325.0" prefHeight="25.0" prefWidth="125.0" promptText="Søg" AnchorPane.leftAnchor="10.0" />
+      <ListView fx:id="listAvailableVolunteers" layoutX="10.0" layoutY="165.0" prefHeight="160.0" prefWidth="125.0" />
+      <TextField fx:id="txtSearchAvailable" layoutX="10.0" layoutY="325.0" prefHeight="25.0" prefWidth="125.0" promptText="Søg" AnchorPane.leftAnchor="10.0" />
       <Text layoutX="14.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antal frivillige:" AnchorPane.leftAnchor="10.0" />
       <Text layoutX="112.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" />
-      <ListView layoutX="211.0" layoutY="165.0" prefHeight="160.0" prefWidth="125.0" AnchorPane.rightAnchor="10.0" />
+      <ListView fx:id="listChosenVolunteer" layoutX="211.0" layoutY="165.0" prefHeight="160.0" prefWidth="125.0" AnchorPane.rightAnchor="10.0" />
       <Text layoutX="215.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valgte frivillige:" />
-      <TextField layoutX="218.0" layoutY="325.0" prefHeight="25.0" prefWidth="125.0" promptText="Søg" AnchorPane.rightAnchor="10.0" />
-      <Button fx:id="btnGodkend" defaultButton="true" layoutX="266.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+  <Button fx:id="btnGodkend" defaultButton="true" layoutX="266.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
       <Button fx:id="btnAdd" layoutX="154.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleAddVolunteer" text="Tilføj" />
       <Button fx:id="btnRemove" layoutX="154.0" layoutY="268.0" mnemonicParsing="false" onAction="#handleRemoveVolunteer" text="Fjern" />
       <Label layoutX="215.0" layoutY="9.0" text="Laug information:" AnchorPane.topAnchor="10.0" />
       <TextField fx:id="txtLaugInfo" layoutX="196.0" layoutY="31.0" prefHeight="91.0" prefWidth="125.0" promptText="Indtast laug Info" AnchorPane.rightAnchor="10.0" />
       <Button fx:id="btnBack" layoutX="12.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbache" AnchorPane.bottomAnchor="10.0" />
+
    </children>
 </AnchorPane>
