@@ -24,8 +24,9 @@
       <Button fx:id="btnLogin" defaultButton="true" layoutX="240.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
       <ImageView fitHeight="11.0" fitWidth="309.0" layoutX="10.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="80.0">
          <image>
-            <Image url="file:/Users/Fjord82/Documents/MyVolunteer/MyVolunteer/src/myvolunteer/GUI/View/Resource/toolsmenu_bg.png" />
+            <Image url="file:/Users/Kristoffers/Desktop/School/Projects/MyVolunteer/MyVolunteer/src/myvolunteer/GUI/View/Resource/toolsmenu_bg.png" />
          </image>
       </ImageView>
+      <Button fx:id="btnBack" layoutX="77.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbache" />
    </children>
 </AnchorPane>

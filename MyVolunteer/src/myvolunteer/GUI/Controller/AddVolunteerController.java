@@ -55,12 +55,14 @@ public class AddVolunteerController implements Initializable
     private TextArea txtNote;
     @FXML
     private TextField txtLName;
-    
+
     DataParserModel dp = DataParserModel.getInstance();
-    
+
     final ToggleGroup tg = new ToggleGroup();
     @FXML
     private Button btnUploadImage;
+    @FXML
+    private Button btnBack;
 
     /**
      * Initializes the controller class.
@@ -68,7 +70,7 @@ public class AddVolunteerController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        
+
         rbMale.setToggleGroup(tg);
         rbFemale.setToggleGroup(tg);
         tg.selectToggle(rbMale);
@@ -78,11 +80,14 @@ public class AddVolunteerController implements Initializable
     private void handleGodkend(ActionEvent event) throws IOException
     {
         handleUserInfo();
+
+        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
+
         // Closes the primary stage
         Stage stage = (Stage) btnGodkend.getScene().getWindow();
         stage.close();
     }
-    
+
     private void handleUserInfo()
     {
         String fName = txtFName.getText();
@@ -96,29 +101,36 @@ public class AddVolunteerController implements Initializable
         if (tg.getSelectedToggle().equals(rbMale))
         {
             gender = "Male";
-        }
-        else if (tg.getSelectedToggle().equals(rbFemale))
+        } else if (tg.getSelectedToggle().equals(rbFemale))
         {
             gender = "Female";
         }
-        
-        
+
         Volunteer user = new Volunteer(999999, fName, phoneNumber);
-        
+
         user.setLastName(lName);
         user.setEmail(eMail);
         user.setNationality(nationality);
         user.setNote(note);
         user.setGender(gender);
         user.setLastInputDate(new Date());
-        
+
         CreateNewUser(user);
-   }
-    
+    }
+
     private void CreateNewUser(Volunteer user)
     {
         dp.CreateNewUser(user);
     }
 
-    
+    @FXML
+    private void handleBack(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Laug", "GUI/View/AdminView.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        stage.close();
+    }
+
 }

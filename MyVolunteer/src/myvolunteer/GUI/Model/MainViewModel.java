@@ -1,17 +1,15 @@
 package myvolunteer.GUI.Model;
 
 import java.io.IOException;
-import java.util.List;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import myvolunteer.App;
 import myvolunteer.BE.Guild;
-import myvolunteer.BE.User;
 import myvolunteer.BE.Volunteer;
-import myvolunteer.BLL.BLLFacade;
 
 /**
  *
@@ -43,17 +41,16 @@ public class MainViewModel
 
     }
 
-    Volunteer lastSelectedUser;
-    Guild lastSelectedGuild;
+    private Volunteer lastSelectedUser;
+    private Guild lastSelectedGuild;
 
     public void changeView(String title, String path) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(App.class.getResource(path));
-        AnchorPane page = (AnchorPane) loader.load();
+        Pane page = (Pane) loader.load();
 
         Stage dialogStage = new Stage();
-//        dialogStage.initOwner(stage);
         dialogStage.initModality(Modality.WINDOW_MODAL);
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);

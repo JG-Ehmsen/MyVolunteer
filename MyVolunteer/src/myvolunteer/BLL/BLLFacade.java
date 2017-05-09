@@ -2,7 +2,6 @@ package myvolunteer.BLL;
 
 import java.util.List;
 import myvolunteer.BE.Guild;
-import myvolunteer.BE.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.Date;
 import myvolunteer.BE.Manager;
@@ -81,6 +80,21 @@ public class BLLFacade
     public List<Manager> getManagers()
     {
         return dalFacade.getManagers();
+    }
+
+    public int getHoursWorkedForGuild(Guild guild)
+    {
+        return dalFacade.getHoursWorkedForGuild(guild);
+    }
+
+    public int getTotalHoursWorked()
+    {
+        return dalFacade.getTotalHoursWorked();
+    }
+
+    public int getHoursWorkedForVolunteer(Volunteer volunteer)
+    {
+        return dalFacade.getHoursWorkedForVolunteer(volunteer);
     }
 
 }

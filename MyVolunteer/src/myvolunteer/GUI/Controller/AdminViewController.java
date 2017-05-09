@@ -20,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
@@ -97,11 +98,33 @@ public class AdminViewController implements Initializable
         guildList = dp.getGuilds();
         userList = dp.getUsers();
         comboContent();
+        populateList();
     }
 
     private void populateList()
     {
+        ObservableList<Volunteer> users = FXCollections.observableArrayList();
+        if (lastSelectedGuild == null)
+        {
+            users.setAll(userList);
+            //ObservableList<Volunteer> users = FXCollections.observableArrayList(userList);
 
+        } else
+        {
+            List<Volunteer> guildUsers = new ArrayList<>();
+            for (Integer i : lastSelectedGuild.getMemberList())
+            {
+                for (Volunteer user : userList)
+                {
+                    if (user.getId() == i)
+                    {
+                        guildUsers.add(user);
+                    }
+                }
+            }
+            users.setAll(guildUsers);
+        }
+        volunteerList.setItems(users);
     }
 
     private void comboContent()
@@ -124,24 +147,47 @@ public class AdminViewController implements Initializable
     private void handleOpretFrivillig(ActionEvent event) throws IOException
     {
         mainViewModel.changeView("Opret frivillig", "GUI/View/AddVolunteer.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) opretFrivillig.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     private void handleOpretLaug(ActionEvent event) throws IOException
     {
         mainViewModel.changeView("Opret laug", "GUI/View/AddLaug.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) opretLaug.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     private void handleRedigerFrivillig(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
+        if(lastSelectedVolunteer != null)
+        {
+            mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
+
+            // Closes the primary stage
+            Stage stage = (Stage) redigerFrivillig.getScene().getWindow();
+            stage.close();
+
+        }
     }
 
     @FXML
     private void handleRedigerLaug(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Rediger Laug", "GUI/View/EditLaug.fxml");
+        if(lastSelectedGuild != null)
+        {
+            mainViewModel.changeView("Rediger Laug", "GUI/View/EditLaug.fxml");
+
+            // Closes the primary stage
+            Stage stage = (Stage) redigerLaug.getScene().getWindow();
+            stage.close();
+        }
     }
 
     @FXML
@@ -150,12 +196,39 @@ public class AdminViewController implements Initializable
         lastSelectedGuild = comboBoxGuild.getSelectionModel().getSelectedItem();
         lastManager = dp.getManagerForGuild(lastSelectedGuild);
         showGuildInfo();
+        mainViewModel.setLastSelectedGuild(lastSelectedGuild);
+        populateList();
     }
 
     private void showGuildInfo()
     {
         lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size()));
         lblTovholder.setText("Tovholder: " + lastManager.getFirstName() + " " + lastManager.getLastName());
+        lblTotalGuildHours.setText("Total antal timer: " + Integer.toString(dp.getHoursWorkedForGuild(lastSelectedGuild)));
+    }
+
+    @FXML
+    private void handleVolunteerlistClick(MouseEvent event)
+    {
+        if (volunteerList.getSelectionModel().getSelectedItem() != null)
+        {
+            lastSelectedVolunteer = volunteerList.getSelectionModel().getSelectedItem();
+            loadVolunteerInfo();
+            mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
+        }
+    }
+
+    private void loadVolunteerInfo()
+    {
+        lblVolunteerName.setText("Fulde navn: " + lastSelectedVolunteer.getFirstName() + " " + lastSelectedVolunteer.getLastName());
+        lblVolunteerGender.setText("Køn: " + lastSelectedVolunteer.getGender());
+        lblVolunteerAge.setText("Alder: ");
+        lblVolunteerPhoneNumber.setText("Telefon: " + lastSelectedVolunteer.getPhoneNumber());
+        lblVolunteerEMail.setText("Email: " + lastSelectedVolunteer.getEmail());
+        lblVolunteerNationality.setText("Nationalitet: " + lastSelectedVolunteer.getNationality());
+        lblVolunteerHours.setText("Timer: ");
+        lblVolunteerNote.setText(lastSelectedVolunteer.getNote());
+        lblVolunteerHours.setText("Timer: " + Integer.toString(dp.getHoursWorkedForVolunteer(lastSelectedVolunteer)));
     }
 
 }
