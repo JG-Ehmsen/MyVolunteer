@@ -8,19 +8,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AdminLoginController">
+<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="350.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AdminLoginController">
    <children>
-      <TextField fx:id="UsernameField" layoutX="101.0" layoutY="130.0" promptText="Brugernavn" />
-      <TextField fx:id="codeField" layoutX="101.0" layoutY="165.0" promptText="Kode" />
+      <TextField fx:id="UsernameField" layoutX="76.0" layoutY="130.0" prefHeight="26.0" prefWidth="215.0" promptText="Brugernavn" />
+      <TextField fx:id="codeField" layoutX="76.0" layoutY="164.0" prefHeight="26.0" prefWidth="215.0" promptText="Kode" />
       <ImageView fitHeight="75.0" fitWidth="204.0" layoutX="1.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <image>
-            <Image url="file:/Users/Kristoffers/Desktop/School/Projects/MyVolunteer/MyVolunteer/src/myvolunteer/GUI/View/Resource/logo.png" />
+            <Image url="@Resource/logo.png" />
          </image></ImageView>
-      <Label layoutX="153.0" layoutY="98.0" text="Login">
+      <Label layoutX="76.0" layoutY="102.0" prefHeight="23.0" prefWidth="108.0" text="Login">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnLogin" defaultButton="true" layoutX="216.0" layoutY="196.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
+      <Button fx:id="btnLogin" defaultButton="true" layoutX="240.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
+      <ImageView fitHeight="11.0" fitWidth="309.0" layoutX="10.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="80.0">
+         <image>
+            <Image url="file:/Users/Fjord82/Documents/MyVolunteer/MyVolunteer/src/myvolunteer/GUI/View/Resource/toolsmenu_bg.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
