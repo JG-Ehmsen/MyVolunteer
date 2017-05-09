@@ -8,3 +8,56 @@ and open the template in the editor.
     Author     : Fjord82
 */
 
+.root
+{
+    -fx-background-image: url("dust.jpg");
+    -fx-background-color: /*#e5e5e5;*/
+    linear-gradient(from 25% 25% to 75% 100%, #f8f8fa, #d2d4dc);
+    
+    /*-fx-padding: 5 5 5 5;*/
+}
+
+#projectview
+{
+    -fx-padding: 0 0 10 0;
+
+   -fx-background-color: linear-gradient(from 25% 25% to 50% 100%, #f8f8fa, #e5e5e5);
+
+    /*-fx-background-color:
+        linear-gradient(#ffffff 0%, #f8f8fa 25%, #373837 75%, #757575 100%),
+        linear-gradient(#020b02, #3a3a3a),
+        linear-gradient(#ffffff 0%, #f8f8fa 20%, #343534 80%, #242424 100%),
+        linear-gradient(#ffffff 0%, #f8f8fa 20%, #343534 80%, #e5e6eb 100%),
+        linear-gradient(#ffffff 0%, #606060 50%, #505250 51%, #c0c2ce 100%);*/
+}
+
+#topseparator
+{
+    /*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );*/
+    -fx-background-color: #b2b2b2;
+    -fx-border-color: transparent;
+}
+
+.button
+{
+    -fx-background-color: #f7f7f7;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-border-width: 1;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+#adminbutton
+{
+    -fx-background-color: /*#e5e5e5;*/
+    linear-gradient(from 25% 25% to 75% 100%, #f8f8fa, #d2d4dc);
+    
+}
+
+.button:hover
+{   
+    -fx-border-color: #cc9112;
+    -fx-text-fill: #cc9112;
+    /*-fx-background-radius: 5;
+    -fx-border-radius: 5;*/
+}

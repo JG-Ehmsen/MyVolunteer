@@ -11,14 +11,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AdminViewController">
+
+<AnchorPane id="AnchorPane" prefHeight="625.0" prefWidth="501.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AdminViewController">
    <children>
-      <ComboBox fx:id="comboBoxGuild" layoutX="10.0" layoutY="55.0" onAction="#handleComboClick" prefHeight="27.0" prefWidth="166.0" promptText="Vælg laug" />
-      <ListView fx:id="volunteerList" layoutX="10.0" layoutY="88.0" prefHeight="390.0" prefWidth="166.0" />
-      <Label layoutX="190.0" layoutY="95.0" prefHeight="17.0" prefWidth="115.0" text="Laug information:" underline="true" />
-      <Label fx:id="lblTovholder" layoutX="190.0" layoutY="115.0" text="Tovholder:" />
-      <Label fx:id="lblTotalGuildHours" layoutX="190.0" layoutY="135.0" text="Total antal timer:" />
-      <Label fx:id="lblGuildVolunteers" layoutX="190.0" layoutY="155.0" text="Frivillige:" />
+      <ComboBox fx:id="comboBoxGuild" layoutX="10.0" layoutY="90.0" prefHeight="27.0" prefWidth="166.0" promptText="Vælg laug" />
+      <ListView fx:id="volunteerList" layoutX="10.0" layoutY="128.0" prefHeight="390.0" prefWidth="166.0" />
+      <Label layoutX="188.0" layoutY="89.0" prefHeight="17.0" prefWidth="115.0" text="Laug information:" underline="true" />
+      <Label layoutX="190.0" layoutY="115.0" text="Tovholder:" />
+      <Label layoutX="190.0" layoutY="135.0" text="Total antal timer:" />
+      <Label layoutX="190.0" layoutY="155.0" text="Frivillige:" />
+
       <Separator layoutX="176.0" layoutY="188.0" prefHeight="3.0" prefWidth="315.0" />
       <Label layoutX="190.0" layoutY="195.0" prefHeight="17.0" prefWidth="138.0" text="Personlig information:" underline="true" />
       <Label fx:id="lblVolunteerNationality" layoutX="190.0" layoutY="315.0" text="Nationalitet:" />
@@ -27,15 +29,17 @@
       <Label fx:id="lblVolunteerEMail" layoutX="190.0" layoutY="295.0" text="Email:" />
       <Label fx:id="lblVolunteerHours" layoutX="190.0" layoutY="335.0" text="Timer:" />
       <Label layoutX="190.0" layoutY="355.0" text="Note:" />
-      <Label fx:id="lblVolunteerGender" layoutX="190.0" layoutY="235.0" text="Køn: " />
-      <Label fx:id="lblVolunteerAge" layoutX="190.0" layoutY="255.0" text="Alder:" />
-      <Label fx:id="lblVolunteerNote" layoutX="189.0" layoutY="372.0" prefHeight="118.0" prefWidth="274.0" text="NOTE LABEL &lt;" />
-      <TextField fx:id="searchBar" layoutX="10.0" layoutY="482.0" prefHeight="27.0" prefWidth="166.0" promptText="Søg" />
-      <Button fx:id="opretFrivillig" layoutX="250.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleOpretFrivillig" prefHeight="30.0" prefWidth="110.0" text="Opret frivillig" AnchorPane.bottomAnchor="10.0" />
-      <Button fx:id="opretLaug" layoutX="10.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleOpretLaug" prefHeight="30.0" prefWidth="110.0" text="Opret laug" AnchorPane.bottomAnchor="10.0" />
-      <Button fx:id="redigerFrivillig" layoutX="370.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleRedigerFrivillig" prefHeight="30.0" prefWidth="110.0" text="Rediger frivillig" AnchorPane.bottomAnchor="10.0" />
-      <Button fx:id="redigerLaug" layoutX="130.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleRedigerLaug" prefHeight="30.0" prefWidth="110.0" text="Rediger laug" AnchorPane.bottomAnchor="10.0" />
-      <Separator layoutY="46.0" prefHeight="3.0" prefWidth="491.0" />
+
+      <Label layoutX="190.0" layoutY="235.0" text="Køn: " />
+      <Label layoutX="190.0" layoutY="255.0" text="Alder:" />
+      <Label layoutX="189.0" layoutY="372.0" prefHeight="144.0" prefWidth="274.0" text="NOTE LABEL &lt;" />
+      <TextField fx:id="searchBar" layoutX="10.0" layoutY="533.0" prefHeight="27.0" prefWidth="166.0" promptText="Søg" />
+      <Button id="adminbutton" fx:id="opretFrivillig" layoutX="250.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleOpretFrivillig" prefHeight="30.0" prefWidth="110.0" text="Opret frivillig" AnchorPane.bottomAnchor="10.0" />
+      <Button id="adminbutton" fx:id="opretLaug" layoutX="10.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleOpretLaug" prefHeight="30.0" prefWidth="110.0" text="Opret laug" AnchorPane.bottomAnchor="10.0" />
+      <Button id="adminbutton" fx:id="redigerFrivillig" layoutX="370.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleRedigerFrivillig" prefHeight="30.0" prefWidth="110.0" text="Rediger frivillig" AnchorPane.bottomAnchor="10.0" />
+      <Button id="adminbutton" fx:id="redigerLaug" layoutX="130.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleRedigerLaug" prefHeight="30.0" prefWidth="110.0" text="Rediger laug" AnchorPane.bottomAnchor="10.0" />
+      <Separator layoutY="46.0" prefHeight="3.0" prefWidth="491.0" AnchorPane.topAnchor="75.0" />
+
       <Button fx:id="btnBack" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <graphic>
             <ImageView fitHeight="17.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
@@ -47,5 +51,10 @@
          <font>
             <Font size="15.0" />
          </font></Button>
+      <ImageView fitHeight="11.0" fitWidth="491.0" layoutX="13.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="75.0">
+         <image>
+            <Image url="file:/Users/Fjord82/Documents/MyVolunteer/MyVolunteer/src/myvolunteer/GUI/View/Resource/toolsmenu_bg.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
