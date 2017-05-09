@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="528.0" prefWidth="327.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AddVolunteerController">
+<AnchorPane id="AnchorPane" prefHeight="528.0" prefWidth="327.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AddVolunteerController">
     <children>
         <TextField fx:id="txtFName" layoutX="15.0" layoutY="28.0" prefHeight="25.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
         <TextField fx:id="txtLName" layoutX="17.0" layoutY="73.0" prefHeight="25.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
