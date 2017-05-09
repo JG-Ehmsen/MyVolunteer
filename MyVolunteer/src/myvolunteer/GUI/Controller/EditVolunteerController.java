@@ -30,6 +30,8 @@ public class EditVolunteerController implements Initializable
 
     @FXML
     private Button btnGodkend;
+    @FXML
+    private Button btnBack;
 
     /**
      * Initializes the controller class.
@@ -43,8 +45,20 @@ public class EditVolunteerController implements Initializable
     @FXML
     private void handleGodkend(ActionEvent event) throws IOException
     {
+        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
+
         // Closes the primary stage
         Stage stage = (Stage) btnGodkend.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void handleBack(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Laug", "GUI/View/AdminView.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
 

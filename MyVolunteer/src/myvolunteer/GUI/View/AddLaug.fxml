@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AddLaugController">
+<AnchorPane id="AnchorPane" prefHeight="419.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AddLaugController">
    <children>
       <Text layoutX="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laug navn:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <TextField fx:id="txtLaugName" layoutX="14.0" layoutY="31.0" maxWidth="125.0" prefHeight="25.0" prefWidth="125.0" promptText="Indtast laug navn" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="215.0" />
@@ -22,10 +22,11 @@
       <ListView layoutX="211.0" layoutY="165.0" prefHeight="160.0" prefWidth="125.0" AnchorPane.rightAnchor="10.0" />
       <Text layoutX="215.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valgte frivillige:" />
       <TextField layoutX="218.0" layoutY="325.0" prefHeight="25.0" prefWidth="125.0" promptText="Søg" AnchorPane.rightAnchor="10.0" />
-      <Button fx:id="btnGodkend" defaultButton="true" layoutX="264.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.rightAnchor="10.0" />
+      <Button fx:id="btnGodkend" defaultButton="true" layoutX="266.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
       <Button fx:id="btnAdd" layoutX="154.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleAddVolunteer" text="Tilføj" />
       <Button fx:id="btnRemove" layoutX="154.0" layoutY="268.0" mnemonicParsing="false" onAction="#handleRemoveVolunteer" text="Fjern" />
       <Label layoutX="215.0" layoutY="9.0" text="Laug information:" AnchorPane.topAnchor="10.0" />
       <TextField fx:id="txtLaugInfo" layoutX="196.0" layoutY="31.0" prefHeight="91.0" prefWidth="125.0" promptText="Indtast laug Info" AnchorPane.rightAnchor="10.0" />
+      <Button fx:id="btnBack" layoutX="12.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbache" AnchorPane.bottomAnchor="10.0" />
    </children>
 </AnchorPane>

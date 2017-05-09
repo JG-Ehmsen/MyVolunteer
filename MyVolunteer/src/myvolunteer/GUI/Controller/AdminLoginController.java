@@ -7,7 +7,6 @@ package myvolunteer.GUI.Controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.NumberFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,9 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
-import javax.swing.text.NumberFormatter;
 import myvolunteer.GUI.Model.MainViewModel;
 
 /**
@@ -34,13 +31,15 @@ public class AdminLoginController implements Initializable
     MainViewModel mainViewModel = MainViewModel.getInstance();
 
     private Stage previousStage;
-    
+
     @FXML
     private TextField UsernameField;
     @FXML
     private TextField codeField;
     @FXML
     private Button btnLogin;
+    @FXML
+    private Button btnBack;
 
     /**
      * Initializes the controller class.
@@ -48,7 +47,7 @@ public class AdminLoginController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        
+
     }
 
     @FXML
@@ -66,17 +65,21 @@ public class AdminLoginController implements Initializable
         {
             mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
 
-            
             //previousStage.close();
             // Closes the primary stage
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.close();
         }
     }
-    
-    public void setPreviousStage(Stage stage)
+
+    @FXML
+    private void handleBack(ActionEvent event) throws IOException
     {
-        previousStage = stage;
+        mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        stage.close();
     }
 
 }
