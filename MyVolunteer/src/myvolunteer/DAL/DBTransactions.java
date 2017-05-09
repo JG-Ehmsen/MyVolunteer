@@ -211,4 +211,64 @@ public class DBTransactions
         return returnList;
     }
 
+    public int getHoursWorkedForGuild(Guild guild)
+    {
+        int returnInt = 0;
+        try
+        {
+            startTransaction();
+
+            returnInt = ga.getHoursWorkedForGuild(guild, transactionConnection);
+
+            commitTransaction();
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return returnInt;
+    }
+
+    public int getTotalHoursWorked()
+    {
+        int returnInt = 0;
+        try
+        {
+            startTransaction();
+
+            returnInt = ga.getTotalHoursWorked(transactionConnection);
+
+            commitTransaction();
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return returnInt;
+    }
+
+    public int getHoursWorkedForVolunteer(Volunteer volunteer)
+    {
+        int returnInt = 0;
+        try
+        {
+            startTransaction();
+
+            returnInt = ua.getHoursWorkedForVolunteer(volunteer, transactionConnection);
+
+            commitTransaction();
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return returnInt;
+    }
+
 }

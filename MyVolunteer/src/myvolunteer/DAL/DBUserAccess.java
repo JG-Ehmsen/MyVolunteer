@@ -431,4 +431,28 @@ public class DBUserAccess
         return returnList;
     }
 
+    public int getHoursWorkedForVolunteer(Volunteer volunteer, Connection con) throws SQLException
+    {
+        int returnInt = 0;
+
+        String sql = ""
+                + "SELECT Hours "
+                + "FROM DateRelation dr, GuildRelation gr "
+                + "WHERE dr.GRID = gr.GRID AND gr.UID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, volunteer.getId());
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            int hours = rs.getInt("Hours");
+
+            returnInt = returnInt + hours;
+        }
+        return returnInt;
+    }
+
 }

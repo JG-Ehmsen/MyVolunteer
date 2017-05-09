@@ -87,4 +87,49 @@ public class DBGuildAccess
         ps.execute();
     }
 
+    public int getHoursWorkedForGuild(Guild guild, Connection con) throws SQLException
+    {
+        int returnInt = 0;
+
+        String sql = ""
+                + "SELECT Hours "
+                + "FROM DateRelation dr, GuildRelation gr "
+                + "WHERE dr.GRID = gr.GRID AND gr.GID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, guild.getID());
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            int hours = rs.getInt("Hours");
+
+            returnInt = returnInt + hours;
+        }
+        return returnInt;
+    }
+
+    public int getTotalHoursWorked(Connection con) throws SQLException
+    {
+        int returnInt = 0;
+
+        String sql = ""
+                + "SELECT Hours "
+                + "FROM DateRelation";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            int hours = rs.getInt("Hours");
+
+            returnInt = returnInt + hours;
+        }
+        return returnInt;
+    }
+
 }

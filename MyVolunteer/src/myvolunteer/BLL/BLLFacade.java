@@ -82,4 +82,19 @@ public class BLLFacade
         return dalFacade.getManagers();
     }
 
+    public int getHoursWorkedForGuild(Guild guild)
+    {
+        return dalFacade.getHoursWorkedForGuild(guild);
+    }
+
+    public int getTotalHoursWorked()
+    {
+        return dalFacade.getTotalHoursWorked();
+    }
+
+    public int getHoursWorkedForVolunteer(Volunteer volunteer)
+    {
+        return dalFacade.getHoursWorkedForVolunteer(volunteer);
+    }
+
 }

@@ -87,4 +87,19 @@ public class DALFacade
     {
         return db.getManagers();
     }
+
+    public int getHoursWorkedForGuild(Guild guild)
+    {
+        return db.getHoursWorkedForGuild(guild);
+    }
+
+    public int getTotalHoursWorked()
+    {
+        return db.getTotalHoursWorked();
+    }
+    
+    public int getHoursWorkedForVolunteer(Volunteer volunteer)
+    {
+        return db.getHoursWorkedForVolunteer(volunteer);
+    }
 }

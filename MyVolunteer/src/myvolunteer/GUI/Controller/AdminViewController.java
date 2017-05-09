@@ -103,11 +103,28 @@ public class AdminViewController implements Initializable
 
     private void populateList()
     {
+        ObservableList<Volunteer> users = FXCollections.observableArrayList();
         if (lastSelectedGuild == null)
         {
-            ObservableList<Volunteer> users = FXCollections.observableArrayList(userList);
-            volunteerList.setItems(users);
+            users.setAll(userList);
+            //ObservableList<Volunteer> users = FXCollections.observableArrayList(userList);
+
+        } else
+        {
+            List<Volunteer> guildUsers = new ArrayList<>();
+            for (Integer i : lastSelectedGuild.getMemberList())
+            {
+                for (Volunteer user : userList)
+                {
+                    if (user.getId() == i)
+                    {
+                        guildUsers.add(user);
+                    }
+                }
+            }
+            users.setAll(guildUsers);
         }
+        volunteerList.setItems(users);
     }
 
     private void comboContent()
@@ -143,7 +160,7 @@ public class AdminViewController implements Initializable
     {
         if (lastSelectedVolunteer != null)
         {
-        mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
+            mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
         }
     }
 
@@ -152,7 +169,7 @@ public class AdminViewController implements Initializable
     {
         if (lastSelectedGuild != null)
         {
-        mainViewModel.changeView("Rediger Laug", "GUI/View/EditLaug.fxml");
+            mainViewModel.changeView("Rediger Laug", "GUI/View/EditLaug.fxml");
         }
     }
 
@@ -163,25 +180,27 @@ public class AdminViewController implements Initializable
         lastManager = dp.getManagerForGuild(lastSelectedGuild);
         showGuildInfo();
         mainViewModel.setLastSelectedGuild(lastSelectedGuild);
+        populateList();
     }
 
     private void showGuildInfo()
     {
         lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size()));
         lblTovholder.setText("Tovholder: " + lastManager.getFirstName() + " " + lastManager.getLastName());
+        lblTotalGuildHours.setText("Total antal timer: " + Integer.toString(dp.getHoursWorkedForGuild(lastSelectedGuild)));
     }
 
     @FXML
     private void handleVolunteerlistClick(MouseEvent event)
     {
-        if (volunteerList.getItems() != null)
+        if (volunteerList.getSelectionModel().getSelectedItem() != null)
         {
             lastSelectedVolunteer = volunteerList.getSelectionModel().getSelectedItem();
             loadVolunteerInfo();
             mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
         }
     }
-    
+
     private void loadVolunteerInfo()
     {
         lblVolunteerName.setText("Fulde navn: " + lastSelectedVolunteer.getFirstName() + " " + lastSelectedVolunteer.getLastName());
@@ -192,6 +211,7 @@ public class AdminViewController implements Initializable
         lblVolunteerNationality.setText("Nationalitet: " + lastSelectedVolunteer.getNationality());
         lblVolunteerHours.setText("Timer: ");
         lblVolunteerNote.setText(lastSelectedVolunteer.getNote());
+        lblVolunteerHours.setText("Timer: " + Integer.toString(dp.getHoursWorkedForVolunteer(lastSelectedVolunteer)));
     }
 
 }
