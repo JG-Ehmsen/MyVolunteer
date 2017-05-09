@@ -35,7 +35,15 @@
       <Button id="adminbutton" fx:id="redigerFrivillig" layoutX="370.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleRedigerFrivillig" prefHeight="30.0" prefWidth="110.0" text="Rediger frivillig" AnchorPane.bottomAnchor="10.0" />
       <Button id="adminbutton" fx:id="redigerLaug" layoutX="130.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleRedigerLaug" prefHeight="30.0" prefWidth="110.0" text="Rediger laug" AnchorPane.bottomAnchor="10.0" />
       <Separator layoutY="46.0" prefHeight="3.0" prefWidth="491.0" AnchorPane.topAnchor="75.0" />
-      <Button fx:id="btnBack" layoutX="10.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="26.0" prefWidth="110.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="23.0"></Button>
+      <Button fx:id="btnBack" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/Users/Kristoffers/Desktop/Previous%20-%20Free%20arrows%20icons_files/JA%20DA%203.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         </Button>
       <ImageView fitHeight="11.0" fitWidth="491.0" layoutX="13.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="75.0">
          <image>
             <Image url="file:/Users/Fjord82/Documents/MyVolunteer/MyVolunteer/src/myvolunteer/GUI/View/Resource/toolsmenu_bg.png" />
