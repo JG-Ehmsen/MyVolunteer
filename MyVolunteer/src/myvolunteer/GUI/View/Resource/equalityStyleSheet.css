@@ -52,7 +52,7 @@ and open the template in the editor.
 #laugscrollpane 
 {
     -fx-background-color: transparent; 
-    -fx-padding: 10 0 10 0;
+    -fx-padding: 15 0 0 0;
 }
 
 .scroll-pane > .viewport { 
@@ -139,7 +139,7 @@ and open the template in the editor.
    -fx-font-size: 32px; 
    -fx-font-weight: bold;
    /*-fx-background-color: #5a5255;*/
-   -fx-background-radius: 5;
+   -fx-background-radius: 10;
    -fx-background-color: linear-gradient(from 5% 5% to 40% 100%, #fff4e6, #5a5255);
 }
 

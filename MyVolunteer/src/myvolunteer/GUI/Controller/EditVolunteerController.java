@@ -16,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -62,9 +63,17 @@ public class EditVolunteerController implements Initializable
     private TextField txtLName;
     @FXML
     private ImageView imgPicture;
-    final ToggleGroup tg = new ToggleGroup();
+    @FXML
+    private Label xFirstName;
+    @FXML
+    private Label xLastName;
+    @FXML
+    private Label xTelephone;
+    @FXML
+    private Label lblUdfyldVenligst;
 
     Volunteer volunteer;
+    final ToggleGroup tg = new ToggleGroup();
 
     /**
      * Initializes the controller class.
@@ -79,6 +88,11 @@ public class EditVolunteerController implements Initializable
         rdoKvinde.setToggleGroup(tg);
 
         loadInfo();
+
+        xTelephone.setVisible(false);
+        xFirstName.setVisible(false);
+        xLastName.setVisible(false);
+        lblUdfyldVenligst.setVisible(false);
     }
 
     private void loadInfo()
@@ -102,24 +116,54 @@ public class EditVolunteerController implements Initializable
     @FXML
     private void handleGodkend(ActionEvent event) throws IOException
     {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Rediger frivillig");
-        alert.setHeaderText("Du er ved at redigere en frivillig.");
-        alert.setContentText("Tryk OK for at fortsætte.");
-
-        ButtonType buttonTypeOK = new ButtonType("OK");
-        ButtonType buttonTypeAnnuller = new ButtonType("Annuller");
-
-        alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeAnnuller);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeOK)
+        if (txtFName.getText().isEmpty())
         {
-            editUser();
-            goBack();
-        } else
+            xFirstName.setVisible(true);
+            lblUdfyldVenligst.setVisible(true);
+        }
+        if (txtLName.getText().isEmpty())
         {
-            alert.close();
+            xLastName.setVisible(true);
+            lblUdfyldVenligst.setVisible(true);
+        }
+        if (txtPhoneNumber.getText().isEmpty())
+        {
+            xTelephone.setVisible(true);
+            lblUdfyldVenligst.setVisible(true);
+        }
+        if (xFirstName.isVisible() && !txtFName.getText().isEmpty())
+        {
+            xFirstName.setVisible(false);
+        }
+        if (xLastName.isVisible() && !txtLName.getText().isEmpty())
+        {
+            xLastName.setVisible(false);
+        }
+        if (xTelephone.isVisible() && !txtPhoneNumber.getText().isEmpty())
+        {
+            xTelephone.setVisible(false);
+        }
+        if (!txtFName.getText().isEmpty() && !txtLName.getText().isEmpty() && !txtPhoneNumber.getText().isEmpty())
+        {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Rediger frivillig");
+            alert.setHeaderText("Du er ved at redigere en frivillig.");
+            alert.setContentText("Tryk OK for at fortsætte.");
+
+            ButtonType buttonTypeOK = new ButtonType("OK");
+            ButtonType buttonTypeAnnuller = new ButtonType("Annuller");
+
+            alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeAnnuller);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == buttonTypeOK)
+            {
+                editUser();
+                goBack();
+            } else
+            {
+                alert.close();
+            }
         }
     }
 
