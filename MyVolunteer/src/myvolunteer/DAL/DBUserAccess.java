@@ -367,6 +367,7 @@ public class DBUserAccess
 
         ps.setDate(1, sqlDate);
         ps.setInt(2, user.getId());
+        ps.execute();
     }
 
     /**
