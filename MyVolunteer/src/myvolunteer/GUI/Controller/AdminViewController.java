@@ -166,7 +166,7 @@ public class AdminViewController implements Initializable
     @FXML
     private void handleRedigerFrivillig(ActionEvent event) throws IOException
     {
-        if(lastSelectedVolunteer != null)
+        if (lastSelectedVolunteer != null)
         {
             mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
 
@@ -180,7 +180,7 @@ public class AdminViewController implements Initializable
     @FXML
     private void handleRedigerLaug(ActionEvent event) throws IOException
     {
-        if(lastSelectedGuild != null)
+        if (lastSelectedGuild != null)
         {
             mainViewModel.changeView("Rediger Laug", "GUI/View/EditLaug.fxml");
 
