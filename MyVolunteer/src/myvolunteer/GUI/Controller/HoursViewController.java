@@ -94,7 +94,7 @@ public class HoursViewController implements Initializable
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Forkert input");
             alert.setHeaderText(null);
-            alert.setContentText("Indtast venligst hele timer mellem 1 - 24 ");
+            alert.setContentText("Indtast venligst hele timer mellem 1 - 24");
             alert.showAndWait();
         }
     }
@@ -140,7 +140,7 @@ public class HoursViewController implements Initializable
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
+        mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
 
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();
