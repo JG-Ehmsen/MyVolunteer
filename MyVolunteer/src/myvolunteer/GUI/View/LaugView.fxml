@@ -18,7 +18,7 @@
             <Image url="@Resource/logo.png" />
          </image>
       </ImageView>
-      <ScrollPane layoutX="320.0" layoutY="100.0" prefHeight="400.0" prefWidth="272.0">
+      <ScrollPane id="laugscrollpane" layoutX="320.0" layoutY="100.0" prefHeight="400.0" prefWidth="272.0">
         <content>
           <AnchorPane id="laugscrollpane" minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="250.0">
                <children>

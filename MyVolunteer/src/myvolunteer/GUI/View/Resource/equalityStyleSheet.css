@@ -31,6 +31,14 @@ and open the template in the editor.
         linear-gradient(#ffffff 0%, #606060 50%, #505250 51%, #c0c2ce 100%);*/
 }
 
+#volunteerlist
+{
+    -fx-background-color:
+        linear-gradient(#333 0%, #f8f8fa 15%, #f8f8fa 55%, #f8f8fa 100%),
+        linear-gradient(#faf0e6, #f8f8fa);
+    
+}
+
 #textpane
 {
     -fx-background-color:
@@ -41,17 +49,29 @@ and open the template in the editor.
         linear-gradient(#ffffff 0%, #606060 50%, #505250 51%, #c0c2ce 100%);*/
 }
 
-#laugscrollpane
+#laugscrollpane 
 {
     -fx-background-color: transparent; 
+    -fx-padding: 10 0 10 0;
 }
 
-.scroll-pane
+.scroll-pane > .viewport { 
+   -fx-background-color: transparent;
+   
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #5a5255;
+        
+    -fx-background-insets: 0;
+    -fx-background-radius: 0.5em;
+}
+
+#laugpane
 {
     -fx-background-color: transparent; 
     
 }
-
 
 #topseparator
 {
@@ -75,6 +95,8 @@ and open the template in the editor.
     -fx-border-radius: 5;
     -fx-background-color: #5a5255;
     -fx-text-fill: white;
+    
+    
 }
 
 #adminbutton
