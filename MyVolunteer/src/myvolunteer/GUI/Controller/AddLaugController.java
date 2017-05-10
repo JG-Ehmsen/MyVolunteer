@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
@@ -52,17 +53,15 @@ public class AddLaugController implements Initializable
     @FXML
     private ListView<Volunteer> listChosenVolunteer;
     @FXML
-    private TextField txtSeachChosen;
-    @FXML
     private ComboBox<Manager> comboManager;
     @FXML
     private ListView<Volunteer> listAvailableVolunteers;
 
     List<Volunteer> allVolunteerList = new ArrayList<>();
     List<Manager> managerList = new ArrayList<>();
-    ObservableList allUsers = FXCollections.observableArrayList();
-    ObservableList chosenUsers = FXCollections.observableArrayList();
-    ObservableList managers = FXCollections.observableArrayList();
+    ObservableList<Volunteer> allUsers = FXCollections.observableArrayList();
+    ObservableList<Volunteer> chosenUsers = FXCollections.observableArrayList();
+    ObservableList<Manager> managers = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -140,5 +139,26 @@ public class AddLaugController implements Initializable
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void searchFilter(KeyEvent event)
+    {
+        String filter = txtSearchAvailable.getText();
+        ObservableList<Volunteer> filteredList = FXCollections.observableArrayList();
+        if (filter.equals(""))
+        {
+            listAvailableVolunteers.setItems(allUsers);
+        } else
+        {
+            for (Volunteer vol : allUsers)
+            {
+                if (vol.toString().toLowerCase().contains(filter.toLowerCase()))
+                {
+                    filteredList.add(vol);
+                }
+            }
+            listAvailableVolunteers.setItems(filteredList);
+        }
     }
 }

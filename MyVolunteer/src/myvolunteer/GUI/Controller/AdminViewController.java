@@ -83,6 +83,7 @@ public class AdminViewController implements Initializable
 
     private List<Guild> guildList = new ArrayList<>();
     private List<Volunteer> userList = new ArrayList<>();
+    ObservableList<Volunteer> users = FXCollections.observableArrayList();
 
     private Guild lastSelectedGuild;
     private Volunteer lastSelectedVolunteer;
@@ -103,7 +104,7 @@ public class AdminViewController implements Initializable
 
     private void populateList()
     {
-        ObservableList<Volunteer> users = FXCollections.observableArrayList();
+
         if (lastSelectedGuild == null)
         {
             users.setAll(userList);
@@ -125,6 +126,27 @@ public class AdminViewController implements Initializable
             users.setAll(guildUsers);
         }
         volunteerList.setItems(users);
+    }
+
+    @FXML
+    private void searchFilter()
+    {
+        String filter = searchBar.getText();
+        ObservableList<Volunteer> filteredList = FXCollections.observableArrayList();
+        if (filter.equals(""))
+        {
+            volunteerList.setItems(users);
+        } else
+        {
+            for (Volunteer vol : users)
+            {
+                if (vol.toString().toLowerCase().contains(filter.toLowerCase()))
+                {
+                    filteredList.add(vol);
+                }
+            }
+            volunteerList.setItems(filteredList);
+        }
     }
 
     private void comboContent()
@@ -168,6 +190,7 @@ public class AdminViewController implements Initializable
     {
         if (lastSelectedVolunteer != null)
         {
+            mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
             mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
 
             // Closes the primary stage
@@ -182,6 +205,7 @@ public class AdminViewController implements Initializable
     {
         if (lastSelectedGuild != null)
         {
+            mainViewModel.setLastSelectedGuild(lastSelectedGuild);
             mainViewModel.changeView("Rediger Laug", "GUI/View/EditLaug.fxml");
 
             // Closes the primary stage
@@ -196,13 +220,12 @@ public class AdminViewController implements Initializable
         lastSelectedGuild = comboBoxGuild.getSelectionModel().getSelectedItem();
         lastManager = dp.getManagerForGuild(lastSelectedGuild);
         showGuildInfo();
-        mainViewModel.setLastSelectedGuild(lastSelectedGuild);
         populateList();
     }
 
     private void showGuildInfo()
     {
-        lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size()));
+        lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size() - 1));
         lblTovholder.setText("Tovholder: " + lastManager.getFirstName() + " " + lastManager.getLastName());
         lblTotalGuildHours.setText("Total antal timer: " + Integer.toString(dp.getHoursWorkedForGuild(lastSelectedGuild)));
     }
@@ -214,7 +237,6 @@ public class AdminViewController implements Initializable
         {
             lastSelectedVolunteer = volunteerList.getSelectionModel().getSelectedItem();
             loadVolunteerInfo();
-            mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
         }
     }
 
