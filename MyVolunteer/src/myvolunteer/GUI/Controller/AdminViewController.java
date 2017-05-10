@@ -81,6 +81,8 @@ public class AdminViewController implements Initializable
     private Label lblVolunteerAge;
     @FXML
     private Label lblVolunteerNote;
+    @FXML
+    private Label lblGuildNote;
 
     private List<Guild> guildList = new ArrayList<>();
     private List<Volunteer> userList = new ArrayList<>();
@@ -243,6 +245,7 @@ public class AdminViewController implements Initializable
         lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size() - 1));
         lblTovholder.setText("Tovholder: " + lastManager.getFirstName() + " " + lastManager.getLastName());
         lblTotalGuildHours.setText("Total antal timer: " + Integer.toString(dp.getHoursWorkedForGuild(lastSelectedGuild)));
+        lblGuildNote.setText("Note: " + lastSelectedGuild.getDescription().toString());
     }
 
     @FXML
