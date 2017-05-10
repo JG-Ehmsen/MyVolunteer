@@ -126,7 +126,7 @@ public class AddVolunteerController implements Initializable
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Laug", "GUI/View/AdminView.fxml");
+        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
 
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();
