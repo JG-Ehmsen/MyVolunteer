@@ -96,10 +96,15 @@ public class BLLFacade
     {
         return dalFacade.getHoursWorkedForVolunteer(volunteer);
     }
-    
-         public void UpdateUser(Volunteer user)
+
+    public void UpdateUser(Volunteer user)
     {
         dalFacade.UpdateUser(user);
+    }
+
+    public void UpdateGuild(Guild guild)
+    {
+        dalFacade.UpdateGuild(guild);
     }
 
 }

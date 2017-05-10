@@ -289,4 +289,23 @@ public class DBTransactions
         }
     }
 
+    public void UpdateGuild(Guild guild)
+    {
+        try
+        {
+            startTransaction();
+
+            ga.UpdateGuild(guild, transactionConnection);
+
+            commitTransaction();
+
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
