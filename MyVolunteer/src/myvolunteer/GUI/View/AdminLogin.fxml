@@ -16,16 +16,17 @@
          <image>
             <Image url="@Resource/logo.png" />
          </image></ImageView>
-      <Label layoutX="76.0" layoutY="102.0" prefHeight="23.0" prefWidth="108.0" text="Login">
+      <Label layoutX="76.0" layoutY="102.0" prefHeight="23.0" prefWidth="108.0" text="Admin Login">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnLogin" defaultButton="true" layoutX="240.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
+      <Button fx:id="btnLogin" defaultButton="true" layoutX="226.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleLogin" prefWidth="65.0" text="Login" />
       <ImageView fitHeight="11.0" fitWidth="309.0" layoutX="10.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="80.0">
          <image>
-            <Image url="file:/Users/Fjord82/Documents/MyVolunteer/MyVolunteer/src/myvolunteer/GUI/View/Resource/toolsmenu_bg.png" />
+            <Image url="@Resource/toolsmenu_bg.png" />
          </image>
       </ImageView>
+      <Button fx:id="btnBack" layoutX="77.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleBack" prefWidth="65.0" text="Tilbage" />
    </children>
 </AnchorPane>

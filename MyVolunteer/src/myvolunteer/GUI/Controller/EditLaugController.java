@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import myvolunteer.GUI.Model.MainViewModel;
 
@@ -30,6 +31,10 @@ public class EditLaugController implements Initializable
 
     @FXML
     private Button btnGodkend;
+    @FXML
+    private Button btnBack;
+    @FXML
+    private TextField txtLaugInformation;
 
     /**
      * Initializes the controller class.
@@ -43,8 +48,20 @@ public class EditLaugController implements Initializable
     @FXML
     private void handleGodkend(ActionEvent event) throws IOException
     {
+        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
+
         // Closes the primary stage
         Stage stage = (Stage) btnGodkend.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void handleBack(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Laug", "GUI/View/AdminView.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
 
