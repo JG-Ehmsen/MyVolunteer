@@ -37,7 +37,7 @@ public class AddLaugController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
-    
+
     @FXML
     private Button btnGodkend;
     @FXML
@@ -58,7 +58,7 @@ public class AddLaugController implements Initializable
     private ComboBox<Manager> comboManager;
     @FXML
     private ListView<Volunteer> listAvailableVolunteers;
-    
+
     List<Volunteer> allVolunteerList = new ArrayList<>();
     List<Manager> managerList = new ArrayList<>();
     ObservableList<Volunteer> allUsers = FXCollections.observableArrayList();
@@ -72,10 +72,12 @@ public class AddLaugController implements Initializable
     private Label xManager;
     @FXML
     private Label lblUdfyldVenligst;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteer.getItems().size());
+
         allVolunteerList = dp.getUsers();
         allUsers.setAll(allVolunteerList);
         listAvailableVolunteers.setItems(allUsers);
@@ -83,16 +85,16 @@ public class AddLaugController implements Initializable
         managerList = dp.getManagers();
         managers.setAll(managerList);
         comboManager.setItems(managers);
-        
+
         xLaugName.setVisible(false);
         lblUdfyldVenligst.setVisible(false);
         xManager.setVisible(false);
     }
-    
+
     @FXML
     private void handleGodkend(ActionEvent event) throws IOException
     {
-        
+
         if (txtLaugName.getText().isEmpty())
         {
             xLaugName.setVisible(true);
@@ -114,7 +116,7 @@ public class AddLaugController implements Initializable
         if (!txtLaugName.getText().isEmpty() && !comboManager.getSelectionModel().isEmpty())
         {
             handleLaugInfo();
-            
+
             mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
 
             // Closes the primary stage
@@ -122,12 +124,12 @@ public class AddLaugController implements Initializable
             stage.close();
         }
     }
-    
+
     private void handleLaugInfo()
     {
         String LaugName = txtLaugName.getText();
         String LaugInformation = txtLaugInfo.getText();
-        
+
         Guild guild = new Guild(999999, LaugName);
         List<Integer> userID = new ArrayList();
         for (Volunteer volunteer : listChosenVolunteer.getItems())
@@ -139,12 +141,12 @@ public class AddLaugController implements Initializable
         guild.setDescription(txtLaugInfo.getText());
         CreateNewLaug(guild);
     }
-    
+
     private void CreateNewLaug(Guild guild)
     {
         dp.CreateNewLaug(guild);
     }
-    
+
     @FXML
     private void handleAddVolunteer(ActionEvent event)
     {
@@ -153,9 +155,11 @@ public class AddLaugController implements Initializable
             Volunteer volunteer = listAvailableVolunteers.getSelectionModel().getSelectedItem();
             chosenUsers.add(volunteer);
             allUsers.remove(volunteer);
+
+            lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteer.getItems().size());
         }
     }
-    
+
     @FXML
     private void handleRemoveVolunteer(ActionEvent event)
     {
@@ -164,9 +168,11 @@ public class AddLaugController implements Initializable
             Volunteer volunteer = listChosenVolunteer.getSelectionModel().getSelectedItem();
             allUsers.add(volunteer);
             chosenUsers.remove(volunteer);
+
+            lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteer.getItems().size());
         }
     }
-    
+
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
@@ -176,7 +182,7 @@ public class AddLaugController implements Initializable
         Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
-    
+
     @FXML
     private void searchFilter(KeyEvent event)
     {
