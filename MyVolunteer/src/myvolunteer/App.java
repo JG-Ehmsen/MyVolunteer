@@ -1,7 +1,6 @@
 package myvolunteer;
 
 import java.io.IOException;
-import java.util.Date;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;

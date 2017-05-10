@@ -6,18 +6,13 @@
 package myvolunteer.GUI.Controller;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,7 +24,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
-import myvolunteer.BE.User;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
@@ -62,6 +56,8 @@ public class HoursViewController implements Initializable
 
     // Validation file
     private String validationFile = "numberValidation.txt";
+    @FXML
+    private Button btnBack;
 
     /**
      * Initializes the controller class.
@@ -139,6 +135,16 @@ public class HoursViewController implements Initializable
         }
         // Closes the scanner
         return isFound;
+    }
+
+    @FXML
+    private void handleBack(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        stage.close();
     }
 
     public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
