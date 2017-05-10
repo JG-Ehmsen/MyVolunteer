@@ -235,6 +235,27 @@ public class DBUserAccess
         ps.execute();
     }
 
+    public void UpdateUser(Volunteer user, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "UPDATE Users "
+                + "SET FName = ?, LName = ?, Gender = ?, Nationality = ?, EMail = ?, TLF = ?, Note = ? "
+                + "WHERE UID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, user.getFirstName());
+        ps.setString(2, user.getLastName());
+        ps.setString(3, user.getGender());
+        ps.setString(4, user.getNationality());
+        ps.setString(5, user.getEmail());
+        ps.setString(6, user.getPhoneNumber());
+        ps.setString(7, user.getNote());
+        ps.setInt(8, user.getId());
+
+        ps.execute();
+    }
+
     /**
      * Given a guild and volunteer BE, and a date, utilizes other method calls
      * to get a date ID and a guild relation ID. Then queries the DB with these

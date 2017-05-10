@@ -102,4 +102,9 @@ public class DALFacade
     {
         return db.getHoursWorkedForVolunteer(volunteer);
     }
+    
+     public void UpdateUser(Volunteer user)
+    {
+        db.UpdateUser(user);
+    }
 }

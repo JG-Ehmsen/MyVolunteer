@@ -57,7 +57,7 @@ public class EditLaugController implements Initializable
     @FXML
     private TextField txtSearchChosen;
     @FXML
-    private ComboBox<?> comboManager;
+    private ComboBox<Manager> comboManager;
     @FXML
     private TextField txtLaugName;
 
