@@ -60,6 +60,10 @@ public class EditLaugController implements Initializable
     private ComboBox<Manager> comboManager;
     @FXML
     private TextField txtLaugName;
+    @FXML
+    private TextField txtSearchFilterAvailable;
+    @FXML
+    private Text lblAntalFrivillige;
 
     Guild guild;
 
@@ -68,10 +72,6 @@ public class EditLaugController implements Initializable
     ObservableList<Volunteer> allUsers = FXCollections.observableArrayList();
     ObservableList<Volunteer> chosenUsers = FXCollections.observableArrayList();
     ObservableList<Manager> managers = FXCollections.observableArrayList();
-    @FXML
-    private TextField txtSearchFilterAvailable;
-    @FXML
-    private Text lblAntalFrivillige;
 
     /**
      * Initializes the controller class.
@@ -83,6 +83,8 @@ public class EditLaugController implements Initializable
         guild = mainViewModel.getLastSelectedGuild();
         allVolunteerList = dp.getUsers();
         loadInformation();
+
+        lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
     }
 
     private void loadInformation()
@@ -139,11 +141,14 @@ public class EditLaugController implements Initializable
     @FXML
     private void btnAddVolunteer(ActionEvent event)
     {
+        lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
+
     }
 
     @FXML
     private void btnRemoveVolunteer(ActionEvent event)
     {
+        lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
     }
 
 }
