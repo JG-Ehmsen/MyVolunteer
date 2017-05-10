@@ -225,7 +225,7 @@ public class AdminViewController implements Initializable
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
-            alert.setContentText("Vælg laug");
+            alert.setContentText("Vælg et laug");
             alert.showAndWait();
         }
     }
