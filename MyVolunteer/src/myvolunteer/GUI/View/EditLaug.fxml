@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="350.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.EditLaugController">
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="350.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.EditLaugController">
    <children>
       <Text layoutX="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laug navn:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <Text layoutX="10.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tovholder" AnchorPane.leftAnchor="10.0" />
@@ -15,16 +15,18 @@
       <Text layoutX="14.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg Frivillig:" AnchorPane.leftAnchor="10.0" />
       <ListView layoutX="10.0" layoutY="165.0" prefHeight="160.0" prefWidth="125.0" />
       <TextField layoutX="10.0" layoutY="325.0" prefHeight="25.0" prefWidth="125.0" promptText="Søg" AnchorPane.leftAnchor="10.0" />
-      <Text layoutX="10.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antal frivillige:" />
-      <Text layoutX="110.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" />
+      <Text layoutX="215.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antal frivillige:" />
+      <Text layoutX="315.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" />
       <ListView layoutX="211.0" layoutY="165.0" prefHeight="160.0" prefWidth="125.0" AnchorPane.rightAnchor="10.0" />
       <Text layoutX="215.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valgte frivillige:" />
       <TextField layoutX="218.0" layoutY="325.0" prefHeight="25.0" prefWidth="125.0" promptText="Søg" AnchorPane.rightAnchor="10.0" />
       <Button fx:id="btnGodkend" defaultButton="true" layoutX="278.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
       <Button layoutX="154.0" layoutY="200.0" mnemonicParsing="false" text="Tilføj" />
       <Button layoutX="154.0" layoutY="268.0" mnemonicParsing="false" text="Fjern" />
-      <ComboBox layoutX="10.0" layoutY="36.0" prefHeight="25.0" prefWidth="125.0" promptText="Vælg laug" AnchorPane.leftAnchor="10.0" />
       <Button layoutX="90.0" layoutY="393.0" mnemonicParsing="false" text="Slet laug" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="90.0" />
-      <Button fx:id="btnBack" layoutX="8.0" layoutY="393.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbache" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+      <Button fx:id="btnBack" layoutX="8.0" layoutY="393.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbage" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+      <TextField layoutX="11.0" layoutY="34.0" prefHeight="25.0" prefWidth="125.0" AnchorPane.leftAnchor="10.0" />
+      <TextField fx:id="txtLaugInformation" layoutX="215.0" layoutY="34.0" prefHeight="90.0" prefWidth="125.0" />
+      <Text layoutX="215.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laug information" />
    </children>
 </AnchorPane>
