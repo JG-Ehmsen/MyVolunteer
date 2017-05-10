@@ -78,7 +78,6 @@ public class HoursViewController implements Initializable
     {
         if (!txtFieldHours.getText().isEmpty())
         {
-
             Instant instant = Instant.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()));
             Date date = Date.from(instant);
 
@@ -94,7 +93,7 @@ public class HoursViewController implements Initializable
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Forkert input");
             alert.setHeaderText(null);
-            alert.setContentText("Indtast venligst hele timer mellem 1 - 24 ");
+            alert.setContentText("Indtast venligst hele timer mellem 1 - 24");
             alert.showAndWait();
         }
     }
