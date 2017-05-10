@@ -140,7 +140,7 @@ and open the template in the editor.
    -fx-font-weight: bold;
    /*-fx-background-color: #5a5255;*/
    -fx-background-radius: 5;
-   -fx-background-color: linear-gradient(from 5% 5% to 50% 100%, #fff4e6, #5a5255);
+   -fx-background-color: linear-gradient(from 5% 5% to 40% 100%, #fff4e6, #5a5255);
 }
 
 #contactlabel
