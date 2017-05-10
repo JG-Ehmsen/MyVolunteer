@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -63,6 +64,14 @@ public class AddVolunteerController implements Initializable
     private Button btnUploadImage;
     @FXML
     private Button btnBack;
+    @FXML
+    private Label xFirstName;
+    @FXML
+    private Label xLastName;
+    @FXML
+    private Label xTelephone;
+    @FXML
+    private Label lblUdfyldVenligst;
 
     /**
      * Initializes the controller class.
@@ -70,6 +79,10 @@ public class AddVolunteerController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        xFirstName.setVisible(false);
+        xLastName.setVisible(false);
+        xTelephone.setVisible(false);
+        lblUdfyldVenligst.setVisible(false);
 
         rbMale.setToggleGroup(tg);
         rbFemale.setToggleGroup(tg);
@@ -79,13 +92,43 @@ public class AddVolunteerController implements Initializable
     @FXML
     private void handleGodkend(ActionEvent event) throws IOException
     {
-        handleUserInfo();
+        if (txtFName.getText().isEmpty())
+        {
+            xFirstName.setVisible(true);
+            lblUdfyldVenligst.setVisible(true);
+        }
+        if (txtLName.getText().isEmpty())
+        {
+            xLastName.setVisible(true);
+            lblUdfyldVenligst.setVisible(true);
+        }
+        if (txtPhoneNumber.getText().isEmpty())
+        {
+            xTelephone.setVisible(true);
+            lblUdfyldVenligst.setVisible(true);
+        }
+        if (xFirstName.isVisible() && !txtFName.getText().isEmpty())
+        {
+            xFirstName.setVisible(false);
+        }
+        if (xLastName.isVisible() && !txtLName.getText().isEmpty())
+        {
+            xLastName.setVisible(false);
+        }
+        if (xTelephone.isVisible() && !txtPhoneNumber.getText().isEmpty())
+        {
+            xTelephone.setVisible(false);
+        }
+        if (!txtFName.getText().isEmpty() && !txtLName.getText().isEmpty() && !txtPhoneNumber.getText().isEmpty())
+        {
+            handleUserInfo();
 
-        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
+            mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
 
-        // Closes the primary stage
-        Stage stage = (Stage) btnGodkend.getScene().getWindow();
-        stage.close();
+            // Closes the primary stage
+            Stage stage = (Stage) btnGodkend.getScene().getWindow();
+            stage.close();
+        }
     }
 
     private void handleUserInfo()

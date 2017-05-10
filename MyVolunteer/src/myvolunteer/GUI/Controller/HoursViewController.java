@@ -94,7 +94,7 @@ public class HoursViewController implements Initializable
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Forkert input");
             alert.setHeaderText(null);
-            alert.setContentText("Indtast venligst hele timer mellem 1 - 24 ");
+            alert.setContentText("Indtast venligst hele timer mellem 1 - 24");
             alert.showAndWait();
         }
     }
