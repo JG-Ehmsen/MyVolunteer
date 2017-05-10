@@ -7,6 +7,8 @@ package myvolunteer.GUI.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,9 +22,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
+import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
+import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
 
 /**
@@ -37,6 +42,7 @@ public class EditLaugController implements Initializable
      * Gets the singleton instance of the model.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
+    DataParserModel dp = DataParserModel.getInstance();
 
     @FXML
     private Button btnGodkend;
@@ -46,8 +52,6 @@ public class EditLaugController implements Initializable
     private TextField txtLaugInformation;
     @FXML
     private ListView<Volunteer> listAvailableVolunteers;
-    @FXML
-    private TextField txtSearchAvailable;
     @FXML
     private ListView<Volunteer> listChosenVolunteers;
     @FXML
@@ -59,6 +63,16 @@ public class EditLaugController implements Initializable
 
     Guild guild;
 
+    List<Volunteer> allVolunteerList = new ArrayList<>();
+    List<Manager> managerList = new ArrayList<>();
+    ObservableList<Volunteer> allUsers = FXCollections.observableArrayList();
+    ObservableList<Volunteer> chosenUsers = FXCollections.observableArrayList();
+    ObservableList<Manager> managers = FXCollections.observableArrayList();
+    @FXML
+    private TextField txtSearchFilterAvailable;
+    @FXML
+    private Text lblAntalFrivillige;
+
     /**
      * Initializes the controller class.
      */
@@ -66,7 +80,8 @@ public class EditLaugController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-        this.guild = mainViewModel.getLastSelectedGuild();
+        guild = mainViewModel.getLastSelectedGuild();
+        allVolunteerList = dp.getUsers();
         loadInformation();
     }
 
@@ -114,6 +129,21 @@ public class EditLaugController implements Initializable
         alert.setHeaderText(null);
         alert.setContentText("Er du sikker på at du vil slette dette laug?");
         alert.showAndWait();
+    }
+
+    @FXML
+    private void comboManager(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void btnAddVolunteer(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void btnRemoveVolunteer(ActionEvent event)
+    {
     }
 
 }
