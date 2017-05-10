@@ -97,14 +97,19 @@ public class DALFacade
     {
         return db.getTotalHoursWorked();
     }
-    
+
     public int getHoursWorkedForVolunteer(Volunteer volunteer)
     {
         return db.getHoursWorkedForVolunteer(volunteer);
     }
-    
-     public void UpdateUser(Volunteer user)
+
+    public void UpdateUser(Volunteer user)
     {
         db.UpdateUser(user);
+    }
+
+    public void UpdateGuild(Guild guild)
+    {
+        db.UpdateGuild(guild);
     }
 }
