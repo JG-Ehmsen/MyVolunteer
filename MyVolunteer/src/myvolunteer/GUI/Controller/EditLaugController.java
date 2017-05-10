@@ -118,8 +118,8 @@ public class EditLaugController implements Initializable
     private void handleGodkend(ActionEvent event) throws IOException
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Rediger frivillig");
-        alert.setHeaderText("Du er ved at redigere en frivillig.");
+        alert.setTitle("Rediger laug");
+        alert.setHeaderText("Du er ved at redigere et laug.");
         alert.setContentText("Tryk OK for at fortsætte.");
         
         ButtonType buttonTypeOK = new ButtonType("OK");
