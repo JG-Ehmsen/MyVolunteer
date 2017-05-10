@@ -271,4 +271,22 @@ public class DBTransactions
         return returnInt;
     }
 
+    public void UpdateUser(Volunteer user)
+    {
+        try
+        {
+            startTransaction();
+
+            ua.UpdateUser(user, transactionConnection);
+
+            commitTransaction();
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

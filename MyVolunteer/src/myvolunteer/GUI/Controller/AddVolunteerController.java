@@ -143,10 +143,10 @@ public class AddVolunteerController implements Initializable
         String gender = "";
         if (tg.getSelectedToggle().equals(rbMale))
         {
-            gender = "Male";
+            gender = "Mand";
         } else if (tg.getSelectedToggle().equals(rbFemale))
         {
-            gender = "Female";
+            gender = "Kvinde";
         }
 
         Volunteer user = new Volunteer(999999, fName, phoneNumber);
