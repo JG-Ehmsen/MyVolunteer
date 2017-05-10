@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -173,7 +174,14 @@ public class AdminViewController implements Initializable
             // Closes the primary stage
             Stage stage = (Stage) redigerFrivillig.getScene().getWindow();
             stage.close();
-
+        } else
+        {
+            // Displays an alertbox if the user haven't selected a laug.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Vælg en frivillig");
+            alert.showAndWait();
         }
     }
 
@@ -187,6 +195,14 @@ public class AdminViewController implements Initializable
             // Closes the primary stage
             Stage stage = (Stage) redigerLaug.getScene().getWindow();
             stage.close();
+        } else
+        {
+            // Displays an alertbox if the user haven't selected a laug.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Vælg laug");
+            alert.showAndWait();
         }
     }
 
