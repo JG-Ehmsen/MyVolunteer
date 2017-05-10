@@ -12,6 +12,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import myvolunteer.GUI.Model.MainViewModel;
 
@@ -32,6 +36,24 @@ public class EditVolunteerController implements Initializable
     private Button btnGodkend;
     @FXML
     private Button btnBack;
+    @FXML
+    private TextField txtFName;
+    @FXML
+    private RadioButton rdoMand;
+    @FXML
+    private RadioButton rdoKvinde;
+    @FXML
+    private TextField txtPhoneNumber;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private TextField txtNationalitet;
+    @FXML
+    private TextArea txtNote;
+    @FXML
+    private TextField txtLName;
+    @FXML
+    private ImageView imgPicture;
 
     /**
      * Initializes the controller class.
@@ -60,6 +82,16 @@ public class EditVolunteerController implements Initializable
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void btnUploadPicture(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void handleDelete(ActionEvent event)
+    {
     }
 
 }

@@ -20,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
@@ -50,8 +51,6 @@ public class EditLaugController implements Initializable
     @FXML
     private ListView<Volunteer> listAvailableVolunteers;
     @FXML
-    private TextField txtSearchAvailable;
-    @FXML
     private ListView<Volunteer> listChosenVolunteers;
     @FXML
     private TextField txtSearchChosen;
@@ -67,6 +66,10 @@ public class EditLaugController implements Initializable
     ObservableList<Volunteer> allUsers = FXCollections.observableArrayList();
     ObservableList<Volunteer> chosenUsers = FXCollections.observableArrayList();
     ObservableList<Manager> managers = FXCollections.observableArrayList();
+    @FXML
+    private TextField txtSearchFilterAvailable;
+    @FXML
+    private Text lblAntalFrivillige;
 
     /**
      * Initializes the controller class.
@@ -118,6 +121,21 @@ public class EditLaugController implements Initializable
 
     @FXML
     private void handleDeleteLaug(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void comboManager(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void btnAddVolunteer(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void btnRemoveVolunteer(ActionEvent event)
     {
     }
 
