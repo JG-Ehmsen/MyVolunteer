@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -83,6 +84,7 @@ public class AdminViewController implements Initializable
 
     private List<Guild> guildList = new ArrayList<>();
     private List<Volunteer> userList = new ArrayList<>();
+    ObservableList<Volunteer> users = FXCollections.observableArrayList();
 
     private Guild lastSelectedGuild;
     private Volunteer lastSelectedVolunteer;
@@ -103,7 +105,7 @@ public class AdminViewController implements Initializable
 
     private void populateList()
     {
-        ObservableList<Volunteer> users = FXCollections.observableArrayList();
+
         if (lastSelectedGuild == null)
         {
             users.setAll(userList);
@@ -125,6 +127,27 @@ public class AdminViewController implements Initializable
             users.setAll(guildUsers);
         }
         volunteerList.setItems(users);
+    }
+
+    @FXML
+    private void searchFilter()
+    {
+        String filter = searchBar.getText();
+        ObservableList<Volunteer> filteredList = FXCollections.observableArrayList();
+        if (filter.equals(""))
+        {
+            volunteerList.setItems(users);
+        } else
+        {
+            for (Volunteer vol : users)
+            {
+                if (vol.toString().toLowerCase().contains(filter.toLowerCase()))
+                {
+                    filteredList.add(vol);
+                }
+            }
+            volunteerList.setItems(filteredList);
+        }
     }
 
     private void comboContent()
@@ -166,27 +189,44 @@ public class AdminViewController implements Initializable
     @FXML
     private void handleRedigerFrivillig(ActionEvent event) throws IOException
     {
-        if(lastSelectedVolunteer != null)
+        if (lastSelectedVolunteer != null)
         {
+            mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
             mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
 
             // Closes the primary stage
             Stage stage = (Stage) redigerFrivillig.getScene().getWindow();
             stage.close();
-
+        } else
+        {
+            // Displays an alertbox if the user haven't selected a laug.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Vælg en frivillig");
+            alert.showAndWait();
         }
     }
 
     @FXML
     private void handleRedigerLaug(ActionEvent event) throws IOException
     {
-        if(lastSelectedGuild != null)
+        if (lastSelectedGuild != null)
         {
+            mainViewModel.setLastSelectedGuild(lastSelectedGuild);
             mainViewModel.changeView("Rediger Laug", "GUI/View/EditLaug.fxml");
 
             // Closes the primary stage
             Stage stage = (Stage) redigerLaug.getScene().getWindow();
             stage.close();
+        } else
+        {
+            // Displays an alertbox if the user haven't selected a laug.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Vælg laug");
+            alert.showAndWait();
         }
     }
 
@@ -196,13 +236,12 @@ public class AdminViewController implements Initializable
         lastSelectedGuild = comboBoxGuild.getSelectionModel().getSelectedItem();
         lastManager = dp.getManagerForGuild(lastSelectedGuild);
         showGuildInfo();
-        mainViewModel.setLastSelectedGuild(lastSelectedGuild);
         populateList();
     }
 
     private void showGuildInfo()
     {
-        lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size()));
+        lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size() - 1));
         lblTovholder.setText("Tovholder: " + lastManager.getFirstName() + " " + lastManager.getLastName());
         lblTotalGuildHours.setText("Total antal timer: " + Integer.toString(dp.getHoursWorkedForGuild(lastSelectedGuild)));
     }
@@ -214,7 +253,6 @@ public class AdminViewController implements Initializable
         {
             lastSelectedVolunteer = volunteerList.getSelectionModel().getSelectedItem();
             loadVolunteerInfo();
-            mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
         }
     }
 
