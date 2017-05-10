@@ -93,4 +93,9 @@ public class DataParserModel
     {
         bllFacade.UpdateUser(user);
     }
+
+    public void UpdateGuild(Guild guild)
+    {
+        bllFacade.UpdateGuild(guild);
+    }
 }
