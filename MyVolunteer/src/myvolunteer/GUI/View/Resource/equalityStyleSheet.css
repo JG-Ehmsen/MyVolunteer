@@ -95,6 +95,8 @@ and open the template in the editor.
     -fx-border-radius: 5;
     -fx-background-color: #5a5255;
     -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
     
     
 }
@@ -103,6 +105,7 @@ and open the template in the editor.
 {
     -fx-background-color: /*#e5e5e5;*/
     linear-gradient(from 25% 25% to 75% 100%, #5a5255, #372e29);
+    -fx-font-weight: bold;
     
 }
 
@@ -111,6 +114,7 @@ and open the template in the editor.
     -fx-background-color: #5a5255;
     -fx-text-fill: white;
     -fx-text-alignment: center;
+    -fx-font-weight: bold;
     
 }
 
@@ -126,4 +130,22 @@ and open the template in the editor.
     -fx-text-fill: #cc9112;
     /*-fx-background-radius: 5;
     -fx-border-radius: 5;*/
+}
+
+#guildnamelabel
+{
+   -fx-text-fill: white;
+   -fx-font-family: 'Muli', sans-serif; 
+   -fx-font-size: 32px; 
+   -fx-font-weight: bold;
+   /*-fx-background-color: #5a5255;*/
+   -fx-background-radius: 5;
+   -fx-background-color: linear-gradient(from 5% 5% to 50% 100%, #fff4e6, #5a5255);
+}
+
+#contactlabel
+{
+    -fx-text-fill: #5a5255;
+    -fx-font-weight: bold;
+    
 }

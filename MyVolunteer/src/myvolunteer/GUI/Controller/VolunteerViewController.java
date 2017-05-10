@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -31,14 +32,16 @@ public class VolunteerViewController implements Initializable
     DataParserModel dp = DataParserModel.getInstance();
 
     @FXML
-    private Button btnTest;
-    @FXML
     private Button btnBack;
     @FXML
     private FlowPane MainFlowPane;
 
     Guild guild;
     Manager manager;
+    @FXML
+    private Label guildNameLbl;
+    @FXML
+    private Label contactNameLbl;
 
     /**
      * Initializes the controller class.
@@ -48,7 +51,11 @@ public class VolunteerViewController implements Initializable
     {
         guild = mainViewModel.getLastSelectedGuild();
         manager = dp.getManagerForGuild(guild);
-
+        
+        
+        guildNameLbl.setText(guild.getName());
+        contactNameLbl.setText("Kontakt Person \n" + manager.getFirstName() + " " + manager.getLastName()
+        + "\n" + manager.getPhoneNumber() + "\n" + manager.getEmail());
         generateButtons();
     }
 
@@ -83,7 +90,6 @@ public class VolunteerViewController implements Initializable
         }
     }
 
-    @FXML
     private void handleUserImage()
     {
         try
