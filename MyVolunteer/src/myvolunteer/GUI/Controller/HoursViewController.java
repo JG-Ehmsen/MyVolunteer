@@ -140,7 +140,7 @@ public class HoursViewController implements Initializable
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Volunteer", "GUI/View/VolunteerView.fxml");
+        mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
 
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();
