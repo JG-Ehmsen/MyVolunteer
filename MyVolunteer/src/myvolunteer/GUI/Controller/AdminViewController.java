@@ -109,7 +109,6 @@ public class AdminViewController implements Initializable
         if (lastSelectedGuild == null)
         {
             users.setAll(userList);
-            //ObservableList<Volunteer> users = FXCollections.observableArrayList(userList);
 
         } else
         {
