@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import myvolunteer.GUI.Model.MainViewModel;
 
@@ -32,6 +33,8 @@ public class EditLaugController implements Initializable
     private Button btnGodkend;
     @FXML
     private Button btnBack;
+    @FXML
+    private TextField txtLaugInformation;
 
     /**
      * Initializes the controller class.
