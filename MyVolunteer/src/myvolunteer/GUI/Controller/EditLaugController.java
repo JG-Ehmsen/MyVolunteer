@@ -46,7 +46,7 @@ public class EditLaugController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
-    
+
     @FXML
     private Button btnGodkend;
     @FXML
@@ -67,9 +67,9 @@ public class EditLaugController implements Initializable
     private TextField txtSearchFilterAvailable;
     @FXML
     private Text lblAntalFrivillige;
-    
+
     Guild guild;
-    
+
     List<Volunteer> allVolunteerList = new ArrayList<>();
     List<Manager> managerList = new ArrayList<>();
     ObservableList<Volunteer> allUsers = FXCollections.observableArrayList();
@@ -90,16 +90,16 @@ public class EditLaugController implements Initializable
         listChosenVolunteers.setItems(chosenUsers);
         loadInformation();
         initialSortLists();
-        
+
         lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
     }
-    
+
     private void loadInformation()
     {
         this.txtLaugInformation.setText(guild.getDescription());
         this.txtLaugName.setText(guild.getName());
     }
-    
+
     private void initialSortLists()
     {
         for (Volunteer volunteer : allVolunteerList)
@@ -114,7 +114,7 @@ public class EditLaugController implements Initializable
             }
         }
     }
-    
+
     @FXML
     private void handleGodkend(ActionEvent event) throws IOException
     {
@@ -122,12 +122,12 @@ public class EditLaugController implements Initializable
         alert.setTitle("Rediger laug");
         alert.setHeaderText("Du er ved at redigere et laug.");
         alert.setContentText("Tryk OK for at fortsætte.");
-        
+
         ButtonType buttonTypeOK = new ButtonType("OK");
         ButtonType buttonTypeAnnuller = new ButtonType("Annuller");
-        
+
         alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeAnnuller);
-        
+
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOK)
         {
@@ -138,15 +138,15 @@ public class EditLaugController implements Initializable
             alert.close();
         }
     }
-    
+
     private void editGuild()
     {
         guild.setDescription(txtLaugInformation.getText());
         guild.setName(txtLaugName.getText());
-        
+
         dp.UpdateGuild(guild);
     }
-    
+
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
@@ -156,7 +156,7 @@ public class EditLaugController implements Initializable
         Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
-    
+
     @FXML
     private void searchFilterAvailable(KeyEvent event)
     {
@@ -177,7 +177,7 @@ public class EditLaugController implements Initializable
             listAvailableVolunteers.setItems(filteredList);
         }
     }
-    
+
     @FXML
     private void searchFilterChosen(KeyEvent event)
     {
@@ -198,7 +198,7 @@ public class EditLaugController implements Initializable
             listChosenVolunteers.setItems(filteredList);
         }
     }
-    
+
     @FXML
     private void handleDeleteLaug(ActionEvent event)
     {
@@ -208,18 +208,18 @@ public class EditLaugController implements Initializable
         alert.setContentText("Er du sikker på at du vil slette dette laug?");
         alert.showAndWait();
     }
-    
+
     @FXML
     private void comboManager(ActionEvent event)
     {
     }
-    
+
     @FXML
     private void btnAddVolunteer(ActionEvent event)
     {
         addVolunteer();
     }
-    
+
     private void addVolunteer()
     {
         if (listAvailableVolunteers.getSelectionModel().getSelectedItem() != null)
@@ -227,17 +227,17 @@ public class EditLaugController implements Initializable
             Volunteer volunteer = listAvailableVolunteers.getSelectionModel().getSelectedItem();
             chosenUsers.add(volunteer);
             allUsers.remove(volunteer);
-            
+
             lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
         }
     }
-    
+
     @FXML
     private void btnRemoveVolunteer(ActionEvent event)
     {
         removeVolunteer();
     }
-    
+
     private void removeVolunteer()
     {
         if (listChosenVolunteers.getSelectionModel().getSelectedItem() != null)
@@ -245,11 +245,11 @@ public class EditLaugController implements Initializable
             Volunteer volunteer = listChosenVolunteers.getSelectionModel().getSelectedItem();
             allUsers.add(volunteer);
             chosenUsers.remove(volunteer);
-            
+
             lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
         }
     }
-    
+
     private void goBack() throws IOException
     {
         mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
@@ -258,7 +258,7 @@ public class EditLaugController implements Initializable
         Stage stage = (Stage) btnGodkend.getScene().getWindow();
         stage.close();
     }
-    
+
     @FXML
     private void keyEventAvailable(KeyEvent event)
     {
@@ -267,14 +267,14 @@ public class EditLaugController implements Initializable
             addVolunteer();
         }
     }
-    
+
     @FXML
     private void keyEventChosen(KeyEvent event)
     {
-        if (event.getCode().equals(KeyCode.ENTER) || event.getCode().equals(KeyCode.DELETE))
+        if (event.getCode().equals(KeyCode.ENTER) || (event.getCode().equals(KeyCode.DELETE)))
         {
             removeVolunteer();
         }
     }
-    
+
 }
