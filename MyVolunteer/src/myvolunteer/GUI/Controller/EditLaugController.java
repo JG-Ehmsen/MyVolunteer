@@ -150,11 +150,7 @@ public class EditLaugController implements Initializable
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        goBack();
     }
 
     @FXML

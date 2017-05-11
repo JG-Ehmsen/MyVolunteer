@@ -227,7 +227,7 @@ public class AddLaugController implements Initializable
     @FXML
     private void keyEventChosen(KeyEvent event)
     {
-        if (event.getCode().equals(KeyCode.ENTER))
+        if (event.getCode().equals(KeyCode.ENTER) || (event.getCode().equals(KeyCode.DELETE)))
         {
             removeVolunteer();
         }
