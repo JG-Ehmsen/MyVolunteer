@@ -221,7 +221,9 @@ public class DBUserAccess
      */
     public void CreateNewUser(Volunteer user, Connection con) throws SQLException
     {
-        String sql = "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, Manager, Note) VALUES (?, ?, ?, ?, ?, ?, 0, ?)";
+        Date today = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(today.getTime());
+        String sql = "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, LastDate, Manager, Note) VALUES (?, ?, ?, ?, ?, ?, ?, 0, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, user.getFirstName());
@@ -230,7 +232,8 @@ public class DBUserAccess
         ps.setString(4, user.getNationality());
         ps.setString(5, user.getEmail());
         ps.setString(6, user.getPhoneNumber());
-        ps.setString(7, user.getNote());
+        ps.setDate(7, sqlDate);
+        ps.setString(8, user.getNote());
 
         ps.execute();
     }
