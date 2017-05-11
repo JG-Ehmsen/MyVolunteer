@@ -5,6 +5,7 @@
  */
 package myvolunteer.GUI.Controller;
 
+import java.awt.RenderingHints;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
@@ -251,6 +254,11 @@ public class AdminViewController implements Initializable
     @FXML
     private void handleVolunteerlistClick(MouseEvent event)
     {
+        updateVolunteerInfo();
+    }
+
+    private void updateVolunteerInfo()
+    {
         if (volunteerList.getSelectionModel().getSelectedItem() != null)
         {
             lastSelectedVolunteer = volunteerList.getSelectionModel().getSelectedItem();
@@ -269,6 +277,12 @@ public class AdminViewController implements Initializable
         lblVolunteerHours.setText("Timer: ");
         lblVolunteerNote.setText(lastSelectedVolunteer.getNote());
         lblVolunteerHours.setText("Timer: " + Integer.toString(dp.getHoursWorkedForVolunteer(lastSelectedVolunteer)));
+    }
+
+    @FXML
+    private void handleListKeyboard(KeyEvent event)
+    {
+        updateVolunteerInfo();
     }
 
 }
