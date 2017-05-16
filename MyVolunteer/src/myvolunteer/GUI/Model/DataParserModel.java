@@ -59,9 +59,9 @@ public class DataParserModel
         bllFacade.CreateNewUser(user);
     }
 
-    public void CreateNewLaug(Guild guild)
+    public void CreateNewLaug(Guild guild, int MID)
     {
-        bllFacade.CreateNewLaug(guild);
+        bllFacade.CreateNewLaug(guild, MID);
     }
 
     public Manager getManagerForGuild(Guild guild)
