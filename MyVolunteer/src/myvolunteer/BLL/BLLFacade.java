@@ -67,9 +67,9 @@ public class BLLFacade
         dalFacade.CreateNewUser(user);
     }
 
-    public void CreateNewLaug(Guild guild)
+    public void CreateNewLaug(Guild guild, int MID)
     {
-        dalFacade.CreateNewLaug(guild);
+        dalFacade.CreateNewLaug(guild, MID);
     }
 
     public Manager getManagerForGuild(Guild guild)
