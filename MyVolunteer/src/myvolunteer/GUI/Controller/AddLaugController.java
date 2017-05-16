@@ -130,6 +130,7 @@ public class AddLaugController implements Initializable
     {
         String LaugName = txtLaugName.getText();
         String LaugInformation = txtLaugInfo.getText();
+        int MID = comboManager.getSelectionModel().getSelectedItem().getId();
 
         Guild guild = new Guild(999999, LaugName);
         List<Integer> userID = new ArrayList();
@@ -137,15 +138,10 @@ public class AddLaugController implements Initializable
         {
             userID.add(volunteer.getId());
         }
-        userID.add(comboManager.getSelectionModel().getSelectedItem().getId());
+        //userID.add(comboManager.getSelectionModel().getSelectedItem().getId());
         guild.setMemberList(userID);
         guild.setDescription(txtLaugInfo.getText());
-        CreateNewLaug(guild);
-    }
-
-    private void CreateNewLaug(Guild guild)
-    {
-        dp.CreateNewLaug(guild);
+        dp.CreateNewLaug(guild, MID);
     }
 
     @FXML

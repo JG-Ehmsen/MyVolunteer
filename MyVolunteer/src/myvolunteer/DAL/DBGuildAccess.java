@@ -39,6 +39,8 @@ public class DBGuildAccess
             Guild guild = new Guild(ID, name);
             guild.setDescription(description);
             
+            
+            
             guildList.add(guild);
             
         }
@@ -75,7 +77,7 @@ public class DBGuildAccess
      * @param con
      * @throws SQLException
      */
-    public void CreateNewLaug(Guild guild, Connection con) throws SQLException
+    public void CreateNewLaug(Guild guild, int MID, Connection con) throws SQLException
     {
         String sql = ""
                 + "INSERT INTO Guild(GName, Description) VALUES(?, ?)";
@@ -94,7 +96,8 @@ public class DBGuildAccess
             {
                 createGuildRelation(GID, i, con);
             }
-        }
+        }      
+        createManagerRelation(GID, MID, con);
     }
     
     public void UpdateGuild(Guild guild, Connection con) throws SQLException
@@ -135,11 +138,24 @@ public class DBGuildAccess
     private void createGuildRelation(int GID, int UID, Connection con) throws SQLException
     {
         String sql = ""
-                + "INSERT INTO GuildRelation(UID, GID) "
-                + "VALUES(?, ?)";
+                + "INSERT INTO GuildRelation(UID, GID, Active) "
+                + "VALUES(?, ?, 1)";
         
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, UID);
+        ps.setInt(2, GID);
+        
+        ps.execute();
+    }
+    
+        private void createManagerRelation(int GID, int MID, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "INSERT INTO ManagerRelation(MID, GID, Active) "
+                + "VALUES(?, ?, 1)";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, MID);
         ps.setInt(2, GID);
         
         ps.execute();

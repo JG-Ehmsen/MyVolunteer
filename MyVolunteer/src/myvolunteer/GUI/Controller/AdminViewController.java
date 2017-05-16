@@ -245,7 +245,7 @@ public class AdminViewController implements Initializable
 
     private void showGuildInfo()
     {
-        lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size() - 1));
+        lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size()));
         lblTovholder.setText("Tovholder: " + lastManager.getFirstName() + " " + lastManager.getLastName());
         lblTotalGuildHours.setText("Total antal timer: " + Integer.toString(dp.getHoursWorkedForGuild(lastSelectedGuild)));
         lblGuildNote.setText("Note: " + lastSelectedGuild.getDescription().toString());

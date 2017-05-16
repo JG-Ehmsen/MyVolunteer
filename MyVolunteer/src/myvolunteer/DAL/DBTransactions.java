@@ -110,13 +110,13 @@ public class DBTransactions
         }
     }
 
-    public void CreateNewLaug(Guild guild)
+    public void CreateNewLaug(Guild guild, int MID)
     {
         try
         {
             startTransaction();
 
-            ga.CreateNewLaug(guild, transactionConnection);
+            ga.CreateNewLaug(guild, MID, transactionConnection);
 
             commitTransaction();
         } catch (SQLException ex)
