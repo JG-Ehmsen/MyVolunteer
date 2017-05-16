@@ -14,7 +14,7 @@ public class Guild
 
     private StringProperty description = new SimpleStringProperty();
 
-    private List<Integer> memberList = new ArrayList();
+    private List<Integer> memberList = new ArrayList(); 
 
     private String image = "myvolunteer/GUI/View/Resource/GuildPicture.png";
 
