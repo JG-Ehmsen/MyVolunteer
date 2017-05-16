@@ -13,10 +13,10 @@
       <Text layoutX="10.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tovholder" AnchorPane.leftAnchor="10.0" />
       <ComboBox fx:id="comboManager" layoutX="14.0" layoutY="97.0" maxWidth="125.0" onAction="#comboManager" prefHeight="25.0" prefWidth="125.0" promptText="Vælg tovholder" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="215.0" />
       <Text layoutX="14.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg Frivillig:" AnchorPane.leftAnchor="10.0" />
-      <ListView fx:id="listAvailableVolunteers" layoutX="10.0" layoutY="165.0" prefHeight="160.0" prefWidth="125.0" />
+      <ListView fx:id="listAvailableVolunteers" layoutX="10.0" layoutY="165.0" onKeyReleased="#keyEventAvailable" prefHeight="160.0" prefWidth="125.0" />
       <TextField fx:id="txtSearchFilterAvailable" layoutX="10.0" layoutY="325.0" onKeyReleased="#searchFilterAvailable" prefHeight="25.0" prefWidth="125.0" promptText="Søg" AnchorPane.leftAnchor="10.0" />
       <Text fx:id="lblAntalFrivillige" layoutX="215.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antal frivillige:" />
-      <ListView fx:id="listChosenVolunteers" layoutX="211.0" layoutY="165.0" prefHeight="160.0" prefWidth="125.0" AnchorPane.rightAnchor="10.0" />
+      <ListView fx:id="listChosenVolunteers" layoutX="211.0" layoutY="165.0" onKeyReleased="#keyEventChosen" prefHeight="160.0" prefWidth="125.0" AnchorPane.rightAnchor="10.0" />
       <Text layoutX="215.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valgte frivillige:" />
       <TextField fx:id="txtSearchChosen" layoutX="218.0" layoutY="325.0" onKeyReleased="#searchFilterChosen" prefHeight="25.0" prefWidth="125.0" promptText="Søg" AnchorPane.rightAnchor="10.0" />
       <Button fx:id="btnGodkend" defaultButton="true" layoutX="278.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />

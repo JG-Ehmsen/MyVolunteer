@@ -10,10 +10,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="625.0" prefWidth="501.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AdminViewController">
+<AnchorPane id="AnchorPane" prefHeight="625.0" prefWidth="501.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AdminViewController">
    <children>
       <ComboBox fx:id="comboBoxGuild" layoutX="10.0" layoutY="90.0" onAction="#handleComboClick" prefHeight="27.0" prefWidth="166.0" promptText="Vælg laug" />
-      <ListView id="volunteerlist" fx:id="volunteerList" layoutX="10.0" layoutY="120.0" onMouseReleased="#handleVolunteerlistClick" prefHeight="400.0" prefWidth="166.0" />
+      <ListView id="volunteerlist" fx:id="volunteerList" layoutX="10.0" layoutY="120.0" onKeyReleased="#handleListKeyboard" onMouseReleased="#handleVolunteerlistClick" prefHeight="400.0" prefWidth="166.0" />
       <Label layoutX="190.0" layoutY="95.0" prefHeight="17.0" prefWidth="115.0" text="Laug information:" underline="true" />
       <Label fx:id="lblTovholder" layoutX="190.0" layoutY="115.0" text="Tovholder:" />
       <Label fx:id="lblTotalGuildHours" layoutX="190.0" layoutY="135.0" text="Total antal timer:" AnchorPane.leftAnchor="190.0" />

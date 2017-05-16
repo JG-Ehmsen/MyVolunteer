@@ -21,7 +21,7 @@ public class App extends Application
     @Override
     public void start(Stage primaryStage) throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("GUI/View/LaugView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("GUI/View/LaugViewSpecial.fxml"));
 
         Scene scene = new Scene(root);
 

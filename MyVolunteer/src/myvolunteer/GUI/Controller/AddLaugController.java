@@ -20,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -150,6 +151,11 @@ public class AddLaugController implements Initializable
     @FXML
     private void handleAddVolunteer(ActionEvent event)
     {
+        addVolunteer();
+    }
+
+    private void addVolunteer()
+    {
         if (listAvailableVolunteers.getSelectionModel().getSelectedItem() != null)
         {
             Volunteer volunteer = listAvailableVolunteers.getSelectionModel().getSelectedItem();
@@ -162,6 +168,11 @@ public class AddLaugController implements Initializable
 
     @FXML
     private void handleRemoveVolunteer(ActionEvent event)
+    {
+        removeVolunteer();
+    }
+
+    private void removeVolunteer()
     {
         if (listChosenVolunteer.getSelectionModel().getSelectedItem() != null)
         {
@@ -201,6 +212,24 @@ public class AddLaugController implements Initializable
                 }
             }
             listAvailableVolunteers.setItems(filteredList);
+        }
+    }
+
+    @FXML
+    private void keyEventAvailable(KeyEvent event)
+    {
+        if (event.getCode().equals(KeyCode.ENTER))
+        {
+            addVolunteer();
+        }
+    }
+
+    @FXML
+    private void keyEventChosen(KeyEvent event)
+    {
+        if (event.getCode().equals(KeyCode.ENTER) || (event.getCode().equals(KeyCode.DELETE)))
+        {
+            removeVolunteer();
         }
     }
 }
