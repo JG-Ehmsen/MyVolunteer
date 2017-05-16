@@ -96,8 +96,12 @@ and open the template in the editor.
     -fx-background-color: #5a5255;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 12px;
-    
+    -fx-font-size: 12px; 
+}
+
+#specialbutton
+{
+    -fx-background-color: transparent;
     
 }
 

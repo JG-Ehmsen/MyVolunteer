@@ -108,7 +108,7 @@ public class VolunteerViewController implements Initializable
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
+        mainViewModel.changeView("Laug", "GUI/View/LaugViewSpecial.fxml");
 
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();
