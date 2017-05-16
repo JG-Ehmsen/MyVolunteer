@@ -94,6 +94,8 @@ public class AdminViewController implements Initializable
     private Guild lastSelectedGuild;
     private Volunteer lastSelectedVolunteer;
     private Manager lastManager;
+    @FXML
+    private Button btnInfo;
 
     /**
      * Initializes the controller class.
@@ -110,7 +112,6 @@ public class AdminViewController implements Initializable
 
     private void populateList()
     {
-
         if (lastSelectedGuild == null)
         {
             users.setAll(userList);
@@ -283,6 +284,16 @@ public class AdminViewController implements Initializable
     private void handleListKeyboard(KeyEvent event)
     {
         updateVolunteerInfo();
+    }
+
+    @FXML
+    private void handleInfo(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Information", "GUI/View/AdminInfoView.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) btnInfo.getScene().getWindow();
+        stage.close();
     }
 
 }
