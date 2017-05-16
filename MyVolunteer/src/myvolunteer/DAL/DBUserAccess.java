@@ -43,22 +43,20 @@ public class DBUserAccess
             String email = rs.getString("EMail");
             String phoneNumber = rs.getString("TLF");
 
-            if (!rs.getBoolean("Manager"))
-            {
-                String gender = rs.getString("Gender");
-                String nationality = rs.getString("Nationality");
-                String note = rs.getString("Note");
-                Date date = rs.getDate("LastDate");
+            String gender = rs.getString("Gender");
+            String nationality = rs.getString("Nationality");
+            String note = rs.getString("Note");
+            Date date = rs.getDate("LastDate");
 
-                Volunteer user = new Volunteer(ID, fName, phoneNumber);
-                user.setLastName(lName);
-                user.setEmail(email);
-                user.setGender(gender);
-                user.setNationality(nationality);
-                user.setNote(note);
-                user.setLastInputDate(date);
-                userList.add(user);
-            }
+            Volunteer user = new Volunteer(ID, fName, phoneNumber);
+            user.setLastName(lName);
+            user.setEmail(email);
+            user.setGender(gender);
+            user.setNationality(nationality);
+            user.setNote(note);
+            user.setLastInputDate(date);
+            userList.add(user);
+
         }
         return userList;
     }
@@ -129,8 +127,8 @@ public class DBUserAccess
         return returnInt;
 
     }
-    
-        public int getManagerRelationID(Manager manager, Guild guild, Connection con) throws SQLException
+
+    public int getManagerRelationID(Manager manager, Guild guild, Connection con) throws SQLException
     {
         int returnInt = 0;
 
@@ -243,7 +241,7 @@ public class DBUserAccess
     {
         Date today = new Date();
         java.sql.Date sqlDate = new java.sql.Date(today.getTime());
-        String sql = "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, LastDate, Manager, Note) VALUES (?, ?, ?, ?, ?, ?, ?, 0, ?)";
+        String sql = "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, LastDate, Note) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, user.getFirstName());
