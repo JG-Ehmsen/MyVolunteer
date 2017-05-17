@@ -107,4 +107,9 @@ public class BLLFacade
         dalFacade.UpdateGuild(guild);
     }
 
+    public Manager getManagers(String login, String pass)
+    {
+        return dalFacade.loginQuery(login, pass);
+    }
+
 }

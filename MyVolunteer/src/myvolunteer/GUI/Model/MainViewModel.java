@@ -9,6 +9,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import myvolunteer.App;
 import myvolunteer.BE.Guild;
+import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
 
 /**
@@ -43,7 +44,9 @@ public class MainViewModel
 
     private Volunteer lastSelectedUser;
     private Guild lastSelectedGuild;
-
+    
+    private Manager loggedInManager;
+    
     public void changeView(String title, String path) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
@@ -79,5 +82,18 @@ public class MainViewModel
     {
         this.lastSelectedGuild = lasSelectedGuild;
     }
+
+    public Manager getLoggedInManager()
+    {
+        return loggedInManager;
+    }
+
+    public void setLoggedInManager(Manager loggedInManager)
+    {
+        this.loggedInManager = loggedInManager;
+    }
+    
+    
+    
 
 }
