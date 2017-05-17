@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
 
 /**
@@ -29,6 +30,7 @@ public class AdminLoginController implements Initializable
      * Gets the singleton instance of the model.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
+    DataParserModel dataParserModel = DataParserModel.getInstance();
 
     private Stage previousStage;
 
@@ -53,6 +55,19 @@ public class AdminLoginController implements Initializable
     @FXML
     private void handleLogin(ActionEvent event) throws IOException
     {
+        //checkFieldsContent();
+        
+        if(!UsernameField.getText().isEmpty())
+        {
+            Stage stage = (Stage) btnLogin.getScene().getWindow();
+            
+            dataParserModel.tryLogin(UsernameField.getText(), codeField.getText(), stage);
+        
+        }
+    }
+
+    private void checkFieldsContent() throws IOException
+    {
         if (UsernameField.getText().isEmpty() || codeField.getText().isEmpty())
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -70,12 +85,13 @@ public class AdminLoginController implements Initializable
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.close();
         }
+
     }
 
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
+        mainViewModel.changeView("Laug", "GUI/View/LaugViewSpecial.fxml");
 
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();

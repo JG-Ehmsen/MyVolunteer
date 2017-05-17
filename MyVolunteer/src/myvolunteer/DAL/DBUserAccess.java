@@ -497,5 +497,51 @@ public class DBUserAccess
         }
         return returnInt;
     }
+    
+    public void CreateNewManager(Manager manager, String password, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "INSERT INTO Managers(FName, LName, EMail, TLF, isAdmin, Active) "
+                + "VALUES (?, ?, ?, ?, 0, 1)";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, manager.getFirstName());
+        ps.setString(2, manager.getLastName());
+        ps.setString(3, manager.getEmail());
+        ps.setString(4, manager.getPhoneNumber());
+
+        ps.execute();
+    }
+
+    public Manager loginQuery(String login, String pass, Connection con) throws SQLException
+    {
+
+        String sql = ""
+                + "SELECT * "
+                + "FROM Managers m, Login l "
+                + "WHERE m.MID = l.MID AND m.EMail = ? AND l.Password = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, login);
+        ps.setString(2, pass);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            Manager manager = new Manager(rs.getInt("MID"));
+            manager.setEmail(rs.getString("EMail"));
+            manager.setPhoneNumber(rs.getString("TLF"));
+            manager.setFirstName(rs.getString("FName"));
+            manager.setLastName(rs.getString("LName"));
+            
+            manager.setIsAdmin(rs.getBoolean("isAdmin"));
+            
+            return manager;
+        }
+        return null;
+        
+    }
 
 }
