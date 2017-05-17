@@ -106,6 +106,16 @@ public class DataParserModel
         bllFacade.UpdateGuild(guild);
     }
 
+    public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active)
+    {
+        bllFacade.setGuildRelationStatus(guild, volunteer, active);
+    }
+
+    public void changeGuildManager(Guild guild, Manager manager)
+    {
+        bllFacade.changeGuildManager(guild, manager);
+    }
+  
     public void CreateNewManager(Manager manager, String password)
     {
         bllFacade.CreateNewManager(manager, password);

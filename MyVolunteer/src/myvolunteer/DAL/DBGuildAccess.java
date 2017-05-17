@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import myvolunteer.BE.Guild;
+import myvolunteer.BE.Manager;
 
 public class DBGuildAccess
 {
@@ -205,5 +206,4 @@ public class DBGuildAccess
         }
         return returnInt;
     }
-    
 }

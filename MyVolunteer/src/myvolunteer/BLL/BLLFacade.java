@@ -117,4 +117,14 @@ public class BLLFacade
         return dalFacade.loginQuery(login, pass);
     }
 
+    public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active)
+    {
+        dalFacade.setGuildRelationStatus(guild, volunteer, active);
+    }
+
+    public void changeGuildManager(Guild guild, Manager manager)
+    {
+        dalFacade.changeGuildManager(guild, manager);
+    }
+
 }
