@@ -21,5 +21,6 @@
       <ComboBox fx:id="comboBoxGuild" layoutX="14.0" layoutY="43.0" onAction="#handleComboClick" prefWidth="150.0" promptText="Vælg laug" />
       <Button fx:id="btnGodkend" layoutX="512.0" layoutY="406.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" />
       <Button fx:id="btnBack" layoutX="14.0" layoutY="406.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbache" />
+      <Button fx:id="btnSave" layoutX="422.0" layoutY="406.0" mnemonicParsing="false" onAction="#handleSave" text="Print/save" />
    </children>
 </AnchorPane>

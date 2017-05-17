@@ -5,9 +5,15 @@
  */
 package myvolunteer.GUI.Controller;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -21,8 +27,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
-import myvolunteer.BE.Manager;
-import myvolunteer.BE.User;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
@@ -64,6 +68,8 @@ public class AdminInfoViewController implements Initializable
     private TableColumn<Volunteer, String> tblColumnLName;
     @FXML
     private TableColumn<?, ?> tblColumnLaug;
+    @FXML
+    private Button btnSave;
 
     /**
      * Initializes the controller class.
@@ -144,5 +150,37 @@ public class AdminInfoViewController implements Initializable
 
         ObservableList nameArrayList = FXCollections.observableArrayList(dp.getUsers());
         tblViewInfo.setItems(nameArrayList);
+    }
+
+    @FXML
+    private void handleSave(ActionEvent event) throws Exception
+    {
+        writeExcel();
+    }
+
+    private void writeExcel() throws Exception
+    {
+        Writer writer = null;
+        try
+        {
+            Date todaysDate = new Date();
+            SimpleDateFormat ft
+                    = new SimpleDateFormat("dd.MM.yyyy");
+            File file = new File("Laug information" + " " + ft.format(todaysDate) + ".xls");
+            writer = new BufferedWriter(new FileWriter(file));
+            for (Volunteer user : tblViewInfo.getItems())
+            {
+                String text = "Fornavn: " + user.getFirstName() + "," + "Efternavn: " + user.getLastName() + "," + "Mail: " + user.getEmail() + "," + "Telefon: " + user.getPhoneNumber() + "\n";
+
+                writer.write(text);
+            }
+        } catch (Exception ex)
+        {
+            ex.printStackTrace();
+        } finally
+        {
+            writer.flush();
+            writer.close();
+        }
     }
 }
