@@ -81,7 +81,6 @@ public class AdminInfoViewController implements Initializable
         guildList = dp.getGuilds();
         initializeTable();
         comboContent();
-        loadTableView();
     }
 
     @FXML
@@ -158,6 +157,9 @@ public class AdminInfoViewController implements Initializable
         writeExcel();
     }
 
+    /*
+    Exports the data in the tableView to a .xls (Excel) file.
+     */
     private void writeExcel() throws Exception
     {
         Writer writer = null;
@@ -170,7 +172,7 @@ public class AdminInfoViewController implements Initializable
             writer = new BufferedWriter(new FileWriter(file));
             for (Volunteer user : tblViewInfo.getItems())
             {
-                String text = "Fornavn: " + user.getFirstName() + "," + "Efternavn: " + user.getLastName() + "," + "Mail: " + user.getEmail() + "," + "Telefon: " + user.getPhoneNumber() + "\n";
+                String text = user.getFirstName() + ", " + user.getLastName() + ", " + user.getEmail() + ", " + user.getPhoneNumber() + "\n";
 
                 writer.write(text);
             }
