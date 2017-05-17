@@ -308,4 +308,36 @@ public class DBTransactions
         }
     }
 
+    public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active)
+    {
+        try
+        {
+            startTransaction();
+
+            ua.setGuildRelationStatus(guild, volunteer, active, transactionConnection);
+
+            commitTransaction();
+
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void changeGuildManager(Guild guild, Manager manager)
+    {
+        try
+        {
+            startTransaction();
+
+            ua.changeGuildManager(guild, manager, transactionConnection);
+
+            commitTransaction();
+
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

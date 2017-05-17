@@ -107,4 +107,14 @@ public class BLLFacade
         dalFacade.UpdateGuild(guild);
     }
 
+    public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active)
+    {
+        dalFacade.setGuildRelationStatus(guild, volunteer, active);
+    }
+
+    public void changeGuildManager(Guild guild, Manager manager)
+    {
+        dalFacade.changeGuildManager(guild, manager);
+    }
+
 }
