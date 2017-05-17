@@ -497,6 +497,21 @@ public class DBUserAccess
         }
         return returnInt;
     }
+    
+    public void CreateNewManager(Manager manager, String password, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "INSERT INTO Managers(FName, LName, EMail, TLF, isAdmin, Active) "
+                + "VALUES (?, ?, ?, ?, 0, 1)";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, manager.getFirstName());
+        ps.setString(2, manager.getLastName());
+        ps.setString(3, manager.getEmail());
+        ps.setString(4, manager.getPhoneNumber());
+
+        ps.execute();
+    }
 
     public Manager loginQuery(String login, String pass, Connection con) throws SQLException
     {

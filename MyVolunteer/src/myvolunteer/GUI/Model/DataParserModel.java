@@ -106,6 +106,11 @@ public class DataParserModel
         bllFacade.UpdateGuild(guild);
     }
 
+    public void CreateNewManager(Manager manager, String password)
+    {
+        bllFacade.CreateNewManager(manager, password);
+    }
+
     public void tryLogin(String login, String pass, Stage stage)
     {
         Manager manager = bllFacade.getManagers(login, pass);
@@ -136,8 +141,5 @@ public class DataParserModel
 
             alert.showAndWait();
         }
-
-        
-
     }
 }

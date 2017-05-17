@@ -308,25 +308,39 @@ public class DBTransactions
         }
     }
     
+    public void CreateNewManager(Manager manager, String password)
+    {
+  try
+        {
+            startTransaction();
+              ua.CreateNewManager(manager, password, transactionConnection);
+            
+            commitTransaction();
+            } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public Manager loginQuery(String login, String pass)
     {
+      try
+      {
         
         Manager manager;
         
-        try
-        {
-            startTransaction();
-            
+
            manager = ua.loginQuery(login, pass, transactionConnection);
             
             commitTransaction();
             return manager;
-            
-        } catch (SQLException ex)
+      }catch (SQLException ex)
         {
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return null;
+
     }
 
 }
