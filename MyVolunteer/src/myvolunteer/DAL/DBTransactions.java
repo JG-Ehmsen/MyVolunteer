@@ -307,5 +307,26 @@ public class DBTransactions
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public Manager loginQuery(String login, String pass)
+    {
+        
+        Manager manager;
+        
+        try
+        {
+            startTransaction();
+            
+           manager = ua.loginQuery(login, pass, transactionConnection);
+            
+            commitTransaction();
+            return manager;
+            
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
 }
