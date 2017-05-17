@@ -128,14 +128,14 @@ public class DataParserModel
             {
                 Logger.getLogger(DataParserModel.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else
+        }/*else
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Wrong Login");
             alert.setContentText("Wrong username or password. Try again.");
 
             alert.showAndWait();
-        }
+        }*/
 
         
 
