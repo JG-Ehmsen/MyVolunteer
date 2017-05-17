@@ -113,6 +113,21 @@ public class DALFacade
         db.UpdateGuild(guild);
     }
 
+    public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active)
+    {
+        db.setGuildRelationStatus(guild, volunteer, active);
+    }
+
+    public void changeGuildManager(Guild guild, Manager manager)
+    {
+        db.changeGuildManager(guild, manager);
+    }
+    
+    public void CreateNewManager(Manager manager, String password)
+    {
+        db.CreateNewManager(manager, password);
+    }
+
     public Manager loginQuery(String login, String pass)
     {
         return db.loginQuery(login, pass);

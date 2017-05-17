@@ -106,6 +106,21 @@ public class DataParserModel
         bllFacade.UpdateGuild(guild);
     }
 
+    public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active)
+    {
+        bllFacade.setGuildRelationStatus(guild, volunteer, active);
+    }
+
+    public void changeGuildManager(Guild guild, Manager manager)
+    {
+        bllFacade.changeGuildManager(guild, manager);
+    }
+  
+    public void CreateNewManager(Manager manager, String password)
+    {
+        bllFacade.CreateNewManager(manager, password);
+    }
+
     public void tryLogin(String login, String pass, Stage stage)
     {
         Manager manager = bllFacade.getManagers(login, pass);
@@ -136,8 +151,5 @@ public class DataParserModel
 
             alert.showAndWait();
         }*/
-
-        
-
     }
 }

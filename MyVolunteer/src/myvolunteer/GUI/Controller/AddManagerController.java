@@ -14,17 +14,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import myvolunteer.BE.Manager;
+import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
 
-/**
- * FXML Controller class
- *
- * @author jonas
- */
 public class AddManagerController implements Initializable
 {
-    
+
     MainViewModel mainViewModel = MainViewModel.getInstance();
+    DataParserModel dp = DataParserModel.getInstance();
 
     @FXML
     private Button btnBack;
@@ -40,6 +38,8 @@ public class AddManagerController implements Initializable
     private Button btnUploadImage;
     @FXML
     private Button btnGodkend;
+    @FXML
+    private TextField txtPassword;
 
     /**
      * Initializes the controller class.
@@ -47,8 +47,8 @@ public class AddManagerController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
-    }    
+
+    }
 
     @FXML
     private void handleBack(ActionEvent event) throws IOException
@@ -68,8 +68,31 @@ public class AddManagerController implements Initializable
         // Closes the primary stage
         Stage stage = (Stage) btnGodkend.getScene().getWindow();
         stage.close();
+        handleUserInfo();
     }
 
+    private void handleUserInfo()
+    {
+        String fName = txtFName.getText();
+        String lName = txtLName.getText();
+        String pNumber = txtPNumber.getText();
+        String eMail = txtEmail.getText();
 
-    
+        String password = txtPassword.getText();
+
+        Manager manager = new Manager(999999);
+
+        manager.setFirstName(fName);
+        manager.setLastName(lName);
+        manager.setPhoneNumber(pNumber);
+        manager.setEmail(eMail);
+
+        CreateNewManager(manager, password);
+    }
+
+    private void CreateNewManager(Manager manager, String password)
+    {
+        dp.CreateNewManager(manager, password);
+    }
+
 }

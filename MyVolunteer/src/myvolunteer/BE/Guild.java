@@ -17,6 +17,8 @@ public class Guild
     private List<Integer> memberList = new ArrayList(); 
 
     private String image = "myvolunteer/GUI/View/Resource/GuildPicture.png";
+    
+    private int oldManagerID;
 
     public Guild(int ID, String name)
     {
@@ -69,5 +71,17 @@ public class Guild
     {
         return this.getName();
     }
+
+    public int getOldManagerID()
+    {
+        return oldManagerID;
+    }
+
+    public void setOldManagerID(int oldManagerID)
+    {
+        this.oldManagerID = oldManagerID;
+    }
+    
+    
 
 }
