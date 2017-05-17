@@ -97,10 +97,10 @@ public class AdminViewController implements Initializable
     private Volunteer lastSelectedVolunteer;
     private Manager lastManager;
     @FXML
-    
     private Button btnInfo;
+    @FXML
     private Button btnOpretTovholder;
-    
+
     /**
      * Initializes the controller class.
      */
@@ -297,7 +297,8 @@ public class AdminViewController implements Initializable
 
         // Closes the primary stage
         Stage stage = (Stage) btnInfo.getScene().getWindow();
-    
+    }
+
     @FXML
     private void handleOpretTovholder(ActionEvent event) throws IOException
     {
@@ -317,5 +318,6 @@ public class AdminViewController implements Initializable
         Stage stage = (Stage) btnRedigerTovholder.getScene().getWindow();
         stage.close();
     }
+
 
 }
