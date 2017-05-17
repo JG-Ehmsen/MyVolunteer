@@ -106,5 +106,10 @@ public class BLLFacade
     {
         dalFacade.UpdateGuild(guild);
     }
+    
+    public void CreateNewManager(Manager manager, String password)
+    {
+        dalFacade.CreateNewManager(manager, password);
+    }
 
 }

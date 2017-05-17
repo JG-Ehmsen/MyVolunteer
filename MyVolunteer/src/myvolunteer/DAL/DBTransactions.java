@@ -307,5 +307,20 @@ public class DBTransactions
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void CreateNewManager(Manager manager, String password)
+    {
+        try
+        {
+            startTransaction();
+            
+            ua.CreateNewManager(manager, password, transactionConnection);
+            
+            commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

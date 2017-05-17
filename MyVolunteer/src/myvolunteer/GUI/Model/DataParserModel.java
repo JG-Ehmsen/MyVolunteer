@@ -98,4 +98,8 @@ public class DataParserModel
     {
         bllFacade.UpdateGuild(guild);
     }
+    public void CreateNewManager(Manager manager, String password)
+    {
+        bllFacade.CreateNewManager(manager, password);
+    }
 }
