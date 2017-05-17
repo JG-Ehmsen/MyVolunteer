@@ -97,6 +97,8 @@ public class AdminViewController implements Initializable
     private Volunteer lastSelectedVolunteer;
     private Manager lastManager;
     @FXML
+    
+    private Button btnInfo;
     private Button btnOpretTovholder;
     
     /**
@@ -114,7 +116,6 @@ public class AdminViewController implements Initializable
 
     private void populateList()
     {
-
         if (lastSelectedGuild == null)
         {
             users.setAll(userList);
@@ -289,6 +290,14 @@ public class AdminViewController implements Initializable
         updateVolunteerInfo();
     }
 
+    @FXML
+    private void handleInfo(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Information", "GUI/View/AdminInfoView.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) btnInfo.getScene().getWindow();
+    
     @FXML
     private void handleOpretTovholder(ActionEvent event) throws IOException
     {
