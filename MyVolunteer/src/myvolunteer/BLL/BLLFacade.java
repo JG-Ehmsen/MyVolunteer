@@ -106,6 +106,16 @@ public class BLLFacade
     {
         dalFacade.UpdateGuild(guild);
     }
+    
+    public void CreateNewManager(Manager manager, String password)
+    {
+        dalFacade.CreateNewManager(manager, password);
+    }
+
+    public Manager getManagers(String login, String pass)
+    {
+        return dalFacade.loginQuery(login, pass);
+    }
 
     public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active)
     {

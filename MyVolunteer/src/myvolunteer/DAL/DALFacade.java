@@ -122,4 +122,14 @@ public class DALFacade
     {
         db.changeGuildManager(guild, manager);
     }
+    
+    public void CreateNewManager(Manager manager, String password)
+    {
+        db.CreateNewManager(manager, password);
+    }
+
+    public Manager loginQuery(String login, String pass)
+    {
+        return db.loginQuery(login, pass);
+    }
 }
