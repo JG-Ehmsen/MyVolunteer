@@ -47,6 +47,8 @@
          </image>
       </ImageView>
       <Label fx:id="lblGuildNote" layoutX="190.0" layoutY="174.0" text="Note:" AnchorPane.leftAnchor="190.0" />
-      <Button fx:id="btnInfo" layoutX="285.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleInfo" text="xxx Laugporno xxx" />
+
+      <Button fx:id="btnOpretTovholder" layoutX="252.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleOpretTovholder" prefHeight="35.0" text="Opret tovholder" />
+      <Button fx:id="btnRedigerTovholder" layoutX="381.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleRedigerTovholder" prefHeight="35.0" text="Rediger tovholder" AnchorPane.rightAnchor="10.0" />
    </children>
 </AnchorPane>
