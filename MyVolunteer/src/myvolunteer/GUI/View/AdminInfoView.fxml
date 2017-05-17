@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="447.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AdminInfoViewController">
+   <children>
+      <TableView fx:id="tblViewInfo" layoutY="84.0" prefHeight="316.0" prefWidth="600.0">
+        <columns>
+            <TableColumn fx:id="tblColumnName" prefWidth="75.0" text="Fornavn" />
+          <TableColumn fx:id="tblColumnLName" prefWidth="91.0" text="Efternavn" />
+            <TableColumn fx:id="tblColumnLaug" prefWidth="89.0" text="Laug" />
+            <TableColumn fx:id="tblColumnPhone" prefWidth="85.0" text="Telefon" />
+          <TableColumn fx:id="tblColumnMail" prefWidth="121.0" text="Email" />
+            <TableColumn prefWidth="76.0" text="Column X" />
+        </columns>
+      </TableView>
+      <ComboBox fx:id="comboBoxGuild" layoutX="14.0" layoutY="43.0" onAction="#handleComboClick" prefWidth="150.0" promptText="Vælg laug" />
+      <Button fx:id="btnGodkend" layoutX="512.0" layoutY="406.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" />
+      <Button fx:id="btnBack" layoutX="14.0" layoutY="406.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbache" />
+      <Button fx:id="btnSave" layoutX="422.0" layoutY="406.0" mnemonicParsing="false" onAction="#handleSave" text="Print/save" />
+   </children>
+</AnchorPane>
