@@ -117,4 +117,10 @@ public class DALFacade
     {
         db.CreateNewManager(manager, password);
     }
+
+    public Manager loginQuery(String login, String pass)
+    {
+        return db.loginQuery(login, pass);
+
+    }
 }

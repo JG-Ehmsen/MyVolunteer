@@ -18,7 +18,7 @@ public class User
     {
         this.id = id;
     }
-
+ 
     public int getId()
     {
         return id;
@@ -69,6 +69,11 @@ public class User
         return phoneNumber.get();
     }
 
+    public StringProperty getPhoneProperty()
+    {
+        return this.phoneNumber;
+    }
+
     public void setPhoneNumber(String value)
     {
         phoneNumber.set(value);
@@ -83,5 +88,20 @@ public class User
     public String toString()
     {
         return firstName.get() + " " + lastName.get();
+    }
+
+    public StringProperty getFNameProperty()
+    {
+        return this.firstName;
+    }
+    
+    public StringProperty getLNameProperty()
+    {
+        return this.lastName;
+    }
+
+    public StringProperty getMailProperty()
+    {
+        return this.email;
     }
 }

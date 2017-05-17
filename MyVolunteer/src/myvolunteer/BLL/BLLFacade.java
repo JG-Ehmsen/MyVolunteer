@@ -112,4 +112,9 @@ public class BLLFacade
         dalFacade.CreateNewManager(manager, password);
     }
 
+    public Manager getManagers(String login, String pass)
+    {
+        return dalFacade.loginQuery(login, pass);
+    }
+
 }
