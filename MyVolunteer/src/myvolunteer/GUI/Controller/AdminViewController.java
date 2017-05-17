@@ -86,6 +86,8 @@ public class AdminViewController implements Initializable
     private Label lblVolunteerNote;
     @FXML
     private Label lblGuildNote;
+    @FXML
+    private Button btnRedigerTovholder;
 
     private List<Guild> guildList = new ArrayList<>();
     private List<Volunteer> userList = new ArrayList<>();
@@ -95,8 +97,8 @@ public class AdminViewController implements Initializable
     private Volunteer lastSelectedVolunteer;
     private Manager lastManager;
     @FXML
-    private Button opretTovholder;
-
+    private Button btnOpretTovholder;
+    
     /**
      * Initializes the controller class.
      */
@@ -288,8 +290,23 @@ public class AdminViewController implements Initializable
     }
 
     @FXML
-    private void handleOpreetTovholder(ActionEvent event)
+    private void handleOpretTovholder(ActionEvent event) throws IOException
     {
+        mainViewModel.changeView("Opret tovholder", "GUI/View/AddManager.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) btnOpretTovholder.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void handleRedigerTovholder(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Rediger tovholder", "GUI/View/EditManager.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) btnRedigerTovholder.getScene().getWindow();
+        stage.close();
     }
 
 }

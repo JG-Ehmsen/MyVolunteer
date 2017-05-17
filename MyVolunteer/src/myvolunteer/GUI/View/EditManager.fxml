@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="273.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AddManagerController">
+<AnchorPane id="AnchorPane" prefHeight="273.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.EditManagerController">
    <children>
       <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbage" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <Text layoutX="10.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fornavn:" AnchorPane.leftAnchor="10.0" />
@@ -25,5 +25,6 @@
       </ImageView>
       <Button fx:id="btnUploadImage" layoutX="290.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Tilføg billede" AnchorPane.rightAnchor="10.0" />
       <Button fx:id="btnGodkend" layoutX="334.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.rightAnchor="10.0" />
+      <Button fx:id="btnSletTovholder" layoutX="228.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleSletTovholder" text="Slet tovholder" />
    </children>
 </AnchorPane>
