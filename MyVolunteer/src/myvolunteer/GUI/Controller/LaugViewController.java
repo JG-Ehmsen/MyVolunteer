@@ -109,4 +109,14 @@ public class LaugViewController implements Initializable
         stage.close();
     }
 
+    @FXML
+    private void handleGuide(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Step-by-Step guide", "GUI/View/GuideView.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) MainFlowPane.getScene().getWindow();
+        stage.close();
+    }
+
 }
