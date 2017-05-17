@@ -5,6 +5,7 @@
  */
 package myvolunteer.GUI.Controller;
 
+import java.awt.RenderingHints;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
@@ -81,6 +84,8 @@ public class AdminViewController implements Initializable
     private Label lblVolunteerAge;
     @FXML
     private Label lblVolunteerNote;
+    @FXML
+    private Label lblGuildNote;
 
     private List<Guild> guildList = new ArrayList<>();
     private List<Volunteer> userList = new ArrayList<>();
@@ -109,7 +114,6 @@ public class AdminViewController implements Initializable
         if (lastSelectedGuild == null)
         {
             users.setAll(userList);
-            //ObservableList<Volunteer> users = FXCollections.observableArrayList(userList);
 
         } else
         {
@@ -225,7 +229,7 @@ public class AdminViewController implements Initializable
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
-            alert.setContentText("Vælg laug");
+            alert.setContentText("Vælg et laug");
             alert.showAndWait();
         }
     }
@@ -241,13 +245,19 @@ public class AdminViewController implements Initializable
 
     private void showGuildInfo()
     {
-        lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size() - 1));
+        lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size()));
         lblTovholder.setText("Tovholder: " + lastManager.getFirstName() + " " + lastManager.getLastName());
         lblTotalGuildHours.setText("Total antal timer: " + Integer.toString(dp.getHoursWorkedForGuild(lastSelectedGuild)));
+        lblGuildNote.setText("Note: " + lastSelectedGuild.getDescription().toString());
     }
 
     @FXML
     private void handleVolunteerlistClick(MouseEvent event)
+    {
+        updateVolunteerInfo();
+    }
+
+    private void updateVolunteerInfo()
     {
         if (volunteerList.getSelectionModel().getSelectedItem() != null)
         {
@@ -267,6 +277,12 @@ public class AdminViewController implements Initializable
         lblVolunteerHours.setText("Timer: ");
         lblVolunteerNote.setText(lastSelectedVolunteer.getNote());
         lblVolunteerHours.setText("Timer: " + Integer.toString(dp.getHoursWorkedForVolunteer(lastSelectedVolunteer)));
+    }
+
+    @FXML
+    private void handleListKeyboard(KeyEvent event)
+    {
+        updateVolunteerInfo();
     }
 
 }

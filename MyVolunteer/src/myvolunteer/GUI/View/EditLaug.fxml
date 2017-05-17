@@ -11,18 +11,18 @@
    <children>
       <Text layoutX="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laug navn:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <Text layoutX="10.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tovholder" AnchorPane.leftAnchor="10.0" />
-      <ComboBox fx:id="comboManager" layoutX="14.0" layoutY="97.0" maxWidth="125.0" prefHeight="25.0" prefWidth="125.0" promptText="Vælg tovholder" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="215.0" />
+      <ComboBox fx:id="comboManager" layoutX="14.0" layoutY="97.0" maxWidth="125.0" onAction="#comboManager" prefHeight="25.0" prefWidth="125.0" promptText="Vælg tovholder" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="215.0" />
       <Text layoutX="14.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg Frivillig:" AnchorPane.leftAnchor="10.0" />
-      <ListView fx:id="listAvailableVolunteers" layoutX="10.0" layoutY="165.0" prefHeight="160.0" prefWidth="125.0" />
+      <ListView fx:id="listAvailableVolunteers" layoutX="10.0" layoutY="165.0" onKeyReleased="#keyEventAvailable" prefHeight="160.0" prefWidth="125.0" />
       <TextField fx:id="txtSearchFilterAvailable" layoutX="10.0" layoutY="325.0" onKeyReleased="#searchFilterAvailable" prefHeight="25.0" prefWidth="125.0" promptText="Søg" AnchorPane.leftAnchor="10.0" />
       <Text fx:id="lblAntalFrivillige" layoutX="215.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antal frivillige:" />
-      <ListView fx:id="listChosenVolunteers" layoutX="211.0" layoutY="165.0" prefHeight="160.0" prefWidth="125.0" AnchorPane.rightAnchor="10.0" />
+      <ListView fx:id="listChosenVolunteers" layoutX="211.0" layoutY="165.0" onKeyReleased="#keyEventChosen" prefHeight="160.0" prefWidth="125.0" AnchorPane.rightAnchor="10.0" />
       <Text layoutX="215.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valgte frivillige:" />
       <TextField fx:id="txtSearchChosen" layoutX="218.0" layoutY="325.0" onKeyReleased="#searchFilterChosen" prefHeight="25.0" prefWidth="125.0" promptText="Søg" AnchorPane.rightAnchor="10.0" />
       <Button fx:id="btnGodkend" defaultButton="true" layoutX="278.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-      <Button layoutX="154.0" layoutY="200.0" mnemonicParsing="false" text="Tilføj" />
-      <Button layoutX="154.0" layoutY="268.0" mnemonicParsing="false" text="Fjern" />
-      <Button layoutX="90.0" layoutY="393.0" mnemonicParsing="false" text="Slet laug" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="90.0" />
+      <Button layoutX="154.0" layoutY="200.0" mnemonicParsing="false" onAction="#btnAddVolunteer" text="Tilføj" />
+      <Button layoutX="154.0" layoutY="268.0" mnemonicParsing="false" onAction="#btnRemoveVolunteer" text="Fjern" />
+      <Button layoutX="90.0" layoutY="393.0" mnemonicParsing="false" onAction="#handleDeleteLaug" text="Slet laug" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="90.0" />
       <Button fx:id="btnBack" layoutX="8.0" layoutY="393.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbage" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
       <TextField fx:id="txtLaugName" layoutX="11.0" layoutY="34.0" prefHeight="25.0" prefWidth="125.0" AnchorPane.leftAnchor="10.0" />
       <TextField fx:id="txtLaugInformation" alignment="TOP_LEFT" layoutX="215.0" layoutY="34.0" prefHeight="90.0" prefWidth="125.0" />

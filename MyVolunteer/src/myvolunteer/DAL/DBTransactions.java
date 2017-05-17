@@ -110,13 +110,13 @@ public class DBTransactions
         }
     }
 
-    public void CreateNewLaug(Guild guild)
+    public void CreateNewLaug(Guild guild, int MID)
     {
         try
         {
             startTransaction();
 
-            ga.CreateNewLaug(guild, transactionConnection);
+            ga.CreateNewLaug(guild, MID, transactionConnection);
 
             commitTransaction();
         } catch (SQLException ex)
@@ -269,6 +269,43 @@ public class DBTransactions
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
         return returnInt;
+    }
+
+    public void UpdateUser(Volunteer user)
+    {
+        try
+        {
+            startTransaction();
+
+            ua.UpdateUser(user, transactionConnection);
+
+            commitTransaction();
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void UpdateGuild(Guild guild)
+    {
+        try
+        {
+            startTransaction();
+
+            ga.UpdateGuild(guild, transactionConnection);
+
+            commitTransaction();
+
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

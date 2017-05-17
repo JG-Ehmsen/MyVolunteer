@@ -43,22 +43,20 @@ public class DBUserAccess
             String email = rs.getString("EMail");
             String phoneNumber = rs.getString("TLF");
 
-            if (!rs.getBoolean("Manager"))
-            {
-                String gender = rs.getString("Gender");
-                String nationality = rs.getString("Nationality");
-                String note = rs.getString("Note");
-                Date date = rs.getDate("LastDate");
+            String gender = rs.getString("Gender");
+            String nationality = rs.getString("Nationality");
+            String note = rs.getString("Note");
+            Date date = rs.getDate("LastDate");
 
-                Volunteer user = new Volunteer(ID, fName, phoneNumber);
-                user.setLastName(lName);
-                user.setEmail(email);
-                user.setGender(gender);
-                user.setNationality(nationality);
-                user.setNote(note);
-                user.setLastInputDate(date);
-                userList.add(user);
-            }
+            Volunteer user = new Volunteer(ID, fName, phoneNumber);
+            user.setLastName(lName);
+            user.setEmail(email);
+            user.setGender(gender);
+            user.setNationality(nationality);
+            user.setNote(note);
+            user.setLastInputDate(date);
+            userList.add(user);
+
         }
         return userList;
     }
@@ -125,6 +123,26 @@ public class DBUserAccess
         while (rs.next())
         {
             returnInt = rs.getInt("GRID");
+        }
+        return returnInt;
+
+    }
+
+    public int getManagerRelationID(Manager manager, Guild guild, Connection con) throws SQLException
+    {
+        int returnInt = 0;
+
+        String sql = "SELECT mr.MRID FROM ManagerRelation mr, Guild g, Managers m WHERE mr.GID = g.GID AND mr.UID = m.MID AND m.MID = ? AND g.GID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, manager.getId());
+        ps.setInt(2, guild.getID());
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            returnInt = rs.getInt("MRID");
         }
         return returnInt;
 
@@ -221,7 +239,9 @@ public class DBUserAccess
      */
     public void CreateNewUser(Volunteer user, Connection con) throws SQLException
     {
-        String sql = "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, Manager, Note) VALUES (?, ?, ?, ?, ?, ?, 0, ?)";
+        Date today = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(today.getTime());
+        String sql = "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, LastDate, Note) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, user.getFirstName());
@@ -230,7 +250,29 @@ public class DBUserAccess
         ps.setString(4, user.getNationality());
         ps.setString(5, user.getEmail());
         ps.setString(6, user.getPhoneNumber());
+        ps.setDate(7, sqlDate);
+        ps.setString(8, user.getNote());
+
+        ps.execute();
+    }
+
+    public void UpdateUser(Volunteer user, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "UPDATE Users "
+                + "SET FName = ?, LName = ?, Gender = ?, Nationality = ?, EMail = ?, TLF = ?, Note = ? "
+                + "WHERE UID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, user.getFirstName());
+        ps.setString(2, user.getLastName());
+        ps.setString(3, user.getGender());
+        ps.setString(4, user.getNationality());
+        ps.setString(5, user.getEmail());
+        ps.setString(6, user.getPhoneNumber());
         ps.setString(7, user.getNote());
+        ps.setInt(8, user.getId());
 
         ps.execute();
     }
@@ -346,6 +388,7 @@ public class DBUserAccess
 
         ps.setDate(1, sqlDate);
         ps.setInt(2, user.getId());
+        ps.execute();
     }
 
     /**
@@ -362,8 +405,8 @@ public class DBUserAccess
 
         String sql = ""
                 + "SELECT * "
-                + "FROM Users u, GuildRelation gr "
-                + "WHERE u.UID = gr.UID AND u.Manager = 1 AND gr.GID = ?";
+                + "FROM Managers m, ManagerRelation mr "
+                + "WHERE m.MID = mr.MID AND m.isAdmin = 0 AND mr.GID = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -379,7 +422,7 @@ public class DBUserAccess
 
         while (rs.next())
         {
-            ID = rs.getInt("UID");
+            ID = rs.getInt("MID");
             phoneNumber = rs.getString("TLF");
             eMail = rs.getString("EMail");
             fName = rs.getString("FName");
@@ -410,8 +453,8 @@ public class DBUserAccess
 
         String sql = ""
                 + "SELECT * "
-                + "FROM Users "
-                + "WHERE Manager = 1";
+                + "FROM Managers "
+                + "WHERE isAdmin = 0";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -419,7 +462,7 @@ public class DBUserAccess
 
         while (rs.next())
         {
-            Manager manager = new Manager(rs.getInt("UID"));
+            Manager manager = new Manager(rs.getInt("MID"));
             manager.setEmail(rs.getString("EMail"));
             manager.setPhoneNumber(rs.getString("TLF"));
             manager.setFirstName(rs.getString("FName"));

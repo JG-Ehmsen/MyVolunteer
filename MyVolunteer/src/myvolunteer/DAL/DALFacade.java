@@ -68,9 +68,9 @@ public class DALFacade
         db.CreateNewUser(user);
     }
 
-    public void CreateNewLaug(Guild guild)
+    public void CreateNewLaug(Guild guild, int MID)
     {
-        db.CreateNewLaug(guild);
+        db.CreateNewLaug(guild, MID);
     }
 
     public int getDateID(Date date)
@@ -97,9 +97,19 @@ public class DALFacade
     {
         return db.getTotalHoursWorked();
     }
-    
+
     public int getHoursWorkedForVolunteer(Volunteer volunteer)
     {
         return db.getHoursWorkedForVolunteer(volunteer);
+    }
+
+    public void UpdateUser(Volunteer user)
+    {
+        db.UpdateUser(user);
+    }
+
+    public void UpdateGuild(Guild guild)
+    {
+        db.UpdateGuild(guild);
     }
 }

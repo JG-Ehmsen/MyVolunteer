@@ -11,6 +11,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
@@ -36,6 +38,16 @@ public class LaugViewController implements Initializable
     private Button btnLogin;
     @FXML
     private FlowPane MainFlowPane;
+    @FXML
+    private ButtonBar languageBtnBar;
+    @FXML
+    private Button danishBtn;
+    @FXML
+    private Button germanBtn;
+    @FXML
+    private Button englishBtn;
+    @FXML
+    private Button guideBtn;
 
     /**
      * Initializes the controller class.
@@ -44,7 +56,9 @@ public class LaugViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-        MainFlowPane.setVgap(10);
+        MainFlowPane.setVgap(20);
+        MainFlowPane.setHgap(50);
+        
 
         initGuildButtons();
 
@@ -89,6 +103,16 @@ public class LaugViewController implements Initializable
     private void handleLogin(ActionEvent event) throws IOException
     {
         mainViewModel.changeView("Admin login", "GUI/View/AdminLogin.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) MainFlowPane.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void handleGuide(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Step-by-Step guide", "GUI/View/GuideView.fxml");
 
         // Closes the primary stage
         Stage stage = (Stage) MainFlowPane.getScene().getWindow();

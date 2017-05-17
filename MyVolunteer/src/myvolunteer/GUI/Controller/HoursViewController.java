@@ -70,6 +70,7 @@ public class HoursViewController implements Initializable
         guild = mainViewModel.getLastSelectedGuild();
 
         datePicker.setValue(LocalDate.now());
+        if (user.getLastInputDate() != null)
         lblLastUpdated.setText("Sidst opdateret: " + user.getLastInputDate().toString());
     }
 
@@ -78,7 +79,6 @@ public class HoursViewController implements Initializable
     {
         if (!txtFieldHours.getText().isEmpty())
         {
-
             Instant instant = Instant.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()));
             Date date = Date.from(instant);
 

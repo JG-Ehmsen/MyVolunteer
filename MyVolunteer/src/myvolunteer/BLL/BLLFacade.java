@@ -67,9 +67,9 @@ public class BLLFacade
         dalFacade.CreateNewUser(user);
     }
 
-    public void CreateNewLaug(Guild guild)
+    public void CreateNewLaug(Guild guild, int MID)
     {
-        dalFacade.CreateNewLaug(guild);
+        dalFacade.CreateNewLaug(guild, MID);
     }
 
     public Manager getManagerForGuild(Guild guild)
@@ -95,6 +95,16 @@ public class BLLFacade
     public int getHoursWorkedForVolunteer(Volunteer volunteer)
     {
         return dalFacade.getHoursWorkedForVolunteer(volunteer);
+    }
+
+    public void UpdateUser(Volunteer user)
+    {
+        dalFacade.UpdateUser(user);
+    }
+
+    public void UpdateGuild(Guild guild)
+    {
+        dalFacade.UpdateGuild(guild);
     }
 
 }
