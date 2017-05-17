@@ -36,7 +36,6 @@ public class AdminInfoViewController implements Initializable
 {
 
     private List<Guild> guildList = new ArrayList<>();
-    private List<Volunteer> userList = new ArrayList<>();
     ObservableList<Volunteer> users = FXCollections.observableArrayList();
 
     /**
@@ -45,7 +44,7 @@ public class AdminInfoViewController implements Initializable
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
     private Guild lastSelectedGuild;
-    private Manager lastManager;
+    private Volunteer lastSelectedVolunteer;
 
     @FXML
     private Button btnGodkend;
@@ -74,6 +73,7 @@ public class AdminInfoViewController implements Initializable
     {
         // TODO
         guildList = dp.getGuilds();
+        initializeTable();
         comboContent();
         loadTableView();
     }
@@ -102,7 +102,6 @@ public class AdminInfoViewController implements Initializable
     private void handleComboClick(ActionEvent event)
     {
         lastSelectedGuild = comboBoxGuild.getSelectionModel().getSelectedItem();
-        lastManager = dp.getManagerForGuild(lastSelectedGuild);
         loadTableView();
     }
 
@@ -116,20 +115,14 @@ public class AdminInfoViewController implements Initializable
     {
         if (lastSelectedGuild == null)
         {
-            tblColumnName.setCellValueFactory(cellData -> cellData.getValue().getFNameProperty());
-            tblColumnLName.setCellValueFactory(celldata -> celldata.getValue().getLNameProperty());
-            tblColumnPhone.setCellValueFactory(celldata -> celldata.getValue().getPhoneProperty());
-            tblColumnMail.setCellValueFactory(celldata -> celldata.getValue().getMailProperty());
-
-            ObservableList nameArrayList = FXCollections.observableArrayList(dp.getUsers());
-            tblViewInfo.setItems(nameArrayList);
+            initializeTable();
         } else
         {
             {
-                ObservableList<Volunteer> guildUsers = FXCollections.observableArrayList(dp.getUsers());
+                ObservableList<Volunteer> guildUsers = FXCollections.observableArrayList();
                 for (Integer i : lastSelectedGuild.getMemberList())
                 {
-                    for (Volunteer user : userList)
+                    for (Volunteer user : dp.getUsers())
                     {
                         if (user.getId() == i)
                         {
@@ -137,10 +130,19 @@ public class AdminInfoViewController implements Initializable
                         }
                     }
                 }
-                users.setAll(guildUsers);
+                tblViewInfo.setItems(guildUsers);
             }
-            System.out.println(users.toString());
-            tblViewInfo.setItems(users);
         }
+    }
+
+    private void initializeTable()
+    {
+        tblColumnName.setCellValueFactory(cellData -> cellData.getValue().getFNameProperty());
+        tblColumnLName.setCellValueFactory(celldata -> celldata.getValue().getLNameProperty());
+        tblColumnPhone.setCellValueFactory(celldata -> celldata.getValue().getPhoneProperty());
+        tblColumnMail.setCellValueFactory(celldata -> celldata.getValue().getMailProperty());
+
+        ObservableList nameArrayList = FXCollections.observableArrayList(dp.getUsers());
+        tblViewInfo.setItems(nameArrayList);
     }
 }
