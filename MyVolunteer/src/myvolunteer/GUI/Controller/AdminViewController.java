@@ -94,6 +94,8 @@ public class AdminViewController implements Initializable
     private Guild lastSelectedGuild;
     private Volunteer lastSelectedVolunteer;
     private Manager lastManager;
+    @FXML
+    private Button opretTovholder;
 
     /**
      * Initializes the controller class.
@@ -283,6 +285,11 @@ public class AdminViewController implements Initializable
     private void handleListKeyboard(KeyEvent event)
     {
         updateVolunteerInfo();
+    }
+
+    @FXML
+    private void handleOpreetTovholder(ActionEvent event)
+    {
     }
 
 }
