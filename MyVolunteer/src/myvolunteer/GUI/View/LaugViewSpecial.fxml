@@ -8,21 +8,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 
-<AnchorPane maxHeight="511.0" maxWidth="625.0" prefHeight="515.0" prefWidth="625.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.LaugViewController">
+<AnchorPane maxHeight="450.0" maxWidth="625.0" prefHeight="450.0" prefWidth="625.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.LaugViewController">
    <children>
       <ImageView fitHeight="73.0" fitWidth="199.0" layoutX="6.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@Resource/logo.png" />
          </image>
       </ImageView>
-      <ScrollPane id="laugscrollpane" layoutX="35.0" layoutY="126.0" prefHeight="370.0" prefWidth="580.0" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="126.0">
-        <content>
-          <AnchorPane id="laugscrollpane" minHeight="0.0" minWidth="0.0" prefHeight="409.0" prefWidth="538.0">
-               <children>
-                  <FlowPane id="laugpane" fx:id="MainFlowPane" layoutY="4.0" maxHeight="407.0" maxWidth="537.0" prefHeight="407.0" prefWidth="537.0" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="-11.0" />
-               </children>
-            </AnchorPane>
-        </content>
+      <ScrollPane id="laugscrollpane" fx:id="laugScroll" layoutX="35.0" layoutY="126.0" prefHeight="370.0" prefWidth="580.0" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="126.0">
+         <content>
+            <FlowPane id="laugpane" fx:id="MainFlowPane" maxHeight="407.0" maxWidth="537.0" prefHeight="310.0" prefWidth="537.0" />
+         </content>
       </ScrollPane>
       <Button id="adminbutton" fx:id="btnLogin" alignment="BASELINE_LEFT" layoutX="488.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" prefWidth="98.0" style="-fx-background-radius: 10;" text="Admin" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0" />
       <ImageView fitHeight="19.0" fitWidth="600.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="75.0">
