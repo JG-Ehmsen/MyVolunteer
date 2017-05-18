@@ -113,9 +113,9 @@ public class DALFacade
         db.UpdateManager(manager);
     }
 
-    public void UpdateGuild(Guild guild)
+    public void UpdateGuild(Guild guild, Manager manager)
     {
-        db.UpdateGuild(guild);
+        db.UpdateGuild(guild, manager);
     }
 
     public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active)
@@ -127,7 +127,7 @@ public class DALFacade
     {
         db.changeGuildManager(guild, manager);
     }
-    
+
     public void CreateNewManager(Manager manager, String password)
     {
         db.CreateNewManager(manager, password);

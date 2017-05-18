@@ -608,7 +608,6 @@ public class DBUserAccess
             return manager;
         }
         return null;
-
     }
 
     public void changeGuildManager(Guild guild, Manager manager, Connection con) throws SQLException
@@ -617,12 +616,11 @@ public class DBUserAccess
                 + "UPDATE ManagerRelation "
                 + "SET MID = ? "
                 + "WHERE MID = ? AND GID = ?";
-
+      
         PreparedStatement ps = con.prepareStatement(sql);
 
         ps.setInt(1, manager.getId());
-        ps.setInt(2, guild.getOldManagerID());
-        ps.setInt(3, guild.getID());
+        ps.setInt(2, guild.getID());
 
         ps.execute();
     }
