@@ -45,6 +45,8 @@ public class EditManagerController implements Initializable
     private Button btnGodkend;
     @FXML
     private Button btnSletTovholder;
+    @FXML
+    private TextField txtPassword;
 
     /**
      * Initializes the controller class.
