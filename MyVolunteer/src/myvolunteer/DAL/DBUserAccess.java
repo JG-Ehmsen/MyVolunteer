@@ -276,6 +276,24 @@ public class DBUserAccess
 
         ps.execute();
     }
+    
+    public void UpdateManager(Manager manager, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "UPDATE Managers "
+                + "SET FName = ?, LName = ?, EMail = ?, TLF = ? "
+                + "WHERE MID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, manager.getFirstName());
+        ps.setString(2, manager.getLastName());
+        ps.setString(3, manager.getEmail());
+        ps.setString(4, manager.getPhoneNumber());
+        ps.setInt(5, manager.getId());
+
+        ps.execute();
+    }
 
     /**
      * Given a guild and volunteer BE, and a date, utilizes other method calls

@@ -9,14 +9,19 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import myvolunteer.BE.Manager;
+import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
 
 /**
@@ -28,7 +33,8 @@ public class EditManagerController implements Initializable
 {
 
     MainViewModel mainViewModel = MainViewModel.getInstance();
-
+    DataParserModel dp = DataParserModel.getInstance();
+    
     @FXML
     private Button btnBack;
     @FXML
@@ -47,14 +53,26 @@ public class EditManagerController implements Initializable
     private Button btnSletTovholder;
     @FXML
     private TextField txtPassword;
-
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private ComboBox<Manager> comboTovholder;
+    
+    Manager manager;
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        ObservableList manager = FXCollections.observableArrayList(dp.getManagers());
+        comboTovholder.setItems(manager);
+    }
+    
+    private void loadInfo()
+    {
+        txtFName.setText(manager.getFirstName());
+        txtLName.setText(manager.getLastName());
+        txtEmail.setText(manager.getEmail());
+        txtPNumber.setText(manager.getPhoneNumber());
+        
     }
 
     @FXML
@@ -74,12 +92,26 @@ public class EditManagerController implements Initializable
 
     @FXML
     private void handleGodkend(ActionEvent event) throws IOException
-    {
-        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
+    {   
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Rediger frivillig");
+            alert.setHeaderText("Du er ved at redigere en frivillig.");
+            alert.setContentText("Tryk OK for at fortsætte.");
 
-        // Closes the primary stage
-        Stage stage = (Stage) btnGodkend.getScene().getWindow();
-        stage.close();
+            ButtonType buttonTypeOK = new ButtonType("OK");
+            ButtonType buttonTypeAnnuller = new ButtonType("Annuller");
+
+            alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeAnnuller);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == buttonTypeOK)
+            {
+                editInfo();
+                goBack();
+            } else
+            {
+                alert.close();
+            }
     }
 
     @FXML
@@ -104,6 +136,24 @@ public class EditManagerController implements Initializable
         {
             alert.close();
         }
+    }
+
+    @FXML
+    private void handleComboClick(ActionEvent event)
+    {
+        manager = comboTovholder.getSelectionModel().getSelectedItem();
+        
+        loadInfo();
+    }
+    
+    private void editInfo()
+    {
+        manager.setEmail(txtEmail.getText());
+        manager.setFirstName(txtFName.getText());
+        manager.setLastName(txtLName.getText());
+        manager.setPhoneNumber(txtPNumber.getText());
+        
+        dp.UpdateManager(manager);
     }
 
 }
