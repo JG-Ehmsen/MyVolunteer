@@ -49,9 +49,7 @@ public class AdminInfoViewController implements Initializable
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
     private Guild lastSelectedGuild;
-    private Volunteer lastSelectedVolunteer;
 
-    private Button btnGodkend;
     @FXML
     private Button btnBack;
     @FXML
@@ -70,6 +68,10 @@ public class AdminInfoViewController implements Initializable
     private Button btnSave;
     @FXML
     private Button btnAllVolunteers;
+    @FXML
+    private TableColumn<Volunteer, String> tblColumnGender;
+    @FXML
+    private TableColumn<Volunteer, String> tblColumnNationality;
 
     /**
      * Initializes the controller class.
@@ -86,7 +88,7 @@ public class AdminInfoViewController implements Initializable
     private void handleGodkend(ActionEvent event) throws IOException
     {
         // Closes the primary stage
-        Stage stage = (Stage) btnGodkend.getScene().getWindow();
+        Stage stage = (Stage) btnAllVolunteers.getScene().getWindow();
         stage.close();
     }
 
@@ -137,10 +139,12 @@ public class AdminInfoViewController implements Initializable
 
     private void initializeTable()
     {
+        tblColumnGender.setCellValueFactory(celldata -> celldata.getValue().getGenderProperty());
         tblColumnName.setCellValueFactory(cellData -> cellData.getValue().getFNameProperty());
         tblColumnLName.setCellValueFactory(celldata -> celldata.getValue().getLNameProperty());
         tblColumnPhone.setCellValueFactory(celldata -> celldata.getValue().getPhoneProperty());
         tblColumnMail.setCellValueFactory(celldata -> celldata.getValue().getMailProperty());
+        tblColumnNationality.setCellValueFactory(celldata -> celldata.getValue().getNationalityProperty());
 
         ObservableList nameArrayList = FXCollections.observableArrayList(dp.getUsers());
         tblViewInfo.setItems(nameArrayList);
@@ -175,7 +179,7 @@ public class AdminInfoViewController implements Initializable
             writer = new BufferedWriter(new FileWriter(file));
             for (Volunteer user : tblViewInfo.getItems())
             {
-                String text = user.getFirstName() + "	" + user.getLastName() + "	" + user.getEmail() + "	" + user.getPhoneNumber() + "\n";
+                String text = user.getGender() + "	" + user.getFirstName() + "	" + user.getLastName() + "	" + user.getEmail() + "	" + user.getPhoneNumber() + "	" + user.getNationality() + "\n";
 
                 writer.write(text);
             }
