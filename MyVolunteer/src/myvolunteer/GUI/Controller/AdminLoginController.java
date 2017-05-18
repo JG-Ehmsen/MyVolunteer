@@ -56,13 +56,13 @@ public class AdminLoginController implements Initializable
     private void handleLogin(ActionEvent event) throws IOException
     {
         //checkFieldsContent();
-        
-        if(!UsernameField.getText().isEmpty())
+
+        if (!UsernameField.getText().isEmpty())
         {
             Stage stage = (Stage) btnLogin.getScene().getWindow();
-            
+
             dataParserModel.tryLogin(UsernameField.getText(), codeField.getText(), stage);
-        
+
         }
     }
 
