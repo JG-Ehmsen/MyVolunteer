@@ -149,13 +149,13 @@ public class AdminInfoViewController implements Initializable
     @FXML
     private void handleSave(ActionEvent event) throws Exception
     {
-        writeExcel();
+        saveData();
     }
 
     /*
     Exports the data in the tableView to a .xls file.
      */
-    private void writeExcel() throws Exception
+    private void saveData() throws Exception
     {
         Writer writer = null;
         try
@@ -168,14 +168,14 @@ public class AdminInfoViewController implements Initializable
 
             //Show save file dialog
             Stage stage = (Stage) btnAllVolunteers.getScene().getWindow();
-            File fileName = new File("Laug information" + " " + ft.format(todaysDate) + ".xls");
+            File fileName = new File("Laug information " + ft.format(todaysDate) + ".xls");
             fileChooser.setInitialFileName(fileName.toString());
             File file = fileChooser.showSaveDialog(stage);
 
             writer = new BufferedWriter(new FileWriter(file));
             for (Volunteer user : tblViewInfo.getItems())
             {
-                String text = user.getFirstName() + ", " + user.getLastName() + ", " + user.getEmail() + ", " + user.getPhoneNumber() + "\n";
+                String text = user.getFirstName() + "	" + user.getLastName() + "	" + user.getEmail() + "	" + user.getPhoneNumber() + "\n";
 
                 writer.write(text);
             }
