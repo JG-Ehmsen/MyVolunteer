@@ -99,7 +99,13 @@ public class DBGuildAccess
         createManagerRelation(GID, MID, con);
     }
 
-    public void UpdateGuild(Guild guild, Manager manager, Connection con) throws SQLException
+    public void UpdateGuild(Guild guild, Manager manager, List<Integer> in, List<Integer> out, Connection con) throws SQLException
+    {
+        setGuildInfo(guild, con);
+        changeGuildManager(guild, manager, con);
+    }
+
+    public void setGuildInfo(Guild guild, Connection con) throws SQLException
     {
         String sql = ""
                 + "UPDATE Guild "
@@ -112,8 +118,6 @@ public class DBGuildAccess
         ps.setInt(3, guild.getID());
 
         ps.execute();
-        
-        changeGuildManager(guild, manager, con);
     }
 
     public void changeGuildManager(Guild guild, Manager manager, Connection con) throws SQLException

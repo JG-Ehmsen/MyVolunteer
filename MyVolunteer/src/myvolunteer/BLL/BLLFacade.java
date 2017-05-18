@@ -107,9 +107,9 @@ public class BLLFacade
         dalFacade.UpdateManager(manager);
     }
 
-    public void UpdateGuild(Guild guild, Manager manager)
+    public void UpdateGuild(Guild guild, Manager manager, List<Integer> in, List<Integer> out)
     {
-        dalFacade.UpdateGuild(guild, manager);
+        dalFacade.UpdateGuild(guild, manager, in, out);
     }
     
     public void CreateNewManager(Manager manager, String password)

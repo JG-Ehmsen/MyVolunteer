@@ -307,13 +307,13 @@ public class DBTransactions
         }
     }
 
-    public void UpdateGuild(Guild guild, Manager manager)
+    public void UpdateGuild(Guild guild, Manager manager, List<Integer> in, List<Integer> out)
     {
         try
         {
             startTransaction();
 
-            ga.UpdateGuild(guild, manager, transactionConnection);
+            ga.UpdateGuild(guild, manager, in, out, transactionConnection);
 
             commitTransaction();
 
