@@ -288,6 +288,24 @@ public class DBTransactions
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void UpdateManager(Manager manager)
+    {
+        try
+        {
+            startTransaction();
+
+            ua.UpdateManager(manager, transactionConnection);
+
+            commitTransaction();
+        } catch (SQLServerException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public void UpdateGuild(Guild guild)
     {
