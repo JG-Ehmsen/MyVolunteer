@@ -66,14 +66,13 @@ public class AdminLoginController implements Initializable
 
     @FXML
     private void handleLogin(ActionEvent event) throws IOException
-    {
-        
-        
+    {        
         if(!UsernameField.getText().isEmpty() && !codeField.getText().isEmpty())
         {
             Stage stage = (Stage) btnLogin.getScene().getWindow();
-            
+
             dataParserModel.tryLogin(UsernameField.getText(), codeField.getText(), stage);
+
             
             xUsername.setVisible(false);
             xPassword.setVisible(false);

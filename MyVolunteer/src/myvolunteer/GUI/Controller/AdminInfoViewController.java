@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Volunteer;
@@ -50,7 +51,6 @@ public class AdminInfoViewController implements Initializable
     private Guild lastSelectedGuild;
     private Volunteer lastSelectedVolunteer;
 
-    @FXML
     private Button btnGodkend;
     @FXML
     private Button btnBack;
@@ -67,9 +67,9 @@ public class AdminInfoViewController implements Initializable
     @FXML
     private TableColumn<Volunteer, String> tblColumnLName;
     @FXML
-    private TableColumn<?, ?> tblColumnLaug;
-    @FXML
     private Button btnSave;
+    @FXML
+    private Button btnAllVolunteers;
 
     /**
      * Initializes the controller class.
@@ -83,7 +83,6 @@ public class AdminInfoViewController implements Initializable
         comboContent();
     }
 
-    @FXML
     private void handleGodkend(ActionEvent event) throws IOException
     {
         // Closes the primary stage
@@ -154,17 +153,25 @@ public class AdminInfoViewController implements Initializable
     }
 
     /*
-    Exports the data in the tableView to a .xls (Excel) file.
+    Exports the data in the tableView to a .xls file.
      */
     private void writeExcel() throws Exception
     {
         Writer writer = null;
         try
         {
+            FileChooser fileChooser = new FileChooser();
+
             Date todaysDate = new Date();
             SimpleDateFormat ft
                     = new SimpleDateFormat("dd.MM.yyyy");
-            File file = new File("Laug information" + " " + ft.format(todaysDate) + ".xls");
+
+            //Show save file dialog
+            Stage stage = (Stage) btnAllVolunteers.getScene().getWindow();
+            File fileName = new File("Laug information" + " " + ft.format(todaysDate) + ".xls");
+            fileChooser.setInitialFileName(fileName.toString());
+            File file = fileChooser.showSaveDialog(stage);
+
             writer = new BufferedWriter(new FileWriter(file));
             for (Volunteer user : tblViewInfo.getItems())
             {
@@ -177,8 +184,15 @@ public class AdminInfoViewController implements Initializable
             ex.printStackTrace();
         } finally
         {
-            writer.flush();
             writer.close();
         }
+    }
+
+    @FXML
+    private void handleAllVolunteers(ActionEvent event)
+    {
+        initializeTable();
+        comboBoxGuild.getItems().clear();
+        comboContent();
     }
 }

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -9,27 +10,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="273.0" prefWidth="350.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AdminLoginController">
-   <children>
-      <TextField fx:id="UsernameField" layoutX="76.0" layoutY="143.0" prefHeight="26.0" prefWidth="215.0" promptText="Brugernavn" />
-      <TextField fx:id="codeField" layoutX="76.0" layoutY="176.0" prefHeight="26.0" prefWidth="215.0" promptText="Kode" />
-      <ImageView fitHeight="75.0" fitWidth="204.0" layoutX="1.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-         <image>
-            <Image url="@Resource/logo.png" />
-         </image></ImageView>
-      <Label layoutX="76.0" layoutY="114.0" prefHeight="23.0" prefWidth="108.0" text="Admin Login">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnLogin" defaultButton="true" layoutX="226.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleLogin" prefWidth="65.0" text="Login" />
-      <ImageView fitHeight="11.0" fitWidth="309.0" layoutX="10.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="80.0">
-         <image>
-            <Image url="@Resource/toolsmenu_bg.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="btnBack" layoutX="80.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleBack" prefWidth="65.0" text="Tilbage" />
-      <Label layoutX="297.0" layoutY="148.0" text="X" textAlignment="CENTER" textFill="RED" fx:id="xUsername">
+<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="350.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AdminLoginController">
+    <children>
+        <TextField fx:id="UsernameField" layoutX="76.0" layoutY="130.0" prefHeight="26.0" prefWidth="215.0" promptText="Brugernavn" />
+        <PasswordField fx:id="codeField" layoutX="76.0" layoutY="164.0" prefHeight="27.0" prefWidth="215.0" promptText="Kode" />
+        <ImageView fitHeight="75.0" fitWidth="204.0" layoutX="1.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <image>
+                <Image url="@Resource/logo.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="76.0" layoutY="102.0" prefHeight="23.0" prefWidth="108.0" text="Admin Login">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="btnLogin" defaultButton="true" layoutX="226.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleLogin" prefWidth="65.0" text="Login" />
+        <ImageView fitHeight="11.0" fitWidth="309.0" layoutX="10.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="80.0">
+            <image>
+                <Image url="@Resource/toolsmenu_bg.png" />
+            </image>
+        </ImageView>
+        <Button fx:id="btnBack" layoutX="77.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleBack" prefWidth="65.0" text="Tilbage" />
+  
+           <Label layoutX="297.0" layoutY="148.0" text="X" textAlignment="CENTER" textFill="RED" fx:id="xUsername">
          <effect>
             <Glow />
          </effect>
