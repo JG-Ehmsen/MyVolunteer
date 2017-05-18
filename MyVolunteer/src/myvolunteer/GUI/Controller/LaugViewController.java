@@ -5,13 +5,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
@@ -48,6 +52,8 @@ public class LaugViewController implements Initializable
     private Button englishBtn;
     @FXML
     private Button guideBtn;
+    @FXML
+    private ScrollPane laugScroll;
 
     /**
      * Initializes the controller class.
@@ -58,9 +64,10 @@ public class LaugViewController implements Initializable
         // TODO
         MainFlowPane.setVgap(20);
         MainFlowPane.setHgap(50);
-        
 
+        
         initGuildButtons();
+        adjustScrollPane();
 
     }
 
@@ -69,7 +76,7 @@ public class LaugViewController implements Initializable
         for (Guild g : dp.getGuilds())
         {
             PictureButton b = new PictureButton(g);
-            
+
             b.setOnAction(new EventHandler()
             {
                 @Override
@@ -84,6 +91,23 @@ public class LaugViewController implements Initializable
         }
     }
 
+    private void adjustScrollPane()
+    {
+        laugScroll.viewportBoundsProperty().addListener(new ChangeListener<Bounds>()
+        {
+            
+            @Override
+            public void changed(ObservableValue<? extends Bounds> ov, Bounds oldBounds, Bounds bounds)
+            {
+                MainFlowPane.setPrefWidth(bounds.getWidth());
+                MainFlowPane.setPrefHeight(bounds.getHeight());
+                laugScroll.setFitToHeight(true);
+            }
+        });
+
+    
+    }
+    
     private void handleGuildClick()
     {
         try
