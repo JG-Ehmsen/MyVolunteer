@@ -289,13 +289,13 @@ public class DBTransactions
         }
     }
 
-    public void UpdateGuild(Guild guild)
+    public void UpdateGuild(Guild guild, Manager manager)
     {
         try
         {
             startTransaction();
 
-            ga.UpdateGuild(guild, transactionConnection);
+            ga.UpdateGuild(guild, manager, transactionConnection);
 
             commitTransaction();
 
@@ -307,16 +307,16 @@ public class DBTransactions
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void CreateNewManager(Manager manager, String password)
     {
-  try
+        try
         {
             startTransaction();
-              ua.CreateNewManager(manager, password, transactionConnection);
-            
+            ua.CreateNewManager(manager, password, transactionConnection);
+
             commitTransaction();
-            } catch (SQLException ex)
+        } catch (SQLException ex)
         {
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -324,17 +324,16 @@ public class DBTransactions
 
     public Manager loginQuery(String login, String pass)
     {
-      try
-      {
-        
-        Manager manager;
-        
+        try
+        {
 
-           manager = ua.loginQuery(login, pass, transactionConnection);
-            
+            Manager manager;
+
+            manager = ua.loginQuery(login, pass, transactionConnection);
+
             commitTransaction();
             return manager;
-      }catch (SQLException ex)
+        } catch (SQLException ex)
         {
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -365,7 +364,7 @@ public class DBTransactions
         {
             startTransaction();
 
-            ua.changeGuildManager(guild, manager, transactionConnection);
+            ga.changeGuildManager(guild, manager, transactionConnection);
 
             commitTransaction();
 

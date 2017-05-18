@@ -497,7 +497,7 @@ public class DBUserAccess
         }
         return returnInt;
     }
-    
+
     public void CreateNewManager(Manager manager, String password, Connection con) throws SQLException
     {
         String sql = ""
@@ -535,29 +535,13 @@ public class DBUserAccess
             manager.setPhoneNumber(rs.getString("TLF"));
             manager.setFirstName(rs.getString("FName"));
             manager.setLastName(rs.getString("LName"));
-            
+
             manager.setIsAdmin(rs.getBoolean("isAdmin"));
-            
+
             return manager;
         }
         return null;
-        
-    }
 
-    public void changeGuildManager(Guild guild, Manager manager, Connection con) throws SQLException
-    {
-        String sql = ""
-                + "UPDATE ManagerRelation "
-                + "SET MID = ? "
-                + "WHERE MID = ? AND GID = ?";
-
-        PreparedStatement ps = con.prepareStatement(sql);
-
-        ps.setInt(1, manager.getId());
-        ps.setInt(2, guild.getOldManagerID());
-        ps.setInt(3, guild.getID());
-
-        ps.execute();
     }
 
     public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active, Connection con) throws SQLException
