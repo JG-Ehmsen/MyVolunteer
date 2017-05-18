@@ -31,7 +31,6 @@
             </image>
         </ImageView>
         <Button fx:id="btnBack" layoutX="77.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleBack" prefWidth="65.0" text="Tilbage" />
-  
            <Label layoutX="295.0" layoutY="136.0" text="X" textAlignment="CENTER" textFill="RED" fx:id="xUsername">
          <effect>
             <Glow />
@@ -42,6 +41,8 @@
             <Glow />
          </effect>
       </Label>
+      <Label fx:id="lblInvalidUser" layoutX="81.0" layoutY="244.0" text="Invalid user or password" />
+
       <Label fx:id="lblUdfyldVenligst" layoutX="79.0" layoutY="232.0" text="Udfyld venligst de markede felter." textFill="RED" />
       <Label fx:id="lblInvalidUser" layoutX="79.0" layoutY="232.0" text="Invalid user or password" />
    </children>

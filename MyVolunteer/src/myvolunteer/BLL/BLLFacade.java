@@ -101,6 +101,11 @@ public class BLLFacade
     {
         dalFacade.UpdateUser(user);
     }
+    
+    public void UpdateManager(Manager manager)
+    {
+        dalFacade.UpdateManager(manager);
+    }
 
     public void UpdateGuild(Guild guild)
     {
