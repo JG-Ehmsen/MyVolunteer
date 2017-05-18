@@ -5,13 +5,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -42,6 +46,8 @@ public class VolunteerViewController implements Initializable
     private Label guildNameLbl;
     @FXML
     private Label contactNameLbl;
+    @FXML
+    private ScrollPane laugScroll;
 
     /**
      * Initializes the controller class.
@@ -57,6 +63,8 @@ public class VolunteerViewController implements Initializable
         contactNameLbl.setText("Kontakt Person \n" + manager.getFirstName() + " " + manager.getLastName()
         + "\n" + manager.getPhoneNumber() + "\n" + manager.getEmail());
         generateButtons();
+        
+        adjustScrollPane();
     }
 
     private void generateButtons()
@@ -88,6 +96,23 @@ public class VolunteerViewController implements Initializable
             }
 
         }
+    }
+    
+    private void adjustScrollPane()
+    {
+        laugScroll.viewportBoundsProperty().addListener(new ChangeListener<Bounds>()
+        {
+            
+            @Override
+            public void changed(ObservableValue<? extends Bounds> ov, Bounds oldBounds, Bounds bounds)
+            {
+                MainFlowPane.setPrefWidth(bounds.getWidth());
+                MainFlowPane.setPrefHeight(bounds.getHeight());
+                laugScroll.setFitToHeight(true);
+            }
+        });
+
+    
     }
 
     private void handleUserImage()

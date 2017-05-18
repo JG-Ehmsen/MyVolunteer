@@ -100,10 +100,15 @@ public class DataParserModel
     {
         bllFacade.UpdateUser(user);
     }
-
-    public void UpdateGuild(Guild guild)
+    
+    public void UpdateManager(Manager manager)
     {
-        bllFacade.UpdateGuild(guild);
+        bllFacade.UpdateManager(manager);
+    }
+
+    public void UpdateGuild(Guild guild, Manager manager)
+    {
+        bllFacade.UpdateGuild(guild, manager);
     }
 
     public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active)

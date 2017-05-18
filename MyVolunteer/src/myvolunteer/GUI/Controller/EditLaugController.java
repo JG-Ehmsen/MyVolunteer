@@ -69,6 +69,7 @@ public class EditLaugController implements Initializable
     private Text lblAntalFrivillige;
 
     Guild guild;
+    Manager manager;
 
     List<Volunteer> allVolunteerList = new ArrayList<>();
     List<Manager> managerList = new ArrayList<>();
@@ -88,10 +89,23 @@ public class EditLaugController implements Initializable
         allUsers.setAll(allVolunteerList);
         listAvailableVolunteers.setItems(allUsers);
         listChosenVolunteers.setItems(chosenUsers);
+
+        managerList = dp.getManagers();
+        managers.setAll(managerList);
+        comboManager.setItems(managers);
+        setStartManager();
+
         loadInformation();
         initialSortLists();
 
         lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
+    }
+
+    private void setStartManager()
+    {
+        manager = dp.getManagerForGuild(guild);
+        guild.setOldManagerID(manager.getId());
+        comboManager.getSelectionModel().select(manager);
     }
 
     private void loadInformation()
@@ -144,7 +158,7 @@ public class EditLaugController implements Initializable
         guild.setDescription(txtLaugInformation.getText());
         guild.setName(txtLaugName.getText());
 
-        dp.UpdateGuild(guild);
+        dp.UpdateGuild(guild, manager);
     }
 
     @FXML
@@ -208,6 +222,7 @@ public class EditLaugController implements Initializable
     @FXML
     private void comboManager(ActionEvent event)
     {
+        manager = comboManager.getSelectionModel().getSelectedItem();
     }
 
     @FXML

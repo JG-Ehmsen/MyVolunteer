@@ -1,30 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="273.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.EditManagerController">
+<AnchorPane id="AnchorPane" prefHeight="433.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.EditManagerController">
    <children>
       <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbage" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
-      <Text layoutX="10.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fornavn:" AnchorPane.leftAnchor="10.0" />
-      <TextField fx:id="txtFName" layoutX="10.0" layoutY="67.0" promptText="Indtast fornavn" />
-      <Text layoutX="10.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Efternavn:" AnchorPane.leftAnchor="10.0" />
-      <TextField fx:id="txtLName" layoutX="10.0" layoutY="124.0" promptText="Indtast efternavn" />
-      <Text layoutX="10.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefon nr." />
-      <TextField fx:id="txtPNumber" layoutX="10.0" layoutY="181.0" promptText="Indtast telefon nummer" />
-      <Text layoutX="10.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
-      <TextField fx:id="txtEmail" layoutX="10.0" layoutY="238.0" promptText="Indtast email" />
+      <Text layoutX="14.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fornavn:" AnchorPane.leftAnchor="10.0" />
+      <TextField fx:id="txtFName" layoutX="14.0" layoutY="166.0" promptText="Indtast fornavn" AnchorPane.leftAnchor="10.0" />
+      <Text layoutX="14.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Efternavn:" AnchorPane.leftAnchor="10.0" />
+      <TextField fx:id="txtLName" layoutX="14.0" layoutY="223.0" promptText="Indtast efternavn" AnchorPane.leftAnchor="10.0" />
+      <Text layoutX="14.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefon nr." AnchorPane.leftAnchor="10.0" />
+      <TextField fx:id="txtPNumber" layoutX="14.0" layoutY="280.0" promptText="Indtast telefon nummer" AnchorPane.leftAnchor="10.0" />
+      <Text layoutX="14.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" AnchorPane.leftAnchor="10.0" />
+      <TextField fx:id="txtEmail" layoutX="14.0" layoutY="337.0" promptText="Indtast email" AnchorPane.leftAnchor="10.0" />
       <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@Resource/UserPicture.png" />
          </image>
       </ImageView>
       <Button fx:id="btnUploadImage" layoutX="290.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Tilføg billede" AnchorPane.rightAnchor="10.0" />
-      <Button fx:id="btnGodkend" layoutX="334.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.rightAnchor="10.0" />
-      <Button fx:id="btnSletTovholder" layoutX="228.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleSletTovholder" text="Slet tovholder" />
+      <Button fx:id="btnGodkend" layoutX="321.0" layoutY="394.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.rightAnchor="10.0" />
+      <Button fx:id="btnSletTovholder" layoutX="224.0" layoutY="394.0" mnemonicParsing="false" onAction="#handleSletTovholder" text="Slet tovholder" />
+      <Text layoutX="14.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" AnchorPane.leftAnchor="10.0" />
+      <TextField fx:id="txtPassword" layoutX="14.0" layoutY="394.0" promptText="Indtast password" AnchorPane.leftAnchor="10.0" />
+      <ComboBox fx:id="comboTovholder" layoutX="14.0" layoutY="85.0" onAction="#handleComboClick" prefWidth="150.0" promptText="Tovholder..." AnchorPane.leftAnchor="10.0" />
+      <Text layoutX="18.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg tovholder" AnchorPane.leftAnchor="10.0" />
    </children>
 </AnchorPane>
