@@ -100,6 +100,11 @@ public class DataParserModel
     {
         bllFacade.UpdateUser(user);
     }
+    
+    public void UpdateManager(Manager manager)
+    {
+        bllFacade.UpdateManager(manager);
+    }
 
     public void UpdateGuild(Guild guild, Manager manager)
     {

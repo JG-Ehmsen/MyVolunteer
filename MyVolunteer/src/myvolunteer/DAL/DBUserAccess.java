@@ -277,6 +277,24 @@ public class DBUserAccess
         ps.execute();
     }
 
+    public void UpdateManager(Manager manager, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "UPDATE Managers "
+                + "SET FName = ?, LName = ?, EMail = ?, TLF = ? "
+                + "WHERE MID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, manager.getFirstName());
+        ps.setString(2, manager.getLastName());
+        ps.setString(3, manager.getEmail());
+        ps.setString(4, manager.getPhoneNumber());
+        ps.setInt(5, manager.getId());
+
+        ps.execute();
+    }
+
     /**
      * Given a guild and volunteer BE, and a date, utilizes other method calls
      * to get a date ID and a guild relation ID. Then queries the DB with these
@@ -500,6 +518,17 @@ public class DBUserAccess
 
     public void CreateNewManager(Manager manager, String password, Connection con) throws SQLException
     {
+        Manager man = manager;
+
+        addManager(man, con);
+
+        int MID = getManagerID(man, con);
+        
+        createNewPassword(MID, password, con);
+    }
+
+    public void addManager(Manager manager, Connection con) throws SQLException
+    {
         String sql = ""
                 + "INSERT INTO Managers(FName, LName, EMail, TLF, isAdmin, Active) "
                 + "VALUES (?, ?, ?, ?, 0, 1)";
@@ -509,6 +538,44 @@ public class DBUserAccess
         ps.setString(2, manager.getLastName());
         ps.setString(3, manager.getEmail());
         ps.setString(4, manager.getPhoneNumber());
+
+        ps.execute();
+    }
+
+    private int getManagerID(Manager manager, Connection con) throws SQLException
+    {
+        int returnInt = 0;
+
+        String sql = ""
+                + "SELECT MID "
+                + "FROM Managers "
+                + "WHERE FName = ? AND LName = ? AND EMail = ? AND TLF = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, manager.getFirstName());
+        ps.setString(2, manager.getLastName());
+        ps.setString(3, manager.getEmail());
+        ps.setString(4, manager.getPhoneNumber());
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            returnInt = rs.getInt("MID");
+        }
+
+        return returnInt;
+    }
+
+    public void createNewPassword(int MID, String pass, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "INSERT INTO Login(MID, Password) "
+                + "VALUES (?, ?)";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, MID);
+        ps.setString(2, pass);
 
         ps.execute();
     }
@@ -541,7 +608,21 @@ public class DBUserAccess
             return manager;
         }
         return null;
+    }
 
+    public void changeGuildManager(Guild guild, Manager manager, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "UPDATE ManagerRelation "
+                + "SET MID = ? "
+                + "WHERE MID = ? AND GID = ?";
+      
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, manager.getId());
+        ps.setInt(2, guild.getID());
+
+        ps.execute();
     }
 
     public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active, Connection con) throws SQLException

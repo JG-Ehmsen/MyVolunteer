@@ -107,6 +107,11 @@ public class DALFacade
     {
         db.UpdateUser(user);
     }
+    
+    public void UpdateManager(Manager manager)
+    {
+        db.UpdateManager(manager);
+    }
 
     public void UpdateGuild(Guild guild, Manager manager)
     {
