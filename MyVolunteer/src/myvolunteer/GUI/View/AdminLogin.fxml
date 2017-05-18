@@ -31,18 +31,19 @@
             </image>
         </ImageView>
         <Button fx:id="btnBack" layoutX="77.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleBack" prefWidth="65.0" text="Tilbage" />
-  
-           <Label layoutX="297.0" layoutY="148.0" text="X" textAlignment="CENTER" textFill="RED" fx:id="xUsername">
+           <Label layoutX="295.0" layoutY="136.0" text="X" textAlignment="CENTER" textFill="RED" fx:id="xUsername">
          <effect>
             <Glow />
          </effect>
       </Label>
-      <Label layoutX="297.0" layoutY="181.0" text="X" textAlignment="CENTER" textFill="RED" fx:id="xPassword">
+      <Label layoutX="295.0" layoutY="169.0" text="X" textAlignment="CENTER" textFill="RED" fx:id="xPassword">
          <effect>
             <Glow />
          </effect>
       </Label>
-      <Label fx:id="lblUdfyldVenligst" layoutX="81.0" layoutY="244.0" text="Udfyld venligst de markede felter." textFill="RED" />
       <Label fx:id="lblInvalidUser" layoutX="81.0" layoutY="244.0" text="Invalid user or password" />
+
+      <Label fx:id="lblUdfyldVenligst" layoutX="79.0" layoutY="232.0" text="Udfyld venligst de markede felter." textFill="RED" />
+      <Label fx:id="lblInvalidUser" layoutX="79.0" layoutY="232.0" text="Invalid user or password" />
    </children>
 </AnchorPane>
