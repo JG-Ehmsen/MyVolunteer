@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -30,5 +31,18 @@
             </image>
         </ImageView>
         <Button fx:id="btnBack" layoutX="77.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleBack" prefWidth="65.0" text="Tilbage" />
-    </children>
+  
+           <Label layoutX="297.0" layoutY="148.0" text="X" textAlignment="CENTER" textFill="RED" fx:id="xUsername">
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Label layoutX="297.0" layoutY="181.0" text="X" textAlignment="CENTER" textFill="RED" fx:id="xPassword">
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Label fx:id="lblUdfyldVenligst" layoutX="81.0" layoutY="244.0" text="Udfyld venligst de markede felter." textFill="RED" />
+      <Label fx:id="lblInvalidUser" layoutX="81.0" layoutY="244.0" text="Invalid user or password" />
+   </children>
 </AnchorPane>
