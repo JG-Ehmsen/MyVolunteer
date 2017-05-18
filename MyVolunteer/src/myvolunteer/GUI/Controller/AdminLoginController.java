@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import myvolunteer.GUI.Model.DataParserModel;
@@ -42,6 +43,14 @@ public class AdminLoginController implements Initializable
     private Button btnLogin;
     @FXML
     private Button btnBack;
+    @FXML
+    private Label xUsername;
+    @FXML
+    private Label xPassword;
+    @FXML
+    private Label lblUdfyldVenligst;
+    @FXML
+    private Label lblInvalidUser;
 
     /**
      * Initializes the controller class.
@@ -49,43 +58,48 @@ public class AdminLoginController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-
+        xUsername.setVisible(false);
+        xPassword.setVisible(false);
+        lblUdfyldVenligst.setVisible(false);
+        lblInvalidUser.setVisible(false);
     }
 
     @FXML
     private void handleLogin(ActionEvent event) throws IOException
-    {
-        //checkFieldsContent();
-        
-        if(!UsernameField.getText().isEmpty())
+    {        
+        if(!UsernameField.getText().isEmpty() && !codeField.getText().isEmpty())
         {
             Stage stage = (Stage) btnLogin.getScene().getWindow();
-            
+
             dataParserModel.tryLogin(UsernameField.getText(), codeField.getText(), stage);
-        
-        }
-    }
 
-    private void checkFieldsContent() throws IOException
-    {
-        if (UsernameField.getText().isEmpty() || codeField.getText().isEmpty())
+            
+            xUsername.setVisible(false);
+            xPassword.setVisible(false);
+            lblUdfyldVenligst.setVisible(false);
+            
+            lblInvalidUser.setVisible(true);
+            
+        }if(UsernameField.getText().isEmpty())
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fejl");
-            alert.setHeaderText(null);
-            alert.setContentText("Indtast brugernavn og kode");
-
-            alert.showAndWait();
-        } else
+            lblInvalidUser.setVisible(false);
+            xUsername.setVisible(true);
+            lblUdfyldVenligst.setVisible(true);
+        }if(codeField.getText().isEmpty())
         {
-            mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
-
-            //previousStage.close();
-            // Closes the primary stage
-            Stage stage = (Stage) btnLogin.getScene().getWindow();
-            stage.close();
+            lblInvalidUser.setVisible(false);
+            xPassword.setVisible(true);
+            lblUdfyldVenligst.setVisible(true);
+            
+        }if(xUsername.isVisible() && !UsernameField.getText().isEmpty())
+        {
+            xUsername.setVisible(false);
+            
+        }if(xPassword.isVisible() && !codeField.getText().isEmpty())
+        {
+            xPassword.setVisible(false);
         }
-
+       
     }
 
     @FXML

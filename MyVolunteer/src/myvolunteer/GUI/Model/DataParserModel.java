@@ -106,6 +106,16 @@ public class DataParserModel
         bllFacade.UpdateGuild(guild);
     }
 
+    public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active)
+    {
+        bllFacade.setGuildRelationStatus(guild, volunteer, active);
+    }
+
+    public void changeGuildManager(Guild guild, Manager manager)
+    {
+        bllFacade.changeGuildManager(guild, manager);
+    }
+  
     public void CreateNewManager(Manager manager, String password)
     {
         bllFacade.CreateNewManager(manager, password);
@@ -133,13 +143,13 @@ public class DataParserModel
             {
                 Logger.getLogger(DataParserModel.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else
+        }/*else
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Wrong Login");
             alert.setContentText("Wrong username or password. Try again.");
 
             alert.showAndWait();
-        }
+        }*/
     }
 }
