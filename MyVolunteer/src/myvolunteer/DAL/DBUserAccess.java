@@ -204,7 +204,6 @@ public class DBUserAccess
 
         PreparedStatement ps = con.prepareStatement(sql);
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        //ps.setDate(1, sqlDate);
 
         ResultSet rs = ps.executeQuery();
 
@@ -271,6 +270,14 @@ public class DBUserAccess
         ps.execute();
     }
 
+    /**
+     * Given a volunteer BE, updates the matching record on the database
+     * to the parameters contained within it.
+     * 
+     * @param user
+     * @param con
+     * @throws SQLException 
+     */
     public void UpdateUser(Volunteer user, Connection con) throws SQLException
     {
         String sql = ""
@@ -292,6 +299,14 @@ public class DBUserAccess
         ps.execute();
     }
 
+    /**
+     * Given a manager BE, updates a matching record on the database to the
+     * parameters contained within it.
+     * 
+     * @param manager
+     * @param con
+     * @throws SQLException 
+     */
     public void UpdateManager(Manager manager, Connection con) throws SQLException
     {
         String sql = ""
@@ -514,6 +529,15 @@ public class DBUserAccess
         return returnList;
     }
 
+    /**
+     * Given a volunteer, utilises its ID and returns the total number
+     * of hours of work contributed by that volunteer across all guilds.
+     * 
+     * @param volunteer
+     * @param con
+     * @return
+     * @throws SQLException 
+     */
     public int getHoursWorkedForVolunteer(Volunteer volunteer, Connection con) throws SQLException
     {
         int returnInt = 0;
@@ -643,22 +667,6 @@ public class DBUserAccess
 
         ps.setInt(1, manager.getId());
         ps.setInt(2, guild.getID());
-
-        ps.execute();
-    }
-
-    public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active, Connection con) throws SQLException
-    {
-        String sql = ""
-                + "UPDATE GuildRelation "
-                + "SET Active = ? "
-                + "WHERE UID = ? AND GID = ?";
-
-        PreparedStatement ps = con.prepareStatement(sql);
-
-        ps.setBoolean(1, active);
-        ps.setInt(2, volunteer.getId());
-        ps.setInt(3, guild.getID());
 
         ps.execute();
     }

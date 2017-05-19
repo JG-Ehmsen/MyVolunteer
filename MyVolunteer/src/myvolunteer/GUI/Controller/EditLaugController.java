@@ -162,12 +162,24 @@ public class EditLaugController implements Initializable
 
         for (Volunteer volunteer : listAvailableVolunteers.getItems())
         {
-            notInGuild.add(volunteer.getId());
+            for (Integer g : guild.getMemberList())
+            {
+                if (volunteer.getId() == g)
+                {
+                    notInGuild.add(volunteer.getId());
+                }
+            }
+
         }
 
         for (Volunteer volunteer : listChosenVolunteers.getItems())
         {
             inGuild.add(volunteer.getId());
+        }
+
+        for (Integer i : guild.getMemberList())
+        {
+            inGuild.remove(i);
         }
 
         dp.UpdateGuild(guild, manager, inGuild, notInGuild);

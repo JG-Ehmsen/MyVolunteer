@@ -288,7 +288,7 @@ public class DBTransactions
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void UpdateManager(Manager manager)
     {
         try
@@ -366,7 +366,7 @@ public class DBTransactions
         {
             startTransaction();
 
-            ua.setGuildRelationStatus(guild, volunteer, active, transactionConnection);
+            ga.setGuildRelationStatus(guild.getID(), volunteer.getId(), active, transactionConnection);
 
             commitTransaction();
 
