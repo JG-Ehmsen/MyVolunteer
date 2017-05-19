@@ -109,7 +109,7 @@ public class AdminViewController implements Initializable
     {
         // TODO
         guildList = dp.getGuilds();
-        userList = dp.getUsers();
+        userList = dp.getAllUsers();
         comboContent();
         populateList();
     }
@@ -318,6 +318,5 @@ public class AdminViewController implements Initializable
         Stage stage = (Stage) btnRedigerTovholder.getScene().getWindow();
         stage.close();
     }
-
 
 }

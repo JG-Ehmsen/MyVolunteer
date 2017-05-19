@@ -124,7 +124,7 @@ public class AdminInfoViewController implements Initializable
                 ObservableList<Volunteer> guildUsers = FXCollections.observableArrayList();
                 for (Integer i : lastSelectedGuild.getMemberList())
                 {
-                    for (Volunteer user : dp.getUsers())
+                    for (Volunteer user : dp.getActiveUsers())
                     {
                         if (user.getId() == i)
                         {
@@ -146,7 +146,7 @@ public class AdminInfoViewController implements Initializable
         tblColumnMail.setCellValueFactory(celldata -> celldata.getValue().getMailProperty());
         tblColumnNationality.setCellValueFactory(celldata -> celldata.getValue().getNationalityProperty());
 
-        ObservableList nameArrayList = FXCollections.observableArrayList(dp.getUsers());
+        ObservableList nameArrayList = FXCollections.observableArrayList(dp.getActiveUsers());
         tblViewInfo.setItems(nameArrayList);
     }
 

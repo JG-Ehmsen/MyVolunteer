@@ -88,7 +88,7 @@ public class EditLaugController implements Initializable
     {
         // TODO
         guild = mainViewModel.getLastSelectedGuild();
-        allVolunteerList = dp.getUsers();
+        allVolunteerList = dp.getActiveUsers();
         allUsers.setAll(allVolunteerList);
         listAvailableVolunteers.setItems(allUsers);
         listChosenVolunteers.setItems(chosenUsers);

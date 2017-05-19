@@ -391,5 +391,35 @@ public class DBTransactions
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void deactiveVolunteer(Volunteer volunteer)
+    {
+        try
+        {
+            startTransaction();
+            
+            ua.deactiveVolunteer(volunteer, transactionConnection);
+            
+            commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setVolunteerStatus(Volunteer volunteer, boolean active)
+    {
+        try
+        {
+            startTransaction();
+            
+            ua.setVolunteerStatus(volunteer, active, transactionConnection);
+            
+            commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

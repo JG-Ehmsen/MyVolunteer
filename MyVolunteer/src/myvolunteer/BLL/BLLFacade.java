@@ -101,7 +101,7 @@ public class BLLFacade
     {
         dalFacade.UpdateUser(user);
     }
-    
+
     public void UpdateManager(Manager manager)
     {
         dalFacade.UpdateManager(manager);
@@ -111,7 +111,7 @@ public class BLLFacade
     {
         dalFacade.UpdateGuild(guild, manager, in, out);
     }
-    
+
     public void CreateNewManager(Manager manager, String password)
     {
         dalFacade.CreateNewManager(manager, password);
@@ -130,6 +130,16 @@ public class BLLFacade
     public void changeGuildManager(Guild guild, Manager manager)
     {
         dalFacade.changeGuildManager(guild, manager);
+    }
+
+    public void deactiveVolunteer(Volunteer volunteer)
+    {
+        dalFacade.deactiveVolunteer(volunteer);
+    }
+
+    public void setVolunteerStatus(Volunteer volunteer, boolean active)
+    {
+        dalFacade.setVolunteerStatus(volunteer, active);
     }
 
 }
