@@ -137,4 +137,14 @@ public class DALFacade
     {
         return db.loginQuery(login, pass);
     }
+    
+    public void deactiveVolunteer(Volunteer volunteer)
+    {
+        db.deactiveVolunteer(volunteer);
+    }
+    
+    public void setVolunteerStatus(Volunteer volunteer, boolean active)
+    {
+        db.setVolunteerStatus(volunteer, active);
+    }
 }

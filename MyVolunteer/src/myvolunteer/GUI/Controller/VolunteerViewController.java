@@ -71,7 +71,7 @@ public class VolunteerViewController implements Initializable
     {
         MainFlowPane.setVgap(20);
         MainFlowPane.setHgap(30);
-        for (Volunteer u : dp.getUsers())
+        for (Volunteer u : dp.getActiveUsers())
         {
             for (Integer i : guild.getMemberList())
             {
