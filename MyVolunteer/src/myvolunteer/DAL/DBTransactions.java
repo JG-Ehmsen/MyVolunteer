@@ -288,7 +288,7 @@ public class DBTransactions
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void UpdateManager(Manager manager)
     {
         try
@@ -307,13 +307,13 @@ public class DBTransactions
         }
     }
 
-    public void UpdateGuild(Guild guild, Manager manager)
+    public void UpdateGuild(Guild guild, Manager manager, List<Integer> in, List<Integer> out)
     {
         try
         {
             startTransaction();
 
-            ga.UpdateGuild(guild, manager, transactionConnection);
+            ga.UpdateGuild(guild, manager, in, out, transactionConnection);
 
             commitTransaction();
 
@@ -366,7 +366,7 @@ public class DBTransactions
         {
             startTransaction();
 
-            ua.setGuildRelationStatus(guild, volunteer, active, transactionConnection);
+            ga.setGuildRelationStatus(guild.getID(), volunteer.getId(), active, transactionConnection);
 
             commitTransaction();
 
@@ -386,6 +386,36 @@ public class DBTransactions
 
             commitTransaction();
 
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void deactiveVolunteer(Volunteer volunteer)
+    {
+        try
+        {
+            startTransaction();
+            
+            ua.deactivateVolunteer(volunteer, transactionConnection);
+            
+            commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setVolunteerStatus(Volunteer volunteer, boolean active)
+    {
+        try
+        {
+            startTransaction();
+            
+            ua.setVolunteerStatus(volunteer, active, transactionConnection);
+            
+            commitTransaction();
         } catch (SQLException ex)
         {
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);

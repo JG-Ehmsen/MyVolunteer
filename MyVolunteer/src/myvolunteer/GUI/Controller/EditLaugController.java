@@ -77,6 +77,9 @@ public class EditLaugController implements Initializable
     ObservableList<Volunteer> chosenUsers = FXCollections.observableArrayList();
     ObservableList<Manager> managers = FXCollections.observableArrayList();
 
+    List<Integer> inGuild = new ArrayList();
+    List<Integer> notInGuild = new ArrayList();
+
     /**
      * Initializes the controller class.
      */
@@ -85,7 +88,7 @@ public class EditLaugController implements Initializable
     {
         // TODO
         guild = mainViewModel.getLastSelectedGuild();
-        allVolunteerList = dp.getUsers();
+        allVolunteerList = dp.getActiveUsers();
         allUsers.setAll(allVolunteerList);
         listAvailableVolunteers.setItems(allUsers);
         listChosenVolunteers.setItems(chosenUsers);
@@ -104,7 +107,6 @@ public class EditLaugController implements Initializable
     private void setStartManager()
     {
         manager = dp.getManagerForGuild(guild);
-        guild.setOldManagerID(manager.getId());
         comboManager.getSelectionModel().select(manager);
     }
 
@@ -158,7 +160,29 @@ public class EditLaugController implements Initializable
         guild.setDescription(txtLaugInformation.getText());
         guild.setName(txtLaugName.getText());
 
-        dp.UpdateGuild(guild, manager);
+        for (Volunteer volunteer : listAvailableVolunteers.getItems())
+        {
+            for (Integer g : guild.getMemberList())
+            {
+                if (volunteer.getId() == g)
+                {
+                    notInGuild.add(volunteer.getId());
+                }
+            }
+
+        }
+
+        for (Volunteer volunteer : listChosenVolunteers.getItems())
+        {
+            inGuild.add(volunteer.getId());
+        }
+
+        for (Integer i : guild.getMemberList())
+        {
+            inGuild.remove(i);
+        }
+
+        dp.UpdateGuild(guild, manager, inGuild, notInGuild);
     }
 
     @FXML

@@ -9,6 +9,7 @@ import java.util.List;
 import myvolunteer.BE.Guild;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,12 +46,27 @@ public class DataParserModel
 
     BLLFacade bllFacade = BLLFacade.getInstance();
 
-    public List<Guild> getGuilds()
+    public List<Guild> getActiveGuilds()
     {
         return bllFacade.getGuilds();
     }
 
-    public List<Volunteer> getUsers()
+    public List<Volunteer> getActiveUsers()
+    {
+        List<Volunteer> activeUsers = new ArrayList();
+        List<Volunteer> allUsers = bllFacade.getUsers();
+
+        for (Volunteer user : allUsers)
+        {
+            if (user.isActive())
+            {
+                activeUsers.add(user);
+            }
+        }
+        return activeUsers;
+    }
+
+    public List<Volunteer> getAllUsers()
     {
         return bllFacade.getUsers();
     }
@@ -100,15 +116,15 @@ public class DataParserModel
     {
         bllFacade.UpdateUser(user);
     }
-    
+
     public void UpdateManager(Manager manager)
     {
         bllFacade.UpdateManager(manager);
     }
 
-    public void UpdateGuild(Guild guild, Manager manager)
+    public void UpdateGuild(Guild guild, Manager manager, List<Integer> in, List<Integer> out)
     {
-        bllFacade.UpdateGuild(guild, manager);
+        bllFacade.UpdateGuild(guild, manager, in, out);
     }
 
     public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active)
@@ -120,7 +136,7 @@ public class DataParserModel
     {
         bllFacade.changeGuildManager(guild, manager);
     }
-  
+
     public void CreateNewManager(Manager manager, String password)
     {
         bllFacade.CreateNewManager(manager, password);
@@ -156,5 +172,15 @@ public class DataParserModel
 
             alert.showAndWait();
         }*/
+    }
+
+    public void deactiveVolunteer(Volunteer volunteer)
+    {
+        bllFacade.deactiveVolunteer(volunteer);
+    }
+
+    public void setVolunteerStatus(Volunteer volunteer, boolean active)
+    {
+        bllFacade.setVolunteerStatus(volunteer, active);
     }
 }

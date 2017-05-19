@@ -79,7 +79,7 @@ public class AddLaugController implements Initializable
     {
         lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteer.getItems().size());
 
-        allVolunteerList = dp.getUsers();
+        allVolunteerList = dp.getActiveUsers();
         allUsers.setAll(allVolunteerList);
         listAvailableVolunteers.setItems(allUsers);
         listChosenVolunteer.setItems(chosenUsers);
