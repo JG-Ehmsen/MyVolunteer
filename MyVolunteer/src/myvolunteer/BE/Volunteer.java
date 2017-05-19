@@ -31,9 +31,19 @@ public class Volunteer extends User
         gender.set(value);
     }
 
+    public StringProperty getGenderProperty()
+    {
+        return this.gender;
+    }
+
     public String getNationality()
     {
         return nationality.get();
+    }
+
+    public StringProperty getNationalityProperty()
+    {
+        return this.nationality;
     }
 
     public void setNationality(String value)
