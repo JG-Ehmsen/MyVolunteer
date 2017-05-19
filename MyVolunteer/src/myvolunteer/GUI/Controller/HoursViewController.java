@@ -58,6 +58,8 @@ public class HoursViewController implements Initializable
     private String validationFile = "numberValidation.txt";
     @FXML
     private Button btnBack;
+    @FXML
+    private Label lblName;
 
     /**
      * Initializes the controller class.
@@ -71,7 +73,10 @@ public class HoursViewController implements Initializable
 
         datePicker.setValue(LocalDate.now());
         if (user.getLastInputDate() != null)
-        lblLastUpdated.setText("Sidst opdateret: " + user.getLastInputDate().toString());
+        {
+            lblLastUpdated.setText("Sidst opdateret:\n" + user.getLastInputDate().toString());
+        }
+        lblName.setText(user.getFirstName() + " " + user.getLastName());
     }
 
     @FXML
@@ -115,7 +120,7 @@ public class HoursViewController implements Initializable
                 isFound = true;
 
                 //Change view to mainView (LaugView) after validation has been confirmed
-                mainViewModel.changeView("Laug", "GUI/View/LaugView.fxml");
+                mainViewModel.changeView("Laug", "GUI/View/LaugViewSpecial.fxml");
                 // Closes the primary stage
                 Stage stage = (Stage) btnConfirmHours.getScene().getWindow();
                 stage.close();
@@ -151,5 +156,33 @@ public class HoursViewController implements Initializable
     {
         //reference to writeToDatabase method in DataParserModel
         dataParserModel.writeHoursToDatabase(volunteer, hours, guild, date);
+    }
+
+    @FXML
+    private void handleDigitAction(ActionEvent event)
+    {
+        String digit = ((Button) event.getSource()).getText();
+        String oldNumber = txtFieldHours.getText();
+        String newNumber = oldNumber + digit;
+        txtFieldHours.setText(newNumber);
+    }
+
+    @FXML
+    private void handleDeleteAction(ActionEvent event)
+    {
+        String originalText = txtFieldHours.getText();
+        String currentText = removeLastChar(originalText);
+        txtFieldHours.setText(currentText);
+
+    }
+
+    public String removeLastChar(String str)
+    {
+
+        if (str != null && str.length() > 0)
+        {
+            str = str.substring(0, str.length() - 1);
+        }
+        return str;
     }
 }
