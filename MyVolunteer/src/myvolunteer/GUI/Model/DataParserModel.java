@@ -46,7 +46,7 @@ public class DataParserModel
 
     BLLFacade bllFacade = BLLFacade.getInstance();
 
-    public List<Guild> getGuilds()
+    public List<Guild> getActiveGuilds()
     {
         return bllFacade.getGuilds();
     }

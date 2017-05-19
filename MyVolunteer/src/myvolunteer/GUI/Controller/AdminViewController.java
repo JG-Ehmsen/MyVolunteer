@@ -108,7 +108,7 @@ public class AdminViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-        guildList = dp.getGuilds();
+        guildList = dp.getActiveGuilds();
         userList = dp.getAllUsers();
         comboContent();
         populateList();

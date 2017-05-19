@@ -72,7 +72,7 @@ public class LaugViewController implements Initializable
 
     private void initGuildButtons()
     {
-        for (Guild g : dp.getGuilds())
+        for (Guild g : dp.getActiveGuilds())
         {
             PictureButton b = new PictureButton(g);
 

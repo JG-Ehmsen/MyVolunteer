@@ -80,7 +80,7 @@ public class AdminInfoViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-        guildList = dp.getGuilds();
+        guildList = dp.getActiveGuilds();
         initializeTable();
         comboContent();
     }
