@@ -47,6 +47,7 @@ public class DBUserAccess
             String nationality = rs.getString("Nationality");
             String note = rs.getString("Note");
             Date date = rs.getDate("LastDate");
+            boolean active = rs.getBoolean("Active");
 
             Volunteer user = new Volunteer(ID, fName, phoneNumber);
             user.setLastName(lName);
@@ -55,8 +56,9 @@ public class DBUserAccess
             user.setNationality(nationality);
             user.setNote(note);
             user.setLastInputDate(date);
-            userList.add(user);
+            user.setIsActive(active);
 
+            userList.add(user);
         }
         return userList;
     }
@@ -254,8 +256,8 @@ public class DBUserAccess
         Date today = new Date();
         java.sql.Date sqlDate = new java.sql.Date(today.getTime());
         String sql = ""
-                + "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, LastDate, Note) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                + "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, LastDate, Note, Active) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, user.getFirstName());
@@ -271,12 +273,12 @@ public class DBUserAccess
     }
 
     /**
-     * Given a volunteer BE, updates the matching record on the database
-     * to the parameters contained within it.
-     * 
+     * Given a volunteer BE, updates the matching record on the database to the
+     * parameters contained within it.
+     *
      * @param user
      * @param con
-     * @throws SQLException 
+     * @throws SQLException
      */
     public void UpdateUser(Volunteer user, Connection con) throws SQLException
     {
@@ -302,10 +304,10 @@ public class DBUserAccess
     /**
      * Given a manager BE, updates a matching record on the database to the
      * parameters contained within it.
-     * 
+     *
      * @param manager
      * @param con
-     * @throws SQLException 
+     * @throws SQLException
      */
     public void UpdateManager(Manager manager, Connection con) throws SQLException
     {
@@ -530,13 +532,13 @@ public class DBUserAccess
     }
 
     /**
-     * Given a volunteer, utilises its ID and returns the total number
-     * of hours of work contributed by that volunteer across all guilds.
-     * 
+     * Given a volunteer, utilises its ID and returns the total number of hours
+     * of work contributed by that volunteer across all guilds.
+     *
      * @param volunteer
      * @param con
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public int getHoursWorkedForVolunteer(Volunteer volunteer, Connection con) throws SQLException
     {
@@ -669,5 +671,41 @@ public class DBUserAccess
         ps.setInt(2, guild.getID());
 
         ps.execute();
+    }
+
+    public void deactivateVolunteer(Volunteer volunteer, Connection con) throws SQLException
+    {
+        setVolunteerStatus(volunteer, false, con);
+        deactivateVolunteerInAllGuilds(volunteer, con);
+    }
+
+    public void setVolunteerStatus(Volunteer volunteer, boolean active, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "UPDATE Users "
+                + "SET Active = ? "
+                + "WHERE UID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setBoolean(1, active);
+        ps.setInt(2, volunteer.getId());
+
+        ps.execute();
+    }
+
+    public void deactivateVolunteerInAllGuilds(Volunteer volunteer, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "UPDATE GuildRelation "
+                + "SET Active = 0 "
+                + "WHERE UID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, volunteer.getId());
+
+        ps.execute();
+
     }
 }

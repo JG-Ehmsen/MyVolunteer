@@ -46,6 +46,8 @@ public class EditVolunteerController implements Initializable
     @FXML
     private Button btnBack;
     @FXML
+    private Button btnChangeStatus;
+    @FXML
     private TextField txtFName;
     @FXML
     private RadioButton rdoMand;
@@ -93,6 +95,15 @@ public class EditVolunteerController implements Initializable
         xFirstName.setVisible(false);
         xLastName.setVisible(false);
         lblUdfyldVenligst.setVisible(false);
+
+        if (volunteer.isActive())
+        {
+            btnChangeStatus.setText("Gør inaktiv");
+        } else
+        {
+            btnChangeStatus.setText("Gør aktiv");
+        }
+
     }
 
     private void loadInfo()
@@ -188,11 +199,24 @@ public class EditVolunteerController implements Initializable
     }
 
     @FXML
-    private void handleDelete(ActionEvent event) throws IOException
+    private void handleChangeStatus(ActionEvent event) throws IOException
+    {
+        if (volunteer.isActive())
+        {
+            deactivate();
+        } else
+        {
+            activate();
+        }
+
+    }
+
+    private void deactivate() throws IOException
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Slet frivillig");
-        alert.setHeaderText("Du er ved at fjerne en frivillig.");
+        alert.setTitle("Deaktiver frivillig");
+        alert.setHeaderText("Du er ved at deaktivere en frivillig. De vil også "
+                + "blive fjernet fra alle laug.");
         alert.setContentText("Tryk OK for at fortsætte.");
 
         ButtonType buttonTypeOK = new ButtonType("OK");
@@ -203,7 +227,31 @@ public class EditVolunteerController implements Initializable
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOK)
         {
-            // IMPLEMENT DELETE
+            dp.deactiveVolunteer(volunteer);
+            goBack();
+        } else
+        {
+            alert.close();
+        }
+    }
+
+    private void activate() throws IOException
+    {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Aktiver frivillig");
+        alert.setHeaderText("Du er ved at aktivere en frivillig. De skal manuelt "
+                + "tilføjes til alle laug igen.");
+        alert.setContentText("Tryk OK for at fortsætte.");
+
+        ButtonType buttonTypeOK = new ButtonType("OK");
+        ButtonType buttonTypeAnnuller = new ButtonType("Annuller");
+
+        alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeAnnuller);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOK)
+        {
+            dp.setVolunteerStatus(volunteer, true);
             goBack();
         } else
         {
