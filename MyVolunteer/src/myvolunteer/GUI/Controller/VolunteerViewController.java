@@ -119,7 +119,7 @@ public class VolunteerViewController implements Initializable
     {
         try
         {
-            mainViewModel.changeView("Indtast timer", "GUI/View/HoursView.fxml");
+            mainViewModel.changeView("Indtast timer", "GUI/View/HoursSpecial.fxml");
             
             // Closes the primary stage
             Stage stage = (Stage) btnBack.getScene().getWindow();
