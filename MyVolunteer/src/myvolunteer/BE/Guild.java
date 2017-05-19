@@ -14,11 +14,11 @@ public class Guild
 
     private StringProperty description = new SimpleStringProperty();
 
-    private List<Integer> memberList = new ArrayList(); 
+    private List<Integer> memberList = new ArrayList();
 
     private String image = "myvolunteer/GUI/View/Resource/GuildPicture.png";
-    
-    private int oldManagerID;
+
+    private boolean isActive;
 
     public Guild(int ID, String name)
     {
@@ -72,16 +72,14 @@ public class Guild
         return this.getName();
     }
 
-    public int getOldManagerID()
+    public boolean isIsActive()
     {
-        return oldManagerID;
+        return isActive;
     }
 
-    public void setOldManagerID(int oldManagerID)
+    public void setIsActive(boolean isActive)
     {
-        this.oldManagerID = oldManagerID;
+        this.isActive = isActive;
     }
-    
-    
 
 }

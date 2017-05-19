@@ -113,9 +113,9 @@ public class DALFacade
         db.UpdateManager(manager);
     }
 
-    public void UpdateGuild(Guild guild, Manager manager)
+    public void UpdateGuild(Guild guild, Manager manager, List<Integer> in, List<Integer> out)
     {
-        db.UpdateGuild(guild, manager);
+        db.UpdateGuild(guild, manager, in, out);
     }
 
     public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active)

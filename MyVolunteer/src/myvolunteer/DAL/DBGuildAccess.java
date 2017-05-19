@@ -24,7 +24,7 @@ public class DBGuildAccess
     {
         List<Guild> guildList = new ArrayList();
         String sql = ""
-                + "SELECT *"
+                + "SELECT * "
                 + "FROM Guild";
 
         PreparedStatement ps = con.prepareStatement(sql);
@@ -39,13 +39,14 @@ public class DBGuildAccess
 
             Guild guild = new Guild(ID, name);
             guild.setDescription(description);
+            guild.setIsActive(rs.getBoolean("Active"));
 
             guildList.add(guild);
 
         }
 
         sql = ""
-                + "SELECT *"
+                + "SELECT * "
                 + "FROM GuildRelation";
 
         ps = con.prepareStatement(sql);
@@ -57,7 +58,7 @@ public class DBGuildAccess
             int GID = rs.getInt("GID");
             for (Guild guild : guildList)
             {
-                if (GID == guild.getID())
+                if (GID == guild.getID() && guild.isIsActive())
                 {
                     int UID = rs.getInt("UID");
                     guild.getMemberList().add(UID);
@@ -79,7 +80,8 @@ public class DBGuildAccess
     public void CreateNewLaug(Guild guild, int MID, Connection con) throws SQLException
     {
         String sql = ""
-                + "INSERT INTO Guild(GName, Description) VALUES(?, ?)";
+                + "INSERT INTO Guild(GName, Description, Active) "
+                + "VALUES(?, ?, 1)";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, guild.getName());
@@ -99,7 +101,13 @@ public class DBGuildAccess
         createManagerRelation(GID, MID, con);
     }
 
-    public void UpdateGuild(Guild guild, Manager manager, Connection con) throws SQLException
+    public void UpdateGuild(Guild guild, Manager manager, List<Integer> in, List<Integer> out, Connection con) throws SQLException
+    {
+        setGuildInfo(guild, con);
+        changeGuildManager(guild, manager, con);
+    }
+
+    public void setGuildInfo(Guild guild, Connection con) throws SQLException
     {
         String sql = ""
                 + "UPDATE Guild "
@@ -112,8 +120,6 @@ public class DBGuildAccess
         ps.setInt(3, guild.getID());
 
         ps.execute();
-        
-        changeGuildManager(guild, manager, con);
     }
 
     public void changeGuildManager(Guild guild, Manager manager, Connection con) throws SQLException
@@ -167,8 +173,8 @@ public class DBGuildAccess
     private void createManagerRelation(int GID, int MID, Connection con) throws SQLException
     {
         String sql = ""
-                + "INSERT INTO ManagerRelation(MID, GID, Active) "
-                + "VALUES(?, ?, 1)";
+                + "INSERT INTO ManagerRelation(MID, GID) "
+                + "VALUES(?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, MID);

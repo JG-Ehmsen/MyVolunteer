@@ -106,9 +106,9 @@ public class DataParserModel
         bllFacade.UpdateManager(manager);
     }
 
-    public void UpdateGuild(Guild guild, Manager manager)
+    public void UpdateGuild(Guild guild, Manager manager, List<Integer> in, List<Integer> out)
     {
-        bllFacade.UpdateGuild(guild, manager);
+        bllFacade.UpdateGuild(guild, manager, in, out);
     }
 
     public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active)
