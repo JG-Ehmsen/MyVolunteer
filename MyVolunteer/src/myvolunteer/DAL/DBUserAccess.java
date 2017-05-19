@@ -28,7 +28,7 @@ public class DBUserAccess
     {
         List<Volunteer> userList = new ArrayList();
         String sql = ""
-                + "SELECT *"
+                + "SELECT * "
                 + "FROM Users";
 
         PreparedStatement ps = con.prepareStatement(sql);
@@ -87,7 +87,10 @@ public class DBUserAccess
         }
         int startingHours = getDateRelationHours(DRID, con);
 
-        String sql = "UPDATE DateRelation SET Hours = ? WHERE DRID = ?";
+        String sql = ""
+                + "UPDATE DateRelation "
+                + "SET Hours = ? "
+                + "WHERE DRID = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, startingHours + hours);
@@ -112,7 +115,10 @@ public class DBUserAccess
     {
         int returnInt = 0;
 
-        String sql = "SELECT gr.GRID FROM GuildRelation gr, Guild g, Users u WHERE gr.GID = g.GID AND gr.UID = u.UID AND u.UID = ? AND g.GID = ?";
+        String sql = ""
+                + "SELECT gr.GRID "
+                + "FROM GuildRelation gr, Guild g, Users u "
+                + "WHERE gr.GID = g.GID AND gr.UID = u.UID AND u.UID = ? AND g.GID = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, volunteer.getId());
@@ -132,7 +138,10 @@ public class DBUserAccess
     {
         int returnInt = 0;
 
-        String sql = "SELECT mr.MRID FROM ManagerRelation mr, Guild g, Managers m WHERE mr.GID = g.GID AND mr.UID = m.MID AND m.MID = ? AND g.GID = ?";
+        String sql = ""
+                + "SELECT mr.MRID "
+                + "FROM ManagerRelation mr, Guild g, Managers m "
+                + "WHERE mr.GID = g.GID AND mr.UID = m.MID AND m.MID = ? AND g.GID = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, manager.getId());
@@ -189,11 +198,12 @@ public class DBUserAccess
     {
         int returnInt = 0;
 
-        String sql = "SELECT DID, Date FROM Dates";
+        String sql = ""
+                + "SELECT DID, Date "
+                + "FROM Dates";
 
         PreparedStatement ps = con.prepareStatement(sql);
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        //ps.setDate(1, sqlDate);
 
         ResultSet rs = ps.executeQuery();
 
@@ -220,7 +230,9 @@ public class DBUserAccess
      */
     private void createNewDate(Date date, Connection con) throws SQLException
     {
-        String sql = "INSERT INTO Dates(Date) VALUES (?)";
+        String sql = ""
+                + "INSERT INTO Dates(Date) "
+                + "VALUES (?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -241,7 +253,9 @@ public class DBUserAccess
     {
         Date today = new Date();
         java.sql.Date sqlDate = new java.sql.Date(today.getTime());
-        String sql = "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, LastDate, Note) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = ""
+                + "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, LastDate, Note) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, user.getFirstName());
@@ -256,6 +270,14 @@ public class DBUserAccess
         ps.execute();
     }
 
+    /**
+     * Given a volunteer BE, updates the matching record on the database
+     * to the parameters contained within it.
+     * 
+     * @param user
+     * @param con
+     * @throws SQLException 
+     */
     public void UpdateUser(Volunteer user, Connection con) throws SQLException
     {
         String sql = ""
@@ -277,6 +299,14 @@ public class DBUserAccess
         ps.execute();
     }
 
+    /**
+     * Given a manager BE, updates a matching record on the database to the
+     * parameters contained within it.
+     * 
+     * @param manager
+     * @param con
+     * @throws SQLException 
+     */
     public void UpdateManager(Manager manager, Connection con) throws SQLException
     {
         String sql = ""
@@ -312,7 +342,9 @@ public class DBUserAccess
     {
         int returnInt = 0;
 
-        String sql = "SELECT DID, GRID, DRID FROM DateRelation";
+        String sql = ""
+                + "SELECT DID, GRID, DRID "
+                + "FROM DateRelation";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -348,7 +380,9 @@ public class DBUserAccess
         int DID = getDateID(date, con);
         int GRID = getGuildRelationID(volunteer, guild, con);
 
-        String sql = "INSERT INTO DateRelation(DID, GRID, Hours) VALUES (?, ?, 0)";
+        String sql = ""
+                + "INSERT INTO DateRelation(DID, GRID, Hours) "
+                + "VALUES (?, ?, 0)";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, DID);
@@ -370,7 +404,10 @@ public class DBUserAccess
     private int getDateRelationHours(int DRID, Connection con) throws SQLException
     {
         int returnInt = 0;
-        String sql = "SELECT Hours FROM DateRelation WHERE DRID = ?";
+        String sql = ""
+                + "SELECT Hours "
+                + "FROM DateRelation "
+                + "WHERE DRID = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, DRID);
@@ -492,6 +529,15 @@ public class DBUserAccess
         return returnList;
     }
 
+    /**
+     * Given a volunteer, utilises its ID and returns the total number
+     * of hours of work contributed by that volunteer across all guilds.
+     * 
+     * @param volunteer
+     * @param con
+     * @return
+     * @throws SQLException 
+     */
     public int getHoursWorkedForVolunteer(Volunteer volunteer, Connection con) throws SQLException
     {
         int returnInt = 0;
@@ -523,7 +569,7 @@ public class DBUserAccess
         addManager(man, con);
 
         int MID = getManagerID(man, con);
-        
+
         createNewPassword(MID, password, con);
     }
 
@@ -616,27 +662,11 @@ public class DBUserAccess
                 + "UPDATE ManagerRelation "
                 + "SET MID = ? "
                 + "WHERE MID = ? AND GID = ?";
-      
+
         PreparedStatement ps = con.prepareStatement(sql);
 
         ps.setInt(1, manager.getId());
         ps.setInt(2, guild.getID());
-
-        ps.execute();
-    }
-
-    public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active, Connection con) throws SQLException
-    {
-        String sql = ""
-                + "UPDATE GuildRelation "
-                + "SET Active = ? "
-                + "WHERE UID = ? AND GID = ?";
-
-        PreparedStatement ps = con.prepareStatement(sql);
-
-        ps.setBoolean(1, active);
-        ps.setInt(2, volunteer.getId());
-        ps.setInt(3, guild.getID());
 
         ps.execute();
     }

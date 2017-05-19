@@ -13,12 +13,13 @@ public class User
     private StringProperty email = new SimpleStringProperty();
     protected StringProperty phoneNumber = new SimpleStringProperty();
     private String image = "myvolunteer/GUI/View/Resource/UserPicture.png";
+    private boolean isActive;
 
     public User(int id)
     {
         this.id = id;
     }
- 
+
     public int getId()
     {
         return id;
@@ -94,7 +95,7 @@ public class User
     {
         return this.firstName;
     }
-    
+
     public StringProperty getLNameProperty()
     {
         return this.lastName;
@@ -104,4 +105,15 @@ public class User
     {
         return this.email;
     }
+
+    public boolean isIsActive()
+    {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive)
+    {
+        this.isActive = isActive;
+    }
+
 }
