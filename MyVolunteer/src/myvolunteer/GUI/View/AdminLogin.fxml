@@ -41,9 +41,8 @@
             <Glow />
          </effect>
       </Label>
-      <Label fx:id="lblInvalidUser" layoutX="81.0" layoutY="244.0" text="Invalid user or password" />
 
-      <Label fx:id="lblUdfyldVenligst" layoutX="79.0" layoutY="232.0" text="Udfyld venligst de markede felter." textFill="RED" />
-      <Label fx:id="lblInvalidUser" layoutX="79.0" layoutY="232.0" text="Invalid user or password" />
+      <Label fx:id="lblUdfyldVenligst" layoutX="79.0" layoutY="227.0" text="Udfyld venligst de markede felter." textFill="RED" />
+      <Label fx:id="lblInvalidUser" layoutX="79.0" layoutY="227.0" text="Invalid user or password" />
    </children>
 </AnchorPane>
