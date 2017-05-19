@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
+import myvolunteer.BE.Volunteer;
 
 public class DBGuildAccess
 {
@@ -47,7 +48,8 @@ public class DBGuildAccess
 
         sql = ""
                 + "SELECT * "
-                + "FROM GuildRelation";
+                + "FROM GuildRelation "
+                + "WHERE Active = 1";
 
         ps = con.prepareStatement(sql);
 
@@ -105,6 +107,36 @@ public class DBGuildAccess
     {
         setGuildInfo(guild, con);
         changeGuildManager(guild, manager, con);
+        addOrActivateGuildRelations(guild, in, con);
+        deactivateGuildRelations(guild, out, con);
+    }
+
+    public void addOrActivateGuildRelations(Guild guild, List<Integer> in, Connection con) throws SQLException
+    {
+        int GID = guild.getID();
+
+        for (Integer UID : in)
+        {
+            int GRID = getGuildRelationID(GID, UID, con);
+
+            if (GRID == -1)
+            {
+                createGuildRelation(GID, UID, con);
+            } else if (GRID > 0)
+            {
+                setGuildRelationStatus(GID, UID, true, con);
+            }
+        }
+
+    }
+
+    public void deactivateGuildRelations(Guild guild, List<Integer> out, Connection con) throws SQLException
+    {
+        int GID = guild.getID();
+        for (Integer UID : out)
+        {
+            setGuildRelationStatus(GID, UID, false, con);
+        }
     }
 
     public void setGuildInfo(Guild guild, Connection con) throws SQLException
@@ -225,6 +257,53 @@ public class DBGuildAccess
 
             returnInt = returnInt + hours;
         }
+        return returnInt;
+    }
+
+    public void setGuildRelationStatus(int GID, int UID, boolean active, Connection con) throws SQLException
+    {
+
+        String sql = ""
+                + "UPDATE GuildRelation "
+                + "SET Active = ? "
+                + "WHERE UID = ? AND GID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setBoolean(1, active);
+        ps.setInt(2, UID);
+        ps.setInt(3, GID);
+
+        ps.execute();
+    }
+
+    public Integer getGuildRelationID(int GID, int UID, Connection con) throws SQLException
+    {
+        int returnInt = -1;
+
+        String sql = ""
+                + "SELECT * "
+                + "FROM GuildRelation "
+                + "WHERE GID = ? AND UID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, GID);
+        ps.setInt(2, UID);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            if (!rs.getBoolean("Active"))
+            {
+                returnInt = rs.getInt("GRID");
+            } else
+            {
+                returnInt = 0;
+            }
+        }
+
         return returnInt;
     }
 }
