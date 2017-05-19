@@ -398,7 +398,7 @@ public class DBTransactions
         {
             startTransaction();
             
-            ua.deactiveVolunteer(volunteer, transactionConnection);
+            ua.deactivateVolunteer(volunteer, transactionConnection);
             
             commitTransaction();
         } catch (SQLException ex)

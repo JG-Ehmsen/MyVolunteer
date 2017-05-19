@@ -673,10 +673,10 @@ public class DBUserAccess
         ps.execute();
     }
 
-    public void deactiveVolunteer(Volunteer volunteer, Connection con) throws SQLException
+    public void deactivateVolunteer(Volunteer volunteer, Connection con) throws SQLException
     {
         setVolunteerStatus(volunteer, false, con);
-        deactiveVolunteerInAllGuilds(volunteer, con);
+        deactivateVolunteerInAllGuilds(volunteer, con);
     }
 
     public void setVolunteerStatus(Volunteer volunteer, boolean active, Connection con) throws SQLException
@@ -694,7 +694,7 @@ public class DBUserAccess
         ps.execute();
     }
 
-    public void deactiveVolunteerInAllGuilds(Volunteer volunteer, Connection con) throws SQLException
+    public void deactivateVolunteerInAllGuilds(Volunteer volunteer, Connection con) throws SQLException
     {
         String sql = ""
                 + "UPDATE GuildRelation "
