@@ -37,10 +37,11 @@ public class DBGuildAccess
             int ID = rs.getInt("GID");
             String name = rs.getString("GName");
             String description = rs.getString("Description");
+            boolean active = rs.getBoolean("Active");
 
             Guild guild = new Guild(ID, name);
             guild.setDescription(description);
-            guild.setIsActive(rs.getBoolean("Active"));
+            guild.setIsActive(active);
 
             guildList.add(guild);
 
@@ -305,5 +306,41 @@ public class DBGuildAccess
         }
 
         return returnInt;
+    }
+    
+    public void deactivateGuild(Guild guild, Connection con) throws SQLException
+    {
+        setGuildStatus(guild, false, con);
+        deactivateGuildForAllUsers(guild, con);
+    
+    }
+    
+    public void setGuildStatus(Guild guild, boolean active, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "UPDATE Guild "
+                + "SET Active = ? "
+                + "WHERE GID = ?";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setBoolean(1, active);
+        ps.setInt(2, guild.getID());
+        
+        ps.execute();
+    }
+    
+    public void deactivateGuildForAllUsers(Guild guild, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "UPDATE GuildRelation "
+                + "Set Active = 0 "
+                + "WHERE GID = ?";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setInt(1, guild.getID());
+        
+        ps.execute();
     }
 }
