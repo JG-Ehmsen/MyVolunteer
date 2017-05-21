@@ -421,5 +421,39 @@ public class DBTransactions
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void deactivateGuild(Guild guild)
+    {
+        try
+        {
+            startTransaction();
+            
+            ga.deactivateGuild(guild, transactionConnection);
+            
+            commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setGuildStatus(Guild guild, boolean active)
+    {
+        
+        
+        try
+        {
+            startTransaction();
+            
+            ga.setGuildStatus(guild, active, transactionConnection);
+            
+            commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
 
 }

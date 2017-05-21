@@ -183,4 +183,14 @@ public class DataParserModel
     {
         bllFacade.setVolunteerStatus(volunteer, active);
     }
+    
+    public void deactivateGuild(Guild guild)
+    {
+        bllFacade.deactivateGuild(guild);
+    }
+    
+    public void setGuildStatus(Guild guild, boolean active)
+    {
+        bllFacade.setGuildStatus(guild, active);
+    }
 }
