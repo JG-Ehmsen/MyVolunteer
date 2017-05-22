@@ -262,13 +262,25 @@ public class ManagerViewController implements Initializable
     }
 
     @FXML
-    private void handleRedigerFrivillig(ActionEvent event)
+    private void handleRedigerFrivillig(ActionEvent event) throws IOException
     {
+        mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
+        mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) redigerFrivillig.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
-    private void handleRedigerLaug(ActionEvent event)
+    private void handleRedigerLaug(ActionEvent event) throws IOException
     {
+        mainViewModel.setLastSelectedGuild(lastSelectedGuild);
+        mainViewModel.changeView("Rediger laug", "GUI/View/EditLaug.fxml");
+        
+        // Closes the primary stage
+        Stage stage = (Stage) redigerLaug.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
