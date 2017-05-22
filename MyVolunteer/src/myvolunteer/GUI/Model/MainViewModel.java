@@ -44,9 +44,8 @@ public class MainViewModel
 
     private Volunteer lastSelectedUser;
     private Guild lastSelectedGuild;
-    
     private Manager loggedInManager;
-    
+        
     public void changeView(String title, String path) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
