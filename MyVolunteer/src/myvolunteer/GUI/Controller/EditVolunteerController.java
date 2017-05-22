@@ -76,6 +76,16 @@ public class EditVolunteerController implements Initializable
 
     Volunteer volunteer;
     final ToggleGroup tg = new ToggleGroup();
+    @FXML
+    private TextField txtPhoneNumber2;
+    @FXML
+    private TextField txtPhoneNumber3;
+    @FXML
+    private TextField txtAddress;
+    @FXML
+    private TextField txtAddress2;
+    @FXML
+    private TextField tblBDay;
 
     /**
      * Initializes the controller class.
@@ -110,8 +120,13 @@ public class EditVolunteerController implements Initializable
     {
         txtFName.setText(volunteer.getFirstName());
         txtLName.setText(volunteer.getLastName());
+        tblBDay.setText(volunteer.getBDay().toString());
         txtEmail.setText(volunteer.getEmail());
         txtPhoneNumber.setText(volunteer.getPhoneNumber());
+        txtPhoneNumber2.setText(volunteer.getPhoneNumber2());
+        txtPhoneNumber3.setText(volunteer.getPhoneNumber3());
+        txtAddress.setText(volunteer.getAddress());
+        txtAddress2.setText(volunteer.getAddress2());
         txtNationalitet.setText(volunteer.getNationality());
         txtNote.setText(volunteer.getNote());
 
@@ -264,7 +279,12 @@ public class EditVolunteerController implements Initializable
         volunteer.setEmail(txtEmail.getText());
         volunteer.setFirstName(txtFName.getText());
         volunteer.setLastName(txtLName.getText());
+        //BDay
         volunteer.setPhoneNumber(txtPhoneNumber.getText());
+        volunteer.setPhoneNumber2(txtPhoneNumber2.getText());
+        volunteer.setPhoneNumber3(txtPhoneNumber3.getText());
+        volunteer.setAddress(txtAddress.getText());
+        volunteer.setAddress2(txtAddress2.getText());
         volunteer.setNationality(txtNationalitet.getText());
         volunteer.setNote(txtNote.getText());
 
