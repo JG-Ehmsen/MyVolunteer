@@ -1,5 +1,6 @@
 package myvolunteer.BE;
 
+import java.util.Date;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -9,9 +10,14 @@ public class User
     protected final int id;
     protected StringProperty firstName = new SimpleStringProperty();
     private StringProperty lastName = new SimpleStringProperty();
+    private Date BDay = new Date();
     private StringProperty profileImage = new SimpleStringProperty();
     private StringProperty email = new SimpleStringProperty();
     protected StringProperty phoneNumber = new SimpleStringProperty();
+    protected StringProperty phoneNumber2 = new SimpleStringProperty();
+    protected StringProperty phoneNumber3 = new SimpleStringProperty();
+    protected StringProperty address = new SimpleStringProperty();
+    protected StringProperty address2 = new SimpleStringProperty();
     private String image = "myvolunteer/GUI/View/Resource/UserPicture.png";
     private boolean isActive;
 
@@ -116,4 +122,53 @@ public class User
         this.isActive = isActive;
     }
 
+    public String getPhoneNumber2()
+    {
+        return phoneNumber2.get();
+    }
+
+    public void setPhoneNumber2(String phoneNumber2)
+    {
+        this.phoneNumber2.set(phoneNumber2);
+    }
+
+    public String getPhoneNumber3()
+    {
+        return phoneNumber3.get();
+    }
+
+    public void setPhoneNumber3(String phoneNumber3)
+    {
+        this.phoneNumber3.set(phoneNumber3);
+    }
+
+    public String getAddress()
+    {
+        return address.get();
+    }
+
+    public void setAddress(String address)
+    {
+        this.address.set(address);
+    }
+
+    public String getAddress2()
+    {
+        return address2.get();
+    }
+
+    public void setAddress2(String address2)
+    {
+        this.address2.set(address2);
+    }
+
+    public Date getBDay()
+    {
+        return BDay;
+    }
+
+    public void setBDay(Date BDay)
+    {
+        this.BDay = BDay;
+    }
 }
