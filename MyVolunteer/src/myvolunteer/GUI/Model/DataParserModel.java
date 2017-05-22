@@ -65,6 +65,23 @@ public class DataParserModel
     {
         return bllFacade.getGuilds();
     }
+    
+    public List<Guild> getGuildForManager(Manager manager)
+    {
+        List<Guild> returnList = new ArrayList();
+        
+        for (Integer i : manager.getManagerGuilds())
+        {
+            for (Guild guild : getActiveGuilds())
+            {
+                if(guild.getID() == i)
+                {
+                    returnList.add(guild);
+                }
+            }    
+        }
+        return returnList;
+    }
 
     public List<Volunteer> getActiveUsers()
     {
@@ -85,7 +102,7 @@ public class DataParserModel
     {
         return bllFacade.getUsers();
     }
-
+    
     public List<Manager> getActiveManagers()
     {
         List<Manager> activeManagers = new ArrayList();

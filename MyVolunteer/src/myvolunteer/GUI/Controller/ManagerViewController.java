@@ -77,10 +77,13 @@ public class ManagerViewController implements Initializable
 
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    private List<Volunteer> managerForUserList = new ArrayList<>();
     ObservableList<Volunteer> users = FXCollections.observableArrayList();
     
+    private Guild lastSelectedGuild;
     
-
+    private List<Guild> managerGuildList = new ArrayList<>();
+   
     /**
      * Initializes the controller class.
      */
@@ -88,9 +91,21 @@ public class ManagerViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-        
+        managerGuildList = dp.getGuildForManager(mainViewModel.getLoggedInManager());        
+        comboContent(); 
+        populateList();
     } 
     
+    private void populateList()
+    {
+       
+    }
+    
+    private void comboContent()
+    {
+        ObservableList guilds = FXCollections.observableArrayList(managerGuildList);
+        comboBoxGuild.setItems(guilds);
+    }
 
     @FXML
     private void handleComboClick(ActionEvent event)
