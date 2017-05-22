@@ -151,5 +151,15 @@ public class BLLFacade
     {
         dalFacade.setGuildStatus(guild, active);
     }
+    
+    public void deactivateManager(Manager manager)
+    {
+        dalFacade.deactivateManager(manager);
+    }
+    
+    public void setManagerStatus(Manager manager, boolean active)
+    {
+        dalFacade.setManagerStatus(manager, active);
+    }
 
 }

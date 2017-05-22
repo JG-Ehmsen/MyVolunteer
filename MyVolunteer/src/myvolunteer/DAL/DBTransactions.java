@@ -438,9 +438,7 @@ public class DBTransactions
     }
     
     public void setGuildStatus(Guild guild, boolean active)
-    {
-        
-        
+    {  
         try
         {
             startTransaction();
@@ -451,9 +449,36 @@ public class DBTransactions
         } catch (SQLException ex)
         {
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+        }       
     }
-
+    
+    public void deactivateManager(Manager manager)
+    {
+        try
+        {
+            startTransaction();
+            
+            ua.deactivateManager(manager, transactionConnection);
+            
+            commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setManagerStatus(Manager manager, boolean active)
+    {
+        try
+        {
+            startTransaction();
+            
+            ua.setManagerStatus(manager, active, transactionConnection);
+            
+            commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }      
+    }
 }
