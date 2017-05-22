@@ -421,5 +421,64 @@ public class DBTransactions
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    public void deactivateGuild(Guild guild)
+    {
+        try
+        {
+            startTransaction();
+            
+            ga.deactivateGuild(guild, transactionConnection);
+            
+            commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setGuildStatus(Guild guild, boolean active)
+    {  
+        try
+        {
+            startTransaction();
+            
+            ga.setGuildStatus(guild, active, transactionConnection);
+            
+            commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+    }
+    
+    public void deactivateManager(Manager manager)
+    {
+        try
+        {
+            startTransaction();
+            
+            ua.deactivateManager(manager, transactionConnection);
+            
+            commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setManagerStatus(Manager manager, boolean active)
+    {
+        try
+        {
+            startTransaction();
+            
+            ua.setManagerStatus(manager, active, transactionConnection);
+            
+            commitTransaction();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        }      
+    }
 }

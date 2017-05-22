@@ -48,6 +48,21 @@ public class DataParserModel
 
     public List<Guild> getActiveGuilds()
     {
+        List<Guild> activeGuilds = new ArrayList();
+        List<Guild> allGuilds = bllFacade.getGuilds();
+
+        for (Guild guild : allGuilds)
+        {
+            if (guild.isIsActive())
+            {
+                activeGuilds.add(guild);
+            }
+        }
+        return activeGuilds;
+    }
+
+    public List<Guild> getAllGuilds()
+    {
         return bllFacade.getGuilds();
     }
 
@@ -69,6 +84,26 @@ public class DataParserModel
     public List<Volunteer> getAllUsers()
     {
         return bllFacade.getUsers();
+    }
+
+    public List<Manager> getActiveManagers()
+    {
+        List<Manager> activeManagers = new ArrayList();
+        List<Manager> allManagers = bllFacade.getManagers();
+        
+        for (Manager manager : allManagers)
+        {
+            if(manager.isIsActive())
+            {
+                activeManagers.add(manager);
+            }
+        }
+        return activeManagers;
+    }
+    
+    public List<Manager> getAllManagers()
+    {
+        return bllFacade.getManagers();
     }
 
     public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
@@ -105,11 +140,6 @@ public class DataParserModel
     public int getHoursWorkedForVolunteer(Volunteer volunteer)
     {
         return bllFacade.getHoursWorkedForVolunteer(volunteer);
-    }
-
-    public List<Manager> getManagers()
-    {
-        return bllFacade.getManagers();
     }
 
     public void UpdateUser(Volunteer user)
@@ -182,5 +212,25 @@ public class DataParserModel
     public void setVolunteerStatus(Volunteer volunteer, boolean active)
     {
         bllFacade.setVolunteerStatus(volunteer, active);
+    }
+
+    public void deactivateGuild(Guild guild)
+    {
+        bllFacade.deactivateGuild(guild);
+    }
+
+    public void setGuildStatus(Guild guild, boolean active)
+    {
+        bllFacade.setGuildStatus(guild, active);
+    }
+
+    public void deactivateManager(Manager manager)
+    {
+        bllFacade.deactivateManager(manager);
+    }
+
+    public void setManagerStatus(Manager manager, boolean active)
+    {
+        bllFacade.setManagerStatus(manager, active);
     }
 }

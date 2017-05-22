@@ -141,5 +141,25 @@ public class BLLFacade
     {
         dalFacade.setVolunteerStatus(volunteer, active);
     }
+    
+    public void deactivateGuild(Guild guild)
+    {
+        dalFacade.deactivateGuild(guild);
+    }
+    
+    public void setGuildStatus(Guild guild, boolean active)
+    {
+        dalFacade.setGuildStatus(guild, active);
+    }
+    
+    public void deactivateManager(Manager manager)
+    {
+        dalFacade.deactivateManager(manager);
+    }
+    
+    public void setManagerStatus(Manager manager, boolean active)
+    {
+        dalFacade.setManagerStatus(manager, active);
+    }
 
 }

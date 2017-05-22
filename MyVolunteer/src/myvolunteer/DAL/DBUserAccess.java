@@ -519,11 +519,15 @@ public class DBUserAccess
 
         while (rs.next())
         {
+            boolean active = rs.getBoolean("Active");
             Manager manager = new Manager(rs.getInt("MID"));
             manager.setEmail(rs.getString("EMail"));
             manager.setPhoneNumber(rs.getString("TLF"));
             manager.setFirstName(rs.getString("FName"));
             manager.setLastName(rs.getString("LName"));
+            
+            
+            manager.setIsActive(active);
 
             returnList.add(manager);
         }
@@ -707,5 +711,40 @@ public class DBUserAccess
 
         ps.execute();
 
+    }
+    
+    public void deactivateManager(Manager manager, Connection con) throws SQLException
+    {
+        setManagerStatus(manager, false, con);
+        deactivateManagerInAllGuilds(manager, con);
+    }
+    
+    public void setManagerStatus(Manager manager, boolean active, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "UPDATE Managers "
+                + "SET Active = ? "
+                + "WHERE MID = ?";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setBoolean(1, active);
+        ps.setInt(2, manager.getId());
+
+        ps.execute();
+    }
+    
+    public void deactivateManagerInAllGuilds(Manager manager, Connection con) throws SQLException
+    {
+        String sql = ""
+                + "UPDATE ManagerRelation "
+                + "SET Active = 0 "
+                + "WHERE MID = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, manager.getId());
+
+        ps.execute();
     }
 }

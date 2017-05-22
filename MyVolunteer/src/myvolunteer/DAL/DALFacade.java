@@ -147,4 +147,24 @@ public class DALFacade
     {
         db.setVolunteerStatus(volunteer, active);
     }
+    
+    public void deactivateGuild(Guild guild)
+    {
+        db.deactivateGuild(guild);
+    }
+    
+    public void setGuildStatus(Guild guild, boolean active)
+    {
+        db.setGuildStatus(guild, active);
+    }
+    
+    public void deactivateManager(Manager manager)
+    {
+        db.deactivateManager(manager);
+    }
+    
+    public void setManagerStatus(Manager manager, boolean active)
+    {
+        db.setManagerStatus(manager, active);
+    }
 }

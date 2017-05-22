@@ -79,6 +79,8 @@ public class EditLaugController implements Initializable
 
     List<Integer> inGuild = new ArrayList();
     List<Integer> notInGuild = new ArrayList();
+    @FXML
+    private Button btnChangeStatus;
 
     /**
      * Initializes the controller class.
@@ -93,7 +95,7 @@ public class EditLaugController implements Initializable
         listAvailableVolunteers.setItems(allUsers);
         listChosenVolunteers.setItems(chosenUsers);
 
-        managerList = dp.getManagers();
+        managerList = dp.getActiveManagers();
         managers.setAll(managerList);
         comboManager.setItems(managers);
         setStartManager();
@@ -102,6 +104,15 @@ public class EditLaugController implements Initializable
         initialSortLists();
 
         lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
+
+        if (guild.isIsActive())
+        {
+            btnChangeStatus.setText("Gør inaktiv");
+        } else
+        {
+            btnChangeStatus.setText("Gør aktiv");
+        }
+
     }
 
     private void setStartManager()
@@ -310,6 +321,73 @@ public class EditLaugController implements Initializable
         {
             removeVolunteer();
         }
+    }
+
+    @FXML
+    private void handleChangeStatus(ActionEvent event) throws IOException
+    {
+        if(guild.isIsActive())
+        {
+            deactivate();        
+        }else
+        {
+            activate();
+        }
+        
+    }
+
+    private void deactivate() throws IOException
+    {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Deaktiver Laug");
+        alert.setHeaderText("Du er ved at deaktivere et Laug. Det vil fjerne "
+                + "alle de frivillige fra dette laug.");
+        alert.setContentText("Tryk OK for at fortsætte.");
+        
+        ButtonType buttonTypeOK = new ButtonType("OK"); 
+        ButtonType buttonTypeAnnuller = new ButtonType("Annuller");
+        
+        alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeAnnuller);
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get() == buttonTypeOK)
+        {
+           btnChangeStatus.setText("Gør aktiv");
+            dp.deactivateGuild(guild);
+            
+            alert.close();
+        }else
+        {
+            alert.close();
+        }
+        
+    }
+
+    private void activate() throws IOException
+    {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Aktiver Laug");
+        alert.setHeaderText("Du er ved at aktivere et Laug. Der skal manuelt "
+                + "tilføjes frivillige til dette laug igen.");
+        alert.setContentText("Tryk OK for at fortsætte.");
+        
+        ButtonType buttonTypeOK = new ButtonType("OK"); 
+        ButtonType buttonTypeAnnuller = new ButtonType("Annuller");
+        
+        alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeAnnuller);
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get() == buttonTypeOK)
+        {
+            btnChangeStatus.setText("Gør inaktiv");
+            dp.setGuildStatus(guild, true);
+            
+            alert.close();
+        }else
+        {
+            alert.close();
+        }
+        
     }
 
 }
