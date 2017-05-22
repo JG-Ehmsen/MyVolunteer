@@ -65,7 +65,6 @@ public class LaugViewController implements Initializable
         MainFlowPane.setVgap(20);
         MainFlowPane.setHgap(50);
 
-        
         initGuildButtons();
         adjustScrollPane();
 
@@ -73,7 +72,7 @@ public class LaugViewController implements Initializable
 
     private void initGuildButtons()
     {
-        for (Guild g : dp.getGuilds())
+        for (Guild g : dp.getActiveGuilds())
         {
             PictureButton b = new PictureButton(g);
 
@@ -95,7 +94,7 @@ public class LaugViewController implements Initializable
     {
         laugScroll.viewportBoundsProperty().addListener(new ChangeListener<Bounds>()
         {
-            
+
             @Override
             public void changed(ObservableValue<? extends Bounds> ov, Bounds oldBounds, Bounds bounds)
             {
@@ -105,9 +104,8 @@ public class LaugViewController implements Initializable
             }
         });
 
-    
     }
-    
+
     private void handleGuildClick()
     {
         try

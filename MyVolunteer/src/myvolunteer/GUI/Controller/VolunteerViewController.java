@@ -71,7 +71,7 @@ public class VolunteerViewController implements Initializable
     {
         MainFlowPane.setVgap(20);
         MainFlowPane.setHgap(30);
-        for (Volunteer u : dp.getUsers())
+        for (Volunteer u : dp.getActiveUsers())
         {
             for (Integer i : guild.getMemberList())
             {
@@ -119,7 +119,7 @@ public class VolunteerViewController implements Initializable
     {
         try
         {
-            mainViewModel.changeView("Indtast timer", "GUI/View/HoursView.fxml");
+            mainViewModel.changeView("Indtast timer", "GUI/View/HoursSpecial.fxml");
             
             // Closes the primary stage
             Stage stage = (Stage) btnBack.getScene().getWindow();

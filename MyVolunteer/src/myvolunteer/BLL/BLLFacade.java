@@ -101,17 +101,17 @@ public class BLLFacade
     {
         dalFacade.UpdateUser(user);
     }
-    
+
     public void UpdateManager(Manager manager)
     {
         dalFacade.UpdateManager(manager);
     }
 
-    public void UpdateGuild(Guild guild)
+    public void UpdateGuild(Guild guild, Manager manager, List<Integer> in, List<Integer> out)
     {
-        dalFacade.UpdateGuild(guild);
+        dalFacade.UpdateGuild(guild, manager, in, out);
     }
-    
+
     public void CreateNewManager(Manager manager, String password)
     {
         dalFacade.CreateNewManager(manager, password);
@@ -130,6 +130,36 @@ public class BLLFacade
     public void changeGuildManager(Guild guild, Manager manager)
     {
         dalFacade.changeGuildManager(guild, manager);
+    }
+
+    public void deactiveVolunteer(Volunteer volunteer)
+    {
+        dalFacade.deactiveVolunteer(volunteer);
+    }
+
+    public void setVolunteerStatus(Volunteer volunteer, boolean active)
+    {
+        dalFacade.setVolunteerStatus(volunteer, active);
+    }
+    
+    public void deactivateGuild(Guild guild)
+    {
+        dalFacade.deactivateGuild(guild);
+    }
+    
+    public void setGuildStatus(Guild guild, boolean active)
+    {
+        dalFacade.setGuildStatus(guild, active);
+    }
+    
+    public void deactivateManager(Manager manager)
+    {
+        dalFacade.deactivateManager(manager);
+    }
+    
+    public void setManagerStatus(Manager manager, boolean active)
+    {
+        dalFacade.setManagerStatus(manager, active);
     }
 
 }

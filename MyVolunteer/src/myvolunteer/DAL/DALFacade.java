@@ -113,9 +113,9 @@ public class DALFacade
         db.UpdateManager(manager);
     }
 
-    public void UpdateGuild(Guild guild)
+    public void UpdateGuild(Guild guild, Manager manager, List<Integer> in, List<Integer> out)
     {
-        db.UpdateGuild(guild);
+        db.UpdateGuild(guild, manager, in, out);
     }
 
     public void setGuildRelationStatus(Guild guild, Volunteer volunteer, boolean active)
@@ -127,7 +127,7 @@ public class DALFacade
     {
         db.changeGuildManager(guild, manager);
     }
-    
+
     public void CreateNewManager(Manager manager, String password)
     {
         db.CreateNewManager(manager, password);
@@ -136,5 +136,35 @@ public class DALFacade
     public Manager loginQuery(String login, String pass)
     {
         return db.loginQuery(login, pass);
+    }
+    
+    public void deactiveVolunteer(Volunteer volunteer)
+    {
+        db.deactiveVolunteer(volunteer);
+    }
+    
+    public void setVolunteerStatus(Volunteer volunteer, boolean active)
+    {
+        db.setVolunteerStatus(volunteer, active);
+    }
+    
+    public void deactivateGuild(Guild guild)
+    {
+        db.deactivateGuild(guild);
+    }
+    
+    public void setGuildStatus(Guild guild, boolean active)
+    {
+        db.setGuildStatus(guild, active);
+    }
+    
+    public void deactivateManager(Manager manager)
+    {
+        db.deactivateManager(manager);
+    }
+    
+    public void setManagerStatus(Manager manager, boolean active)
+    {
+        db.setManagerStatus(manager, active);
     }
 }

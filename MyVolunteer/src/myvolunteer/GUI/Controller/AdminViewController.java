@@ -108,8 +108,8 @@ public class AdminViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-        guildList = dp.getGuilds();
-        userList = dp.getUsers();
+        guildList = dp.getAllGuilds();
+        userList = dp.getAllUsers();
         comboContent();
         populateList();
     }
@@ -318,6 +318,5 @@ public class AdminViewController implements Initializable
         Stage stage = (Stage) btnRedigerTovholder.getScene().getWindow();
         stage.close();
     }
-
 
 }
