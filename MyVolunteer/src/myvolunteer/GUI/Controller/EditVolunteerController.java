@@ -201,7 +201,18 @@ public class EditVolunteerController implements Initializable
 
     private void goBack() throws IOException
     {
-        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
+        String path = "";
+        String title = "";
+        if (mainViewModel.getLoggedInManager().isAdmin())
+        {
+            path = "GUI/View/AdminView.fxml";
+            title = "Admin";
+        } else if (!mainViewModel.getLoggedInManager().isAdmin())
+        {
+            path = "GUI/View/ManagerView.fxml";
+            title = "Manager";
+        }
+        mainViewModel.changeView(title, path);
 
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();

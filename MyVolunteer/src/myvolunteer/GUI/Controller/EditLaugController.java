@@ -245,16 +245,6 @@ public class EditLaugController implements Initializable
     }
 
     @FXML
-    private void handleDeleteLaug(ActionEvent event)
-    {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Slet laug");
-        alert.setHeaderText(null);
-        alert.setContentText("Er du sikker på at du vil slette dette laug?");
-        alert.showAndWait();
-    }
-
-    @FXML
     private void comboManager(ActionEvent event)
     {
         manager = comboManager.getSelectionModel().getSelectedItem();
@@ -298,10 +288,21 @@ public class EditLaugController implements Initializable
 
     private void goBack() throws IOException
     {
-        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
+        String path = "";
+        String title = "";
+        if (mainViewModel.getLoggedInManager().isAdmin())
+        {
+            path = "GUI/View/AdminView.fxml";
+            title = "Admin";
+        } else if (!mainViewModel.getLoggedInManager().isAdmin())
+        {
+            path = "GUI/View/ManagerView.fxml";
+            title = "Manager";
+        }
+        mainViewModel.changeView(title, path);
 
         // Closes the primary stage
-        Stage stage = (Stage) btnGodkend.getScene().getWindow();
+        Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
 
@@ -326,68 +327,68 @@ public class EditLaugController implements Initializable
     @FXML
     private void handleChangeStatus(ActionEvent event) throws IOException
     {
-        if(guild.isIsActive())
+        if (guild.isIsActive())
         {
-            deactivate();        
-        }else
+            deactivate();
+        } else
         {
             activate();
         }
-        
+
     }
 
     private void deactivate() throws IOException
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Deaktiver Laug");
-        alert.setHeaderText("Du er ved at deaktivere et Laug. Det vil fjerne "
+        alert.setHeaderText("Du er ved at deaktivere et laug. Det vil fjerne "
                 + "alle de frivillige fra dette laug.");
         alert.setContentText("Tryk OK for at fortsætte.");
-        
-        ButtonType buttonTypeOK = new ButtonType("OK"); 
+
+        ButtonType buttonTypeOK = new ButtonType("OK");
         ButtonType buttonTypeAnnuller = new ButtonType("Annuller");
-        
+
         alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeAnnuller);
-        
+
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.get() == buttonTypeOK)
+        if (result.get() == buttonTypeOK)
         {
-           btnChangeStatus.setText("Gør aktiv");
+            btnChangeStatus.setText("Gør aktiv");
             dp.deactivateGuild(guild);
-            
+
             alert.close();
-        }else
+        } else
         {
             alert.close();
         }
-        
+
     }
 
     private void activate() throws IOException
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Aktiver Laug");
-        alert.setHeaderText("Du er ved at aktivere et Laug. Der skal manuelt "
+        alert.setHeaderText("Du er ved at aktivere et laug. Der skal manuelt "
                 + "tilføjes frivillige til dette laug igen.");
         alert.setContentText("Tryk OK for at fortsætte.");
-        
-        ButtonType buttonTypeOK = new ButtonType("OK"); 
+
+        ButtonType buttonTypeOK = new ButtonType("OK");
         ButtonType buttonTypeAnnuller = new ButtonType("Annuller");
-        
+
         alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeAnnuller);
-        
+
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.get() == buttonTypeOK)
+        if (result.get() == buttonTypeOK)
         {
             btnChangeStatus.setText("Gør inaktiv");
             dp.setGuildStatus(guild, true);
-            
+
             alert.close();
-        }else
+        } else
         {
             alert.close();
         }
-        
+
     }
 
 }
