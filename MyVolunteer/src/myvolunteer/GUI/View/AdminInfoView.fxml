@@ -21,6 +21,6 @@
       <ComboBox fx:id="comboBoxGuild" layoutX="10.0" layoutY="14.0" onAction="#handleComboClick" prefWidth="150.0" promptText="Vælg laug" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <Button fx:id="btnBack" layoutX="10.0" layoutY="426.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbage" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" />
       <Button fx:id="btnSave" layoutX="422.0" layoutY="406.0" mnemonicParsing="false" onAction="#handleSave" text="Print/save" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="10.0" />
-      <Button fx:id="btnAllVolunteers" layoutX="170.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAllVolunteers" text="Alle frivillige" />
+      <Button fx:id="btnAllVolunteers" layoutX="170.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAllVolunteers" text="Alle laug" />
    </children>
 </AnchorPane>

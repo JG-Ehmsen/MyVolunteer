@@ -43,6 +43,6 @@
       </Label>
 
       <Label fx:id="lblUdfyldVenligst" layoutX="79.0" layoutY="227.0" text="Udfyld venligst de markede felter." textFill="RED" />
-      <Label fx:id="lblInvalidUser" layoutX="79.0" layoutY="227.0" text="Invalid user or password" />
+      <Label fx:id="lblInvalidUser" layoutX="79.0" layoutY="227.0" text="Invalid user or password" textFill="RED" />
    </children>
 </AnchorPane>
