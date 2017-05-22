@@ -131,11 +131,7 @@ public class AddVolunteerController implements Initializable
         {
             handleUserInfo();
 
-            mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
-
-            // Closes the primary stage
-            Stage stage = (Stage) btnGodkend.getScene().getWindow();
-            stage.close();
+            goBack();
         }
     }
 
@@ -185,7 +181,23 @@ public class AddVolunteerController implements Initializable
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
+        goBack();
+    }
+
+    private void goBack() throws IOException
+    {
+        String path = "";
+        String title = "";
+        if (mainViewModel.getLoggedInManager().isAdmin())
+        {
+            path = "GUI/View/AdminView.fxml";
+            title = "Admin";
+        } else if (!mainViewModel.getLoggedInManager().isAdmin())
+        {
+            path = "GUI/View/ManagerView.fxml";
+            title = "Manager";
+        }
+        mainViewModel.changeView(title, path);
 
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();
