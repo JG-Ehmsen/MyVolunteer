@@ -19,7 +19,7 @@
                 <Image url="@Resource/logo.png" />
             </image>
         </ImageView>
-        <Label layoutX="76.0" layoutY="102.0" prefHeight="23.0" prefWidth="108.0" text="Admin Login">
+        <Label layoutX="76.0" layoutY="102.0" prefHeight="23.0" prefWidth="108.0" text="Login">
             <font>
                 <Font size="18.0" />
             </font>
@@ -43,6 +43,6 @@
       </Label>
 
       <Label fx:id="lblUdfyldVenligst" layoutX="79.0" layoutY="227.0" text="Udfyld venligst de markede felter." textFill="RED" />
-      <Label fx:id="lblInvalidUser" layoutX="79.0" layoutY="227.0" text="Invalid user or password" />
+      <Label fx:id="lblInvalidUser" layoutX="79.0" layoutY="227.0" text="Invalid user or password" textFill="RED" />
    </children>
 </AnchorPane>
