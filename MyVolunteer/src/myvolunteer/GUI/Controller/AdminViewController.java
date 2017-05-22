@@ -92,6 +92,14 @@ public class AdminViewController implements Initializable
     private Button btnOpretTovholder;
     @FXML
     private Button btnAllLaug;
+    @FXML
+    private Label lblVolunteerPhoneNumber2;
+    @FXML
+    private Label lblVolunteerPhoneNumber3;
+    @FXML
+    private Label lblVolunteerAddress;
+    @FXML
+    private Label lblVolunteerAddress2;
 
     private List<Guild> guildList = new ArrayList<>();
     private List<Volunteer> userList = new ArrayList<>();
@@ -100,6 +108,7 @@ public class AdminViewController implements Initializable
     private Guild lastSelectedGuild;
     private Volunteer lastSelectedVolunteer;
     private Manager lastManager;
+    
 
     /**
      * Initializes the controller class.
@@ -268,6 +277,10 @@ public class AdminViewController implements Initializable
         lblVolunteerGender.setText("Køn: ");
         lblVolunteerAge.setText("Alder: ");
         lblVolunteerPhoneNumber.setText("Telefon: ");
+        lblVolunteerPhoneNumber2.setText("Telefon 2: ");
+        lblVolunteerPhoneNumber3.setText("Telefon 3: ");
+        lblVolunteerAddress.setText("Adresse: ");
+        lblVolunteerAddress2.setText("Adresse 2: ");
         lblVolunteerEMail.setText("Email: ");
         lblVolunteerNationality.setText("Nationalitet: ");
         lblVolunteerHours.setText("Timer: ");
@@ -294,6 +307,10 @@ public class AdminViewController implements Initializable
         lblVolunteerGender.setText("Køn: " + lastSelectedVolunteer.getGender());
         lblVolunteerAge.setText("Alder: ");
         lblVolunteerPhoneNumber.setText("Telefon: " + lastSelectedVolunteer.getPhoneNumber());
+        lblVolunteerPhoneNumber2.setText("Telefon 2: " + lastSelectedVolunteer.getPhoneNumber2());
+        lblVolunteerPhoneNumber3.setText("Telefon 3: " + lastSelectedVolunteer.getPhoneNumber3());
+        lblVolunteerAddress.setText("Adresse: " + lastSelectedVolunteer.getAddress());
+        lblVolunteerAddress2.setText("Adresse 2: " + lastSelectedVolunteer.getAddress2());
         lblVolunteerEMail.setText("Email: " + lastSelectedVolunteer.getEmail());
         lblVolunteerNationality.setText("Nationalitet: " + lastSelectedVolunteer.getNationality());
         lblVolunteerNote.setText(lastSelectedVolunteer.getNote());

@@ -16,6 +16,11 @@
         <TextField fx:id="txtLName" layoutX="10.0" layoutY="124.0" promptText="Indtast efternavn" />
         <Text layoutX="10.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefon nr." />
         <TextField fx:id="txtPNumber" layoutX="10.0" layoutY="181.0" promptText="Indtast telefon nummer" />
+      <TextField fx:id="txtPNumber2" layoutX="10.0" layoutY="216.0" />
+      <TextField fx:id="txtPNumber3" layoutX="10.0" layoutY="251.0" />
+      <Text layoutX="10.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse" AnchorPane.leftAnchor="10.0" />
+      <TextField fx:id="txtAddress" layoutX="10.0" layoutY="308.0" promptText="1. adresse" />
+      <TextField fx:id="txtAddress2" layoutX="10.0" layoutY="343.0" promptText="2. adresse" />
         <Text layoutX="10.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
         <TextField fx:id="txtEmail" layoutX="10.0" layoutY="238.0" promptText="Indtast email" />
         <TextField fx:id="txtPassword" layoutX="10.0" layoutY="295.0" promptText="Indtast password" />

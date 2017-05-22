@@ -41,6 +41,14 @@ public class AddManagerController implements Initializable
     private Button btnGodkend;
     @FXML
     private TextField txtPassword;
+    @FXML
+    private TextField txtPNumber2;
+    @FXML
+    private TextField txtPNumber3;
+    @FXML
+    private TextField txtAddress;
+    @FXML
+    private TextField txtAddress2;
 
     /**
      * Initializes the controller class.
@@ -88,6 +96,10 @@ public class AddManagerController implements Initializable
         String fName = txtFName.getText();
         String lName = txtLName.getText();
         String pNumber = txtPNumber.getText();
+        String pNumber2 = txtPNumber2.getText();
+        String pNumber3 = txtPNumber3.getText();
+        String address = txtAddress.getText();
+        String address2 = txtAddress2.getText();
         String eMail = txtEmail.getText();
 
         String password = txtPassword.getText();
@@ -97,6 +109,10 @@ public class AddManagerController implements Initializable
         manager.setFirstName(fName);
         manager.setLastName(lName);
         manager.setPhoneNumber(pNumber);
+        manager.setPhoneNumber2(pNumber2);
+        manager.setPhoneNumber3(pNumber3);
+        manager.setAddress(address);
+        manager.setAddress2(address2);
         manager.setEmail(eMail);
 
         CreateNewManager(manager, password);

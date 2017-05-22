@@ -58,7 +58,16 @@ public class EditManagerController implements Initializable
     Manager managers;
     @FXML
     private Button btnChangeStatus;
-
+    @FXML
+    private TextField txtPNumber2;
+    @FXML
+    private TextField txtPNumber3;
+    @FXML
+    private TextField txtAddress;
+    @FXML
+    private TextField txtAddress2;
+    
+  
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -81,6 +90,11 @@ public class EditManagerController implements Initializable
         txtLName.setText(manager.getLastName());
         txtEmail.setText(manager.getEmail());
         txtPNumber.setText(manager.getPhoneNumber());
+
+        txtPNumber2.setText(manager.getPhoneNumber2());
+        txtPNumber3.setText(manager.getPhoneNumber3());
+        txtAddress.setText(manager.getAddress());
+        txtAddress2.setText(manager.getAddress2());
 
     }
 
@@ -208,6 +222,11 @@ public class EditManagerController implements Initializable
         manager.setFirstName(txtFName.getText());
         manager.setLastName(txtLName.getText());
         manager.setPhoneNumber(txtPNumber.getText());
+
+        manager.setPhoneNumber2(txtPNumber2.getText());
+        manager.setPhoneNumber3(txtPNumber3.getText());
+        manager.setAddress(txtAddress.getText());
+        manager.setAddress2(txtAddress2.getText());
 
         dp.UpdateManager(manager);
     }

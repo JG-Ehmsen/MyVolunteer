@@ -296,7 +296,7 @@ public class DBUserAccess
     {
         String sql = ""
                 + "UPDATE Users "
-                + "SET FName = ?, LName = ?, Gender = ?, Nationality = ?, EMail = ?, TLF = ?, Note = ? "
+                + "SET FName = ?, LName = ?, Gender = ?, Nationality = ?, EMail = ?, TLF = ?, TLF2 = ?, TLF3 = ?, Address = ?, Address2 = ?, Note = ? "
                 + "WHERE UID = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
@@ -307,8 +307,12 @@ public class DBUserAccess
         ps.setString(4, user.getNationality());
         ps.setString(5, user.getEmail());
         ps.setString(6, user.getPhoneNumber());
-        ps.setString(7, user.getNote());
-        ps.setInt(8, user.getId());
+        ps.setString(7, user.getPhoneNumber2());
+        ps.setString(8, user.getPhoneNumber3());
+        ps.setString(9, user.getAddress());
+        ps.setString(10, user.getAddress2());
+        ps.setString(11, user.getNote());
+        ps.setInt(12, user.getId());
 
         ps.execute();
     }
@@ -325,7 +329,7 @@ public class DBUserAccess
     {
         String sql = ""
                 + "UPDATE Managers "
-                + "SET FName = ?, LName = ?, EMail = ?, TLF = ? "
+                + "SET FName = ?, LName = ?, EMail = ?, TLF = ?, TLF2 = ?, TLF3 = ?, Address = ?, Address2 = ? "
                 + "WHERE MID = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
@@ -334,7 +338,11 @@ public class DBUserAccess
         ps.setString(2, manager.getLastName());
         ps.setString(3, manager.getEmail());
         ps.setString(4, manager.getPhoneNumber());
-        ps.setInt(5, manager.getId());
+        ps.setString(5, manager.getPhoneNumber2());
+        ps.setString(6, manager.getPhoneNumber3());
+        ps.setString(7, manager.getAddress());
+        ps.setString(8, manager.getAddress2());
+        ps.setInt(9, manager.getId());
 
         ps.execute();
     }
@@ -535,6 +543,10 @@ public class DBUserAccess
             Manager manager = new Manager(rs.getInt("MID"));
             manager.setEmail(rs.getString("EMail"));
             manager.setPhoneNumber(rs.getString("TLF"));
+            manager.setPhoneNumber2(rs.getString("TLF2"));
+            manager.setPhoneNumber3(rs.getString("TLF3"));
+            manager.setAddress(rs.getString("Address"));
+            manager.setAddress2(rs.getString("Address2"));
             manager.setFirstName(rs.getString("FName"));
             manager.setLastName(rs.getString("LName"));
 
@@ -593,14 +605,18 @@ public class DBUserAccess
     public void addManager(Manager manager, Connection con) throws SQLException
     {
         String sql = ""
-                + "INSERT INTO Managers(FName, LName, EMail, TLF, isAdmin, Active) "
-                + "VALUES (?, ?, ?, ?, 0, 1)";
+                + "INSERT INTO Managers(FName, LName, EMail, TLF, TLF2, TLF3, Address, Address2, isAdmin, Active) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, 1)";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, manager.getFirstName());
         ps.setString(2, manager.getLastName());
         ps.setString(3, manager.getEmail());
         ps.setString(4, manager.getPhoneNumber());
+        ps.setString(5, manager.getPhoneNumber2());
+        ps.setString(6, manager.getPhoneNumber3());
+        ps.setString(7, manager.getAddress());
+        ps.setString(8, manager.getAddress2());
 
         ps.execute();
     }
@@ -663,6 +679,10 @@ public class DBUserAccess
             Manager manager = new Manager(rs.getInt("MID"));
             manager.setEmail(rs.getString("EMail"));
             manager.setPhoneNumber(rs.getString("TLF"));
+            manager.setPhoneNumber2(rs.getString("TLF2"));
+            manager.setPhoneNumber3(rs.getString("TLF3"));
+            manager.setAddress(rs.getString("Address"));
+            manager.setAddress2(rs.getString("Address2"));
             manager.setFirstName(rs.getString("FName"));
             manager.setLastName(rs.getString("LName"));
 
