@@ -34,7 +34,7 @@ public class EditManagerController implements Initializable
 
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
-    
+
     @FXML
     private Button btnBack;
     @FXML
@@ -53,7 +53,7 @@ public class EditManagerController implements Initializable
     private TextField txtPassword;
     @FXML
     private ComboBox<Manager> comboTovholder;
-    
+
     Manager manager;
     Manager managers;
     @FXML
@@ -67,34 +67,35 @@ public class EditManagerController implements Initializable
     @FXML
     private TextField txtAddress2;
     
-    
+  
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         managers = mainViewModel.getLoggedInManager();
         ObservableList manager = FXCollections.observableArrayList(dp.getAllManagers());
         comboTovholder.setItems(manager);
-        
+
         if (managers.isIsActive())
         {
             btnChangeStatus.setText("Gør aktiv");
-        } else if(!managers.isIsActive())
+        } else if (!managers.isIsActive())
         {
             btnChangeStatus.setText("Gør inaktiv");
         }
     }
-    
+
     private void loadInfo()
     {
         txtFName.setText(manager.getFirstName());
         txtLName.setText(manager.getLastName());
         txtEmail.setText(manager.getEmail());
         txtPNumber.setText(manager.getPhoneNumber());
+
         txtPNumber2.setText(manager.getPhoneNumber2());
         txtPNumber3.setText(manager.getPhoneNumber3());
         txtAddress.setText(manager.getAddress());
         txtAddress2.setText(manager.getAddress2());
-        
+
     }
 
     @FXML
@@ -114,8 +115,10 @@ public class EditManagerController implements Initializable
 
     @FXML
     private void handleGodkend(ActionEvent event) throws IOException
-    {   
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    {
+        if (!txtEmail.getText().isEmpty() && !txtFName.getText().isEmpty() && !txtLName.getText().isEmpty() && !txtPassword.getText().isEmpty())
+        {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Rediger frivillig");
             alert.setHeaderText("Du er ved at redigere en frivillig.");
             alert.setContentText("Tryk OK for at fortsætte.");
@@ -134,6 +137,14 @@ public class EditManagerController implements Initializable
             {
                 alert.close();
             }
+        } else if (txtEmail.getText().isEmpty() || txtFName.getText().isEmpty() || txtLName.getText().isEmpty() || txtPassword.getText().isEmpty())
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Fejl");
+            alert.setContentText("Udfyld venligst de markerede felter");
+
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -147,7 +158,7 @@ public class EditManagerController implements Initializable
             activate();
         }
     }
-    
+
     private void deactivate() throws IOException
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -171,7 +182,7 @@ public class EditManagerController implements Initializable
             alert.close();
         }
     }
-    
+
     private void activate() throws IOException
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -194,28 +205,29 @@ public class EditManagerController implements Initializable
         {
             alert.close();
         }
-        
+
     }
 
     @FXML
     private void handleComboClick(ActionEvent event)
     {
         manager = comboTovholder.getSelectionModel().getSelectedItem();
-        
+
         loadInfo();
     }
-    
+
     private void editInfo()
     {
         manager.setEmail(txtEmail.getText());
         manager.setFirstName(txtFName.getText());
         manager.setLastName(txtLName.getText());
         manager.setPhoneNumber(txtPNumber.getText());
+
         manager.setPhoneNumber2(txtPNumber2.getText());
         manager.setPhoneNumber3(txtPNumber3.getText());
         manager.setAddress(txtAddress.getText());
         manager.setAddress2(txtAddress2.getText());
-        
+
         dp.UpdateManager(manager);
     }
 

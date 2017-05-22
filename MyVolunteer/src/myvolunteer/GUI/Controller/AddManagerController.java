@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -71,12 +72,23 @@ public class AddManagerController implements Initializable
     @FXML
     private void handleGodkend(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
+        if (!txtEmail.getText().isEmpty() && !txtFName.getText().isEmpty() && !txtLName.getText().isEmpty() && !txtPassword.getText().isEmpty())
+        {
+            mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
 
-        // Closes the primary stage
-        Stage stage = (Stage) btnGodkend.getScene().getWindow();
-        stage.close();
-        handleUserInfo();
+            handleUserInfo();
+
+            // Closes the primary stage
+            Stage stage = (Stage) btnGodkend.getScene().getWindow();
+            stage.close();
+        } else if (txtEmail.getText().isEmpty() || txtFName.getText().isEmpty() || txtLName.getText().isEmpty() || txtPassword.getText().isEmpty())
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Fejl");
+            alert.setContentText("Udfyld venligst de markerede felter");
+
+            alert.showAndWait();
+        }
     }
 
     private void handleUserInfo()
