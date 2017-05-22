@@ -72,6 +72,14 @@ public class AddVolunteerController implements Initializable
     private Label xTelephone;
     @FXML
     private Label lblUdfyldVenligst;
+    @FXML
+    private TextField txtPhoneNumberTwo;
+    @FXML
+    private TextField txtPhoneNumberthree;
+    @FXML
+    private TextField txtAddress;
+    @FXML
+    private TextField txtAddressTwo;
 
     /**
      * Initializes the controller class.
@@ -137,6 +145,10 @@ public class AddVolunteerController implements Initializable
         String lName = txtLName.getText();
         String bDay = txtBday.getText();
         String phoneNumber = txtPhoneNumber.getText();
+        String phoneNumber2 = txtPhoneNumberTwo.getText();
+        String phoneNumber3 = txtPhoneNumberthree.getText();
+        String Address = txtAddress.getText();
+        String Address2 = txtAddressTwo.getText();
         String eMail = txtEmail.getText();
         String nationality = txtNationalitet.getText();
         String note = txtNote.getText();
@@ -157,6 +169,10 @@ public class AddVolunteerController implements Initializable
         user.setNote(note);
         user.setGender(gender);
         user.setLastInputDate(new Date());
+        user.setAddress(Address);
+        user.setAddress2(Address2);
+        user.setPhoneNumber2(phoneNumber2);
+        user.setPhoneNumber3(phoneNumber3);
 
         CreateNewUser(user);
     }

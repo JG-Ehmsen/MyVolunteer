@@ -65,6 +65,23 @@ public class DataParserModel
     {
         return bllFacade.getGuilds();
     }
+    
+    public List<Guild> getGuildForManager(Manager manager)
+    {
+        List<Guild> returnList = new ArrayList();
+        
+        for (Integer i : manager.getManagerGuilds())
+        {
+            for (Guild guild : getActiveGuilds())
+            {
+                if(guild.getID() == i)
+                {
+                    returnList.add(guild);
+                }
+            }    
+        }
+        return returnList;
+    }
 
     public List<Volunteer> getActiveUsers()
     {
@@ -85,7 +102,7 @@ public class DataParserModel
     {
         return bllFacade.getUsers();
     }
-
+    
     public List<Manager> getActiveManagers()
     {
         List<Manager> activeManagers = new ArrayList();
@@ -184,10 +201,10 @@ public class DataParserModel
                 mainViewModel.setLoggedInManager(manager);
                 if (!manager.isAdmin())
                 {
-                    mainViewModel.changeView("ManagerView", "GUI/View/GuideView.fxml");
+                    mainViewModel.changeView("Manager", "GUI/View/ManagerView.fxml");
                 } else
                 {
-                    mainViewModel.changeView("AdminView", "GUI/View/AdminView.fxml");
+                    mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
                 }
                 stage.close();
             } catch (IOException ex)

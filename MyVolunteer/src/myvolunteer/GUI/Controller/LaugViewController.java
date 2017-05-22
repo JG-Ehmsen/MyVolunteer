@@ -124,7 +124,7 @@ public class LaugViewController implements Initializable
     @FXML
     private void handleLogin(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Admin login", "GUI/View/AdminLogin.fxml");
+        mainViewModel.changeView("Login", "GUI/View/AdminLogin.fxml");
 
         // Closes the primary stage
         Stage stage = (Stage) MainFlowPane.getScene().getWindow();

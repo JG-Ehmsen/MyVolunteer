@@ -42,6 +42,10 @@ public class DBUserAccess
             String lName = rs.getString("LName");
             String email = rs.getString("EMail");
             String phoneNumber = rs.getString("TLF");
+            String phoneNumber2 = rs.getString("TLF2");
+            String phoneNumber3 = rs.getString("TLF3");
+            String Address = rs.getString("Address");
+            String Address2 = rs.getString("Address2");
 
             String gender = rs.getString("Gender");
             String nationality = rs.getString("Nationality");
@@ -57,6 +61,10 @@ public class DBUserAccess
             user.setNote(note);
             user.setLastInputDate(date);
             user.setIsActive(active);
+            user.setAddress(Address);
+            user.setAddress2(Address2);
+            user.setPhoneNumber2(phoneNumber2);
+            user.setPhoneNumber3(phoneNumber3);
 
             userList.add(user);
         }
@@ -256,8 +264,8 @@ public class DBUserAccess
         Date today = new Date();
         java.sql.Date sqlDate = new java.sql.Date(today.getTime());
         String sql = ""
-                + "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, LastDate, Note, Active) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)";
+                + "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, TLF2, TLF3, Address, Address2, LastDate, Note, Active) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, user.getFirstName());
@@ -266,8 +274,12 @@ public class DBUserAccess
         ps.setString(4, user.getNationality());
         ps.setString(5, user.getEmail());
         ps.setString(6, user.getPhoneNumber());
-        ps.setDate(7, sqlDate);
-        ps.setString(8, user.getNote());
+        ps.setString(7, user.getPhoneNumber2());
+        ps.setString(8, user.getPhoneNumber3());
+        ps.setString(9, user.getAddress());
+        ps.setString(10, user.getAddress2());
+        ps.setDate(11, sqlDate);
+        ps.setString(12, user.getNote());
 
         ps.execute();
     }
@@ -284,7 +296,7 @@ public class DBUserAccess
     {
         String sql = ""
                 + "UPDATE Users "
-                + "SET FName = ?, LName = ?, Gender = ?, Nationality = ?, EMail = ?, TLF = ?, Note = ? "
+                + "SET FName = ?, LName = ?, Gender = ?, Nationality = ?, EMail = ?, TLF = ?, TLF2 = ?, TLF3 = ?, Address = ?, Address2 = ?, Note = ? "
                 + "WHERE UID = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
@@ -295,8 +307,12 @@ public class DBUserAccess
         ps.setString(4, user.getNationality());
         ps.setString(5, user.getEmail());
         ps.setString(6, user.getPhoneNumber());
-        ps.setString(7, user.getNote());
-        ps.setInt(8, user.getId());
+        ps.setString(7, user.getPhoneNumber2());
+        ps.setString(8, user.getPhoneNumber3());
+        ps.setString(9, user.getAddress());
+        ps.setString(10, user.getAddress2());
+        ps.setString(11, user.getNote());
+        ps.setInt(12, user.getId());
 
         ps.execute();
     }
@@ -313,7 +329,7 @@ public class DBUserAccess
     {
         String sql = ""
                 + "UPDATE Managers "
-                + "SET FName = ?, LName = ?, EMail = ?, TLF = ? "
+                + "SET FName = ?, LName = ?, EMail = ?, TLF = ?, TLF2 = ?, TLF3 = ?, Address = ?, Address2 = ? "
                 + "WHERE MID = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
@@ -322,7 +338,11 @@ public class DBUserAccess
         ps.setString(2, manager.getLastName());
         ps.setString(3, manager.getEmail());
         ps.setString(4, manager.getPhoneNumber());
-        ps.setInt(5, manager.getId());
+        ps.setString(5, manager.getPhoneNumber2());
+        ps.setString(6, manager.getPhoneNumber3());
+        ps.setString(7, manager.getAddress());
+        ps.setString(8, manager.getAddress2());
+        ps.setInt(9, manager.getId());
 
         ps.execute();
     }
@@ -523,16 +543,65 @@ public class DBUserAccess
             Manager manager = new Manager(rs.getInt("MID"));
             manager.setEmail(rs.getString("EMail"));
             manager.setPhoneNumber(rs.getString("TLF"));
+            manager.setPhoneNumber2(rs.getString("TLF2"));
+            manager.setPhoneNumber3(rs.getString("TLF3"));
+            manager.setAddress(rs.getString("Address"));
+            manager.setAddress2(rs.getString("Address2"));
             manager.setFirstName(rs.getString("FName"));
             manager.setLastName(rs.getString("LName"));
-            
-            
+
             manager.setIsActive(active);
 
             returnList.add(manager);
         }
+        
+        sql = ""
+                + "SELECT * "
+                + "FROM ManagerRelation "
+                + "WHERE Active = 1";
+
+        ps = con.prepareStatement(sql);
+
+        rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            int MID = rs.getInt("MID");
+            for (Manager manager : returnList)
+            {
+                if (MID == manager.getId())
+                {
+                    int GID = rs.getInt("GID");
+                    manager.getManagerGuilds().add(GID);
+                }
+            }
+        }
 
         return returnList;
+    }
+    
+    public Manager addGuildsToManager(Manager manager, Connection con) throws SQLException
+    {
+        Manager man = manager;
+                String sql = ""
+                + "SELECT * "
+                + "FROM ManagerRelation "
+                + "WHERE Active = 1";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            int MID = rs.getInt("MID");
+                if (MID == man.getId())
+                {
+                    int GID = rs.getInt("GID");
+                    man.getManagerGuilds().add(GID);
+                } 
+        }
+        return man;
     }
 
     /**
@@ -582,14 +651,18 @@ public class DBUserAccess
     public void addManager(Manager manager, Connection con) throws SQLException
     {
         String sql = ""
-                + "INSERT INTO Managers(FName, LName, EMail, TLF, isAdmin, Active) "
-                + "VALUES (?, ?, ?, ?, 0, 1)";
+                + "INSERT INTO Managers(FName, LName, EMail, TLF, TLF2, TLF3, Address, Address2, isAdmin, Active) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, 1)";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, manager.getFirstName());
         ps.setString(2, manager.getLastName());
         ps.setString(3, manager.getEmail());
         ps.setString(4, manager.getPhoneNumber());
+        ps.setString(5, manager.getPhoneNumber2());
+        ps.setString(6, manager.getPhoneNumber3());
+        ps.setString(7, manager.getAddress());
+        ps.setString(8, manager.getAddress2());
 
         ps.execute();
     }
@@ -652,11 +725,17 @@ public class DBUserAccess
             Manager manager = new Manager(rs.getInt("MID"));
             manager.setEmail(rs.getString("EMail"));
             manager.setPhoneNumber(rs.getString("TLF"));
+            manager.setPhoneNumber2(rs.getString("TLF2"));
+            manager.setPhoneNumber3(rs.getString("TLF3"));
+            manager.setAddress(rs.getString("Address"));
+            manager.setAddress2(rs.getString("Address2"));
             manager.setFirstName(rs.getString("FName"));
             manager.setLastName(rs.getString("LName"));
 
             manager.setIsAdmin(rs.getBoolean("isAdmin"));
-
+            
+            manager = addGuildsToManager(manager, con);
+            
             return manager;
         }
         return null;
@@ -712,20 +791,20 @@ public class DBUserAccess
         ps.execute();
 
     }
-    
+
     public void deactivateManager(Manager manager, Connection con) throws SQLException
     {
         setManagerStatus(manager, false, con);
         deactivateManagerInAllGuilds(manager, con);
     }
-    
+
     public void setManagerStatus(Manager manager, boolean active, Connection con) throws SQLException
     {
         String sql = ""
                 + "UPDATE Managers "
                 + "SET Active = ? "
                 + "WHERE MID = ?";
-        
+
         PreparedStatement ps = con.prepareStatement(sql);
 
         ps.setBoolean(1, active);
@@ -733,7 +812,7 @@ public class DBUserAccess
 
         ps.execute();
     }
-    
+
     public void deactivateManagerInAllGuilds(Manager manager, Connection con) throws SQLException
     {
         String sql = ""

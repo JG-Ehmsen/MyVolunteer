@@ -10,17 +10,21 @@
    <children>
       <TableView fx:id="tblViewInfo" layoutY="84.0" prefHeight="352.0" prefWidth="399.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
         <columns>
-            <TableColumn fx:id="tblColumnGender" prefWidth="69.0" text="Køn" />
-            <TableColumn fx:id="tblColumnName" prefWidth="99.0" text="Fornavn" />
-          <TableColumn fx:id="tblColumnLName" prefWidth="107.0" text="Efternavn" />
-            <TableColumn fx:id="tblColumnPhone" prefWidth="99.0" text="Telefon" />
-          <TableColumn fx:id="tblColumnMail" prefWidth="167.0" text="Email" />
-            <TableColumn fx:id="tblColumnNationality" prefWidth="95.0" text="Nationalitet" />
+            <TableColumn fx:id="tblColumnGender" prefWidth="55.0" text="Køn" />
+            <TableColumn fx:id="tblColumnName" prefWidth="88.0" text="Fornavn" />
+          <TableColumn fx:id="tblColumnLName" prefWidth="101.0" text="Efternavn" />
+            <TableColumn fx:id="tblColumnPhone" text="Telefon" />
+            <TableColumn fx:id="tblColumnPhone2" text="Telefon 2" />
+            <TableColumn fx:id="tblColumnPhone3" text="Telefon 3" />
+          <TableColumn fx:id="tblColumnMail" prefWidth="110.0" text="Email" />
+            <TableColumn fx:id="tblColumnNationality" text="Nationalitet" />
+            <TableColumn fx:id="tblColumnAddress" prefWidth="90.0" text="Adresse" />
+            <TableColumn fx:id="tblColumnAddress2" prefWidth="90.0" text="Adresse 2" />
         </columns>
       </TableView>
       <ComboBox fx:id="comboBoxGuild" layoutX="10.0" layoutY="14.0" onAction="#handleComboClick" prefWidth="150.0" promptText="Vælg laug" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <Button fx:id="btnBack" layoutX="10.0" layoutY="426.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbage" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" />
       <Button fx:id="btnSave" layoutX="422.0" layoutY="406.0" mnemonicParsing="false" onAction="#handleSave" text="Print/save" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="10.0" />
-      <Button fx:id="btnAllVolunteers" layoutX="170.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAllVolunteers" text="Alle frivillige" />
+      <Button fx:id="btnAllVolunteers" layoutX="170.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAllVolunteers" text="Alle laug" />
    </children>
 </AnchorPane>

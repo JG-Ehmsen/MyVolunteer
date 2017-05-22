@@ -5,7 +5,6 @@
  */
 package myvolunteer.GUI.Controller;
 
-import java.awt.RenderingHints;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -88,6 +86,20 @@ public class AdminViewController implements Initializable
     private Label lblGuildNote;
     @FXML
     private Button btnRedigerTovholder;
+    @FXML
+    private Button btnInfo;
+    @FXML
+    private Button btnOpretTovholder;
+    @FXML
+    private Button btnAllLaug;
+    @FXML
+    private Label lblVolunteerPhoneNumber2;
+    @FXML
+    private Label lblVolunteerPhoneNumber3;
+    @FXML
+    private Label lblVolunteerAddress;
+    @FXML
+    private Label lblVolunteerAddress2;
 
     private List<Guild> guildList = new ArrayList<>();
     private List<Volunteer> userList = new ArrayList<>();
@@ -96,10 +108,7 @@ public class AdminViewController implements Initializable
     private Guild lastSelectedGuild;
     private Volunteer lastSelectedVolunteer;
     private Manager lastManager;
-    @FXML
-    private Button btnInfo;
-    @FXML
-    private Button btnOpretTovholder;
+    
 
     /**
      * Initializes the controller class.
@@ -239,15 +248,6 @@ public class AdminViewController implements Initializable
         }
     }
 
-    @FXML
-    private void handleComboClick(ActionEvent event)
-    {
-        lastSelectedGuild = comboBoxGuild.getSelectionModel().getSelectedItem();
-        lastManager = dp.getManagerForGuild(lastSelectedGuild);
-        showGuildInfo();
-        populateList();
-    }
-
     private void showGuildInfo()
     {
         lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size()));
@@ -271,15 +271,48 @@ public class AdminViewController implements Initializable
         }
     }
 
+    private void clearVolunteerInfo()
+    {
+        lblVolunteerName.setText("Fulde navn: ");
+        lblVolunteerGender.setText("Køn: ");
+        lblVolunteerAge.setText("Alder: ");
+        lblVolunteerPhoneNumber.setText("Telefon: ");
+        lblVolunteerPhoneNumber2.setText("Telefon 2: ");
+        lblVolunteerPhoneNumber3.setText("Telefon 3: ");
+        lblVolunteerAddress.setText("Adresse: ");
+        lblVolunteerAddress2.setText("Adresse 2: ");
+        lblVolunteerEMail.setText("Email: ");
+        lblVolunteerNationality.setText("Nationalitet: ");
+        lblVolunteerHours.setText("Timer: ");
+        lblVolunteerNote.setText("");
+    }
+
+    private void clearGuildInfo()
+    {
+        lblGuildVolunteers.setText("Frivillige: ");
+        lblTovholder.setText("Tovholder: ");
+        lblTotalGuildHours.setText("Total antal timer: ");
+        lblGuildNote.setText("Note: ");
+    }
+
+    private void clearInfo()
+    {
+        clearGuildInfo();
+        clearVolunteerInfo();
+    }
+
     private void loadVolunteerInfo()
     {
         lblVolunteerName.setText("Fulde navn: " + lastSelectedVolunteer.getFirstName() + " " + lastSelectedVolunteer.getLastName());
         lblVolunteerGender.setText("Køn: " + lastSelectedVolunteer.getGender());
         lblVolunteerAge.setText("Alder: ");
         lblVolunteerPhoneNumber.setText("Telefon: " + lastSelectedVolunteer.getPhoneNumber());
+        lblVolunteerPhoneNumber2.setText("Telefon 2: " + lastSelectedVolunteer.getPhoneNumber2());
+        lblVolunteerPhoneNumber3.setText("Telefon 3: " + lastSelectedVolunteer.getPhoneNumber3());
+        lblVolunteerAddress.setText("Adresse: " + lastSelectedVolunteer.getAddress());
+        lblVolunteerAddress2.setText("Adresse 2: " + lastSelectedVolunteer.getAddress2());
         lblVolunteerEMail.setText("Email: " + lastSelectedVolunteer.getEmail());
         lblVolunteerNationality.setText("Nationalitet: " + lastSelectedVolunteer.getNationality());
-        lblVolunteerHours.setText("Timer: ");
         lblVolunteerNote.setText(lastSelectedVolunteer.getNote());
         lblVolunteerHours.setText("Timer: " + Integer.toString(dp.getHoursWorkedForVolunteer(lastSelectedVolunteer)));
     }
@@ -317,6 +350,29 @@ public class AdminViewController implements Initializable
         // Closes the primary stage
         Stage stage = (Stage) btnRedigerTovholder.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void handleAllLaug(ActionEvent event)
+    {
+        comboBoxGuild.getItems().clear();
+        comboContent();
+        populateList();
+        clearInfo();
+    }
+
+    @FXML
+    private void handleComboClick(ActionEvent event)
+    {
+        clearVolunteerInfo();
+        lastSelectedGuild = comboBoxGuild.getSelectionModel().getSelectedItem();
+
+        if (lastSelectedGuild != null)
+        {
+            lastManager = dp.getManagerForGuild(lastSelectedGuild);
+            showGuildInfo();
+            populateList();
+        }
     }
 
 }
