@@ -554,8 +554,54 @@ public class DBUserAccess
 
             returnList.add(manager);
         }
+        
+        sql = ""
+                + "SELECT * "
+                + "FROM ManagerRelation "
+                + "WHERE Active = 1";
+
+        ps = con.prepareStatement(sql);
+
+        rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            int MID = rs.getInt("MID");
+            for (Manager manager : returnList)
+            {
+                if (MID == manager.getId())
+                {
+                    int GID = rs.getInt("GID");
+                    manager.getManagerGuilds().add(GID);
+                }
+            }
+        }
 
         return returnList;
+    }
+    
+    public Manager addGuildsToManager(Manager manager, Connection con) throws SQLException
+    {
+        Manager man = manager;
+                String sql = ""
+                + "SELECT * "
+                + "FROM ManagerRelation "
+                + "WHERE Active = 1";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            int MID = rs.getInt("MID");
+                if (MID == man.getId())
+                {
+                    int GID = rs.getInt("GID");
+                    man.getManagerGuilds().add(GID);
+                } 
+        }
+        return man;
     }
 
     /**
@@ -687,7 +733,9 @@ public class DBUserAccess
             manager.setLastName(rs.getString("LName"));
 
             manager.setIsAdmin(rs.getBoolean("isAdmin"));
-
+            
+            manager = addGuildsToManager(manager, con);
+            
             return manager;
         }
         return null;
