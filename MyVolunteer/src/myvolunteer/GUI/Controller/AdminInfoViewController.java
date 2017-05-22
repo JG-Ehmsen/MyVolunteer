@@ -65,13 +65,19 @@ public class AdminInfoViewController implements Initializable
     @FXML
     private TableColumn<Volunteer, String> tblColumnLName;
     @FXML
-    private Button btnSave;
-    @FXML
     private Button btnAllVolunteers;
     @FXML
     private TableColumn<Volunteer, String> tblColumnGender;
     @FXML
     private TableColumn<Volunteer, String> tblColumnNationality;
+    @FXML
+    private TableColumn<Volunteer, String> tblColumnPhone2;
+    @FXML
+    private TableColumn<Volunteer, String> tblColumnPhone3;
+    @FXML
+    private TableColumn<Volunteer, String> tblColumnAddress;
+    @FXML
+    private TableColumn<Volunteer, String> tblColumnAddress2;
 
     /**
      * Initializes the controller class.
@@ -143,8 +149,12 @@ public class AdminInfoViewController implements Initializable
         tblColumnName.setCellValueFactory(cellData -> cellData.getValue().getFNameProperty());
         tblColumnLName.setCellValueFactory(celldata -> celldata.getValue().getLNameProperty());
         tblColumnPhone.setCellValueFactory(celldata -> celldata.getValue().getPhoneProperty());
+        tblColumnPhone2.setCellValueFactory(celldata -> celldata.getValue().getPhone2Property());
+        tblColumnPhone3.setCellValueFactory(celldata -> celldata.getValue().getPhone3Property());
         tblColumnMail.setCellValueFactory(celldata -> celldata.getValue().getMailProperty());
         tblColumnNationality.setCellValueFactory(celldata -> celldata.getValue().getNationalityProperty());
+        tblColumnAddress.setCellValueFactory(celldata -> celldata.getValue().getAddressProperty());
+        tblColumnAddress2.setCellValueFactory(celldata -> celldata.getValue().getAddress2Property());
 
         ObservableList nameArrayList = FXCollections.observableArrayList(dp.getActiveUsers());
         tblViewInfo.setItems(nameArrayList);
@@ -179,7 +189,7 @@ public class AdminInfoViewController implements Initializable
             writer = new BufferedWriter(new FileWriter(file));
             for (Volunteer user : tblViewInfo.getItems())
             {
-                String text = user.getGender() + "	" + user.getFirstName() + "	" + user.getLastName() + "	" + user.getEmail() + "	" + user.getPhoneNumber() + "	" + user.getNationality() + "\n";
+                String text = user.getGender() + "	" + user.getFirstName() + "	" + user.getLastName() + "	" + user.getEmail() + "	" + user.getPhoneNumber() + "	" + user.getPhoneNumber2() + "	" + user.getPhoneNumber3() + "	" + user.getNationality() + "	" + user.getAddress() + "	" + user.getAddress2() + "\n";
 
                 writer.write(text);
             }
