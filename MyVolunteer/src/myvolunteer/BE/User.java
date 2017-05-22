@@ -80,6 +80,26 @@ public class User
     {
         return this.phoneNumber;
     }
+    
+    public StringProperty getPhone2Property()
+    {
+        return this.phoneNumber2;
+    }
+    
+    public StringProperty getPhone3Property()
+    {
+        return this.phoneNumber3;
+    }
+    
+    public StringProperty getAddressProperty()
+    {
+        return this.address;
+    }
+    
+    public StringProperty getAddress2Property()
+    {
+        return this.address2;
+    }
 
     public void setPhoneNumber(String value)
     {
