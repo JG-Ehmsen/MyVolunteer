@@ -83,7 +83,7 @@ public class AddLaugController implements Initializable
         allUsers.setAll(allVolunteerList);
         listAvailableVolunteers.setItems(allUsers);
         listChosenVolunteer.setItems(chosenUsers);
-        managerList = dp.getManagers();
+        managerList = dp.getActiveManagers();
         managers.setAll(managerList);
         comboManager.setItems(managers);
 

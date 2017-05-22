@@ -50,20 +50,30 @@ public class EditManagerController implements Initializable
     @FXML
     private Button btnGodkend;
     @FXML
-    private Button btnSletTovholder;
-    @FXML
     private TextField txtPassword;
     @FXML
     private ComboBox<Manager> comboTovholder;
     
     Manager manager;
+    Manager managers;
+    @FXML
+    private Button btnChangeStatus;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        ObservableList manager = FXCollections.observableArrayList(dp.getManagers());
+        managers = mainViewModel.getLoggedInManager();
+        ObservableList manager = FXCollections.observableArrayList(dp.getAllManagers());
         comboTovholder.setItems(manager);
+        
+        if (managers.isIsActive())
+        {
+            btnChangeStatus.setText("Gør aktiv");
+        } else if(!managers.isIsActive())
+        {
+            btnChangeStatus.setText("Gør inaktiv");
+        }
     }
     
     private void loadInfo()
@@ -114,12 +124,23 @@ public class EditManagerController implements Initializable
             }
     }
 
-    @FXML
-    private void handleSletTovholder(ActionEvent event) throws IOException
+    public void handleChangeStatus(ActionEvent event) throws IOException
+    {
+        if (manager.isIsActive())
+        {
+            deactivate();
+        } else
+        {
+            activate();
+        }
+    }
+    
+    private void deactivate() throws IOException
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Slet tovholder");
-        alert.setHeaderText("Du er ved at fjerne en tovholder.");
+        alert.setTitle("Deaktiver tovholder");
+        alert.setHeaderText("Du er ved at deaktiver en tovholder. De vil også "
+                + "blive fjernet fra alle laug.");
         alert.setContentText("Tryk OK for at fortsætte.");
 
         ButtonType buttonTypeOK = new ButtonType("OK");
@@ -130,12 +151,37 @@ public class EditManagerController implements Initializable
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOK)
         {
-            // IMPLEMENT DELETE
+            dp.deactivateManager(manager);
             goBack();
         } else
         {
             alert.close();
         }
+    }
+    
+    private void activate() throws IOException
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Aktiver tovholder");
+        alert.setHeaderText("Du er ved at aktiver en tovholder. De skal manuelt "
+                + "tilføjes til alle laug igen.");
+        alert.setContentText("Tryk OK for at fortsætte.");
+
+        ButtonType buttonTypeOK = new ButtonType("OK");
+        ButtonType buttonTypeAnnuller = new ButtonType("Annuller");
+
+        alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeAnnuller);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOK)
+        {
+            dp.setManagerStatus(manager, true);
+            goBack();
+        } else
+        {
+            alert.close();
+        }
+        
     }
 
     @FXML
