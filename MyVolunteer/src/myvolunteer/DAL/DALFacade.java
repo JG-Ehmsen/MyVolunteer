@@ -157,4 +157,14 @@ public class DALFacade
     {
         db.setGuildStatus(guild, active);
     }
+    
+    public void deactivateManager(Manager manager)
+    {
+        db.deactivateManager(manager);
+    }
+    
+    public void setManagerStatus(Manager manager, boolean active)
+    {
+        db.setManagerStatus(manager, active);
+    }
 }

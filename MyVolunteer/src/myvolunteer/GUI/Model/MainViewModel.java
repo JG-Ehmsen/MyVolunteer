@@ -72,7 +72,7 @@ public class MainViewModel
     {
         this.lastSelectedUser = lastSelectedUser;
     }
-
+    
     public Guild getLastSelectedGuild()
     {
         return lastSelectedGuild;

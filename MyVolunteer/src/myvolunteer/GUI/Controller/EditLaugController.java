@@ -95,7 +95,7 @@ public class EditLaugController implements Initializable
         listAvailableVolunteers.setItems(allUsers);
         listChosenVolunteers.setItems(chosenUsers);
 
-        managerList = dp.getManagers();
+        managerList = dp.getActiveManagers();
         managers.setAll(managerList);
         comboManager.setItems(managers);
         setStartManager();
@@ -352,8 +352,10 @@ public class EditLaugController implements Initializable
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get() == buttonTypeOK)
         {
+           btnChangeStatus.setText("Gør aktiv");
             dp.deactivateGuild(guild);
-            goBack();
+            
+            alert.close();
         }else
         {
             alert.close();
@@ -377,8 +379,10 @@ public class EditLaugController implements Initializable
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get() == buttonTypeOK)
         {
+            btnChangeStatus.setText("Gør inaktiv");
             dp.setGuildStatus(guild, true);
-            goBack();
+            
+            alert.close();
         }else
         {
             alert.close();
