@@ -347,6 +347,7 @@ public class AdminViewController implements Initializable
     @FXML
     private void handleComboClick(ActionEvent event)
     {
+        clearVolunteerInfo();
         lastSelectedGuild = comboBoxGuild.getSelectionModel().getSelectedItem();
 
         if (lastSelectedGuild != null)
@@ -355,7 +356,6 @@ public class AdminViewController implements Initializable
             showGuildInfo();
             populateList();
         }
-
     }
 
 }
