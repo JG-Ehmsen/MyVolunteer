@@ -184,10 +184,10 @@ public class DataParserModel
                 mainViewModel.setLoggedInManager(manager);
                 if (!manager.isAdmin())
                 {
-                    mainViewModel.changeView("ManagerView", "GUI/View/ManagerView.fxml");
+                    mainViewModel.changeView("Manager", "GUI/View/ManagerView.fxml");
                 } else
                 {
-                    mainViewModel.changeView("AdminView", "GUI/View/AdminView.fxml");
+                    mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
                 }
                 stage.close();
             } catch (IOException ex)

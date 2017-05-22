@@ -19,7 +19,7 @@
                 <Image url="@Resource/logo.png" />
             </image>
         </ImageView>
-        <Label layoutX="76.0" layoutY="102.0" prefHeight="23.0" prefWidth="108.0" text="Admin Login">
+        <Label layoutX="76.0" layoutY="102.0" prefHeight="23.0" prefWidth="108.0" text="Login">
             <font>
                 <Font size="18.0" />
             </font>

@@ -24,7 +24,7 @@
                </padding></FlowPane>
          </content>
       </ScrollPane>
-      <Button id="adminbutton" fx:id="btnLogin" alignment="BASELINE_LEFT" layoutX="488.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" prefWidth="98.0" style="-fx-background-radius: 10;" text="Admin" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0" />
+      <Button id="adminbutton" fx:id="btnLogin" alignment="BASELINE_LEFT" layoutX="488.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" prefWidth="98.0" style="-fx-background-radius: 10;" text="Login" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0" />
       <ImageView fitHeight="19.0" fitWidth="600.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="75.0">
          <image>
             <Image url="@Resource/toolsmenu_bg.png" />
