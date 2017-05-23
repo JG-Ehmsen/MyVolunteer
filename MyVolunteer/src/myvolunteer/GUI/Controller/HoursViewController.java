@@ -63,7 +63,7 @@ public class HoursViewController implements Initializable
     private ImageView imgProfilePicture;
     
     Volunteer user;
-    Guild guild:
+    Guild guild;
 
     /**
      * Initializes the controller class.
