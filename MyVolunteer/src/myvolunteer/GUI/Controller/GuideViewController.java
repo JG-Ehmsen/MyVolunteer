@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -32,11 +33,17 @@ public class GuideViewController implements Initializable
 
     @FXML
     private Button btnBack;
-    @FXML
-    private MediaView mediaGuide;
     
     private MediaPlayer mpGuide;
     private Media meGuide;
+    @FXML
+    private Label step1lbl;
+    @FXML
+    private Label step2lbl;
+    @FXML
+    private Label step3lbl;
+    @FXML
+    private Label lblToDo;
 
     /**
      * Initializes the controller class.
@@ -45,6 +52,7 @@ public class GuideViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
+        changeLanguage();
 //        String path = new File("/GUI/Utility/GuideMovie2.mp4").getAbsolutePath();
 //        meGuide = new Media(new File(path).toURI().toString());
 //        mpGuide = new MediaPlayer(meGuide);
@@ -66,6 +74,17 @@ public class GuideViewController implements Initializable
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
+    }
+    
+    private void changeLanguage()
+    {
+        ResourceBundle rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
+        step1lbl.setText(rb.getString("GuideView.step1lbl.text"));
+        step2lbl.setText(rb.getString("GuideView.step2lbl.text"));
+        step3lbl.setText(rb.getString("GuideView.step3lbl.text"));
+        btnBack.setText(rb.getString("GuideView.btnBack.text"));
+        lblToDo.setText(rb.getString("GuideView.lblToDo.text"));
+        
     }
     
 }

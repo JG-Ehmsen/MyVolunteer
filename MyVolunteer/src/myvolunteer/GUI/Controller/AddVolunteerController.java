@@ -247,12 +247,15 @@ public class AddVolunteerController implements Initializable
             fs.setTitle("Vælg Billede");
             fs.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
 
-            img = ImageIO.read(file);
+            if (file != null)
+            {
+                img = ImageIO.read(file);
 
-            Image image = SwingFXUtils.toFXImage(img, null);
+                Image image = SwingFXUtils.toFXImage(img, null);
 
-            imgProfilePicture.setImage(image);
-            imageSet = true;
+                imgProfilePicture.setImage(image);
+                imageSet = true;
+            }
         } catch (IOException ex)
         {
             Logger.getLogger(AddVolunteerController.class.getName()).log(Level.SEVERE, null, ex);
