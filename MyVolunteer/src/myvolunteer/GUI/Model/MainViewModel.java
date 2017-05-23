@@ -1,6 +1,8 @@
 package myvolunteer.GUI.Model;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -44,6 +46,14 @@ public class MainViewModel
     private Volunteer lastSelectedUser;
     private Guild lastSelectedGuild;
     private Manager loggedInManager;
+
+    private String lastSelectedBundle = "myvolunteer.GUI.Utility.MyLanguage";
+    private Locale lastSelectedLocale = new Locale("da", "DK");
+    private String bundle = "myvolunteer.GUI.Utility.MyLanguage";
+    private String bundleDE = "myvolunteer.GUI.Utility.MyLanguage_de_DE";
+    private String bundleEN = "myvolunteer.GUI.Utility.MyLanguage_en_GB";
+    private String btn = "LaugViewSpecial.btnLogin.text";
+    ResourceBundle rb = ResourceBundle.getBundle(bundle, lastSelectedLocale);
 
     public void changeView(String title, String path) throws IOException
     {
@@ -89,6 +99,26 @@ public class MainViewModel
     public void setLoggedInManager(Manager loggedInManager)
     {
         this.loggedInManager = loggedInManager;
+    }
+
+    public Locale getLastSelectedLocale()
+    {
+        return lastSelectedLocale;
+    }
+
+    public void setLastSelectedLocale(Locale lastSelectedLocale)
+    {
+        this.lastSelectedLocale = lastSelectedLocale;
+    }
+
+    public String getLastSelectedBundle()
+    {
+        return lastSelectedBundle;
+    }
+
+    public void setLastSelectedBundle(String lastSelectedBundle)
+    {
+        this.lastSelectedBundle = lastSelectedBundle;
     }
 
 }
