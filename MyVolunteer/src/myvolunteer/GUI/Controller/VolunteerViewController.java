@@ -18,7 +18,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
@@ -57,14 +56,13 @@ public class VolunteerViewController implements Initializable
     {
         guild = mainViewModel.getLastSelectedGuild();
         manager = dp.getManagerForGuild(guild);
-        
-        
+
         guildNameLbl.setText(guild.getName());
         contactNameLbl.setText("Kontaktperson \n" + manager.getFirstName() + " " + manager.getLastName()
-        + "\n" + manager.getPhoneNumber() + "\n" + manager.getEmail());
+                + "\n" + manager.getPhoneNumber() + "\n" + manager.getEmail());
         generateButtons();
-        
         adjustScrollPane();
+        changeLanguage();
     }
 
     private void generateButtons()
@@ -97,12 +95,12 @@ public class VolunteerViewController implements Initializable
 
         }
     }
-    
+
     private void adjustScrollPane()
     {
         laugScroll.viewportBoundsProperty().addListener(new ChangeListener<Bounds>()
         {
-            
+
             @Override
             public void changed(ObservableValue<? extends Bounds> ov, Bounds oldBounds, Bounds bounds)
             {
@@ -112,7 +110,6 @@ public class VolunteerViewController implements Initializable
             }
         });
 
-    
     }
 
     private void handleUserImage()
@@ -120,7 +117,7 @@ public class VolunteerViewController implements Initializable
         try
         {
             mainViewModel.changeView("Indtast timer", "GUI/View/HoursSpecial.fxml");
-            
+
             // Closes the primary stage
             Stage stage = (Stage) btnBack.getScene().getWindow();
             stage.close();
@@ -138,6 +135,14 @@ public class VolunteerViewController implements Initializable
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
+    }
+
+    private void changeLanguage()
+    {
+        ResourceBundle rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
+        btnBack.setText(rb.getString("VolunteerView.btnBack.text"));
+        contactNameLbl.setText(rb.getString("VolunteerView.contactNameLbl.text") + "\n" + manager.getFirstName() + " " + manager.getLastName()
+                + "\n" + manager.getPhoneNumber() + "\n" + manager.getEmail());
     }
 
 }

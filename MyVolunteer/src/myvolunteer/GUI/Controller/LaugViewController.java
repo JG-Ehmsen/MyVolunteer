@@ -11,7 +11,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
@@ -38,6 +37,10 @@ public class LaugViewController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+
+    private Locale german = new Locale("de", "DE");
+    private Locale danish = new Locale("da", "DK");
+    private Locale english = new Locale("en", "GB");
 
     @FXML
     private Button btnLogin;
@@ -68,7 +71,7 @@ public class LaugViewController implements Initializable
 
         initGuildButtons();
         adjustScrollPane();
-
+        setBundleLocale();
     }
 
     private void initGuildButtons()
@@ -143,12 +146,56 @@ public class LaugViewController implements Initializable
     }
 
     @FXML
-    private void handleLanguageChange(ActionEvent event) throws IOException
-    {   
-        Locale german = new Locale("de", "DE");
-        ResourceBundle rb = ResourceBundle.getBundle("myvolunteer.GUI.Utility.MyLanguage", german);
-        
-        btnLogin.setText(rb.getString("LaugViewSpecial.btnLogin.text"));
-        
+    private void handleLanguageDan(ActionEvent event)
+    {
+        mainViewModel.setLastSelectedLocale(danish);
+        mainViewModel.setLastSelectedBundle("myvolunteer.GUI.Utility.MyLanguage");
+        englishBtn.setDisable(false);
+        germanBtn.setDisable(false);
+        danishBtn.setDisable(true);
+    }
+
+    @FXML
+    private void handleLanguageGer(ActionEvent event)
+    {
+        mainViewModel.setLastSelectedLocale(german);
+        mainViewModel.setLastSelectedBundle("myvolunteer.GUI.Utility.MyLanguage_de_DE");
+        englishBtn.setDisable(false);
+        germanBtn.setDisable(true);
+        danishBtn.setDisable(false);
+    }
+
+    @FXML
+    private void handleLanguageEng(ActionEvent event)
+    {
+        mainViewModel.setLastSelectedLocale(english);
+        mainViewModel.setLastSelectedBundle("myvolunteer.GUI.Utility.MyLanguage_en_GB");
+        englishBtn.setDisable(true);
+        germanBtn.setDisable(false);
+        danishBtn.setDisable(false);
+    }
+
+    private void setBundleLocale()
+    {
+        ResourceBundle rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
+
+        if (mainViewModel.getLastSelectedLocale().equals(german))
+        {
+            englishBtn.setDisable(false);
+            germanBtn.setDisable(true);
+            danishBtn.setDisable(false);
+        }
+        if (mainViewModel.getLastSelectedLocale().equals(english))
+        {
+            englishBtn.setDisable(true);
+            germanBtn.setDisable(false);
+            danishBtn.setDisable(false);
+        }
+        if (mainViewModel.getLastSelectedLocale().equals(danish))
+        {
+            englishBtn.setDisable(false);
+            germanBtn.setDisable(false);
+            danishBtn.setDisable(true);
+        }
     }
 }
