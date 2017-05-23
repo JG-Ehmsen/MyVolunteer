@@ -5,10 +5,15 @@
  */
 package myvolunteer.GUI.Controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,8 +26,11 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
@@ -64,8 +72,6 @@ public class EditVolunteerController implements Initializable
     @FXML
     private TextField txtLName;
     @FXML
-    private ImageView imgPicture;
-    @FXML
     private Label xFirstName;
     @FXML
     private Label xLastName;
@@ -86,6 +92,12 @@ public class EditVolunteerController implements Initializable
     private TextField txtAddress2;
     @FXML
     private TextField tblBDay;
+    @FXML
+    private Button btnUploadImage;
+    @FXML
+    private ImageView imgProfilePicture;
+
+    BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
 
     /**
      * Initializes the controller class.
@@ -129,6 +141,7 @@ public class EditVolunteerController implements Initializable
         txtAddress2.setText(volunteer.getAddress2());
         txtNationalitet.setText(volunteer.getNationality());
         txtNote.setText(volunteer.getNote());
+        imgProfilePicture.setImage(volunteer.getPicture());
 
         if (volunteer.getGender().equals("Mand"))
         {
@@ -209,11 +222,6 @@ public class EditVolunteerController implements Initializable
     }
 
     @FXML
-    private void btnUploadPicture(ActionEvent event)
-    {
-    }
-
-    @FXML
     private void handleChangeStatus(ActionEvent event) throws IOException
     {
         if (volunteer.isActive())
@@ -287,6 +295,7 @@ public class EditVolunteerController implements Initializable
         volunteer.setAddress2(txtAddress2.getText());
         volunteer.setNationality(txtNationalitet.getText());
         volunteer.setNote(txtNote.getText());
+        volunteer.setPicture(img);
 
         if (tg.getSelectedToggle().equals(rdoMand))
         {
@@ -297,6 +306,30 @@ public class EditVolunteerController implements Initializable
         }
 
         dp.UpdateUser(volunteer);
+    }
+
+    @FXML
+    private void handleUploadImage(ActionEvent event)
+    {
+        try
+        {
+            FileChooser fs = new FileChooser();
+            File file = fs.showOpenDialog((Stage) btnUploadImage.getScene().getWindow());
+            fs.setTitle("Vælg Billede");
+            fs.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+
+            if (file != null)
+            {
+                img = ImageIO.read(file);
+
+                Image image = SwingFXUtils.toFXImage(img, null);
+
+                imgProfilePicture.setImage(image);
+            }
+        } catch (IOException ex)
+        {
+            Logger.getLogger(AddVolunteerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
