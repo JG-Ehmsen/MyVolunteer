@@ -56,10 +56,14 @@ public class HoursViewController implements Initializable
     @FXML
     private Label lblName;
     @FXML
+    private Label lblHoursInput;
+    @FXML
+    private Label lblDatePick;
+    @FXML
     private ImageView imgProfilePicture;
     
     Volunteer user;
-    Guild guild;
+    Guild guild:
 
     /**
      * Initializes the controller class.
