@@ -2,6 +2,7 @@ package myvolunteer.GUI.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,13 +11,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
@@ -141,4 +142,13 @@ public class LaugViewController implements Initializable
         stage.close();
     }
 
+    @FXML
+    private void handleLanguageChange(ActionEvent event) throws IOException
+    {   
+        Locale german = new Locale("de", "DE");
+        ResourceBundle rb = ResourceBundle.getBundle("myvolunteer.GUI.Utility.MyLanguage", german);
+        
+        btnLogin.setText(rb.getString("LaugViewSpecial.btnLogin.text"));
+        
+    }
 }
