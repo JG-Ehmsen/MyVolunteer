@@ -5,14 +5,19 @@
  */
 package myvolunteer.GUI.Controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,10 +28,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
@@ -67,6 +76,12 @@ public class EditLaugController implements Initializable
     private TextField txtSearchFilterAvailable;
     @FXML
     private Text lblAntalFrivillige;
+    @FXML
+    private Button btnChangeStatus;
+    @FXML
+    private ImageView imgGuildPicture;
+    @FXML
+    private Button btnUploadPicture;
 
     Guild guild;
     Manager manager;
@@ -79,8 +94,8 @@ public class EditLaugController implements Initializable
 
     List<Integer> inGuild = new ArrayList();
     List<Integer> notInGuild = new ArrayList();
-    @FXML
-    private Button btnChangeStatus;
+
+    BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
 
     /**
      * Initializes the controller class.
@@ -125,6 +140,8 @@ public class EditLaugController implements Initializable
     {
         this.txtLaugInformation.setText(guild.getDescription());
         this.txtLaugName.setText(guild.getName());
+        imgGuildPicture.setImage(guild.getPicture());
+        img = guild.getBufferedPicture();
     }
 
     private void initialSortLists()
@@ -170,6 +187,7 @@ public class EditLaugController implements Initializable
     {
         guild.setDescription(txtLaugInformation.getText());
         guild.setName(txtLaugName.getText());
+        guild.setPicture(img);
 
         for (Volunteer volunteer : listAvailableVolunteers.getItems())
         {
@@ -389,6 +407,30 @@ public class EditLaugController implements Initializable
             alert.close();
         }
 
+    }
+
+    @FXML
+    private void handleUploadPicture(ActionEvent event)
+    {
+        try
+        {
+            FileChooser fs = new FileChooser();
+            File file = fs.showOpenDialog((Stage) btnUploadPicture.getScene().getWindow());
+            fs.setTitle("Vælg Billede");
+            fs.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+
+            if (file != null)
+            {
+                img = ImageIO.read(file);
+
+                Image image = SwingFXUtils.toFXImage(img, null);
+
+                imgGuildPicture.setImage(image);
+            }
+        } catch (IOException ex)
+        {
+            Logger.getLogger(AddVolunteerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
