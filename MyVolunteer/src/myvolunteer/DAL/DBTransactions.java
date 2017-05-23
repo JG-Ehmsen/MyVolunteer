@@ -75,9 +75,6 @@ public class DBTransactions
         } catch (SQLException ex)
         {
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex)
-        {
-            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
         return returnList;
     }
