@@ -60,7 +60,7 @@ public class VolunteerViewController implements Initializable
         
         
         guildNameLbl.setText(guild.getName());
-        contactNameLbl.setText("Kontakt Person \n" + manager.getFirstName() + " " + manager.getLastName()
+        contactNameLbl.setText("Kontaktperson \n" + manager.getFirstName() + " " + manager.getLastName()
         + "\n" + manager.getPhoneNumber() + "\n" + manager.getEmail());
         generateButtons();
         
