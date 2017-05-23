@@ -81,6 +81,9 @@ public class HoursViewController implements Initializable
             lblLastUpdated.setText("Sidst opdateret:\n" + user.getLastInputDate().toString());
         }
         lblName.setText(user.getFirstName() + " " + user.getLastName());
+
+        changeLanguage();
+
         
         imgProfilePicture.setImage(user.getPicture());
     }
@@ -190,5 +193,15 @@ public class HoursViewController implements Initializable
             str = str.substring(0, str.length() - 1);
         }
         return str;
+    }
+
+    private void changeLanguage()
+    {
+        ResourceBundle rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
+        btnBack.setText(rb.getString("HoursSpecial.btnBack.text"));
+        lblLastUpdated.setText(rb.getString("HoursSpecial.lblLastUpdated.text"));
+        lblDatePick.setText(rb.getString("HoursSpecial.lblDatePick.text"));
+        lblHoursInput.setText(rb.getString("HoursSpecial.lblHoursInput.text"));
+        btnConfirmHours.setText(rb.getString("HoursSpecial.btnConfirmHours.text"));
     }
 }
