@@ -5,13 +5,19 @@
  */
 package myvolunteer.GUI.Controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import myvolunteer.GUI.Model.MainViewModel;
 
@@ -26,6 +32,11 @@ public class GuideViewController implements Initializable
 
     @FXML
     private Button btnBack;
+    @FXML
+    private MediaView mediaGuide;
+    
+    private MediaPlayer mpGuide;
+    private Media meGuide;
 
     /**
      * Initializes the controller class.
@@ -34,6 +45,17 @@ public class GuideViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
+//        String path = new File("/GUI/Utility/GuideMovie2.mp4").getAbsolutePath();
+//        meGuide = new Media(new File(path).toURI().toString());
+//        mpGuide = new MediaPlayer(meGuide);
+//        mediaGuide.setMediaPlayer(mpGuide);
+//        mpGuide.setAutoPlay(true);
+//        
+//        DoubleProperty width = mediaGuide.fitWidthProperty();
+//        DoubleProperty height = mediaGuide.fitHeightProperty();
+//        
+//        width.bind(Bindings.selectDouble(mediaGuide.sceneProperty(), "width"));
+//        height.bind(Bindings.selectDouble(mediaGuide.sceneProperty(), "height"));
     }    
 
     @FXML
