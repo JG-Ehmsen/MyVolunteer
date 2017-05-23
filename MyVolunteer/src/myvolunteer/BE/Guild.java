@@ -1,9 +1,12 @@
 package myvolunteer.BE;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 
 public class Guild
 {
@@ -16,9 +19,11 @@ public class Guild
 
     private List<Integer> memberList = new ArrayList();
 
-    private String image = "myvolunteer/GUI/View/Resource/GuildPicture.png";
+    private String defaultImage = "myvolunteer/GUI/View/Resource/GuildPicture.png";
 
     private boolean isActive;
+
+    private BufferedImage picture = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
 
     public Guild(int ID, String name)
     {
@@ -61,9 +66,34 @@ public class Guild
         this.memberList = memberList;
     }
 
+    public Image getPicture()
+    {
+        BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
+
+        if (picture != null)
+        {
+            img = picture;
+            return SwingFXUtils.toFXImage(img, null);
+        } else
+        {
+            return new Image(defaultImage);
+
+        }
+    }
+
+    public BufferedImage getBufferedPicture()
+    {
+        return picture;
+    }
+
+    public void setPicture(BufferedImage picture)
+    {
+        this.picture = picture;
+    }
+
     public String getImage()
     {
-        return image;
+        return defaultImage;
     }
 
     @Override
