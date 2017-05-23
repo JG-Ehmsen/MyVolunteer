@@ -149,6 +149,5 @@ public class LaugViewController implements Initializable
         ResourceBundle rb = ResourceBundle.getBundle("myvolunteer.GUI.Utility.MyLanguage", german);
         
         btnLogin.setText(rb.getString("LaugViewSpecial.btnLogin.text"));
-        
     }
 }

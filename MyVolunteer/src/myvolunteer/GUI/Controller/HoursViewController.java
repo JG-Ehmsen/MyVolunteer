@@ -60,6 +60,10 @@ public class HoursViewController implements Initializable
     private Button btnBack;
     @FXML
     private Label lblName;
+    @FXML
+    private Label lblHoursInput;
+    @FXML
+    private Label lblDatePick;
 
     /**
      * Initializes the controller class.
