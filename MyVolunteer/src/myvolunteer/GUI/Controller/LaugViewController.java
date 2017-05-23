@@ -71,7 +71,7 @@ public class LaugViewController implements Initializable
 
         initGuildButtons();
         adjustScrollPane();
-        changeLanguage();
+        setBundleLocale();
     }
 
     private void initGuildButtons()
@@ -175,10 +175,9 @@ public class LaugViewController implements Initializable
         danishBtn.setDisable(false);
     }
 
-    private void changeLanguage()
+    private void setBundleLocale()
     {
         ResourceBundle rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
-        btnLogin.setText(rb.getString("LaugViewSpecial.btnLogin.text"));
 
         if (mainViewModel.getLastSelectedLocale().equals(german))
         {
