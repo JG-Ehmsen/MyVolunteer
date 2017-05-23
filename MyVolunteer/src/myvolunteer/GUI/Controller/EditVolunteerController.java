@@ -142,6 +142,7 @@ public class EditVolunteerController implements Initializable
         txtNationalitet.setText(volunteer.getNationality());
         txtNote.setText(volunteer.getNote());
         imgProfilePicture.setImage(volunteer.getPicture());
+        img = volunteer.getBufferedPicture();
 
         if (volunteer.getGender().equals("Mand"))
         {
