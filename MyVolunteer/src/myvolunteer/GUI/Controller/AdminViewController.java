@@ -108,7 +108,6 @@ public class AdminViewController implements Initializable
     private Guild lastSelectedGuild;
     private Volunteer lastSelectedVolunteer;
     private Manager lastManager;
-    
 
     /**
      * Initializes the controller class.
@@ -303,14 +302,50 @@ public class AdminViewController implements Initializable
 
     private void loadVolunteerInfo()
     {
+        String phone2;
+        if (lastSelectedVolunteer.getPhoneNumber2() == null)
+        {
+            phone2 = "";
+        } else
+        {
+            phone2 = lastSelectedVolunteer.getPhoneNumber2();
+        }
+
+        String phone3;
+        if (lastSelectedVolunteer.getPhoneNumber3() == null)
+        {
+            phone3 = "";
+        } else
+        {
+            phone3 = lastSelectedVolunteer.getPhoneNumber3();
+        }
+
+        String address;
+        if (lastSelectedVolunteer.getAddress() == null)
+        {
+            address = "";
+        } else
+        {
+            address = lastSelectedVolunteer.getAddress();
+        }
+
+        String address2;
+        if (lastSelectedVolunteer.getAddress2() == null)
+        {
+            address2 = "";
+        } else
+        {
+            address2 = lastSelectedVolunteer.getAddress2();
+        }
+
         lblVolunteerName.setText("Fulde navn: " + lastSelectedVolunteer.getFirstName() + " " + lastSelectedVolunteer.getLastName());
         lblVolunteerGender.setText("Køn: " + lastSelectedVolunteer.getGender());
         lblVolunteerAge.setText("Alder: ");
         lblVolunteerPhoneNumber.setText("Telefon: " + lastSelectedVolunteer.getPhoneNumber());
-        lblVolunteerPhoneNumber2.setText("Telefon 2: " + lastSelectedVolunteer.getPhoneNumber2());
-        lblVolunteerPhoneNumber3.setText("Telefon 3: " + lastSelectedVolunteer.getPhoneNumber3());
-        lblVolunteerAddress.setText("Adresse: " + lastSelectedVolunteer.getAddress());
-        lblVolunteerAddress2.setText("Adresse 2: " + lastSelectedVolunteer.getAddress2());
+        lblVolunteerPhoneNumber2.setText("Telefon 2: " + phone2);
+        lblVolunteerPhoneNumber3.setText("Telefon 3: " + phone3);
+        lblVolunteerAddress.setText("Adresse: " + address);
+        lblVolunteerAddress2.setText("Adresse 2: " + address2);
         lblVolunteerEMail.setText("Email: " + lastSelectedVolunteer.getEmail());
         lblVolunteerNationality.setText("Nationalitet: " + lastSelectedVolunteer.getNationality());
         lblVolunteerNote.setText(lastSelectedVolunteer.getNote());

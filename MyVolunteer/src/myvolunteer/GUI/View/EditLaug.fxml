@@ -22,11 +22,10 @@
       <Button fx:id="btnGodkend" defaultButton="true" layoutX="278.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
       <Button layoutX="154.0" layoutY="200.0" mnemonicParsing="false" onAction="#btnAddVolunteer" text="Tilføj" />
       <Button layoutX="154.0" layoutY="268.0" mnemonicParsing="false" onAction="#btnRemoveVolunteer" text="Fjern" />
-      <Button layoutX="90.0" layoutY="393.0" mnemonicParsing="false" onAction="#handleDeleteLaug" text="Slet laug" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="90.0" />
       <Button fx:id="btnBack" layoutX="8.0" layoutY="393.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbage" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
       <TextField fx:id="txtLaugName" layoutX="11.0" layoutY="34.0" prefHeight="25.0" prefWidth="125.0" AnchorPane.leftAnchor="10.0" />
       <TextField fx:id="txtLaugInformation" alignment="TOP_LEFT" layoutX="215.0" layoutY="34.0" prefHeight="90.0" prefWidth="125.0" />
       <Text layoutX="215.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laug information" />
-      <Button fx:id="btnChangeStatus" layoutX="167.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleChangeStatus" text="Gør inaktiv" />
+      <Button fx:id="btnChangeStatus" layoutX="134.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleChangeStatus" text="Gør inaktiv" textAlignment="CENTER" />
    </children>
 </AnchorPane>
