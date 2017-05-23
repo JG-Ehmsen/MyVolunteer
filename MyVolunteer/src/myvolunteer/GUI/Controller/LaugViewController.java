@@ -71,6 +71,7 @@ public class LaugViewController implements Initializable
 
         initGuildButtons();
         adjustScrollPane();
+        changeLanguage();
     }
 
     private void initGuildButtons()
@@ -149,9 +150,9 @@ public class LaugViewController implements Initializable
     {
         mainViewModel.setLastSelectedLocale(danish);
         mainViewModel.setLastSelectedBundle("myvolunteer.GUI.Utility.MyLanguage");
-
-        changeLanguage();
-
+        englishBtn.setDisable(false);
+        germanBtn.setDisable(false);
+        danishBtn.setDisable(true);
     }
 
     @FXML
@@ -159,9 +160,9 @@ public class LaugViewController implements Initializable
     {
         mainViewModel.setLastSelectedLocale(german);
         mainViewModel.setLastSelectedBundle("myvolunteer.GUI.Utility.MyLanguage_de_DE");
-
-        changeLanguage();
-
+        englishBtn.setDisable(false);
+        germanBtn.setDisable(true);
+        danishBtn.setDisable(false);
     }
 
     @FXML
@@ -169,12 +170,33 @@ public class LaugViewController implements Initializable
     {
         mainViewModel.setLastSelectedLocale(english);
         mainViewModel.setLastSelectedBundle("myvolunteer.GUI.Utility.MyLanguage_en_GB");
-        changeLanguage();
+        englishBtn.setDisable(true);
+        germanBtn.setDisable(false);
+        danishBtn.setDisable(false);
     }
 
     private void changeLanguage()
     {
         ResourceBundle rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
         btnLogin.setText(rb.getString("LaugViewSpecial.btnLogin.text"));
+
+        if (mainViewModel.getLastSelectedLocale().equals(german))
+        {
+            englishBtn.setDisable(false);
+            germanBtn.setDisable(true);
+            danishBtn.setDisable(false);
+        }
+        if (mainViewModel.getLastSelectedLocale().equals(english))
+        {
+            englishBtn.setDisable(true);
+            germanBtn.setDisable(false);
+            danishBtn.setDisable(false);
+        }
+        if (mainViewModel.getLastSelectedLocale().equals(danish))
+        {
+            englishBtn.setDisable(false);
+            germanBtn.setDisable(false);
+            danishBtn.setDisable(true);
+        }
     }
 }

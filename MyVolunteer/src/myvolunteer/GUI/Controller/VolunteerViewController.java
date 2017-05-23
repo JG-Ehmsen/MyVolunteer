@@ -18,7 +18,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
@@ -142,7 +141,8 @@ public class VolunteerViewController implements Initializable
     {
         ResourceBundle rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
         btnBack.setText(rb.getString("VolunteerView.btnBack.text"));
-        contactNameLbl.setText(rb.getString("VolunteerView.contactNameLbl.text"));
+        contactNameLbl.setText(rb.getString("VolunteerView.contactNameLbl.text") + "\n" + manager.getFirstName() + " " + manager.getLastName()
+                + "\n" + manager.getPhoneNumber() + "\n" + manager.getEmail());
     }
 
 }
