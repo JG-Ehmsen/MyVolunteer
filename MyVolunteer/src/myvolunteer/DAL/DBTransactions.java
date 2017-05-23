@@ -75,6 +75,9 @@ public class DBTransactions
         } catch (SQLException ex)
         {
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
         return returnList;
     }
@@ -127,6 +130,9 @@ public class DBTransactions
 
             commitTransaction();
         } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex)
         {
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -331,6 +337,9 @@ public class DBTransactions
         {
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex)
+        {
+            Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex)
         {
             Logger.getLogger(DBTransactions.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -93,7 +93,7 @@ public class AddVolunteerController implements Initializable
     private ImageView imgProfilePicture;
 
     BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
-    private String defaultImage = "UserPicture.png";
+    private String defaultImage = "Resource/UserPicture.png";
     boolean imageSet = false;
 
     /**
