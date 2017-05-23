@@ -42,7 +42,7 @@ public class HoursViewController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dataParserModel = DataParserModel.getInstance();
-    
+
     @FXML
     private Button btnConfirmHours;
     @FXML
@@ -61,7 +61,7 @@ public class HoursViewController implements Initializable
     private Label lblDatePick;
     @FXML
     private ImageView imgProfilePicture;
-    
+
     Volunteer user;
     Guild guild;
 
@@ -74,7 +74,7 @@ public class HoursViewController implements Initializable
         // TODO
         user = mainViewModel.getLastSelectedUser();
         guild = mainViewModel.getLastSelectedGuild();
-        
+
         datePicker.setValue(LocalDate.now());
         if (user.getLastInputDate() != null)
         {
@@ -84,10 +84,9 @@ public class HoursViewController implements Initializable
 
         changeLanguage();
 
-        
         imgProfilePicture.setImage(user.getPicture());
     }
-    
+
     @FXML
     private void handleConfirmHours(ActionEvent event) throws IOException, SQLServerException
     {
@@ -120,7 +119,7 @@ public class HoursViewController implements Initializable
     public boolean validateInput() throws IOException
     {
         boolean isFound = false;
-        
+
         for (int i = 1; i < 25; i++)
         {
             String iString = Integer.toString(i);
@@ -133,7 +132,7 @@ public class HoursViewController implements Initializable
                 // Closes the primary stage
                 Stage stage = (Stage) btnConfirmHours.getScene().getWindow();
                 stage.close();
-                
+
                 break;
             }
         }
@@ -150,7 +149,7 @@ public class HoursViewController implements Initializable
         // Closes the scanner
         return isFound;
     }
-    
+
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
@@ -160,13 +159,13 @@ public class HoursViewController implements Initializable
         Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
-    
+
     public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
     {
         //reference to writeToDatabase method in DataParserModel
         dataParserModel.writeHoursToDatabase(volunteer, hours, guild, date);
     }
-    
+
     @FXML
     private void handleDigitAction(ActionEvent event)
     {
@@ -175,19 +174,19 @@ public class HoursViewController implements Initializable
         String newNumber = oldNumber + digit;
         txtFieldHours.setText(newNumber);
     }
-    
+
     @FXML
     private void handleDeleteAction(ActionEvent event)
     {
         String originalText = txtFieldHours.getText();
         String currentText = removeLastChar(originalText);
         txtFieldHours.setText(currentText);
-        
+
     }
-    
+
     public String removeLastChar(String str)
     {
-        
+
         if (str != null && str.length() > 0)
         {
             str = str.substring(0, str.length() - 1);
@@ -198,10 +197,16 @@ public class HoursViewController implements Initializable
     private void changeLanguage()
     {
         ResourceBundle rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
-        btnBack.setText(rb.getString("HoursSpecial.btnBack.text"));
-        lblLastUpdated.setText(rb.getString("HoursSpecial.lblLastUpdated.text"));
+        if (user.getLastInputDate() != null)
+        {
+            lblLastUpdated.setText(rb.getString("HoursSpecial.lblLastUpdated.text") + "\n" + user.getLastInputDate().toString());
+        } else
+        {
+            lblLastUpdated.setText(rb.getString("HoursSpecial.lblLastUpdated.text"));
+        }
         lblDatePick.setText(rb.getString("HoursSpecial.lblDatePick.text"));
         lblHoursInput.setText(rb.getString("HoursSpecial.lblHoursInput.text"));
         btnConfirmHours.setText(rb.getString("HoursSpecial.btnConfirmHours.text"));
+        btnBack.setText(rb.getString("HoursSpecial.btnBack.text"));
     }
 }
