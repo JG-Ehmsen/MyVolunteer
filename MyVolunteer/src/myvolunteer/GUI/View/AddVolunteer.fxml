@@ -27,12 +27,12 @@
         <TextField fx:id="txtNationalitet" layoutX="15.0" layoutY="499.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
         <TextArea fx:id="txtNote" layoutX="15.0" layoutY="552.0" prefHeight="77.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="552.0" />
         <Button fx:id="btnGodkend" defaultButton="true" layoutX="291.0" layoutY="514.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="14.0" />
-        <ImageView fitHeight="67.0" fitWidth="79.0" layoutX="272.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="imgProfilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="259.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Resource/UserPicture.png" />
             </image>
         </ImageView>
-        <Button fx:id="btnUploadImage" layoutX="253.0" layoutY="83.0" mnemonicParsing="false" text="Upload billede" AnchorPane.rightAnchor="14.0" />
+        <Button fx:id="btnUploadImage" layoutX="260.0" layoutY="117.0" mnemonicParsing="false" onAction="#handleUploadImage" text="Upload billede" AnchorPane.rightAnchor="14.0" />
         <Label layoutX="16.0" layoutY="11.0" text="Fornavn:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="11.0" />
         <Label layoutX="16.0" layoutY="59.0" text="Efternavn:" AnchorPane.leftAnchor="15.0" />
         <Label layoutX="15.0" layoutY="531.0" text="Note:" AnchorPane.leftAnchor="15.0" />

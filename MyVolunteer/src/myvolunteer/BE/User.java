@@ -1,8 +1,11 @@
 package myvolunteer.BE;
 
+import java.awt.image.BufferedImage;
 import java.util.Date;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 
 public class User
 {
@@ -18,8 +21,9 @@ public class User
     protected StringProperty phoneNumber3 = new SimpleStringProperty();
     protected StringProperty address = new SimpleStringProperty();
     protected StringProperty address2 = new SimpleStringProperty();
-    private String image = "myvolunteer/GUI/View/Resource/UserPicture.png";
+    private String defaultImage = "myvolunteer/GUI/View/Resource/UserPicture.png";
     private boolean isActive;
+    private BufferedImage picture = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
 
     public User(int id)
     {
@@ -80,22 +84,22 @@ public class User
     {
         return this.phoneNumber;
     }
-    
+
     public StringProperty getPhone2Property()
     {
         return this.phoneNumber2;
     }
-    
+
     public StringProperty getPhone3Property()
     {
         return this.phoneNumber3;
     }
-    
+
     public StringProperty getAddressProperty()
     {
         return this.address;
     }
-    
+
     public StringProperty getAddress2Property()
     {
         return this.address2;
@@ -108,7 +112,7 @@ public class User
 
     public String getImage()
     {
-        return image;
+        return defaultImage;
     }
 
     @Override
@@ -191,4 +195,30 @@ public class User
     {
         this.BDay = BDay;
     }
+
+    public Image getPicture()
+    {
+        BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
+
+        if (picture != null)
+        {
+            img = picture;
+            return SwingFXUtils.toFXImage(img, null);
+        } else
+        {
+            return new Image(defaultImage);
+
+        }
+    }
+
+    public BufferedImage getBufferedPicture()
+    {
+        return picture;
+    }
+
+    public void setPicture(BufferedImage picture)
+    {
+        this.picture = picture;
+    }
+
 }

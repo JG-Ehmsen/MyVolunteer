@@ -39,7 +39,7 @@ public class PictureButton extends javafx.scene.control.Button
         this.setMinWidth(100);
         this.setMinHeight(100);
 
-        ImageView image = new ImageView(new Image(user.getImage()));
+        ImageView image = new ImageView(user.getPicture());
         this.setGraphic(image);
         this.setText(user.getFirstName());
         this.setContentDisplay(ContentDisplay.TOP);
@@ -50,7 +50,7 @@ public class PictureButton extends javafx.scene.control.Button
         this.setMinWidth(200);
         this.setMinHeight(100);
 
-        ImageView image = new ImageView(new Image(guild.getImage()));
+        ImageView image = new ImageView(guild.getPicture());
         this.setGraphic(image);
         this.setText(guild.getName());
         this.setContentDisplay(ContentDisplay.TOP);
