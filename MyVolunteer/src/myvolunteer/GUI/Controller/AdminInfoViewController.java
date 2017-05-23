@@ -186,12 +186,15 @@ public class AdminInfoViewController implements Initializable
             fileChooser.setInitialFileName(fileName.toString());
             File file = fileChooser.showSaveDialog(stage);
 
+            if (file != null)
+            {
             writer = new BufferedWriter(new FileWriter(file));
             for (Volunteer user : tblViewInfo.getItems())
             {
                 String text = user.getGender() + "	" + user.getFirstName() + "	" + user.getLastName() + "	" + user.getEmail() + "	" + user.getPhoneNumber() + "	" + user.getPhoneNumber2() + "	" + user.getPhoneNumber3() + "	" + user.getNationality() + "	" + user.getAddress() + "	" + user.getAddress2() + "\n";
 
                 writer.write(text);
+            }
             }
         } catch (Exception ex)
         {
