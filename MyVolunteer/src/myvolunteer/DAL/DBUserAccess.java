@@ -1,6 +1,13 @@
 package myvolunteer.DAL;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.imageio.ImageIO;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
@@ -24,7 +32,7 @@ public class DBUserAccess
      * @return
      * @throws SQLException
      */
-    public List<Volunteer> getUsers(Connection con) throws SQLException
+    public List<Volunteer> getUsers(Connection con) throws SQLException, IOException
     {
         List<Volunteer> userList = new ArrayList();
         String sql = ""
@@ -50,6 +58,17 @@ public class DBUserAccess
             String gender = rs.getString("Gender");
             String nationality = rs.getString("Nationality");
             String note = rs.getString("Note");
+
+            BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
+            Blob imgAsBlob = rs.getBlob("Image");
+            if (imgAsBlob != null)
+            {
+                byte[] immAsBytes = imgAsBlob.getBytes(1, (int) imgAsBlob.length());
+
+                InputStream in = new ByteArrayInputStream(immAsBytes);
+                img = ImageIO.read(in);
+            }
+
             Date date = rs.getDate("LastDate");
             boolean active = rs.getBoolean("Active");
 
@@ -59,6 +78,7 @@ public class DBUserAccess
             user.setGender(gender);
             user.setNationality(nationality);
             user.setNote(note);
+            user.setPicture(img);
             user.setLastInputDate(date);
             user.setIsActive(active);
             user.setAddress(Address);
@@ -259,13 +279,13 @@ public class DBUserAccess
      * @param con
      * @throws SQLException
      */
-    public void CreateNewUser(Volunteer user, Connection con) throws SQLException
+    public void CreateNewUser(Volunteer user, Connection con) throws SQLException, IOException
     {
         Date today = new Date();
         java.sql.Date sqlDate = new java.sql.Date(today.getTime());
         String sql = ""
-                + "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, TLF2, TLF3, Address, Address2, LastDate, Note, Active) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
+                + "INSERT INTO Users(FName, LName, Gender, Nationality, EMail, TLF, TLF2, TLF3, Address, Address2, LastDate, Note, Image, Active) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, user.getFirstName());
@@ -281,6 +301,18 @@ public class DBUserAccess
         ps.setDate(11, sqlDate);
         ps.setString(12, user.getNote());
 
+        byte[] imgAsBytes;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        ImageIO.write(user.getBufferedPicture(), "jpg", baos);
+        baos.flush();
+
+        imgAsBytes = baos.toByteArray();
+        baos.close();
+
+        ByteArrayInputStream bais = new ByteArrayInputStream(imgAsBytes);
+        ps.setBinaryStream(13, bais);
+
         ps.execute();
     }
 
@@ -292,11 +324,11 @@ public class DBUserAccess
      * @param con
      * @throws SQLException
      */
-    public void UpdateUser(Volunteer user, Connection con) throws SQLException
+    public void UpdateUser(Volunteer user, Connection con) throws SQLException, IOException
     {
         String sql = ""
                 + "UPDATE Users "
-                + "SET FName = ?, LName = ?, Gender = ?, Nationality = ?, EMail = ?, TLF = ?, TLF2 = ?, TLF3 = ?, Address = ?, Address2 = ?, Note = ? "
+                + "SET FName = ?, LName = ?, Gender = ?, Nationality = ?, EMail = ?, TLF = ?, TLF2 = ?, TLF3 = ?, Address = ?, Address2 = ?, Note = ?, Image = ? "
                 + "WHERE UID = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
@@ -312,7 +344,20 @@ public class DBUserAccess
         ps.setString(9, user.getAddress());
         ps.setString(10, user.getAddress2());
         ps.setString(11, user.getNote());
-        ps.setInt(12, user.getId());
+
+        byte[] imgAsBytes;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        ImageIO.write(user.getBufferedPicture(), "jpg", baos);
+        baos.flush();
+
+        imgAsBytes = baos.toByteArray();
+        baos.close();
+
+        ByteArrayInputStream bais = new ByteArrayInputStream(imgAsBytes);
+
+        ps.setBinaryStream(12, bais);
+        ps.setInt(13, user.getId());
 
         ps.execute();
     }
@@ -555,7 +600,53 @@ public class DBUserAccess
             returnList.add(manager);
         }
 
+        sql = ""
+                + "SELECT * "
+                + "FROM ManagerRelation "
+                + "WHERE Active = 1";
+
+        ps = con.prepareStatement(sql);
+
+        rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            int MID = rs.getInt("MID");
+            for (Manager manager : returnList)
+            {
+                if (MID == manager.getId())
+                {
+                    int GID = rs.getInt("GID");
+                    manager.getManagerGuilds().add(GID);
+                }
+            }
+        }
+
         return returnList;
+    }
+
+    public Manager addGuildsToManager(Manager manager, Connection con) throws SQLException
+    {
+        Manager man = manager;
+        String sql = ""
+                + "SELECT * "
+                + "FROM ManagerRelation "
+                + "WHERE Active = 1";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next())
+        {
+            int MID = rs.getInt("MID");
+            if (MID == man.getId())
+            {
+                int GID = rs.getInt("GID");
+                man.getManagerGuilds().add(GID);
+            }
+        }
+        return man;
     }
 
     /**
@@ -687,6 +778,8 @@ public class DBUserAccess
             manager.setLastName(rs.getString("LName"));
 
             manager.setIsAdmin(rs.getBoolean("isAdmin"));
+
+            manager = addGuildsToManager(manager, con);
 
             return manager;
         }

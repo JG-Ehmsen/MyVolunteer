@@ -65,8 +65,6 @@ public class AdminInfoViewController implements Initializable
     @FXML
     private TableColumn<Volunteer, String> tblColumnLName;
     @FXML
-    private Button btnSave;
-    @FXML
     private Button btnAllVolunteers;
     @FXML
     private TableColumn<Volunteer, String> tblColumnGender;

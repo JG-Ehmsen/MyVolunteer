@@ -35,11 +35,11 @@
         <Label layoutX="15.0" layoutY="536.0" text="Note:" AnchorPane.leftAnchor="15.0" />
         <Button fx:id="btnGodkend" defaultButton="true" layoutX="157.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleGodkend" prefHeight="25.0" prefWidth="75.0" text="Godkend" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
         <ImageView fitHeight="67.0" fitWidth="79.0" layoutX="229.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
-        <Button layoutX="218.0" layoutY="121.0" mnemonicParsing="false" onAction="#btnUploadPicture" text="Upload billede" AnchorPane.rightAnchor="15.0" />
+        <Button fx:id="btnUploadImage" layoutX="218.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleUploadImage" text="Upload billede" AnchorPane.rightAnchor="15.0" />
         <Label layoutX="16.0" layoutY="59.0" text="Efternavn:" AnchorPane.leftAnchor="15.0" />
         <Button fx:id="btnChangeStatus" layoutX="126.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleChangeStatus" text="Gør inaktiv" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="126.0" />
         <Button fx:id="btnBack" layoutX="14.0" layoutY="485.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbage" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-        <ImageView fx:id="imgPicture" fitHeight="100.0" fitWidth="100.0" layoutX="215.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="11.0">
+        <ImageView fx:id="imgProfilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="215.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="11.0">
             <image>
                 <Image url="@Resource/UserPicture.png" />
             </image>

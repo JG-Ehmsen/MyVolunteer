@@ -8,6 +8,7 @@ package myvolunteer.GUI.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -24,6 +25,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
+import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
@@ -35,6 +37,22 @@ import myvolunteer.GUI.Model.MainViewModel;
  */
 public class ManagerViewController implements Initializable
 {
+
+    private List<Guild> guildList = new ArrayList<>();
+    private List<Volunteer> userList = new ArrayList<>();
+    private List list = new LinkedList();
+
+    private Guild lastSelectedGuild;
+    private Manager lastManager;
+    private Volunteer lastSelectedVolunteer;
+
+    MainViewModel mainViewModel = MainViewModel.getInstance();
+    DataParserModel dp = DataParserModel.getInstance();
+
+    private List<Volunteer> managerForUserList = new ArrayList<>();
+    ObservableList<Volunteer> users = FXCollections.observableArrayList();
+
+    private List<Guild> managerGuildList = new ArrayList<>();
 
     @FXML
     private ComboBox<Guild> comboBoxGuild;
@@ -75,12 +93,6 @@ public class ManagerViewController implements Initializable
     @FXML
     private Label lblGuildNote;
 
-    MainViewModel mainViewModel = MainViewModel.getInstance();
-    DataParserModel dp = DataParserModel.getInstance();
-    ObservableList<Volunteer> users = FXCollections.observableArrayList();
-    
-    
-
     /**
      * Initializes the controller class.
      */
@@ -88,23 +100,134 @@ public class ManagerViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-        
-    } 
-    
+        managerGuildList = dp.getGuildForManager(mainViewModel.getLoggedInManager());
+        guildList = dp.getAllGuilds();
+        userList = dp.getAllUsers();
+
+        comboContent();
+        populateList();
+    }
+
+    private void populateList()
+    {
+        if (lastSelectedGuild == null)
+        {
+            List<Integer> IDList = new ArrayList();
+            List<Volunteer> volunteerList = new ArrayList();
+
+            for (Guild guild : managerGuildList)
+            {
+                for (Integer i : guild.getMemberList())
+                {
+                    if (!IDList.contains(i))
+                    {
+                        IDList.add(i);
+                    }
+                }
+            }
+
+            for (Integer integer : IDList)
+            {
+                for (Volunteer volunteer : dp.getActiveUsers())
+                {
+                    if (integer == volunteer.getId())
+                    {
+
+                        volunteerList.add(volunteer);
+
+                    }
+                }
+            }
+            users.setAll(volunteerList);
+        } else
+        {
+            List<Volunteer> guildUsers = new ArrayList<>();
+            for (Integer i : lastSelectedGuild.getMemberList())
+            {
+                for (Volunteer user : userList)
+                {
+                    if (user.getId() == i)
+                    {
+                        guildUsers.add(user);
+                    }
+                }
+            }
+            users.setAll(guildUsers);
+        }
+        volunteerList.setItems(users);
+    }
+
+    private void comboContent()
+    {
+        ObservableList guilds = FXCollections.observableArrayList(managerGuildList);
+        comboBoxGuild.setItems(guilds);
+    }
 
     @FXML
     private void handleComboClick(ActionEvent event)
     {
+        clearVolunteerInfo();
+        lastSelectedGuild = comboBoxGuild.getSelectionModel().getSelectedItem();
+
+        if (lastSelectedGuild != null)
+        {
+            lastManager = dp.getManagerForGuild(lastSelectedGuild);
+            showGuildInfo();
+            populateList();
+        }
+    }
+
+    private void clearVolunteerInfo()
+    {
+        lblVolunteerName.setText("Fulde navn: ");
+        lblVolunteerGender.setText("Køn: ");
+        lblVolunteerAge.setText("Alder: ");
+        lblVolunteerPhoneNumber.setText("Telefon: ");
+//        lblVolunteerPhoneNumber2.setText("Telefon 2: ");
+//        lblVolunteerPhoneNumber3.setText("Telefon 3: ");
+//        lblVolunteerAddress.setText("Adresse: ");
+//        lblVolunteerAddress2.setText("Adresse 2: ");
+        lblVolunteerEMail.setText("Email: ");
+        lblVolunteerNationality.setText("Nationalitet: ");
+        lblVolunteerHours.setText("Timer: ");
+        lblVolunteerNote.setText("");
+    }
+
+    private void clearGuildInfo()
+    {
+        lblGuildVolunteers.setText("Frivillige: ");
+        lblTovholder.setText("Tovholder: ");
+        lblTotalGuildHours.setText("Total antal timer: ");
+        lblGuildNote.setText("Note: ");
+    }
+
+    private void showGuildInfo()
+    {
+        lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size()));
+        lblTovholder.setText("Tovholder: " + lastManager.getFirstName() + " " + lastManager.getLastName());
+        lblTotalGuildHours.setText("Total antal timer: " + Integer.toString(dp.getHoursWorkedForGuild(lastSelectedGuild)));
+        lblGuildNote.setText("Note: " + lastSelectedGuild.getDescription().toString());
     }
 
     @FXML
     private void handleVolunteerlistClick(MouseEvent event)
     {
+        updateVolunteerInfo();
     }
 
     @FXML
     private void handleListKeyboard(KeyEvent event)
     {
+        updateVolunteerInfo();
+    }
+
+    private void updateVolunteerInfo()
+    {
+        if (volunteerList.getSelectionModel().getSelectedItem() != null)
+        {
+            lastSelectedVolunteer = volunteerList.getSelectionModel().getSelectedItem();
+            loadVolunteerInfo();
+        }
     }
 
     @FXML
@@ -139,13 +262,25 @@ public class ManagerViewController implements Initializable
     }
 
     @FXML
-    private void handleRedigerFrivillig(ActionEvent event)
+    private void handleRedigerFrivillig(ActionEvent event) throws IOException
     {
+        mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
+        mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) redigerFrivillig.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
-    private void handleRedigerLaug(ActionEvent event)
+    private void handleRedigerLaug(ActionEvent event) throws IOException
     {
+        mainViewModel.setLastSelectedGuild(lastSelectedGuild);
+        mainViewModel.changeView("Rediger laug", "GUI/View/EditLaug.fxml");
+        
+        // Closes the primary stage
+        Stage stage = (Stage) redigerLaug.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -157,5 +292,72 @@ public class ManagerViewController implements Initializable
         Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
-    
+
+    private void loadVolunteerInfo()
+    {
+        String phone2;
+        if (lastSelectedVolunteer.getPhoneNumber2() == null)
+        {
+            phone2 = "";
+        } else
+        {
+            phone2 = lastSelectedVolunteer.getPhoneNumber2();
+        }
+
+        String phone3;
+        if (lastSelectedVolunteer.getPhoneNumber3() == null)
+        {
+            phone3 = "";
+        } else
+        {
+            phone3 = lastSelectedVolunteer.getPhoneNumber3();
+        }
+
+        String address;
+        if (lastSelectedVolunteer.getAddress() == null)
+        {
+            address = "";
+        } else
+        {
+            address = lastSelectedVolunteer.getAddress();
+        }
+
+        String address2;
+        if (lastSelectedVolunteer.getAddress2() == null)
+        {
+            address2 = "";
+        } else
+        {
+            address2 = lastSelectedVolunteer.getAddress2();
+        }
+
+        lblVolunteerName.setText("Fulde navn: " + lastSelectedVolunteer.getFirstName() + " " + lastSelectedVolunteer.getLastName());
+        lblVolunteerGender.setText("Køn: " + lastSelectedVolunteer.getGender());
+        lblVolunteerAge.setText("Alder: ");
+        lblVolunteerPhoneNumber.setText("Telefon: " + lastSelectedVolunteer.getPhoneNumber());
+//        lblVolunteerPhoneNumber2.setText("Telefon 2: " + phone2);
+//        lblVolunteerPhoneNumber3.setText("Telefon 3: " + phone3);
+//        lblVolunteerAddress.setText("Adresse: " + address);
+//        lblVolunteerAddress2.setText("Adresse 2: " + address2);
+        lblVolunteerEMail.setText("Email: " + lastSelectedVolunteer.getEmail());
+        lblVolunteerNationality.setText("Nationalitet: " + lastSelectedVolunteer.getNationality());
+        lblVolunteerNote.setText(lastSelectedVolunteer.getNote());
+        lblVolunteerHours.setText("Timer: " + Integer.toString(dp.getHoursWorkedForVolunteer(lastSelectedVolunteer)));
+    }
+
+    @FXML
+    private void handleAllLaug(ActionEvent event)
+    {
+        comboBoxGuild.getItems().clear();
+        comboContent();
+        populateList();
+        clearInfo();
+    }
+
+    private void clearInfo()
+    {
+        clearGuildInfo();
+        clearVolunteerInfo();
+    }
+
 }

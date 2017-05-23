@@ -6,10 +6,12 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="438.0" prefWidth="350.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AddLaugController">
+<AnchorPane id="AnchorPane" prefHeight="575.0" prefWidth="350.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AddLaugController">
    <children>
       <Text layoutX="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laug navn:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="10.0" />
       <TextField fx:id="txtLaugName" layoutX="14.0" layoutY="31.0" maxWidth="125.0" prefHeight="26.0" prefWidth="125.0" promptText="Indtast laug navn" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="210.0" />
@@ -41,6 +43,12 @@
       <Label layoutX="12.0" layoutY="353.0" text="Felter markeret med * skal udfyldes" AnchorPane.leftAnchor="15.0" />
       <Label contentDisplay="CENTER" layoutX="6.0" layoutY="38.0" text="*" textAlignment="CENTER" />
       <Label contentDisplay="CENTER" layoutX="6.0" layoutY="104.0" text="*" textAlignment="CENTER" />
+      <ImageView fx:id="imgGuildImage" fitHeight="100.0" fitWidth="200.0" layoutX="77.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Resource/GuildPicture.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnUploadImage" layoutX="134.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleUploadPicture" text="Vælg BIllede" />
 
    </children>
 </AnchorPane>

@@ -3,7 +3,6 @@ package myvolunteer.GUI.Model;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -44,9 +43,8 @@ public class MainViewModel
 
     private Volunteer lastSelectedUser;
     private Guild lastSelectedGuild;
-    
     private Manager loggedInManager;
-    
+
     public void changeView(String title, String path) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
@@ -72,7 +70,7 @@ public class MainViewModel
     {
         this.lastSelectedUser = lastSelectedUser;
     }
-    
+
     public Guild getLastSelectedGuild()
     {
         return lastSelectedGuild;
@@ -92,8 +90,5 @@ public class MainViewModel
     {
         this.loggedInManager = loggedInManager;
     }
-    
-    
-    
 
 }
