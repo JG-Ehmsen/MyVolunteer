@@ -182,7 +182,7 @@ public class AdminInfoViewController implements Initializable
 
             //Show save file dialog
             Stage stage = (Stage) btnAllVolunteers.getScene().getWindow();
-            File fileName = new File("Laug information " + ft.format(todaysDate) + ".xls");
+            File fileName = new File("Laug information " + ft.format(todaysDate) + ".csv");
             fileChooser.setInitialFileName(fileName.toString());
             File file = fileChooser.showSaveDialog(stage);
 
