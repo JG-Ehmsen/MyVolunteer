@@ -181,11 +181,11 @@ public class AdminInfoViewController implements Initializable
             if (file != null)
             {
                 writer = new BufferedWriter(new FileWriter(file));
-                String header = "Køn" + "	" + "Fornavn" + "	" + "Efternavn" + "	" + "Email" + "	" + "Telefon" + "	" + "Telefon2" + "	" + "Telefon3" + "	" + "Nationalitet" + "	" + "Adresse" + "	" + "Adresse2";
+                String header = "Køn" + "	" + "Fornavn" + "	" + "Efternavn" + "	" + "Email" + "	" + "Telefon" + "	" + "Telefon2" + "	" + "Telefon3" + "	" + "Nationalitet" + "	" + "Adresse" + "	" + "Adresse2" + "\n";
                 writer.write(header);
                 for (Volunteer user : tblViewInfo.getItems())
                 {
-                    String text = "\n" + user.getGender() + "	" + user.getFirstName() + "	" + user.getLastName() + "	" + user.getEmail() + "	" + user.getPhoneNumber() + "	" + user.getPhoneNumber2() + "	" + user.getPhoneNumber3() + "	" + user.getNationality() + "	" + user.getAddress() + "	" + user.getAddress2();
+                    String text = user.getGender() + "	" + user.getFirstName() + "	" + user.getLastName() + "	" + user.getEmail() + "	" + user.getPhoneNumber() + "	" + user.getPhoneNumber2() + "	" + user.getPhoneNumber3() + "	" + user.getNationality() + "	" + user.getAddress() + "	" + user.getAddress2() + "\n";
 
                     writer.write(text);
                 }
