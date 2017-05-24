@@ -11,7 +11,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -66,40 +65,43 @@ public class AdminLoginController implements Initializable
 
     @FXML
     private void handleLogin(ActionEvent event) throws IOException
-    {        
-        if(!UsernameField.getText().isEmpty() && !codeField.getText().isEmpty())
+    {
+        if (!UsernameField.getText().isEmpty() && !codeField.getText().isEmpty())
         {
             Stage stage = (Stage) btnLogin.getScene().getWindow();
 
             dataParserModel.tryLogin(UsernameField.getText(), codeField.getText(), stage);
 
-            
             xUsername.setVisible(false);
             xPassword.setVisible(false);
             lblUdfyldVenligst.setVisible(false);
-            
+
             lblInvalidUser.setVisible(true);
-            
-        }if(UsernameField.getText().isEmpty())
+
+        }
+        if (UsernameField.getText().isEmpty())
         {
             lblInvalidUser.setVisible(false);
             xUsername.setVisible(true);
             lblUdfyldVenligst.setVisible(true);
-        }if(codeField.getText().isEmpty())
+        }
+        if (codeField.getText().isEmpty())
         {
             lblInvalidUser.setVisible(false);
             xPassword.setVisible(true);
             lblUdfyldVenligst.setVisible(true);
-            
-        }if(xUsername.isVisible() && !UsernameField.getText().isEmpty())
+
+        }
+        if (xUsername.isVisible() && !UsernameField.getText().isEmpty())
         {
             xUsername.setVisible(false);
-            
-        }if(xPassword.isVisible() && !codeField.getText().isEmpty())
+
+        }
+        if (xPassword.isVisible() && !codeField.getText().isEmpty())
         {
             xPassword.setVisible(false);
         }
-       
+
     }
 
     @FXML
