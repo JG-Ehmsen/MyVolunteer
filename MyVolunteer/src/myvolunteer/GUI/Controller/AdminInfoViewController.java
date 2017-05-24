@@ -182,26 +182,29 @@ public class AdminInfoViewController implements Initializable
 
             //Show save file dialog
             Stage stage = (Stage) btnAllVolunteers.getScene().getWindow();
-            File fileName = new File("Laug information " + ft.format(todaysDate) + ".xls");
+            File fileName = new File("Laug information " + ft.format(todaysDate) + ".csv");
             fileChooser.setInitialFileName(fileName.toString());
             File file = fileChooser.showSaveDialog(stage);
 
             if (file != null)
             {
-            writer = new BufferedWriter(new FileWriter(file));
-            for (Volunteer user : tblViewInfo.getItems())
-            {
-                String text = user.getGender() + "	" + user.getFirstName() + "	" + user.getLastName() + "	" + user.getEmail() + "	" + user.getPhoneNumber() + "	" + user.getPhoneNumber2() + "	" + user.getPhoneNumber3() + "	" + user.getNationality() + "	" + user.getAddress() + "	" + user.getAddress2() + "\n";
+                writer = new BufferedWriter(new FileWriter(file));
+                for (Volunteer user : tblViewInfo.getItems())
+                {
+                    String text = user.getGender() + "	" + user.getFirstName() + "	" + user.getLastName() + "	" + user.getEmail() + "	" + user.getPhoneNumber() + "	" + user.getPhoneNumber2() + "	" + user.getPhoneNumber3() + "	" + user.getNationality() + "	" + user.getAddress() + "	" + user.getAddress2() + "\n";
 
-                writer.write(text);
-            }
+                    writer.write(text);
+                }
             }
         } catch (Exception ex)
         {
             ex.printStackTrace();
         } finally
         {
-            writer.close();
+            if (writer != null)
+            {
+                writer.close();
+            }
         }
     }
 

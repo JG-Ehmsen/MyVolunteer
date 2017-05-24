@@ -100,6 +100,10 @@ public class AdminViewController implements Initializable
     private Label lblVolunteerAddress;
     @FXML
     private Label lblVolunteerAddress2;
+    @FXML
+    private Label lblAllVolunteers;
+    @FXML
+    private Label lblLastUpdated;
 
     private List<Guild> guildList = new ArrayList<>();
     private List<Volunteer> userList = new ArrayList<>();
@@ -108,11 +112,13 @@ public class AdminViewController implements Initializable
     private Guild lastSelectedGuild;
     private Volunteer lastSelectedVolunteer;
     private Manager lastManager;
+    String allVolunteers = Integer.toString(dp.getAllUsers().size());
 
     /**
      * Initializes the controller class.
      */
     @Override
+
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
@@ -124,6 +130,7 @@ public class AdminViewController implements Initializable
 
     private void populateList()
     {
+        lblAllVolunteers.setText("Total antal frivillige: " + allVolunteers);
         if (lastSelectedGuild == null)
         {
             users.setAll(userList);
@@ -284,6 +291,7 @@ public class AdminViewController implements Initializable
         lblVolunteerNationality.setText("Nationalitet: ");
         lblVolunteerHours.setText("Timer: ");
         lblVolunteerNote.setText("");
+        lblLastUpdated.setText("Sidst opdateret: ");
     }
 
     private void clearGuildInfo()
@@ -350,6 +358,7 @@ public class AdminViewController implements Initializable
         lblVolunteerNationality.setText("Nationalitet: " + lastSelectedVolunteer.getNationality());
         lblVolunteerNote.setText(lastSelectedVolunteer.getNote());
         lblVolunteerHours.setText("Timer: " + Integer.toString(dp.getHoursWorkedForVolunteer(lastSelectedVolunteer)));
+        lblLastUpdated.setText("Sidst opdateret: " + lastSelectedVolunteer.getLastInputDate());
     }
 
     @FXML
