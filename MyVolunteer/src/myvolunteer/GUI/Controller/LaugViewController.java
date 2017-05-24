@@ -114,7 +114,16 @@ public class LaugViewController implements Initializable
     {
         try
         {
-            mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
+            if (mainViewModel.getLastSelectedLocale().toString().equals("da_DK"))
+            {
+                mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
+            } else if (mainViewModel.getLastSelectedLocale().toString().equals("de_DE"))
+            {
+                mainViewModel.changeView("Sich freiwillig melden", "GUI/View/VolunteerView.fxml");
+            } else if (mainViewModel.getLastSelectedLocale().toString().equals("en_GB"))
+            {
+                mainViewModel.changeView("Volunteer", "GUI/View/VolunteerView.fxml");
+            }
 
             // Closes the primary stage
             Stage stage = (Stage) MainFlowPane.getScene().getWindow();

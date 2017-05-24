@@ -101,13 +101,29 @@ public class HoursViewController implements Initializable
                 int hoursToWrite = Integer.parseInt(txtFieldHours.getText());
                 writeHoursToDatabase(user, hoursToWrite, guild, date);
             }
-        } else
+        } else if (mainViewModel.getLastSelectedLocale().toString().equals("da_DK"))
         {
             // Displays an alertbox if the hours typed are incorrect.
             Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Forkert input");
+            alert.setTitle("Forkert Input");
             alert.setHeaderText(null);
             alert.setContentText("Indtast venligst hele timer mellem 1 - 24");
+            alert.showAndWait();
+        } else if (mainViewModel.getLastSelectedLocale().toString().equals("de_DE"))
+        {
+            // Displays an alertbox if the hours typed are incorrect.
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Falsche Eingabe");
+            alert.setHeaderText(null);
+            alert.setContentText("Bitte geben Sie ganze Stunden zwischen 1 - 24");
+            alert.showAndWait();
+        } else if (mainViewModel.getLastSelectedLocale().toString().equals("en_GB"))
+        {
+            // Displays an alertbox if the hours typed are incorrect.
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Wrong Input");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter whole hours between 1 - 24");
             alert.showAndWait();
         }
     }
@@ -139,12 +155,32 @@ public class HoursViewController implements Initializable
         // Boolean isFound is set to true if there is a match
         if (!isFound)
         {
-            // Displays an alertbox if the hours typed are incorrect.
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Forkert input");
-            alert.setHeaderText(null);
-            alert.setContentText("Indtast venligst hele timer mellem 1 - 24 ");
-            alert.showAndWait();
+            if (mainViewModel.getLastSelectedLocale().toString().equals("da_DK"))
+            {
+                // Displays an alertbox if the hours typed are incorrect.
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Forkert Input");
+                alert.setHeaderText(null);
+                alert.setContentText("Indtast venligst hele timer mellem 1 - 24");
+                alert.showAndWait();
+            } else if (mainViewModel.getLastSelectedLocale().toString().equals("de_DE"))
+            {
+                // Displays an alertbox if the hours typed are incorrect.
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Falsche Eingabe");
+                alert.setHeaderText(null);
+                alert.setContentText("Bitte geben Sie ganze Stunden zwischen 1 - 24");
+                alert.showAndWait();
+            } else if (mainViewModel.getLastSelectedLocale().toString().equals("en_GB"))
+            {
+                // Displays an alertbox if the hours typed are incorrect.
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Wrong Input");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter whole hours between 1 - 24");
+                alert.showAndWait();
+            }
+
         }
         // Closes the scanner
         return isFound;
@@ -153,7 +189,16 @@ public class HoursViewController implements Initializable
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
+        if (mainViewModel.getLastSelectedLocale().toString().equals("da_DK"))
+        {
+            mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
+        } else if (mainViewModel.getLastSelectedLocale().toString().equals("de_DE"))
+        {
+            mainViewModel.changeView("Sich freiwillig melden", "GUI/View/VolunteerView.fxml");
+        } else if (mainViewModel.getLastSelectedLocale().toString().equals("en_GB"))
+        {
+            mainViewModel.changeView("Volunteer", "GUI/View/VolunteerView.fxml");
+        }
 
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();

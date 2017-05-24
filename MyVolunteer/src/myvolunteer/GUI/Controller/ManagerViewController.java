@@ -277,7 +277,7 @@ public class ManagerViewController implements Initializable
     {
         mainViewModel.setLastSelectedGuild(lastSelectedGuild);
         mainViewModel.changeView("Rediger laug", "GUI/View/EditLaug.fxml");
-        
+
         // Closes the primary stage
         Stage stage = (Stage) redigerLaug.getScene().getWindow();
         stage.close();

@@ -5,12 +5,9 @@
  */
 package myvolunteer.GUI.Controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import myvolunteer.GUI.Model.MainViewModel;
 
@@ -29,11 +25,12 @@ import myvolunteer.GUI.Model.MainViewModel;
  */
 public class GuideViewController implements Initializable
 {
+
     MainViewModel mainViewModel = MainViewModel.getInstance();
 
     @FXML
     private Button btnBack;
-    
+
     private MediaPlayer mpGuide;
     private Media meGuide;
     @FXML
@@ -64,7 +61,7 @@ public class GuideViewController implements Initializable
 //        
 //        width.bind(Bindings.selectDouble(mediaGuide.sceneProperty(), "width"));
 //        height.bind(Bindings.selectDouble(mediaGuide.sceneProperty(), "height"));
-    }    
+    }
 
     @FXML
     private void handleBack(ActionEvent event) throws IOException
@@ -75,7 +72,7 @@ public class GuideViewController implements Initializable
         Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
-    
+
     private void changeLanguage()
     {
         ResourceBundle rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
@@ -84,7 +81,7 @@ public class GuideViewController implements Initializable
         step3lbl.setText(rb.getString("GuideView.step3lbl.text"));
         btnBack.setText(rb.getString("GuideView.btnBack.text"));
         lblToDo.setText(rb.getString("GuideView.lblToDo.text"));
-        
+
     }
-    
+
 }

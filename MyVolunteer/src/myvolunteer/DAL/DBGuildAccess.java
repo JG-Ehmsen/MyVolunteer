@@ -15,7 +15,6 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
-import myvolunteer.BE.Volunteer;
 
 public class DBGuildAccess
 {

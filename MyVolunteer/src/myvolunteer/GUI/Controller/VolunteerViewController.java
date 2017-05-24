@@ -116,7 +116,16 @@ public class VolunteerViewController implements Initializable
     {
         try
         {
-            mainViewModel.changeView("Indtast timer", "GUI/View/HoursSpecial.fxml");
+            if (mainViewModel.getLastSelectedLocale().toString().equals("da_DK"))
+            {
+                mainViewModel.changeView("Indtast timer", "GUI/View/HoursSpecial.fxml");
+            } else if (mainViewModel.getLastSelectedLocale().toString().equals("de_DE"))
+            {
+                mainViewModel.changeView("Stunden eingeben", "GUI/View/HoursSpecial.fxml");
+            } else if (mainViewModel.getLastSelectedLocale().toString().equals("en_GB"))
+            {
+                mainViewModel.changeView("Enter hours", "GUI/View/HoursSpecial.fxml");
+            }
 
             // Closes the primary stage
             Stage stage = (Stage) btnBack.getScene().getWindow();
