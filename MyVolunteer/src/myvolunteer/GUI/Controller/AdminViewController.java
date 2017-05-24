@@ -216,7 +216,16 @@ public class AdminViewController implements Initializable
         if (lastSelectedVolunteer != null)
         {
             mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
-            mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
+            if (mainViewModel.getLastSelectedLocale().equals("da_DK"))
+            {
+                mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
+            } else if (mainViewModel.getLastSelectedLocale().equals("de_DE"))
+            {
+                mainViewModel.changeView("Freiwillige bearbeiten", "GUI/View/EditVolunteer.fxml");
+            } else if (mainViewModel.getLastSelectedLocale().equals("en_GB"))
+            {
+                mainViewModel.changeView("Edit volunteer", "GUI/View/EditVolunteer.fxml");
+            }
 
             // Closes the primary stage
             Stage stage = (Stage) redigerFrivillig.getScene().getWindow();

@@ -66,8 +66,7 @@ public class EditManagerController implements Initializable
     private TextField txtAddress;
     @FXML
     private TextField txtAddress2;
-    
-  
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
