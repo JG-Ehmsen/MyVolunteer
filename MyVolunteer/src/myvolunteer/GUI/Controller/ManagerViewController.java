@@ -92,6 +92,8 @@ public class ManagerViewController implements Initializable
     private Button btnBack;
     @FXML
     private Label lblGuildNote;
+    @FXML
+    private Button btnContactList;
 
     /**
      * Initializes the controller class.
@@ -358,6 +360,16 @@ public class ManagerViewController implements Initializable
     {
         clearGuildInfo();
         clearVolunteerInfo();
+    }
+
+    @FXML
+    private void handleContactList(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Kontaktliste for frivilige", "GUI/View/ManagerContactListView.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) btnContactList.getScene().getWindow();
+        
     }
 
 }

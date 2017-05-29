@@ -138,8 +138,8 @@ public class HoursViewController implements Initializable
 
         for (int i = 1; i < 25; i++)
         {
-            String iString = Integer.toString(i);
-            if (txtFieldHours.getText().equals(iString))
+            String correctHours = Integer.toString(i);
+            if (txtFieldHours.getText().equals(correctHours))
             {
                 isFound = true;
 
