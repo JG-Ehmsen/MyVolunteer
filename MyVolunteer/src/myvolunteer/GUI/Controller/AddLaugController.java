@@ -277,12 +277,12 @@ public class AddLaugController implements Initializable
 
             if (file != null)
             {
-            img = ImageIO.read(file);
+                img = ImageIO.read(file);
 
-            Image image = SwingFXUtils.toFXImage(img, null);
+                Image image = SwingFXUtils.toFXImage(img, null);
 
-            imgGuildImage.setImage(image);
-            imageSet = true;
+                imgGuildImage.setImage(image);
+                imageSet = true;
             }
         } catch (IOException ex)
         {

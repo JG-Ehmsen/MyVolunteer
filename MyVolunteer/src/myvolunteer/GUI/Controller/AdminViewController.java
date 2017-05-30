@@ -215,7 +215,6 @@ public class AdminViewController implements Initializable
     {
         if (lastSelectedVolunteer != null)
         {
-            mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
             mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
 
             // Closes the primary stage

@@ -138,8 +138,8 @@ public class HoursViewController implements Initializable
 
         for (int i = 1; i < 25; i++)
         {
-            String iString = Integer.toString(i);
-            if (txtFieldHours.getText().equals(iString))
+            String correctHours = Integer.toString(i);
+            if (txtFieldHours.getText().equals(correctHours))
             {
                 isFound = true;
 
@@ -189,7 +189,16 @@ public class HoursViewController implements Initializable
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
+        if (mainViewModel.getLastSelectedLocale().toString().equals("da_DK"))
+        {
+            mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
+        } else if (mainViewModel.getLastSelectedLocale().toString().equals("de_DE"))
+        {
+            mainViewModel.changeView("Sich freiwillig melden", "GUI/View/VolunteerView.fxml");
+        } else if (mainViewModel.getLastSelectedLocale().toString().equals("en_GB"))
+        {
+            mainViewModel.changeView("Volunteer", "GUI/View/VolunteerView.fxml");
+        }
 
         // Closes the primary stage
         Stage stage = (Stage) btnBack.getScene().getWindow();

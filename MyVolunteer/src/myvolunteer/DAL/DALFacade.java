@@ -107,7 +107,7 @@ public class DALFacade
     {
         db.UpdateUser(user);
     }
-    
+
     public void UpdateManager(Manager manager)
     {
         db.UpdateManager(manager);
@@ -137,32 +137,32 @@ public class DALFacade
     {
         return db.loginQuery(login, pass);
     }
-    
+
     public void deactiveVolunteer(Volunteer volunteer)
     {
         db.deactiveVolunteer(volunteer);
     }
-    
+
     public void setVolunteerStatus(Volunteer volunteer, boolean active)
     {
         db.setVolunteerStatus(volunteer, active);
     }
-    
+
     public void deactivateGuild(Guild guild)
     {
         db.deactivateGuild(guild);
     }
-    
+
     public void setGuildStatus(Guild guild, boolean active)
     {
         db.setGuildStatus(guild, active);
     }
-    
+
     public void deactivateManager(Manager manager)
     {
         db.deactivateManager(manager);
     }
-    
+
     public void setManagerStatus(Manager manager, boolean active)
     {
         db.setManagerStatus(manager, active);

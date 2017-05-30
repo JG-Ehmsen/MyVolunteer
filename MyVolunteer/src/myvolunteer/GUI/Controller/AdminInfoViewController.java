@@ -91,13 +91,6 @@ public class AdminInfoViewController implements Initializable
         comboContent();
     }
 
-    private void handleGodkend(ActionEvent event) throws IOException
-    {
-        // Closes the primary stage
-        Stage stage = (Stage) btnAllVolunteers.getScene().getWindow();
-        stage.close();
-    }
-
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
@@ -182,13 +175,14 @@ public class AdminInfoViewController implements Initializable
 
             //Show save file dialog
             Stage stage = (Stage) btnAllVolunteers.getScene().getWindow();
-            File fileName = new File("Laug information " + ft.format(todaysDate) + ".csv");
+            File fileName = new File("Laug information " + ft.format(todaysDate) + ".xls");
             fileChooser.setInitialFileName(fileName.toString());
             File file = fileChooser.showSaveDialog(stage);
-
             if (file != null)
             {
                 writer = new BufferedWriter(new FileWriter(file));
+                String header = "Køn" + "	" + "Fornavn" + "	" + "Efternavn" + "	" + "Email" + "	" + "Telefon" + "	" + "Telefon2" + "	" + "Telefon3" + "	" + "Nationalitet" + "	" + "Adresse" + "	" + "Adresse2" + "\n";
+                writer.write(header);
                 for (Volunteer user : tblViewInfo.getItems())
                 {
                     String text = user.getGender() + "	" + user.getFirstName() + "	" + user.getLastName() + "	" + user.getEmail() + "	" + user.getPhoneNumber() + "	" + user.getPhoneNumber2() + "	" + user.getPhoneNumber3() + "	" + user.getNationality() + "	" + user.getAddress() + "	" + user.getAddress2() + "\n";
