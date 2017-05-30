@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -23,6 +24,8 @@ import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
+import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Utility.ClipBoardUtility;
 
 /**
  * FXML Controller class
@@ -31,10 +34,14 @@ import myvolunteer.GUI.Model.DataParserModel;
  */
 public class ManagerContactListViewController implements Initializable
 {
-    private List<Guild> guildList = new ArrayList<>();
+
     DataParserModel dp = DataParserModel.getInstance();
+    MainViewModel mainViewModel = MainViewModel.getInstance();
+    ClipBoardUtility clipBoard = new ClipBoardUtility();
+
     ObservableList<Volunteer> users = FXCollections.observableArrayList();
-    
+    private List<Guild> guildList = new ArrayList<>();
+
     @FXML
     private TableView<Volunteer> tblViewContact;
     @FXML
@@ -58,7 +65,10 @@ public class ManagerContactListViewController implements Initializable
     {
         guildList = dp.getActiveGuilds();
         initializeTable();
-    }    
+        
+        tblViewContact.getSelectionModel().setCellSelectionEnabled(true);
+        tblViewContact.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    }
 
     @FXML
     private void handleBack(ActionEvent event)
@@ -66,14 +76,14 @@ public class ManagerContactListViewController implements Initializable
         Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
-    
+
     private void initializeTable()
     {
         tblColumnName.setCellValueFactory(cellData -> cellData.getValue().getFNameProperty());
         tblColumnPhone1.setCellValueFactory(cellDate -> cellDate.getValue().getPhoneProperty());
         tblColumnPhone2.setCellValueFactory(cellDate -> cellDate.getValue().getPhone2Property());
         tblColumnMail.setCellValueFactory(cellDate -> cellDate.getValue().getMailProperty());
-        
+
         ObservableList nameArrayList = FXCollections.observableArrayList(dp.getActiveUsers());
         tblViewContact.setItems(nameArrayList);
     }
@@ -98,5 +108,10 @@ public class ManagerContactListViewController implements Initializable
             tblViewContact.setItems(filteredList);
         }
     }
-    
+
+    @FXML
+    private void handleCopyContent(KeyEvent event)
+    {
+        clipBoard.copySelectionToClipboard(tblViewContact);
+    }
 }
