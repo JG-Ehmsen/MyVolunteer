@@ -224,42 +224,16 @@ public class EditLaugController implements Initializable
     private void searchFilterAvailable(KeyEvent event)
     {
         String filter = txtSearchFilterAvailable.getText();
-        ObservableList<Volunteer> filteredList = FXCollections.observableArrayList();
-        if (filter.equals(""))
-        {
-            listAvailableVolunteers.setItems(allUsers);
-        } else
-        {
-            for (Volunteer vol : allUsers)
-            {
-                if (vol.toString().toLowerCase().contains(filter.toLowerCase()))
-                {
-                    filteredList.add(vol);
-                }
-            }
-            listAvailableVolunteers.setItems(filteredList);
-        }
+        listAvailableVolunteers.setItems(dp.filter(filter, allUsers));
+
     }
 
     @FXML
     private void searchFilterChosen(KeyEvent event)
     {
         String filter = txtSearchChosen.getText();
-        ObservableList<Volunteer> filteredList = FXCollections.observableArrayList();
-        if (filter.equals(""))
-        {
-            listChosenVolunteers.setItems(chosenUsers);
-        } else
-        {
-            for (Volunteer vol : chosenUsers)
-            {
-                if (vol.toString().toLowerCase().contains(filter.toLowerCase()))
-                {
-                    filteredList.add(vol);
-                }
-            }
-            listChosenVolunteers.setItems(filteredList);
-        }
+        listChosenVolunteers.setItems(dp.filter(filter, chosenUsers));
+
     }
 
     @FXML
@@ -281,6 +255,7 @@ public class EditLaugController implements Initializable
             Volunteer volunteer = listAvailableVolunteers.getSelectionModel().getSelectedItem();
             chosenUsers.add(volunteer);
             allUsers.remove(volunteer);
+            listAvailableVolunteers.getItems().remove(volunteer);
 
             lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
         }
@@ -299,6 +274,7 @@ public class EditLaugController implements Initializable
             Volunteer volunteer = listChosenVolunteers.getSelectionModel().getSelectedItem();
             allUsers.add(volunteer);
             chosenUsers.remove(volunteer);
+            listChosenVolunteers.getItems().remove(volunteer);
 
             lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
         }

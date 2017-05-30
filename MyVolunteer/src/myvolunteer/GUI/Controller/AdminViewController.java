@@ -157,21 +157,8 @@ public class AdminViewController implements Initializable
     private void searchFilter()
     {
         String filter = searchBar.getText();
-        ObservableList<Volunteer> filteredList = FXCollections.observableArrayList();
-        if (filter.equals(""))
-        {
-            volunteerList.setItems(users);
-        } else
-        {
-            for (Volunteer vol : users)
-            {
-                if (vol.toString().toLowerCase().contains(filter.toLowerCase()))
-                {
-                    filteredList.add(vol);
-                }
-            }
-            volunteerList.setItems(filteredList);
-        }
+        volunteerList.setItems(dp.filter(filter, userList));
+
     }
 
     private void comboContent()

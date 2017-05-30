@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
@@ -248,5 +249,10 @@ public class DataParserModel
     public void setManagerStatus(Manager manager, boolean active)
     {
         bllFacade.setManagerStatus(manager, active);
+    }
+
+    public ObservableList<Volunteer> filter(String filter, List<Volunteer> allUsers)
+    {
+        return bllFacade.filter(filter, allUsers);
     }
 }

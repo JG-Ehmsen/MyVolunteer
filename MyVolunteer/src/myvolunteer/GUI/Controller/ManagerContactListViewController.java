@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
+import myvolunteer.GUI.Model.MainViewModel;
 
 /**
  * FXML Controller class
@@ -31,10 +32,12 @@ import myvolunteer.GUI.Model.DataParserModel;
  */
 public class ManagerContactListViewController implements Initializable
 {
+
     private List<Guild> guildList = new ArrayList<>();
     DataParserModel dp = DataParserModel.getInstance();
+    MainViewModel mainViewModel = MainViewModel.getInstance();
     ObservableList<Volunteer> users = FXCollections.observableArrayList();
-    
+
     @FXML
     private TableView<Volunteer> tblViewContact;
     @FXML
@@ -58,7 +61,8 @@ public class ManagerContactListViewController implements Initializable
     {
         guildList = dp.getActiveGuilds();
         initializeTable();
-    }    
+        populateList();
+    }
 
     @FXML
     private void handleBack(ActionEvent event)
@@ -66,37 +70,53 @@ public class ManagerContactListViewController implements Initializable
         Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
-    
+
     private void initializeTable()
     {
         tblColumnName.setCellValueFactory(cellData -> cellData.getValue().getFNameProperty());
         tblColumnPhone1.setCellValueFactory(cellDate -> cellDate.getValue().getPhoneProperty());
         tblColumnPhone2.setCellValueFactory(cellDate -> cellDate.getValue().getPhone2Property());
         tblColumnMail.setCellValueFactory(cellDate -> cellDate.getValue().getMailProperty());
-        
-        ObservableList nameArrayList = FXCollections.observableArrayList(dp.getActiveUsers());
-        tblViewContact.setItems(nameArrayList);
+    }
+
+    private void populateList()
+    {
+        List<Integer> IDList = new ArrayList();
+        List<Volunteer> volunteerList = new ArrayList();
+        List<Guild> managerGuildList = dp.getGuildForManager(mainViewModel.getLoggedInManager());
+
+        for (Guild guild : managerGuildList)
+        {
+            for (Integer i : guild.getMemberList())
+            {
+                if (!IDList.contains(i))
+                {
+                    IDList.add(i);
+                }
+            }
+        }
+
+        for (Integer integer : IDList)
+        {
+            for (Volunteer volunteer : dp.getActiveUsers())
+            {
+                if (integer == volunteer.getId())
+                {
+
+                    volunteerList.add(volunteer);
+
+                }
+            }
+        }
+        users.setAll(volunteerList);
+        tblViewContact.setItems(users);
     }
 
     @FXML
     private void searchFilter(KeyEvent event)
     {
         String filter = searchBar.getText();
-        ObservableList<Volunteer> filteredList = FXCollections.observableArrayList();
-        if (filter.equals(""))
-        {
-            tblViewContact.setItems(users);
-        } else
-        {
-            for (Volunteer vol : users)
-            {
-                if (vol.toString().toLowerCase().contains(filter.toLowerCase()))
-                {
-                    filteredList.add(vol);
-                }
-            }
-            tblViewContact.setItems(filteredList);
-        }
+        tblViewContact.setItems(dp.filter(filter, users));
     }
-    
+
 }
