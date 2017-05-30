@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="468.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AdminInfoViewController">
    <children>
-      <TableView fx:id="tblViewInfo" layoutY="84.0" prefHeight="352.0" prefWidth="399.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
+      <TableView fx:id="tblViewInfo" layoutY="84.0" onKeyPressed="#handleCopyContent" prefHeight="352.0" prefWidth="399.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
         <columns>
             <TableColumn fx:id="tblColumnGender" prefWidth="55.0" text="Køn" />
             <TableColumn fx:id="tblColumnName" prefWidth="88.0" text="Fornavn" />
