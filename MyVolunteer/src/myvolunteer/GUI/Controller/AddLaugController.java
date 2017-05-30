@@ -193,6 +193,7 @@ public class AddLaugController implements Initializable
             Volunteer volunteer = listAvailableVolunteers.getSelectionModel().getSelectedItem();
             chosenUsers.add(volunteer);
             allUsers.remove(volunteer);
+            listAvailableVolunteers.getItems().remove(volunteer);
 
             lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteer.getItems().size());
         }
@@ -211,6 +212,7 @@ public class AddLaugController implements Initializable
             Volunteer volunteer = listChosenVolunteer.getSelectionModel().getSelectedItem();
             allUsers.add(volunteer);
             chosenUsers.remove(volunteer);
+            listChosenVolunteer.getItems().remove(volunteer);
 
             lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteer.getItems().size());
         }
@@ -230,21 +232,8 @@ public class AddLaugController implements Initializable
     private void searchFilter(KeyEvent event)
     {
         String filter = txtSearchAvailable.getText();
-        ObservableList<Volunteer> filteredList = FXCollections.observableArrayList();
-        if (filter.equals(""))
-        {
-            listAvailableVolunteers.setItems(allUsers);
-        } else
-        {
-            for (Volunteer vol : allUsers)
-            {
-                if (vol.toString().toLowerCase().contains(filter.toLowerCase()))
-                {
-                    filteredList.add(vol);
-                }
-            }
-            listAvailableVolunteers.setItems(filteredList);
-        }
+        listAvailableVolunteers.setItems(dp.filter(filter, allUsers));
+
     }
 
     @FXML
