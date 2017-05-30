@@ -106,6 +106,9 @@ public class ManagerViewController implements Initializable
         guildList = dp.getAllGuilds();
         userList = dp.getAllUsers();
 
+        lastManager = mainViewModel.getLoggedInManager();
+        lblTovholder.setText("Tovholder: " + lastManager.getFirstName() + " " + lastManager.getLastName());
+
         comboContent();
         populateList();
     }
@@ -236,21 +239,8 @@ public class ManagerViewController implements Initializable
     private void searchFilter(KeyEvent event)
     {
         String filter = searchBar.getText();
-        ObservableList<Volunteer> filteredList = FXCollections.observableArrayList();
-        if (filter.equals(""))
-        {
-            volunteerList.setItems(users);
-        } else
-        {
-            for (Volunteer vol : users)
-            {
-                if (vol.toString().toLowerCase().contains(filter.toLowerCase()))
-                {
-                    filteredList.add(vol);
-                }
-            }
-            volunteerList.setItems(filteredList);
-        }
+        volunteerList.setItems(dp.filter(filter, users));
+
     }
 
     @FXML
@@ -369,7 +359,7 @@ public class ManagerViewController implements Initializable
 
         // Closes the primary stage
         Stage stage = (Stage) btnContactList.getScene().getWindow();
-        
+
     }
 
 }
