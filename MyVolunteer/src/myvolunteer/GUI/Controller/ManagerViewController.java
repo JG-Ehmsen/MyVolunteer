@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -29,6 +30,7 @@ import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 
 /**
  * FXML Controller class
@@ -48,6 +50,7 @@ public class ManagerViewController implements Initializable
 
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     private List<Volunteer> managerForUserList = new ArrayList<>();
     ObservableList<Volunteer> users = FXCollections.observableArrayList();
@@ -246,43 +249,49 @@ public class ManagerViewController implements Initializable
     @FXML
     private void handleOpretFrivillig(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Opret frivillig", "GUI/View/AddVolunteer.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) opretFrivillig.getScene().getWindow();
-        stage.close();
+        vcm.showCreateVolunteer((Stage) opretFrivillig.getScene().getWindow());
     }
 
     @FXML
     private void handleRedigerFrivillig(ActionEvent event) throws IOException
     {
-        mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
-        mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) redigerFrivillig.getScene().getWindow();
-        stage.close();
+        if (lastSelectedVolunteer != null)
+        {
+           mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
+        vcm.showEditVolunteer((Stage) redigerFrivillig.getScene().getWindow());
+        } else
+        {
+            // Displays an alertbox if the user haven't selected a laug.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Vælg en frivillig");
+            alert.showAndWait();
+        }
     }
 
     @FXML
     private void handleRedigerLaug(ActionEvent event) throws IOException
     {
-        mainViewModel.setLastSelectedGuild(lastSelectedGuild);
-        mainViewModel.changeView("Rediger laug", "GUI/View/EditLaug.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) redigerLaug.getScene().getWindow();
-        stage.close();
+        if (lastSelectedGuild != null)
+        {
+            mainViewModel.setLastSelectedGuild(lastSelectedGuild);
+        vcm.showEditGuild((Stage) redigerFrivillig.getScene().getWindow());
+        } else
+        {
+            // Displays an alertbox if the user haven't selected a laug.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Vælg et laug");
+            alert.showAndWait();
+        }
     }
 
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Laug", "GUI/View/LaugViewSpecial.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showLaugView((Stage) btnBack.getScene().getWindow());
     }
 
     private void loadVolunteerInfo()
@@ -355,11 +364,7 @@ public class ManagerViewController implements Initializable
     @FXML
     private void handleContactList(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Kontaktliste for frivilige", "GUI/View/ManagerContactListView.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnContactList.getScene().getWindow();
-
+        vcm.showContactList((Stage) btnContactList.getScene().getWindow());
     }
 
 }
