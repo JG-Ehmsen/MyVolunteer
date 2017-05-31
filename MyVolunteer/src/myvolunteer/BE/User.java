@@ -7,7 +7,7 @@ import javafx.beans.property.StringProperty;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
-public class User
+public abstract class User
 {
 
     protected final int id;
