@@ -25,6 +25,7 @@ import myvolunteer.BE.Guild;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 import myvolunteer.GUI.Utility.ClipBoardUtility;
 
 /**
@@ -37,6 +38,7 @@ public class ManagerContactListViewController implements Initializable
     DataParserModel dp = DataParserModel.getInstance();
     MainViewModel mainViewModel = MainViewModel.getInstance();
     ClipBoardUtility clipBoard = new ClipBoardUtility();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     ObservableList<Volunteer> users = FXCollections.observableArrayList();
     private List<Guild> guildList = new ArrayList<>();
@@ -70,8 +72,7 @@ public class ManagerContactListViewController implements Initializable
     @FXML
     private void handleBack(ActionEvent event)
     {
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showManagerView((Stage) btnBack.getScene().getWindow());
     }
 
     private void initializeTable()
