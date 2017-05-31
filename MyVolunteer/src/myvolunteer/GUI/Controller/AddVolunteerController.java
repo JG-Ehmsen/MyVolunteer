@@ -49,7 +49,7 @@ public class AddVolunteerController implements Initializable
     ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
-    private Button btnGodkend;
+    private Button btnApprove;
     @FXML
     private TextField txtFName;
     @FXML
@@ -63,7 +63,7 @@ public class AddVolunteerController implements Initializable
     @FXML
     private TextField txtEmail;
     @FXML
-    private TextField txtNationalitet;
+    private TextField txtNationality;
     @FXML
     private TextArea txtNote;
     @FXML
@@ -75,13 +75,13 @@ public class AddVolunteerController implements Initializable
     @FXML
     private Button btnBack;
     @FXML
-    private Label xFirstName;
+    private Label lblXFirstName;
     @FXML
-    private Label xLastName;
+    private Label lblXLastName;
     @FXML
-    private Label xTelephone;
+    private Label lblXTelephone;
     @FXML
-    private Label lblUdfyldVenligst;
+    private Label lblPleaseFill;
     @FXML
     private TextField txtPhoneNumberTwo;
     @FXML
@@ -108,10 +108,10 @@ public class AddVolunteerController implements Initializable
 
     private void init()
     {
-        xFirstName.setVisible(false);
-        xLastName.setVisible(false);
-        xTelephone.setVisible(false);
-        lblUdfyldVenligst.setVisible(false);
+        lblXFirstName.setVisible(false);
+        lblXLastName.setVisible(false);
+        lblXTelephone.setVisible(false);
+        lblPleaseFill.setVisible(false);
 
         rbMale.setToggleGroup(tg);
         rbFemale.setToggleGroup(tg);
@@ -119,34 +119,34 @@ public class AddVolunteerController implements Initializable
     }
 
     @FXML
-    private void handleGodkend(ActionEvent event) throws IOException
+    private void handleApproval(ActionEvent event) throws IOException
     {
         if (txtFName.getText().isEmpty())
         {
-            xFirstName.setVisible(true);
-            lblUdfyldVenligst.setVisible(true);
+            lblXFirstName.setVisible(true);
+            lblPleaseFill.setVisible(true);
         }
         if (txtLName.getText().isEmpty())
         {
-            xLastName.setVisible(true);
-            lblUdfyldVenligst.setVisible(true);
+            lblXLastName.setVisible(true);
+            lblPleaseFill.setVisible(true);
         }
         if (txtPhoneNumber.getText().isEmpty())
         {
-            xTelephone.setVisible(true);
-            lblUdfyldVenligst.setVisible(true);
+            lblXTelephone.setVisible(true);
+            lblPleaseFill.setVisible(true);
         }
-        if (xFirstName.isVisible() && !txtFName.getText().isEmpty())
+        if (lblXFirstName.isVisible() && !txtFName.getText().isEmpty())
         {
-            xFirstName.setVisible(false);
+            lblXFirstName.setVisible(false);
         }
-        if (xLastName.isVisible() && !txtLName.getText().isEmpty())
+        if (lblXLastName.isVisible() && !txtLName.getText().isEmpty())
         {
-            xLastName.setVisible(false);
+            lblXLastName.setVisible(false);
         }
-        if (xTelephone.isVisible() && !txtPhoneNumber.getText().isEmpty())
+        if (lblXTelephone.isVisible() && !txtPhoneNumber.getText().isEmpty())
         {
-            xTelephone.setVisible(false);
+            lblXTelephone.setVisible(false);
         }
         if (!txtFName.getText().isEmpty() && !txtLName.getText().isEmpty() && !txtPhoneNumber.getText().isEmpty())
         {
@@ -167,7 +167,7 @@ public class AddVolunteerController implements Initializable
         String Address = txtAddress.getText();
         String Address2 = txtAddressTwo.getText();
         String eMail = txtEmail.getText();
-        String nationality = txtNationalitet.getText();
+        String nationality = txtNationality.getText();
         String note = txtNote.getText();
         String gender = "";
         if (tg.getSelectedToggle().equals(rbMale))
@@ -212,7 +212,7 @@ public class AddVolunteerController implements Initializable
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
         goBack();
     }

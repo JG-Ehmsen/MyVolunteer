@@ -50,11 +50,11 @@ public class EditManagerController implements Initializable
     @FXML
     private Button btnUploadImage;
     @FXML
-    private Button btnGodkend;
+    private Button btnApprove;
     @FXML
     private TextField txtPassword;
     @FXML
-    private ComboBox<Manager> comboTovholder;
+    private ComboBox<Manager> cbBoxManager;
 
     Manager manager;
     Manager managers;
@@ -74,7 +74,7 @@ public class EditManagerController implements Initializable
     {
         managers = mainViewModel.getLoggedInManager();
         ObservableList manager = FXCollections.observableArrayList(dp.getAllManagers());
-        comboTovholder.setItems(manager);
+        cbBoxManager.setItems(manager);
 
         if (managers.isIsActive())
         {
@@ -100,7 +100,7 @@ public class EditManagerController implements Initializable
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
         goBack();
     }
@@ -111,7 +111,7 @@ public class EditManagerController implements Initializable
     }
 
     @FXML
-    private void handleGodkend(ActionEvent event) throws IOException
+    private void handleApproval(ActionEvent event) throws IOException
     {
         if (!txtEmail.getText().isEmpty() && !txtFName.getText().isEmpty() && !txtLName.getText().isEmpty() && !txtPassword.getText().isEmpty())
         {
@@ -208,7 +208,7 @@ public class EditManagerController implements Initializable
     @FXML
     private void handleComboClick(ActionEvent event)
     {
-        manager = comboTovholder.getSelectionModel().getSelectedItem();
+        manager = cbBoxManager.getSelectionModel().getSelectedItem();
 
         loadInfo();
     }

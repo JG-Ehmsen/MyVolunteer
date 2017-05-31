@@ -40,7 +40,7 @@ public class AddManagerController implements Initializable
     @FXML
     private Button btnUploadImage;
     @FXML
-    private Button btnGodkend;
+    private Button btnApprove;
     @FXML
     private TextField txtPassword;
     @FXML
@@ -62,17 +62,17 @@ public class AddManagerController implements Initializable
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
         vcm.showAdminView((Stage) btnBack.getScene().getWindow());
     }
 
     @FXML
-    private void handleGodkend(ActionEvent event) throws IOException
+    private void handleApproval(ActionEvent event) throws IOException
     {
         if (!txtEmail.getText().isEmpty() && !txtFName.getText().isEmpty() && !txtLName.getText().isEmpty() && !txtPassword.getText().isEmpty())
         {
-            vcm.showAdminView((Stage) btnGodkend.getScene().getWindow());
+            vcm.showAdminView((Stage) btnApprove.getScene().getWindow());
 
             handleUserInfo();
         } else if (txtEmail.getText().isEmpty() || txtFName.getText().isEmpty() || txtLName.getText().isEmpty() || txtPassword.getText().isEmpty())

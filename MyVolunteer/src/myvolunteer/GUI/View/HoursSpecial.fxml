@@ -24,7 +24,7 @@
       </Button>
       <Label fx:id="lblLastUpdated" alignment="TOP_LEFT" layoutX="159.0" layoutY="13.0" prefHeight="45.0" text="Sidst opdateret:" />
       <DatePicker fx:id="datePicker" layoutX="68.0" layoutY="270.0" prefHeight="27.0" prefWidth="151.0" />
-      <Button fx:id="btnBack" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbage" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button fx:id="btnBack" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleGoBack" text="Tilbage" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <ImageView fx:id="imgProfilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="93.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Resource/UserPicture.png" />

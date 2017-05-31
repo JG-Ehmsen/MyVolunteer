@@ -66,7 +66,7 @@ public class GuideViewController implements Initializable
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
         vcm.showLaugView((Stage) btnBack.getScene().getWindow());
     }

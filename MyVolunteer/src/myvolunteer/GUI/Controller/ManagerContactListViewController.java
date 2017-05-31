@@ -69,7 +69,7 @@ public class ManagerContactListViewController implements Initializable
     }
 
     @FXML
-    private void handleBack(ActionEvent event)
+    private void handleGoBack(ActionEvent event)
     {
         vcm.showManagerView((Stage) btnBack.getScene().getWindow());
     }
@@ -80,6 +80,7 @@ public class ManagerContactListViewController implements Initializable
         tblColumnPhone1.setCellValueFactory(cellDate -> cellDate.getValue().getPhoneProperty());
         tblColumnPhone2.setCellValueFactory(cellDate -> cellDate.getValue().getPhone2Property());
         tblColumnMail.setCellValueFactory(cellDate -> cellDate.getValue().getMailProperty());
+        
         tblViewContact.getSelectionModel().setCellSelectionEnabled(true);
         tblViewContact.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         ClipBoardUtility.installCopyPasteHandler(tblViewContact);
@@ -124,10 +125,5 @@ public class ManagerContactListViewController implements Initializable
     {
         String filter = searchBar.getText();
         tblViewContact.setItems(dp.filter(filter, users));
-    }
-
-    @FXML
-    private void handleCopyContent(KeyEvent event)
-    {
     }
 }

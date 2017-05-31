@@ -120,7 +120,7 @@ public class VolunteerViewController implements Initializable
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
         vcm.showLaugView((Stage) MainFlowPane.getScene().getWindow());
     }
