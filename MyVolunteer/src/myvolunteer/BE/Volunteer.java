@@ -14,10 +14,10 @@ public class Volunteer extends User
 
     private boolean isActive;
 
-    public Volunteer(int id, String name, String phoneNumber)
+    public Volunteer(int id, String fName, String phoneNumber)
     {
         super(id);
-        this.firstName.set(name);
+        this.firstName.set(fName);
         this.phoneNumber.set(phoneNumber);
     }
 
