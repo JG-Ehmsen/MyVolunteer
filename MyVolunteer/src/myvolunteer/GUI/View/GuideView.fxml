@@ -22,7 +22,7 @@
       <Label fx:id="step1lbl" layoutX="16.0" layoutY="332.0" prefHeight="22.0" prefWidth="213.0" text="Vælg tilhørende Laug" />
       <Label fx:id="step2lbl" layoutX="250.0" layoutY="332.0" prefHeight="22.0" prefWidth="213.0" text="Vælg dig selv" />
       <Label fx:id="step3lbl" layoutX="527.0" layoutY="332.0" prefHeight="22.0" prefWidth="119.0" text="Indtast timer" />
-      <Button id="homebutton" fx:id="btnBack" alignment="CENTER" layoutX="11.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="35.0" prefWidth="125.0" text=" Tilbage" />
+      <Button id="homebutton" fx:id="btnBack" alignment="CENTER" layoutX="11.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleGoBack" prefHeight="35.0" prefWidth="125.0" text=" Tilbage" />
       <Label fx:id="lblToDo" layoutX="5.0" layoutY="379.0" prefHeight="102.0" prefWidth="647.0" text="1,2,3 - SIMPLE TRIN">
          <font>
             <Font size="48.0" />

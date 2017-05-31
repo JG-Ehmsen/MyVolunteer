@@ -17,7 +17,7 @@
          </content>
       </ScrollPane>
       <ImageView fitHeight="100.0" fitWidth="304.0" pickOnBounds="true" preserveRatio="true" />
-      <Button id="homebutton" fx:id="btnBack" layoutX="6.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="35.0" prefWidth="125.0" text="     Tilbage" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button id="homebutton" fx:id="btnBack" layoutX="6.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleGoBack" prefHeight="35.0" prefWidth="125.0" text="     Tilbage" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <ImageView fitHeight="19.0" fitWidth="600.0" layoutX="5.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="75.0">
          <image>
             <Image url="@Resource/toolsmenu_bg.png" />

@@ -15,7 +15,7 @@
       <ComboBox fx:id="comboBoxGuild" layoutX="10.0" layoutY="90.0" onAction="#handleComboClick" prefHeight="27.0" prefWidth="166.0" promptText="Vælg laug" />
       <ListView id="volunteerlist" fx:id="volunteerList" layoutX="10.0" layoutY="120.0" onKeyReleased="#handleListKeyboard" onMouseReleased="#handleVolunteerlistClick" prefHeight="400.0" prefWidth="166.0" />
       <Label layoutX="190.0" layoutY="124.0" prefHeight="17.0" prefWidth="115.0" text="Laug information:" underline="true" />
-      <Label fx:id="lblTovholder" layoutX="190.0" layoutY="144.0" text="Tovholder:" />
+      <Label fx:id="lblManager" layoutX="190.0" layoutY="144.0" text="Tovholder:" />
       <Label fx:id="lblTotalGuildHours" layoutX="190.0" layoutY="164.0" text="Total antal timer:" AnchorPane.leftAnchor="190.0" />
       <Label fx:id="lblGuildVolunteers" layoutX="190.0" layoutY="184.0" text="Frivillige:" AnchorPane.leftAnchor="190.0" />
       <Separator layoutX="184.0" layoutY="228.0" prefHeight="3.0" prefWidth="307.0" />
@@ -30,11 +30,11 @@
       <Label fx:id="lblVolunteerAge" layoutX="190.0" layoutY="295.0" text="Alder:" />
       <Label fx:id="lblVolunteerNote" alignment="TOP_LEFT" layoutX="190.0" layoutY="510.0" prefHeight="77.0" prefWidth="189.0" AnchorPane.leftAnchor="190.0" />
       <TextField fx:id="searchBar" layoutX="10.0" layoutY="532.0" onKeyReleased="#searchFilter" prefHeight="27.0" prefWidth="166.0" promptText="Søg" AnchorPane.leftAnchor="10.0" />
-      <Button id="adminbutton" fx:id="opretFrivillig" layoutX="258.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleOpretFrivillig" prefHeight="30.0" prefWidth="110.0" text="Opret frivillig" AnchorPane.bottomAnchor="10.0" />
-      <Button id="adminbutton" fx:id="opretLaug" layoutX="10.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleOpretLaug" prefHeight="30.0" prefWidth="110.0" text="Opret laug" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
-      <Button id="adminbutton" fx:id="redigerFrivillig" layoutX="370.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleRedigerFrivillig" prefHeight="30.0" prefWidth="110.0" text="Rediger frivillig" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-      <Button id="adminbutton" fx:id="redigerLaug" layoutX="133.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleRedigerLaug" prefHeight="30.0" prefWidth="110.0" text="Rediger laug" AnchorPane.bottomAnchor="10.0" />
-      <Button fx:id="btnBack" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="35.0" prefWidth="125.0" text="    Tilbage" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button id="adminbutton" fx:id="btnCreateVolunteer" layoutX="258.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleGoToCreateVolunteer" prefHeight="30.0" prefWidth="110.0" text="Opret frivillig" AnchorPane.bottomAnchor="10.0" />
+      <Button id="adminbutton" fx:id="btnCreateLaug" layoutX="10.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleGoToCreateLaug" prefHeight="30.0" prefWidth="110.0" text="Opret laug" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+      <Button id="adminbutton" fx:id="btnEditVolunteer" layoutX="370.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleGoToEditVolunteer" prefHeight="30.0" prefWidth="110.0" text="Rediger frivillig" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Button id="adminbutton" fx:id="btnEditLaug" layoutX="133.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleGoToEditLaug" prefHeight="30.0" prefWidth="110.0" text="Rediger laug" AnchorPane.bottomAnchor="10.0" />
+      <Button fx:id="btnBack" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleGoBack" prefHeight="35.0" prefWidth="125.0" text="    Tilbage" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <ImageView fitHeight="35.0" fitWidth="48.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@Resource/icon_visited.gif" />
@@ -48,9 +48,9 @@
       </ImageView>
       <Label fx:id="lblGuildNote" layoutX="190.0" layoutY="203.0" text="Note:" AnchorPane.leftAnchor="190.0" />
 
-      <Button fx:id="btnOpretTovholder" layoutX="244.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleOpretTovholder" prefHeight="35.0" text="Opret tovholder" />
-      <Button fx:id="btnRedigerTovholder" layoutX="381.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleRedigerTovholder" prefHeight="35.0" text="Rediger tovholder" AnchorPane.rightAnchor="10.0" />
-      <Button fx:id="btnInfo" layoutX="385.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleInfo" text="Eksporter data" AnchorPane.bottomAnchor="68.0" />
+      <Button fx:id="btnCreateManager" layoutX="244.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleGoToCreateManager" prefHeight="35.0" text="Opret tovholder" />
+      <Button fx:id="btnEditManager" layoutX="381.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleGoToEditManager" prefHeight="35.0" text="Rediger tovholder" AnchorPane.rightAnchor="10.0" />
+      <Button fx:id="btnInfo" layoutX="385.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleGoToInfo" text="Eksporter data" AnchorPane.bottomAnchor="68.0" />
       <Button fx:id="btnAllLaug" layoutX="189.0" layoutY="92.0" mnemonicParsing="false" onAction="#handleAllLaug" text="Alle laug" />
       <Label fx:id="lblVolunteerPhoneNumber2" layoutX="190.0" layoutY="335.0" text="Telefon 2:" AnchorPane.leftAnchor="190.0" />
       <Label fx:id="lblVolunteerPhoneNumber3" layoutX="191.0" layoutY="355.0" text="Telefon 3:" AnchorPane.leftAnchor="190.0" />

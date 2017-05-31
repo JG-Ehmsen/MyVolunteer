@@ -30,19 +30,19 @@
                 <Image url="@Resource/toolsmenu_bg.png" />
             </image>
         </ImageView>
-        <Button fx:id="btnBack" layoutX="77.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleBack" prefWidth="65.0" text="Tilbage" />
-           <Label layoutX="295.0" layoutY="136.0" text="X" textAlignment="CENTER" textFill="RED" fx:id="xUsername">
+        <Button fx:id="btnBack" layoutX="77.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleGoBack" prefWidth="65.0" text="Tilbage" />
+           <Label fx:id="lblXUsername" layoutX="295.0" layoutY="136.0" text="X" textAlignment="CENTER" textFill="RED">
          <effect>
             <Glow />
          </effect>
       </Label>
-      <Label layoutX="295.0" layoutY="169.0" text="X" textAlignment="CENTER" textFill="RED" fx:id="xPassword">
+      <Label fx:id="lblXPassword" layoutX="295.0" layoutY="169.0" text="X" textAlignment="CENTER" textFill="RED">
          <effect>
             <Glow />
          </effect>
       </Label>
 
-      <Label fx:id="lblUdfyldVenligst" layoutX="79.0" layoutY="227.0" text="Udfyld venligst de markede felter." textFill="RED" />
+      <Label fx:id="lblPleaseFill" layoutX="79.0" layoutY="227.0" text="Udfyld venligst de markede felter." textFill="RED" />
       <Label fx:id="lblInvalidUser" layoutX="79.0" layoutY="227.0" text="Invalid user or password" textFill="RED" />
    </children>
 </AnchorPane>

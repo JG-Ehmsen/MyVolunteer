@@ -45,11 +45,11 @@ public class AdminLoginController implements Initializable
     @FXML
     private Button btnBack;
     @FXML
-    private Label xUsername;
+    private Label lblXUsername;
     @FXML
-    private Label xPassword;
+    private Label lblXPassword;
     @FXML
-    private Label lblUdfyldVenligst;
+    private Label lblPleaseFill;
     @FXML
     private Label lblInvalidUser;
 
@@ -59,9 +59,9 @@ public class AdminLoginController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        xUsername.setVisible(false);
-        xPassword.setVisible(false);
-        lblUdfyldVenligst.setVisible(false);
+        lblXUsername.setVisible(false);
+        lblXPassword.setVisible(false);
+        lblPleaseFill.setVisible(false);
         lblInvalidUser.setVisible(false);
     }
 
@@ -75,9 +75,9 @@ public class AdminLoginController implements Initializable
 
             dataParserModel.tryLogin(UsernameField.getText(), codeField.getText(), stage);
 
-            xUsername.setVisible(false);
-            xPassword.setVisible(false);
-            lblUdfyldVenligst.setVisible(false);
+            lblXUsername.setVisible(false);
+            lblXPassword.setVisible(false);
+            lblPleaseFill.setVisible(false);
 
             lblInvalidUser.setVisible(true);
 
@@ -85,32 +85,32 @@ public class AdminLoginController implements Initializable
         if (UsernameField.getText().isEmpty())
         {
             lblInvalidUser.setVisible(false);
-            xUsername.setVisible(true);
-            lblUdfyldVenligst.setVisible(true);
+            lblXUsername.setVisible(true);
+            lblPleaseFill.setVisible(true);
         }
         if (codeField.getText().isEmpty())
         {
             lblInvalidUser.setVisible(false);
-            xPassword.setVisible(true);
-            lblUdfyldVenligst.setVisible(true);
+            lblXPassword.setVisible(true);
+            lblPleaseFill.setVisible(true);
 
         }
-        if (xUsername.isVisible() && !UsernameField.getText().isEmpty())
+        if (lblXUsername.isVisible() && !UsernameField.getText().isEmpty())
         {
-            xUsername.setVisible(false);
+            lblXUsername.setVisible(false);
 
         }
-        if (xPassword.isVisible() && !codeField.getText().isEmpty())
+        if (lblXPassword.isVisible() && !codeField.getText().isEmpty())
         {
-            xPassword.setVisible(false);
+            lblXPassword.setVisible(false);
         }
 
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
-        vcm.showLaugView((Stage) previousStage.getScene().getWindow());
+        vcm.showLaugView((Stage) btnBack.getScene().getWindow());
     }
 
 }

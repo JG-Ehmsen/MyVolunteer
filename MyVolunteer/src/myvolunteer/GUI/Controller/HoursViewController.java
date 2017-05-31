@@ -150,7 +150,7 @@ public class HoursViewController implements Initializable
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
         vcm.showVolunteersView((Stage) imgProfilePicture.getScene().getWindow());
     }
@@ -205,4 +205,5 @@ public class HoursViewController implements Initializable
         btnConfirmHours.setText(rb.getString("HoursSpecial.btnConfirmHours.text"));
         btnBack.setText(rb.getString("HoursSpecial.btnBack.text"));
     }
+
 }

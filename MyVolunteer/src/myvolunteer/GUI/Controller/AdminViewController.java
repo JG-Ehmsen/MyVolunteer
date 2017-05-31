@@ -55,15 +55,15 @@ public class AdminViewController implements Initializable
     @FXML
     private Button btnBack;
     @FXML
-    private Button opretFrivillig;
+    private Button btnCreateVolunteer;
     @FXML
-    private Button opretLaug;
+    private Button btnCreateLaug;
     @FXML
-    private Button redigerFrivillig;
+    private Button btnEditVolunteer;
     @FXML
-    private Button redigerLaug;
+    private Button btnEditLaug;
     @FXML
-    private Label lblTovholder;
+    private Label lblManager;
     @FXML
     private Label lblTotalGuildHours;
     @FXML
@@ -87,11 +87,11 @@ public class AdminViewController implements Initializable
     @FXML
     private Label lblGuildNote;
     @FXML
-    private Button btnRedigerTovholder;
+    private Button btnEditManager;
     @FXML
     private Button btnInfo;
     @FXML
-    private Button btnOpretTovholder;
+    private Button btnCreateManager;
     @FXML
     private Button btnAllLaug;
     @FXML
@@ -170,30 +170,30 @@ public class AdminViewController implements Initializable
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
         vcm.showLaugView((Stage) btnBack.getScene().getWindow());
     }
 
     @FXML
-    private void handleOpretFrivillig(ActionEvent event) throws IOException
+    private void handleGoToCreateVolunteer(ActionEvent event) throws IOException
     {
-        vcm.showCreateVolunteer((Stage) opretFrivillig.getScene().getWindow());
+        vcm.showCreateVolunteer((Stage) btnCreateVolunteer.getScene().getWindow());
     }
 
     @FXML
-    private void handleOpretLaug(ActionEvent event) throws IOException
+    private void handleGoToCreateLaug(ActionEvent event) throws IOException
     {
-        vcm.showCreateLaugView((Stage) opretLaug.getScene().getWindow());
+        vcm.showCreateLaugView((Stage) btnCreateLaug.getScene().getWindow());
     }
 
     @FXML
-    private void handleRedigerFrivillig(ActionEvent event) throws IOException
+    private void handleGoToEditVolunteer(ActionEvent event) throws IOException
     {
         if (lastSelectedVolunteer != null)
         {
             mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
-            vcm.showEditVolunteer((Stage) redigerFrivillig.getScene().getWindow());
+            vcm.showEditVolunteer((Stage) btnEditVolunteer.getScene().getWindow());
         } else
         {
             // Displays an alertbox if the user haven't selected a laug.
@@ -206,12 +206,12 @@ public class AdminViewController implements Initializable
     }
 
     @FXML
-    private void handleRedigerLaug(ActionEvent event) throws IOException
+    private void handleGoToEditLaug(ActionEvent event) throws IOException
     {
         if (lastSelectedGuild != null)
         {
             mainViewModel.setLastSelectedGuild(lastSelectedGuild);
-            vcm.showEditGuild((Stage) redigerLaug.getScene().getWindow());
+            vcm.showEditGuild((Stage) btnEditLaug.getScene().getWindow());
         } else
         {
             // Displays an alertbox if the user haven't selected a laug.
@@ -226,7 +226,7 @@ public class AdminViewController implements Initializable
     private void showGuildInfo()
     {
         lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size()));
-        lblTovholder.setText("Tovholder: " + lastManager.getFirstName() + " " + lastManager.getLastName());
+        lblManager.setText("Tovholder: " + lastManager.getFirstName() + " " + lastManager.getLastName());
         lblTotalGuildHours.setText("Total antal timer: " + Integer.toString(dp.getHoursWorkedForGuild(lastSelectedGuild)));
         lblGuildNote.setText("Note: " + lastSelectedGuild.getDescription().toString());
     }
@@ -266,7 +266,7 @@ public class AdminViewController implements Initializable
     private void clearGuildInfo()
     {
         lblGuildVolunteers.setText("Frivillige: ");
-        lblTovholder.setText("Tovholder: ");
+        lblManager.setText("Tovholder: ");
         lblTotalGuildHours.setText("Total antal timer: ");
         lblGuildNote.setText("Note: ");
     }
@@ -337,21 +337,21 @@ public class AdminViewController implements Initializable
     }
 
     @FXML
-    private void handleInfo(ActionEvent event) throws IOException
+    private void handleGoToInfo(ActionEvent event) throws IOException
     {
         vcm.showInformationView((Stage) btnInfo.getScene().getWindow());
     }
 
     @FXML
-    private void handleOpretTovholder(ActionEvent event) throws IOException
+    private void handleGoToCreateManager(ActionEvent event) throws IOException
     {
-        vcm.showCreateManager((Stage) btnOpretTovholder.getScene().getWindow());
+        vcm.showCreateManager((Stage) btnCreateManager.getScene().getWindow());
     }
 
     @FXML
-    private void handleRedigerTovholder(ActionEvent event) throws IOException
+    private void handleGoToEditManager(ActionEvent event) throws IOException
     {
-        vcm.showEditManager((Stage) btnRedigerTovholder.getScene().getWindow());
+        vcm.showEditManager((Stage) btnEditManager.getScene().getWindow());
     }
 
     @FXML
@@ -376,5 +376,4 @@ public class AdminViewController implements Initializable
             populateList();
         }
     }
-
 }

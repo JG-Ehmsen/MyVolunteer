@@ -51,7 +51,7 @@ public class AddLaugController implements Initializable
     ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
-    private Button btnGodkend;
+    private Button btnApprove;
     @FXML
     private Button btnAdd;
     @FXML
@@ -71,13 +71,13 @@ public class AddLaugController implements Initializable
     @FXML
     private ListView<Volunteer> listAvailableVolunteers;
     @FXML
-    private Text lblAntalFrivillige;
+    private Text lblAmountOfVolunteers;
     @FXML
-    private Label xLaugName;
+    private Label lblXLaugName;
     @FXML
-    private Label xManager;
+    private Label lblXManager;
     @FXML
-    private Label lblUdfyldVenligst;
+    private Label lblPleaseFill;
     @FXML
     private ImageView imgGuildImage;
     @FXML
@@ -101,7 +101,7 @@ public class AddLaugController implements Initializable
 
     private void init()
     {
-        lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteer.getItems().size());
+        lblAmountOfVolunteers.setText("Antal frivillige: " + listChosenVolunteer.getItems().size());
 
         allVolunteerList = dp.getActiveUsers();
         allUsers.setAll(allVolunteerList);
@@ -111,38 +111,38 @@ public class AddLaugController implements Initializable
         managers.setAll(managerList);
         comboManager.setItems(managers);
 
-        xLaugName.setVisible(false);
-        lblUdfyldVenligst.setVisible(false);
-        xManager.setVisible(false);
+        lblXLaugName.setVisible(false);
+        lblPleaseFill.setVisible(false);
+        lblXManager.setVisible(false);
     }
 
     @FXML
-    private void handleGodkend(ActionEvent event) throws IOException
+    private void handleApproval(ActionEvent event) throws IOException
     {
 
         if (txtLaugName.getText().isEmpty())
         {
-            xLaugName.setVisible(true);
-            lblUdfyldVenligst.setVisible(true);
+            lblXLaugName.setVisible(true);
+            lblPleaseFill.setVisible(true);
         }
         if (comboManager.getSelectionModel().isEmpty())
         {
-            xManager.setVisible(true);
-            lblUdfyldVenligst.setVisible(true);
+            lblXManager.setVisible(true);
+            lblPleaseFill.setVisible(true);
         }
-        if (xLaugName.isVisible() && !txtLaugName.getText().isEmpty())
+        if (lblXLaugName.isVisible() && !txtLaugName.getText().isEmpty())
         {
-            xLaugName.setVisible(false);
+            lblXLaugName.setVisible(false);
         }
-        if (xManager.isVisible() && !comboManager.getSelectionModel().isEmpty())
+        if (lblXManager.isVisible() && !comboManager.getSelectionModel().isEmpty())
         {
-            xManager.setVisible(false);
+            lblXManager.setVisible(false);
         }
         if (!txtLaugName.getText().isEmpty() && !comboManager.getSelectionModel().isEmpty())
         {
             handleLaugInfo();
 
-            vcm.showAdminView((Stage) btnGodkend.getScene().getWindow());
+            vcm.showAdminView((Stage) btnApprove.getScene().getWindow());
         }
     }
 
@@ -192,7 +192,7 @@ public class AddLaugController implements Initializable
             allUsers.remove(volunteer);
             listAvailableVolunteers.getItems().remove(volunteer);
 
-            lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteer.getItems().size());
+            lblAmountOfVolunteers.setText("Antal frivillige: " + listChosenVolunteer.getItems().size());
         }
     }
 
@@ -211,12 +211,12 @@ public class AddLaugController implements Initializable
             chosenUsers.remove(volunteer);
             listChosenVolunteer.getItems().remove(volunteer);
 
-            lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteer.getItems().size());
+            lblAmountOfVolunteers.setText("Antal frivillige: " + listChosenVolunteer.getItems().size());
         }
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
         vcm.showAdminView((Stage) btnBack.getScene().getWindow());
     }
