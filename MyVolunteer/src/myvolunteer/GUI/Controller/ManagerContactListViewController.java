@@ -36,7 +36,6 @@ public class ManagerContactListViewController implements Initializable
 {
     DataParserModel dp = DataParserModel.getInstance();
     MainViewModel mainViewModel = MainViewModel.getInstance();
-    ClipBoardUtility clipBoard = new ClipBoardUtility();
 
     ObservableList<Volunteer> users = FXCollections.observableArrayList();
     private List<Guild> guildList = new ArrayList<>();
@@ -82,6 +81,7 @@ public class ManagerContactListViewController implements Initializable
         tblColumnMail.setCellValueFactory(cellDate -> cellDate.getValue().getMailProperty());
         tblViewContact.getSelectionModel().setCellSelectionEnabled(true);
         tblViewContact.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        ClipBoardUtility.installCopyPasteHandler(tblViewContact);
 
     }
 
@@ -128,6 +128,5 @@ public class ManagerContactListViewController implements Initializable
     @FXML
     private void handleCopyContent(KeyEvent event)
     {
-        clipBoard.copySelectionToClipboard(tblViewContact);
     }
 }

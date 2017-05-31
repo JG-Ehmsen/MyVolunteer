@@ -21,7 +21,7 @@ import javafx.scene.input.KeyEvent;
  *
  * @author Fjord82
  */
-public class ClipBoardUtility
+public abstract class ClipBoardUtility
 {
     public static void installCopyPasteHandler(TableView<?> table)
     {
@@ -31,7 +31,7 @@ public class ClipBoardUtility
     public static class TableKeyEventHandler implements EventHandler<KeyEvent>
     {
 
-        KeyCodeCombination copyKeyCodeCombination = new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_ANY);
+        KeyCodeCombination copyKeyCodeCombination = new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_DOWN);
         
         public void handle(final KeyEvent keyEvent)
         {
