@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -56,6 +57,9 @@ public class AdminInfoViewController implements Initializable
     private Guild lastSelectedGuild;
     private List<Guild> guildList = new ArrayList<>();
 
+    private String documentHeader = "Fornavn" + "	" + "Efternavn" + "	";
+    private String documentText;
+
     @FXML
     private Button btnBack;
     @FXML
@@ -86,6 +90,23 @@ public class AdminInfoViewController implements Initializable
     private TableColumn<Volunteer, String> tblColumnAddress2;
     @FXML
     private Button btnSave;
+    @FXML
+    private CheckBox cBoxPhone;
+    @FXML
+    private CheckBox cBoxPhone2;
+    @FXML
+    private CheckBox cBoxPhone3;
+    @FXML
+    private CheckBox cBoxEmail;
+    @FXML
+    private CheckBox cBoxNationality;
+    @FXML
+    private CheckBox cBoxAddress;
+    @FXML
+    private CheckBox cBoxAddress2;
+    @FXML
+    private CheckBox cBoxGender;
+
 
     /**
      * Initializes the controller class.
@@ -192,13 +213,80 @@ public class AdminInfoViewController implements Initializable
             if (file != null)
             {
                 writer = new BufferedWriter(new FileWriter(file));
-                String header = "Køn" + "	" + "Fornavn" + "	" + "Efternavn" + "	" + "Email" + "	" + "Telefon" + "	" + "Telefon2" + "	" + "Telefon3" + "	" + "Nationalitet" + "	" + "Adresse" + "	" + "Adresse2" + "\n";
-                writer.write(header);
+                if (cBoxAddress.isSelected())
+                {
+                    documentHeader = documentHeader + "Adresse" + "	";
+                }
+                if (cBoxAddress2.isSelected())
+                {
+                    documentHeader = documentHeader + "Adresse 2" + "	";
+                }
+                if (cBoxEmail.isSelected())
+                {
+                    documentHeader = documentHeader + "Email" + "	";
+                }
+                if (cBoxNationality.isSelected())
+                {
+                    documentHeader = documentHeader + "Nationalitet" + "	";
+                }
+                if (cBoxPhone.isSelected())
+                {
+                    documentHeader = documentHeader + "Telefon" + "	";
+                }
+                if (cBoxPhone2.isSelected())
+                {
+                    documentHeader = documentHeader + "Telefon 2" + "	";
+                }
+                if (cBoxPhone3.isSelected())
+                {
+                    documentHeader = documentHeader + "Telefon 3" + "	";
+                }
+                if (cBoxGender.isSelected())
+                {
+                    documentHeader = documentHeader + "Køn" + "	";
+                }
+                documentHeader = documentHeader + "\n";
+                writer.write(documentHeader);
+                documentHeader = "Fornavn" + "	" + "Efternavn" + "	";
+
                 for (Volunteer user : tblViewInfo.getItems())
                 {
-                    String text = user.getGender() + "	" + user.getFirstName() + "	" + user.getLastName() + "	" + user.getEmail() + "	" + user.getPhoneNumber() + "	" + user.getPhoneNumber2() + "	" + user.getPhoneNumber3() + "	" + user.getNationality() + "	" + user.getAddress() + "	" + user.getAddress2() + "\n";
-
-                    writer.write(text);
+                    documentText = user.getFirstName() + "	" + user.getLastName() + "	";
+                    if (cBoxAddress.isSelected())
+                    {
+                        documentText = documentText + user.getAddress() + "	";
+                    }
+                    if (cBoxAddress2.isSelected())
+                    {
+                        documentText = documentText + user.getAddress2() + "	";
+                    }
+                    if (cBoxEmail.isSelected())
+                    {
+                        documentText = documentText + user.getEmail() + "	";
+                    }
+                    if (cBoxNationality.isSelected())
+                    {
+                        documentText = documentText + user.getNationality() + "	";
+                    }
+                    if (cBoxPhone.isSelected())
+                    {
+                        documentText = documentText + user.getPhoneNumber() + "	";
+                    }
+                    if (cBoxPhone2.isSelected())
+                    {
+                        documentText = documentText + user.getPhoneNumber2() + "	";
+                    }
+                    if (cBoxPhone3.isSelected())
+                    {
+                        documentText = documentText + user.getPhoneNumber3() + "	";
+                    }
+                    if (cBoxGender.isSelected())
+                    {
+                        documentText = documentText + user.getGender() + "	";
+                    }
+                    documentText = documentText + "\n";
+                    writer.write(documentText);
+                    documentText = documentText = user.getFirstName() + "	" + user.getLastName() + "	";
                 }
             }
         } catch (Exception ex)
