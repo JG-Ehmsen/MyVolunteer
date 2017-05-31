@@ -22,12 +22,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.converter.NumberStringConverter;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 
 /**
  * FXML Controller class
@@ -42,6 +45,7 @@ public class HoursViewController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dataParserModel = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
     private Button btnConfirmHours;
@@ -65,6 +69,8 @@ public class HoursViewController implements Initializable
     Volunteer user;
     Guild guild;
 
+    ResourceBundle rb;
+
     /**
      * Initializes the controller class.
      */
@@ -72,17 +78,14 @@ public class HoursViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
+        this.rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
+
         user = mainViewModel.getLastSelectedUser();
         guild = mainViewModel.getLastSelectedGuild();
 
         datePicker.setValue(LocalDate.now());
-        if (user.getLastInputDate() != null)
-        {
-            lblLastUpdated.setText("Sidst opdateret:\n" + user.getLastInputDate().toString());
-        }
-        lblName.setText(user.getFirstName() + " " + user.getLastName());
 
-        changeLanguage();
+        setText();
 
         imgProfilePicture.setImage(user.getPicture());
     }
@@ -100,32 +103,24 @@ public class HoursViewController implements Initializable
             {
                 int hoursToWrite = Integer.parseInt(txtFieldHours.getText());
                 writeHoursToDatabase(user, hoursToWrite, guild, date);
+            } else
+            {
+                showError();
             }
-        } else if (mainViewModel.getLastSelectedLocale().toString().equals("da_DK"))
+        } else
         {
-            // Displays an alertbox if the hours typed are incorrect.
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Forkert Input");
-            alert.setHeaderText(null);
-            alert.setContentText("Indtast venligst hele timer mellem 1 - 24");
-            alert.showAndWait();
-        } else if (mainViewModel.getLastSelectedLocale().toString().equals("de_DE"))
-        {
-            // Displays an alertbox if the hours typed are incorrect.
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Falsche Eingabe");
-            alert.setHeaderText(null);
-            alert.setContentText("Bitte geben Sie ganze Stunden zwischen 1 - 24");
-            alert.showAndWait();
-        } else if (mainViewModel.getLastSelectedLocale().toString().equals("en_GB"))
-        {
-            // Displays an alertbox if the hours typed are incorrect.
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Wrong Input");
-            alert.setHeaderText(null);
-            alert.setContentText("Please enter whole hours between 1 - 24");
-            alert.showAndWait();
+            showError();
         }
+    }
+
+    public void showError()
+    {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(rb.getString("HoursSpecial.alertTitle.text"));
+        alert.setHeaderText(null);
+        alert.setContentText(rb.getString("HoursSpecial.alertContent.text"));
+
+        alert.showAndWait();
     }
 
     /**
@@ -134,75 +129,30 @@ public class HoursViewController implements Initializable
      */
     public boolean validateInput() throws IOException
     {
-        boolean isFound = false;
-
-        for (int i = 1; i < 25; i++)
+        boolean validHours = false;
+        int inputHours;
+        try
         {
-            String correctHours = Integer.toString(i);
-            if (txtFieldHours.getText().equals(correctHours))
-            {
-                isFound = true;
-
-                //Change view to mainView (LaugView) after validation has been confirmed
-                mainViewModel.changeView("Laug", "GUI/View/LaugViewSpecial.fxml");
-                // Closes the primary stage
-                Stage stage = (Stage) btnConfirmHours.getScene().getWindow();
-                stage.close();
-
-                break;
-            }
-        }
-        // Boolean isFound is set to true if there is a match
-        if (!isFound)
+            inputHours = Integer.parseInt(txtFieldHours.getText());
+        } catch (NumberFormatException e)
         {
-            if (mainViewModel.getLastSelectedLocale().toString().equals("da_DK"))
-            {
-                // Displays an alertbox if the hours typed are incorrect.
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Forkert Input");
-                alert.setHeaderText(null);
-                alert.setContentText("Indtast venligst hele timer mellem 1 - 24");
-                alert.showAndWait();
-            } else if (mainViewModel.getLastSelectedLocale().toString().equals("de_DE"))
-            {
-                // Displays an alertbox if the hours typed are incorrect.
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Falsche Eingabe");
-                alert.setHeaderText(null);
-                alert.setContentText("Bitte geben Sie ganze Stunden zwischen 1 - 24");
-                alert.showAndWait();
-            } else if (mainViewModel.getLastSelectedLocale().toString().equals("en_GB"))
-            {
-                // Displays an alertbox if the hours typed are incorrect.
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Wrong Input");
-                alert.setHeaderText(null);
-                alert.setContentText("Please enter whole hours between 1 - 24");
-                alert.showAndWait();
-            }
-
+            return false;
         }
-        // Closes the scanner
-        return isFound;
+        if (inputHours >= 1 && inputHours <= 24)
+        {
+            validHours = true;
+
+            //Change view to mainView (LaugView) after validation has been confirmed
+            vcm.showLaugView((Stage) imgProfilePicture.getScene().getWindow());
+        }
+        // Boolean validHours is set to true if there is a match
+        return validHours;
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
-        if (mainViewModel.getLastSelectedLocale().toString().equals("da_DK"))
-        {
-            mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
-        } else if (mainViewModel.getLastSelectedLocale().toString().equals("de_DE"))
-        {
-            mainViewModel.changeView("Sich freiwillig melden", "GUI/View/VolunteerView.fxml");
-        } else if (mainViewModel.getLastSelectedLocale().toString().equals("en_GB"))
-        {
-            mainViewModel.changeView("Volunteer", "GUI/View/VolunteerView.fxml");
-        }
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showVolunteersView((Stage) imgProfilePicture.getScene().getWindow());
     }
 
     public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
@@ -239,9 +189,10 @@ public class HoursViewController implements Initializable
         return str;
     }
 
-    private void changeLanguage()
+    private void setText()
     {
-        ResourceBundle rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
+        lblName.setText(user.getFirstName() + " " + user.getLastName());
+
         if (user.getLastInputDate() != null)
         {
             lblLastUpdated.setText(rb.getString("HoursSpecial.lblLastUpdated.text") + "\n" + user.getLastInputDate().toString());
@@ -254,4 +205,5 @@ public class HoursViewController implements Initializable
         btnConfirmHours.setText(rb.getString("HoursSpecial.btnConfirmHours.text"));
         btnBack.setText(rb.getString("HoursSpecial.btnBack.text"));
     }
+
 }

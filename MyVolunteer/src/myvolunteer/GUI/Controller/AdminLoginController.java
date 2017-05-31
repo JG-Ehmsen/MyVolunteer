@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 
 /**
  * FXML Controller class
@@ -31,6 +32,7 @@ public class AdminLoginController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dataParserModel = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     private Stage previousStage;
 
@@ -43,11 +45,11 @@ public class AdminLoginController implements Initializable
     @FXML
     private Button btnBack;
     @FXML
-    private Label xUsername;
+    private Label lblXUsername;
     @FXML
-    private Label xPassword;
+    private Label lblXPassword;
     @FXML
-    private Label lblUdfyldVenligst;
+    private Label lblPleaseFill;
     @FXML
     private Label lblInvalidUser;
 
@@ -57,9 +59,9 @@ public class AdminLoginController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        xUsername.setVisible(false);
-        xPassword.setVisible(false);
-        lblUdfyldVenligst.setVisible(false);
+        lblXUsername.setVisible(false);
+        lblXPassword.setVisible(false);
+        lblPleaseFill.setVisible(false);
         lblInvalidUser.setVisible(false);
     }
 
@@ -68,13 +70,14 @@ public class AdminLoginController implements Initializable
     {
         if (!UsernameField.getText().isEmpty() && !codeField.getText().isEmpty())
         {
+            
             Stage stage = (Stage) btnLogin.getScene().getWindow();
 
             dataParserModel.tryLogin(UsernameField.getText(), codeField.getText(), stage);
 
-            xUsername.setVisible(false);
-            xPassword.setVisible(false);
-            lblUdfyldVenligst.setVisible(false);
+            lblXUsername.setVisible(false);
+            lblXPassword.setVisible(false);
+            lblPleaseFill.setVisible(false);
 
             lblInvalidUser.setVisible(true);
 
@@ -82,36 +85,32 @@ public class AdminLoginController implements Initializable
         if (UsernameField.getText().isEmpty())
         {
             lblInvalidUser.setVisible(false);
-            xUsername.setVisible(true);
-            lblUdfyldVenligst.setVisible(true);
+            lblXUsername.setVisible(true);
+            lblPleaseFill.setVisible(true);
         }
         if (codeField.getText().isEmpty())
         {
             lblInvalidUser.setVisible(false);
-            xPassword.setVisible(true);
-            lblUdfyldVenligst.setVisible(true);
+            lblXPassword.setVisible(true);
+            lblPleaseFill.setVisible(true);
 
         }
-        if (xUsername.isVisible() && !UsernameField.getText().isEmpty())
+        if (lblXUsername.isVisible() && !UsernameField.getText().isEmpty())
         {
-            xUsername.setVisible(false);
+            lblXUsername.setVisible(false);
 
         }
-        if (xPassword.isVisible() && !codeField.getText().isEmpty())
+        if (lblXPassword.isVisible() && !codeField.getText().isEmpty())
         {
-            xPassword.setVisible(false);
+            lblXPassword.setVisible(false);
         }
 
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Laug", "GUI/View/LaugViewSpecial.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showLaugView((Stage) btnBack.getScene().getWindow());
     }
 
 }

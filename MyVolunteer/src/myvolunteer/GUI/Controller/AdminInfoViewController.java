@@ -33,6 +33,7 @@ import myvolunteer.BE.Guild;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 import myvolunteer.GUI.Utility.ClipBoardUtility;
 
 /**
@@ -50,6 +51,7 @@ public class AdminInfoViewController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     private Guild lastSelectedGuild;
     private List<Guild> guildList = new ArrayList<>();
@@ -133,8 +135,7 @@ public class AdminInfoViewController implements Initializable
     private void handleBack(ActionEvent event) throws IOException
     {
         // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showAdminView((Stage) btnBack.getScene().getWindow());
     }
 
     @FXML

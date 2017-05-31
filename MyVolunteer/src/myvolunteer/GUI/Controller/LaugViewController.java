@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 import myvolunteer.GUI.Utility.PictureButton;
 
 /**
@@ -37,6 +38,9 @@ public class LaugViewController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
+
+    ResourceBundle rb;
 
     private Locale german = new Locale("de", "DE");
     private Locale danish = new Locale("da", "DK");
@@ -71,7 +75,11 @@ public class LaugViewController implements Initializable
 
         initGuildButtons();
         adjustScrollPane();
+
+        rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
+
         setBundleLocale();
+
     }
 
     private void initGuildButtons()
@@ -112,46 +120,19 @@ public class LaugViewController implements Initializable
 
     private void handleGuildClick()
     {
-        try
-        {
-            if (mainViewModel.getLastSelectedLocale().toString().equals("da_DK"))
-            {
-                mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
-            } else if (mainViewModel.getLastSelectedLocale().toString().equals("de_DE"))
-            {
-                mainViewModel.changeView("Sich freiwillig melden", "GUI/View/VolunteerView.fxml");
-            } else if (mainViewModel.getLastSelectedLocale().toString().equals("en_GB"))
-            {
-                mainViewModel.changeView("Volunteer", "GUI/View/VolunteerView.fxml");
-            }
-
-            // Closes the primary stage
-            Stage stage = (Stage) MainFlowPane.getScene().getWindow();
-            stage.close();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(LaugViewController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        vcm.showVolunteersView((Stage) MainFlowPane.getScene().getWindow());
     }
 
     @FXML
-    private void handleLogin(ActionEvent event) throws IOException
+    private void handleGoToLogin(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Login", "GUI/View/AdminLogin.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) MainFlowPane.getScene().getWindow();
-        stage.close();
+        vcm.showLoginView((Stage) MainFlowPane.getScene().getWindow());
     }
 
     @FXML
-    private void handleGuide(ActionEvent event) throws IOException
+    private void handleGoToGuide(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Step-by-Step guide", "GUI/View/GuideView.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) MainFlowPane.getScene().getWindow();
-        stage.close();
+        vcm.showGuideView((Stage) MainFlowPane.getScene().getWindow());
     }
 
     @FXML
@@ -159,6 +140,7 @@ public class LaugViewController implements Initializable
     {
         mainViewModel.setLastSelectedLocale(danish);
         mainViewModel.setLastSelectedBundle("myvolunteer.GUI.Utility.MyLanguage");
+        updateLanguage();
         englishBtn.setDisable(false);
         germanBtn.setDisable(false);
         danishBtn.setDisable(true);
@@ -169,6 +151,7 @@ public class LaugViewController implements Initializable
     {
         mainViewModel.setLastSelectedLocale(german);
         mainViewModel.setLastSelectedBundle("myvolunteer.GUI.Utility.MyLanguage_de_DE");
+        updateLanguage();
         englishBtn.setDisable(false);
         germanBtn.setDisable(true);
         danishBtn.setDisable(false);
@@ -179,14 +162,16 @@ public class LaugViewController implements Initializable
     {
         mainViewModel.setLastSelectedLocale(english);
         mainViewModel.setLastSelectedBundle("myvolunteer.GUI.Utility.MyLanguage_en_GB");
+        updateLanguage();
         englishBtn.setDisable(true);
         germanBtn.setDisable(false);
         danishBtn.setDisable(false);
+
     }
 
     private void setBundleLocale()
     {
-        ResourceBundle rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
+        rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
 
         if (mainViewModel.getLastSelectedLocale().equals(german))
         {
@@ -206,5 +191,13 @@ public class LaugViewController implements Initializable
             germanBtn.setDisable(false);
             danishBtn.setDisable(true);
         }
+    }
+
+    private void updateLanguage()
+    {
+        rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
+
+        Stage stage = (Stage) MainFlowPane.getScene().getWindow();
+        stage.setTitle(rb.getString("Guild.text"));
     }
 }

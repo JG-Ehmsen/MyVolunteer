@@ -23,6 +23,7 @@ import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 import myvolunteer.GUI.Utility.PictureButton;
 
 public class VolunteerViewController implements Initializable
@@ -33,6 +34,7 @@ public class VolunteerViewController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
     private Button btnBack;
@@ -114,36 +116,13 @@ public class VolunteerViewController implements Initializable
 
     private void handleUserImage()
     {
-        try
-        {
-            if (mainViewModel.getLastSelectedLocale().toString().equals("da_DK"))
-            {
-                mainViewModel.changeView("Indtast timer", "GUI/View/HoursSpecial.fxml");
-            } else if (mainViewModel.getLastSelectedLocale().toString().equals("de_DE"))
-            {
-                mainViewModel.changeView("Stunden eingeben", "GUI/View/HoursSpecial.fxml");
-            } else if (mainViewModel.getLastSelectedLocale().toString().equals("en_GB"))
-            {
-                mainViewModel.changeView("Enter hours", "GUI/View/HoursSpecial.fxml");
-            }
-
-            // Closes the primary stage
-            Stage stage = (Stage) btnBack.getScene().getWindow();
-            stage.close();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        vcm.showHoursView((Stage) MainFlowPane.getScene().getWindow());
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Laug", "GUI/View/LaugViewSpecial.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showLaugView((Stage) MainFlowPane.getScene().getWindow());
     }
 
     private void changeLanguage()

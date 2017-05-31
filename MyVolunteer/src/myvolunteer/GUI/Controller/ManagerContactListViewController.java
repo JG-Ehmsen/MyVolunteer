@@ -25,6 +25,7 @@ import myvolunteer.BE.Guild;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 import myvolunteer.GUI.Utility.ClipBoardUtility;
 
 /**
@@ -36,6 +37,7 @@ public class ManagerContactListViewController implements Initializable
 {
     DataParserModel dp = DataParserModel.getInstance();
     MainViewModel mainViewModel = MainViewModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     ObservableList<Volunteer> users = FXCollections.observableArrayList();
     private List<Guild> guildList = new ArrayList<>();
@@ -67,10 +69,9 @@ public class ManagerContactListViewController implements Initializable
     }
 
     @FXML
-    private void handleBack(ActionEvent event)
+    private void handleGoBack(ActionEvent event)
     {
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showManagerView((Stage) btnBack.getScene().getWindow());
     }
 
     private void initializeTable()
@@ -79,6 +80,7 @@ public class ManagerContactListViewController implements Initializable
         tblColumnPhone1.setCellValueFactory(cellDate -> cellDate.getValue().getPhoneProperty());
         tblColumnPhone2.setCellValueFactory(cellDate -> cellDate.getValue().getPhone2Property());
         tblColumnMail.setCellValueFactory(cellDate -> cellDate.getValue().getMailProperty());
+        
         tblViewContact.getSelectionModel().setCellSelectionEnabled(true);
         tblViewContact.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         ClipBoardUtility.installCopyPasteHandler(tblViewContact);
@@ -123,10 +125,5 @@ public class ManagerContactListViewController implements Initializable
     {
         String filter = searchBar.getText();
         tblViewContact.setItems(dp.filter(filter, users));
-    }
-
-    @FXML
-    private void handleCopyContent(KeyEvent event)
-    {
     }
 }
