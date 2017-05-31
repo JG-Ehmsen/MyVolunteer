@@ -84,6 +84,7 @@ public class DBUserAccess
             user.setAddress2(Address2);
             user.setPhoneNumber2(phoneNumber2);
             user.setPhoneNumber3(phoneNumber3);
+            user.setTotalHours(getHoursWorkedForVolunteer(user, con));
 
             userList.add(user);
         }

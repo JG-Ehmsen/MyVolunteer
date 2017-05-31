@@ -44,7 +44,6 @@ import myvolunteer.GUI.Utility.ClipBoardUtility;
 public class AdminInfoViewController implements Initializable
 {
 
-    
     ObservableList<Volunteer> users = FXCollections.observableArrayList();
 
     /**
@@ -53,7 +52,7 @@ public class AdminInfoViewController implements Initializable
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
     ClipBoardUtility clipBoard = new ClipBoardUtility();
-    
+
     private Guild lastSelectedGuild;
     private List<Guild> guildList = new ArrayList<>();
 
@@ -89,6 +88,10 @@ public class AdminInfoViewController implements Initializable
     @FXML
     private TableColumn<Volunteer, String> tblColumnAddress2;
     @FXML
+    private TableColumn<Volunteer, String> tblColumnLastInput;
+    @FXML
+    private TableColumn<Volunteer, String> tblColumnTotalHours;
+    @FXML
     private Button btnSave;
     @FXML
     private CheckBox cBoxPhone;
@@ -106,7 +109,10 @@ public class AdminInfoViewController implements Initializable
     private CheckBox cBoxAddress2;
     @FXML
     private CheckBox cBoxGender;
-
+    @FXML
+    private CheckBox cBoxLastInput;
+    @FXML
+    private CheckBox cBoxTotalHours;
 
     /**
      * Initializes the controller class.
@@ -118,7 +124,7 @@ public class AdminInfoViewController implements Initializable
         guildList = dp.getActiveGuilds();
         initializeTable();
         comboContent();
-        
+
         tblViewInfo.getSelectionModel().setCellSelectionEnabled(true);
         tblViewInfo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
@@ -180,7 +186,9 @@ public class AdminInfoViewController implements Initializable
         tblColumnNationality.setCellValueFactory(celldata -> celldata.getValue().getNationalityProperty());
         tblColumnAddress.setCellValueFactory(celldata -> celldata.getValue().getAddressProperty());
         tblColumnAddress2.setCellValueFactory(celldata -> celldata.getValue().getAddress2Property());
-
+        tblColumnLastInput.setCellValueFactory(celldata -> celldata.getValue().getLastInputProperty());
+        tblColumnTotalHours.setCellValueFactory(celldata -> celldata.getValue().getTotalHoursProperty());
+        
         ObservableList nameArrayList = FXCollections.observableArrayList(dp.getActiveUsers());
         tblViewInfo.setItems(nameArrayList);
     }
@@ -245,6 +253,14 @@ public class AdminInfoViewController implements Initializable
                 {
                     documentHeader = documentHeader + "Køn" + "	";
                 }
+                if (cBoxLastInput.isSelected())
+                {
+                    documentHeader = documentHeader + "Sidst opdateret" + "	";
+                }
+                if (cBoxTotalHours.isSelected())
+                {
+                    documentHeader = documentHeader + "Total timer" + "	";
+                }
                 documentHeader = documentHeader + "\n";
                 writer.write(documentHeader);
                 documentHeader = "Fornavn" + "	" + "Efternavn" + "	";
@@ -284,6 +300,14 @@ public class AdminInfoViewController implements Initializable
                     {
                         documentText = documentText + user.getGender() + "	";
                     }
+                    if (cBoxLastInput.isSelected())
+                    {
+                        documentText = documentText + user.getLastInputDate() + "	";
+                    }
+                    if (cBoxTotalHours.isSelected())
+                    {
+                        documentText = documentText + dp.getHoursWorkedForVolunteer(user) + "	";
+                    }
                     documentText = documentText + "\n";
                     writer.write(documentText);
                     documentText = documentText = user.getFirstName() + "	" + user.getLastName() + "	";
@@ -309,7 +333,6 @@ public class AdminInfoViewController implements Initializable
         comboContent();
     }
 
-    @FXML
     private void handleCopyContent(KeyEvent event)
     {
         clipBoard.copySelectionToClipboard(tblViewInfo);
