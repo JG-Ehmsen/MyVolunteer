@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -254,15 +255,37 @@ public class ManagerViewController implements Initializable
     @FXML
     private void handleRedigerFrivillig(ActionEvent event) throws IOException
     {
-        mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
+        if (lastSelectedVolunteer != null)
+        {
+           mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
         vcm.showEditVolunteer((Stage) redigerFrivillig.getScene().getWindow());
+        } else
+        {
+            // Displays an alertbox if the user haven't selected a laug.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Vælg en frivillig");
+            alert.showAndWait();
+        }
     }
 
     @FXML
     private void handleRedigerLaug(ActionEvent event) throws IOException
     {
-        mainViewModel.setLastSelectedGuild(lastSelectedGuild);
+        if (lastSelectedGuild != null)
+        {
+            mainViewModel.setLastSelectedGuild(lastSelectedGuild);
         vcm.showEditGuild((Stage) redigerFrivillig.getScene().getWindow());
+        } else
+        {
+            // Displays an alertbox if the user haven't selected a laug.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Vælg et laug");
+            alert.showAndWait();
+        }
     }
 
     @FXML
