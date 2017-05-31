@@ -84,14 +84,8 @@ public class HoursViewController implements Initializable
         guild = mainViewModel.getLastSelectedGuild();
 
         datePicker.setValue(LocalDate.now());
-        if (user.getLastInputDate() != null)
-        {
-            lblLastUpdated.setText("Sidst opdateret:\n" + user.getLastInputDate().toString());
-        }
-        lblName.setText(user.getFirstName() + " " + user.getLastName());
 
-        txtFieldHours.setTextFormatter(new TextFormatter<>(new NumberStringConverter()));
-        changeLanguage();
+        setText();
 
         imgProfilePicture.setImage(user.getPicture());
     }
@@ -142,7 +136,6 @@ public class HoursViewController implements Initializable
             inputHours = Integer.parseInt(txtFieldHours.getText());
         } catch (NumberFormatException e)
         {
-            showError();
             return false;
         }
         if (inputHours >= 1 && inputHours <= 24)
@@ -196,8 +189,9 @@ public class HoursViewController implements Initializable
         return str;
     }
 
-    private void changeLanguage()
+    private void setText()
     {
+        lblName.setText(user.getFirstName() + " " + user.getLastName());
 
         if (user.getLastInputDate() != null)
         {

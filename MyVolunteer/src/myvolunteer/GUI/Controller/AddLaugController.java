@@ -38,6 +38,7 @@ import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 
 public class AddLaugController implements Initializable
 {
@@ -47,6 +48,7 @@ public class AddLaugController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
     private Button btnGodkend;
@@ -140,11 +142,7 @@ public class AddLaugController implements Initializable
         {
             handleLaugInfo();
 
-            mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
-
-            // Closes the primary stage
-            Stage stage = (Stage) btnGodkend.getScene().getWindow();
-            stage.close();
+            vcm.showAdminView((Stage) btnGodkend.getScene().getWindow());
         }
     }
 
@@ -166,7 +164,6 @@ public class AddLaugController implements Initializable
 
         if (!imageSet)
         {
-
             try
             {
                 img = ImageIO.read(getClass().getResource(defaultImage));
@@ -221,11 +218,7 @@ public class AddLaugController implements Initializable
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showAdminView((Stage) btnBack.getScene().getWindow());
     }
 
     @FXML
@@ -233,7 +226,6 @@ public class AddLaugController implements Initializable
     {
         String filter = txtSearchAvailable.getText();
         listAvailableVolunteers.setItems(dp.filter(filter, allUsers));
-
     }
 
     @FXML

@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 
 /**
  * FXML Controller class
@@ -31,6 +32,7 @@ public class AdminLoginController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dataParserModel = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     private Stage previousStage;
 
@@ -68,6 +70,7 @@ public class AdminLoginController implements Initializable
     {
         if (!UsernameField.getText().isEmpty() && !codeField.getText().isEmpty())
         {
+            
             Stage stage = (Stage) btnLogin.getScene().getWindow();
 
             dataParserModel.tryLogin(UsernameField.getText(), codeField.getText(), stage);
@@ -107,11 +110,7 @@ public class AdminLoginController implements Initializable
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Laug", "GUI/View/LaugViewSpecial.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showLaugView((Stage) previousStage.getScene().getWindow());
     }
 
 }

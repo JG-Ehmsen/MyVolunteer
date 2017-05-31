@@ -178,21 +178,13 @@ public class AdminViewController implements Initializable
     @FXML
     private void handleOpretFrivillig(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Opret frivillig", "GUI/View/AddVolunteer.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) opretFrivillig.getScene().getWindow();
-        stage.close();
+        vcm.showCreateVolunteer((Stage) opretFrivillig.getScene().getWindow());
     }
 
     @FXML
     private void handleOpretLaug(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Opret laug", "GUI/View/AddLaug.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) opretLaug.getScene().getWindow();
-        stage.close();
+        vcm.showCreateLaugView((Stage) opretLaug.getScene().getWindow());
     }
 
     @FXML
@@ -201,11 +193,7 @@ public class AdminViewController implements Initializable
         if (lastSelectedVolunteer != null)
         {
             mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
-            mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
-
-            // Closes the primary stage
-            Stage stage = (Stage) redigerFrivillig.getScene().getWindow();
-            stage.close();
+            vcm.showEditVolunteer((Stage) redigerFrivillig.getScene().getWindow());
         } else
         {
             // Displays an alertbox if the user haven't selected a laug.
@@ -223,11 +211,7 @@ public class AdminViewController implements Initializable
         if (lastSelectedGuild != null)
         {
             mainViewModel.setLastSelectedGuild(lastSelectedGuild);
-            mainViewModel.changeView("Rediger Laug", "GUI/View/EditLaug.fxml");
-
-            // Closes the primary stage
-            Stage stage = (Stage) redigerLaug.getScene().getWindow();
-            stage.close();
+            vcm.showEditGuild((Stage) redigerLaug.getScene().getWindow());
         } else
         {
             // Displays an alertbox if the user haven't selected a laug.
@@ -355,30 +339,19 @@ public class AdminViewController implements Initializable
     @FXML
     private void handleInfo(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Information", "GUI/View/AdminInfoView.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnInfo.getScene().getWindow();
+        vcm.showInformationView((Stage) btnInfo.getScene().getWindow());
     }
 
     @FXML
     private void handleOpretTovholder(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Opret tovholder", "GUI/View/AddManager.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnOpretTovholder.getScene().getWindow();
-        stage.close();
+        vcm.showCreateManager((Stage) btnOpretTovholder.getScene().getWindow());
     }
 
     @FXML
     private void handleRedigerTovholder(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Rediger tovholder", "GUI/View/EditManager.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnRedigerTovholder.getScene().getWindow();
-        stage.close();
+        vcm.showEditManager((Stage) btnRedigerTovholder.getScene().getWindow());
     }
 
     @FXML

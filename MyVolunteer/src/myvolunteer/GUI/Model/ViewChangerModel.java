@@ -105,7 +105,7 @@ public class ViewChangerModel
         }
 
     }
-    
+
     public void showHoursView(Stage stage)
     {
         updateResourceBundle();
@@ -118,7 +118,44 @@ public class ViewChangerModel
             Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    public void showCreateLaugView(Stage stage)
+    {
+        try
+        {
+            changeView("Opret Laug", "GUI/View/AddLaug.fxml");
+            stage.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void showCreateManager(Stage stage)
+    {
+        try
+        {
+            changeView("Opret Manager", "GUI/View/AddManager.fxml");
+            stage.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void showEditManager(Stage stage)
+    {
+        try
+        {
+            changeView("Rediger Manager", "GUI/View/EditManager.fxml");
+            stage.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     public void showCreateVolunteer(Stage stage)
     {
         try
@@ -130,7 +167,7 @@ public class ViewChangerModel
             Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void showEditVolunteer(Stage stage)
     {
         try
@@ -142,7 +179,7 @@ public class ViewChangerModel
             Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void showEditGuild(Stage stage)
     {
         try
@@ -154,7 +191,7 @@ public class ViewChangerModel
             Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void showContactList(Stage stage)
     {
         try
@@ -166,7 +203,7 @@ public class ViewChangerModel
             Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void showAdminView(Stage stage)
     {
         try
@@ -178,7 +215,7 @@ public class ViewChangerModel
             Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void showManagerView(Stage stage)
     {
         try
@@ -190,5 +227,18 @@ public class ViewChangerModel
             Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-            
+    
+    public void showInformationView(Stage stage)
+    {
+        try
+        {
+            changeView("Informations side", "GUI/View/AdminInfoView.fxml");
+            stage.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+
 }

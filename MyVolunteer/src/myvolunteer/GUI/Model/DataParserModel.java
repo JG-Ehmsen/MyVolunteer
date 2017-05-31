@@ -29,6 +29,7 @@ public class DataParserModel
     private static DataParserModel instance;
 
     MainViewModel mainViewModel = MainViewModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     public static DataParserModel getInstance()
     {
@@ -195,22 +196,14 @@ public class DataParserModel
 
         if (manager != null)
         {
-
-            try
-            {
                 mainViewModel.setLoggedInManager(manager);
                 if (!manager.isAdmin())
                 {
-                    mainViewModel.changeView("Manager", "GUI/View/ManagerView.fxml");
+                    vcm.showManagerView(stage);
                 } else
                 {
-                    mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
-                }
-                stage.close();
-            } catch (IOException ex)
-            {
-                Logger.getLogger(DataParserModel.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                    vcm.showAdminView(stage);
+                }   
         }/*else
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);

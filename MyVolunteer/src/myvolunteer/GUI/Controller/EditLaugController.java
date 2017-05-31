@@ -41,6 +41,7 @@ import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 
 /**
  * FXML Controller class
@@ -55,6 +56,7 @@ public class EditLaugController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
     private Button btnGodkend;
@@ -225,7 +227,6 @@ public class EditLaugController implements Initializable
     {
         String filter = txtSearchFilterAvailable.getText();
         listAvailableVolunteers.setItems(dp.filter(filter, allUsers));
-
     }
 
     @FXML
@@ -282,22 +283,13 @@ public class EditLaugController implements Initializable
 
     private void goBack() throws IOException
     {
-        String path = "";
-        String title = "";
         if (mainViewModel.getLoggedInManager().isAdmin())
         {
-            path = "GUI/View/AdminView.fxml";
-            title = "Admin";
+            vcm.showAdminView((Stage) btnBack.getScene().getWindow());
         } else if (!mainViewModel.getLoggedInManager().isAdmin())
         {
-            path = "GUI/View/ManagerView.fxml";
-            title = "Manager";
+            vcm.showManagerView((Stage) btnBack.getScene().getWindow());
         }
-        mainViewModel.changeView(title, path);
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
     }
 
     @FXML

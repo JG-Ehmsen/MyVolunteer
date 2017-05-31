@@ -31,6 +31,7 @@ import javax.imageio.ImageIO;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 
 /**
  * FXML Controller class
@@ -44,6 +45,8 @@ public class AddVolunteerController implements Initializable
      * Gets the singleton instance of the model.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
+    DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
     private Button btnGodkend;
@@ -65,8 +68,6 @@ public class AddVolunteerController implements Initializable
     private TextArea txtNote;
     @FXML
     private TextField txtLName;
-
-    DataParserModel dp = DataParserModel.getInstance();
 
     final ToggleGroup tg = new ToggleGroup();
     @FXML
@@ -115,7 +116,6 @@ public class AddVolunteerController implements Initializable
         rbMale.setToggleGroup(tg);
         rbFemale.setToggleGroup(tg);
         tg.selectToggle(rbMale);
-
     }
 
     @FXML
@@ -219,22 +219,13 @@ public class AddVolunteerController implements Initializable
 
     private void goBack() throws IOException
     {
-        String path = "";
-        String title = "";
         if (mainViewModel.getLoggedInManager().isAdmin())
         {
-            path = "GUI/View/AdminView.fxml";
-            title = "Admin";
+            vcm.showAdminView((Stage) btnBack.getScene().getWindow());
         } else if (!mainViewModel.getLoggedInManager().isAdmin())
         {
-            path = "GUI/View/ManagerView.fxml";
-            title = "Manager";
+            vcm.showManagerView((Stage) btnBack.getScene().getWindow());
         }
-        mainViewModel.changeView(title, path);
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
     }
 
     @FXML
