@@ -51,7 +51,6 @@ public class AdminInfoViewController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
-    ClipBoardUtility clipBoard = new ClipBoardUtility();
 
     private Guild lastSelectedGuild;
     private List<Guild> guildList = new ArrayList<>();
@@ -127,6 +126,8 @@ public class AdminInfoViewController implements Initializable
 
         tblViewInfo.getSelectionModel().setCellSelectionEnabled(true);
         tblViewInfo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        ClipBoardUtility.installCopyPasteHandler(tblViewInfo);
     }
 
     @FXML
@@ -188,7 +189,7 @@ public class AdminInfoViewController implements Initializable
         tblColumnAddress2.setCellValueFactory(celldata -> celldata.getValue().getAddress2Property());
         tblColumnLastInput.setCellValueFactory(celldata -> celldata.getValue().getLastInputProperty());
         tblColumnTotalHours.setCellValueFactory(celldata -> celldata.getValue().getTotalHoursProperty());
-        
+
         ObservableList nameArrayList = FXCollections.observableArrayList(dp.getActiveUsers());
         tblViewInfo.setItems(nameArrayList);
     }
@@ -331,10 +332,5 @@ public class AdminInfoViewController implements Initializable
         initializeTable();
         comboBoxGuild.getItems().clear();
         comboContent();
-    }
-
-    private void handleCopyContent(KeyEvent event)
-    {
-        clipBoard.copySelectionToClipboard(tblViewInfo);
     }
 }
