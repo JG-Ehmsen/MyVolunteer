@@ -18,12 +18,14 @@ import javafx.stage.Stage;
 import myvolunteer.BE.Manager;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 
 public class AddManagerController implements Initializable
 {
 
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
     private Button btnBack;
@@ -62,11 +64,7 @@ public class AddManagerController implements Initializable
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showAdminView((Stage) btnBack.getScene().getWindow());
     }
 
     @FXML
@@ -74,13 +72,9 @@ public class AddManagerController implements Initializable
     {
         if (!txtEmail.getText().isEmpty() && !txtFName.getText().isEmpty() && !txtLName.getText().isEmpty() && !txtPassword.getText().isEmpty())
         {
-            mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
+            vcm.showAdminView((Stage) btnGodkend.getScene().getWindow());
 
             handleUserInfo();
-
-            // Closes the primary stage
-            Stage stage = (Stage) btnGodkend.getScene().getWindow();
-            stage.close();
         } else if (txtEmail.getText().isEmpty() || txtFName.getText().isEmpty() || txtLName.getText().isEmpty() || txtPassword.getText().isEmpty())
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);

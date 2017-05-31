@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import myvolunteer.BE.Manager;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 
 /**
  * FXML Controller class
@@ -34,6 +35,7 @@ public class EditManagerController implements Initializable
 
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
     private Button btnBack;
@@ -105,11 +107,7 @@ public class EditManagerController implements Initializable
 
     private void goBack() throws IOException
     {
-        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showAdminView((Stage) btnBack.getScene().getWindow());
     }
 
     @FXML
