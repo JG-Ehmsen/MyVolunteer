@@ -125,6 +125,7 @@ public class ManagerContactListViewController implements Initializable
         tblViewContact.setItems(dp.filter(filter, users));
     }
 
+    @FXML
     private void handleCopyContent(KeyEvent event)
     {
         clipBoard.copySelectionToClipboard(tblViewContact);
