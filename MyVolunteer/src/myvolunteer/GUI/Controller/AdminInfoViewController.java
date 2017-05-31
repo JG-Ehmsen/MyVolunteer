@@ -24,14 +24,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Utility.ClipBoardUtility;
 
 /**
  * FXML Controller class
@@ -41,7 +44,7 @@ import myvolunteer.GUI.Model.MainViewModel;
 public class AdminInfoViewController implements Initializable
 {
 
-    private List<Guild> guildList = new ArrayList<>();
+    
     ObservableList<Volunteer> users = FXCollections.observableArrayList();
 
     /**
@@ -49,7 +52,10 @@ public class AdminInfoViewController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ClipBoardUtility clipBoard = new ClipBoardUtility();
+    
     private Guild lastSelectedGuild;
+    private List<Guild> guildList = new ArrayList<>();
 
     private String documentHeader = "Fornavn" + "	" + "Efternavn" + "	";
     private String documentText;
@@ -101,6 +107,7 @@ public class AdminInfoViewController implements Initializable
     @FXML
     private CheckBox cBoxGender;
 
+
     /**
      * Initializes the controller class.
      */
@@ -111,6 +118,9 @@ public class AdminInfoViewController implements Initializable
         guildList = dp.getActiveGuilds();
         initializeTable();
         comboContent();
+        
+        tblViewInfo.getSelectionModel().setCellSelectionEnabled(true);
+        tblViewInfo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     @FXML
@@ -297,5 +307,11 @@ public class AdminInfoViewController implements Initializable
         initializeTable();
         comboBoxGuild.getItems().clear();
         comboContent();
+    }
+
+    @FXML
+    private void handleCopyContent(KeyEvent event)
+    {
+        clipBoard.copySelectionToClipboard(tblViewInfo);
     }
 }

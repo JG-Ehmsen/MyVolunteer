@@ -92,6 +92,8 @@ public class ManagerViewController implements Initializable
     private Button btnBack;
     @FXML
     private Label lblGuildNote;
+    @FXML
+    private Button btnContactList;
 
     /**
      * Initializes the controller class.
@@ -103,6 +105,9 @@ public class ManagerViewController implements Initializable
         managerGuildList = dp.getGuildForManager(mainViewModel.getLoggedInManager());
         guildList = dp.getAllGuilds();
         userList = dp.getAllUsers();
+
+        lastManager = mainViewModel.getLoggedInManager();
+        lblTovholder.setText("Tovholder: " + lastManager.getFirstName() + " " + lastManager.getLastName());
 
         comboContent();
         populateList();
@@ -234,21 +239,8 @@ public class ManagerViewController implements Initializable
     private void searchFilter(KeyEvent event)
     {
         String filter = searchBar.getText();
-        ObservableList<Volunteer> filteredList = FXCollections.observableArrayList();
-        if (filter.equals(""))
-        {
-            volunteerList.setItems(users);
-        } else
-        {
-            for (Volunteer vol : users)
-            {
-                if (vol.toString().toLowerCase().contains(filter.toLowerCase()))
-                {
-                    filteredList.add(vol);
-                }
-            }
-            volunteerList.setItems(filteredList);
-        }
+        volunteerList.setItems(dp.filter(filter, users));
+
     }
 
     @FXML
@@ -358,6 +350,16 @@ public class ManagerViewController implements Initializable
     {
         clearGuildInfo();
         clearVolunteerInfo();
+    }
+
+    @FXML
+    private void handleContactList(ActionEvent event) throws IOException
+    {
+        mainViewModel.changeView("Kontaktliste for frivilige", "GUI/View/ManagerContactListView.fxml");
+
+        // Closes the primary stage
+        Stage stage = (Stage) btnContactList.getScene().getWindow();
+
     }
 
 }
