@@ -240,4 +240,8 @@ public class ViewChangerModel
         }
     }
 
+    public void closeView(Stage stage)
+    {
+        stage.close();
+    }
 }

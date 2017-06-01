@@ -75,10 +75,10 @@ public class EditManagerController implements Initializable
         ObservableList manager = FXCollections.observableArrayList(dp.getAllManagers());
         cbBoxManager.setItems(manager);
 
-        if (managers.isIsActive())
+        if (managers.isActive())
         {
             btnChangeStatus.setText("Gør aktiv");
-        } else if (!managers.isIsActive())
+        } else if (!managers.isActive())
         {
             btnChangeStatus.setText("Gør inaktiv");
         }
@@ -146,7 +146,7 @@ public class EditManagerController implements Initializable
     @FXML
     public void handleChangeStatus(ActionEvent event) throws IOException
     {
-        if (manager.isIsActive())
+        if (manager.isActive())
         {
             deactivate();
         } else

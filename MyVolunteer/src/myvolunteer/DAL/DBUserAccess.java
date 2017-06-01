@@ -776,6 +776,7 @@ public class DBUserAccess
             manager.setAddress2(rs.getString("Address2"));
             manager.setFirstName(rs.getString("FName"));
             manager.setLastName(rs.getString("LName"));
+            manager.setIsActive(rs.getBoolean("Active"));
 
             manager.setIsAdmin(rs.getBoolean("isAdmin"));
 
