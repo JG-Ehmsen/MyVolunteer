@@ -55,7 +55,6 @@ public class AdminInfoViewController implements Initializable
 
     private Guild lastSelectedGuild;
     private List<Guild> guildList = new ArrayList<>();
-
     private String documentHeader = "Fornavn" + "	" + "Efternavn" + "	";
     private String documentText;
 

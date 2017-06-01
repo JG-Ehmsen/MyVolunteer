@@ -12,17 +12,11 @@ public class Guild
 {
 
     private final int ID;
-
     private StringProperty name = new SimpleStringProperty();
-
     private StringProperty description = new SimpleStringProperty();
-
     private List<Integer> memberList = new ArrayList();
-
     private String defaultImage = "myvolunteer/GUI/View/Resource/GuildPicture.png";
-
     private boolean isActive;
-
     private BufferedImage picture = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
 
     public Guild(int ID, String name)

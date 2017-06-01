@@ -23,6 +23,10 @@ import myvolunteer.GUI.Model.ViewChangerModel;
 public class AddManagerController implements Initializable
 {
 
+    /**
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
+     */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
     ViewChangerModel vcm = new ViewChangerModel();
@@ -95,7 +99,6 @@ public class AddManagerController implements Initializable
         String address = txtAddress.getText();
         String address2 = txtAddress2.getText();
         String eMail = txtEmail.getText();
-
         String password = txtPassword.getText();
 
         Manager manager = new Manager(999999);

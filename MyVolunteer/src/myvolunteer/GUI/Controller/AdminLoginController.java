@@ -28,7 +28,8 @@ public class AdminLoginController implements Initializable
 {
 
     /**
-     * Gets the singleton instance of the model.
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dataParserModel = DataParserModel.getInstance();
@@ -70,7 +71,6 @@ public class AdminLoginController implements Initializable
     {
         if (!UsernameField.getText().isEmpty() && !codeField.getText().isEmpty())
         {
-            
             Stage stage = (Stage) btnLogin.getScene().getWindow();
 
             dataParserModel.tryLogin(UsernameField.getText(), codeField.getText(), stage);
@@ -78,9 +78,7 @@ public class AdminLoginController implements Initializable
             lblXUsername.setVisible(false);
             lblXPassword.setVisible(false);
             lblPleaseFill.setVisible(false);
-
             lblInvalidUser.setVisible(true);
-
         }
         if (UsernameField.getText().isEmpty())
         {
@@ -93,18 +91,15 @@ public class AdminLoginController implements Initializable
             lblInvalidUser.setVisible(false);
             lblXPassword.setVisible(true);
             lblPleaseFill.setVisible(true);
-
         }
         if (lblXUsername.isVisible() && !UsernameField.getText().isEmpty())
         {
             lblXUsername.setVisible(false);
-
         }
         if (lblXPassword.isVisible() && !codeField.getText().isEmpty())
         {
             lblXPassword.setVisible(false);
         }
-
     }
 
     @FXML
@@ -112,5 +107,4 @@ public class AdminLoginController implements Initializable
     {
         vcm.showLaugSelectionView((Stage) btnBack.getScene().getWindow());
     }
-
 }

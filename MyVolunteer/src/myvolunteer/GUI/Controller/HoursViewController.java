@@ -22,10 +22,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import javafx.util.converter.NumberStringConverter;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
@@ -124,6 +122,7 @@ public class HoursViewController implements Initializable
     }
 
     /**
+     * Validates the hours put in to be whole hours between 1 and 24.
      *
      * @throws IOException
      */

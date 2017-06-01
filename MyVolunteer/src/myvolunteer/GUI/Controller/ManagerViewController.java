@@ -191,10 +191,6 @@ public class ManagerViewController implements Initializable
         lblVolunteerGender.setText("Køn: ");
         lblVolunteerAge.setText("Alder: ");
         lblVolunteerPhoneNumber.setText("Telefon: ");
-//        lblVolunteerPhoneNumber2.setText("Telefon 2: ");
-//        lblVolunteerPhoneNumber3.setText("Telefon 3: ");
-//        lblVolunteerAddress.setText("Adresse: ");
-//        lblVolunteerAddress2.setText("Adresse 2: ");
         lblVolunteerEMail.setText("Email: ");
         lblVolunteerNationality.setText("Nationalitet: ");
         lblVolunteerHours.setText("Timer: ");
@@ -257,8 +253,8 @@ public class ManagerViewController implements Initializable
     {
         if (lastSelectedVolunteer != null)
         {
-           mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
-        vcm.showEditVolunteerView((Stage) btnEditVolunteer.getScene().getWindow());
+            mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
+            vcm.showEditVolunteerView((Stage) btnEditVolunteer.getScene().getWindow());
         } else
         {
             // Displays an alertbox if the user haven't selected a laug.
@@ -276,7 +272,7 @@ public class ManagerViewController implements Initializable
         if (lastSelectedGuild != null)
         {
             mainViewModel.setLastSelectedGuild(lastSelectedGuild);
-        vcm.showEditLaugView((Stage) btnEditVolunteer.getScene().getWindow());
+            vcm.showEditLaugView((Stage) btnEditVolunteer.getScene().getWindow());
         } else
         {
             // Displays an alertbox if the user haven't selected a laug.
@@ -336,10 +332,6 @@ public class ManagerViewController implements Initializable
         lblVolunteerGender.setText("Køn: " + lastSelectedVolunteer.getGender());
         lblVolunteerAge.setText("Alder: ");
         lblVolunteerPhoneNumber.setText("Telefon: " + lastSelectedVolunteer.getPhoneNumber());
-//        lblVolunteerPhoneNumber2.setText("Telefon 2: " + phone2);
-//        lblVolunteerPhoneNumber3.setText("Telefon 3: " + phone3);
-//        lblVolunteerAddress.setText("Adresse: " + address);
-//        lblVolunteerAddress2.setText("Adresse 2: " + address2);
         lblVolunteerEMail.setText("Email: " + lastSelectedVolunteer.getEmail());
         lblVolunteerNationality.setText("Nationalitet: " + lastSelectedVolunteer.getNationality());
         lblVolunteerNote.setText(lastSelectedVolunteer.getNote());

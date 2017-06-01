@@ -220,5 +220,4 @@ public abstract class User
     {
         this.picture = picture;
     }
-
 }
