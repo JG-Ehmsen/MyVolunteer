@@ -27,7 +27,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
@@ -202,7 +201,7 @@ public class AdminInfoViewController implements Initializable
     }
 
     /*
-    Exports the data in the tableView to a .xls file.
+    Exports the selected data in the tableView to a .xls file.
      */
     private void saveData() throws Exception
     {
@@ -211,13 +210,15 @@ public class AdminInfoViewController implements Initializable
         {
             FileChooser fileChooser = new FileChooser();
 
+            // Todays date
             Date todaysDate = new Date();
-            SimpleDateFormat ft
+            SimpleDateFormat dateFormat
                     = new SimpleDateFormat("dd.MM.yyyy");
 
             //Show save file dialog
             Stage stage = (Stage) btnAllVolunteers.getScene().getWindow();
-            File fileName = new File("Laug information " + ft.format(todaysDate) + ".xls");
+
+            File fileName = new File("Laug information " + dateFormat.format(todaysDate) + ".xls");
             fileChooser.setInitialFileName(fileName.toString());
             File file = fileChooser.showSaveDialog(stage);
             if (file != null)
