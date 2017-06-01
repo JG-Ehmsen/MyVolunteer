@@ -124,13 +124,13 @@ public class LaugViewController implements Initializable
     }
 
     @FXML
-    private void handleLogin(ActionEvent event) throws IOException
+    private void handleGoToLogin(ActionEvent event) throws IOException
     {
         vcm.showLoginView((Stage) MainFlowPane.getScene().getWindow());
     }
 
     @FXML
-    private void handleGuide(ActionEvent event) throws IOException
+    private void handleGoToGuide(ActionEvent event) throws IOException
     {
         vcm.showGuideView((Stage) MainFlowPane.getScene().getWindow());
     }

@@ -52,7 +52,7 @@ public class EditVolunteerController implements Initializable
     ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
-    private Button btnGodkend;
+    private Button btnApprove;
     @FXML
     private Button btnBack;
     @FXML
@@ -60,27 +60,27 @@ public class EditVolunteerController implements Initializable
     @FXML
     private TextField txtFName;
     @FXML
-    private RadioButton rdoMand;
+    private RadioButton rdMale;
     @FXML
-    private RadioButton rdoKvinde;
+    private RadioButton rdFemale;
     @FXML
     private TextField txtPhoneNumber;
     @FXML
     private TextField txtEmail;
     @FXML
-    private TextField txtNationalitet;
+    private TextField txtNationality;
     @FXML
     private TextArea txtNote;
     @FXML
     private TextField txtLName;
     @FXML
-    private Label xFirstName;
+    private Label lblXFirstName;
     @FXML
-    private Label xLastName;
+    private Label lblXLastName;
     @FXML
-    private Label xTelephone;
+    private Label lblXTelephone;
     @FXML
-    private Label lblUdfyldVenligst;
+    private Label lblPleaseFill;
 
     Volunteer volunteer;
     final ToggleGroup tg = new ToggleGroup();
@@ -110,15 +110,15 @@ public class EditVolunteerController implements Initializable
         // TODO
         volunteer = mainViewModel.getLastSelectedUser();
 
-        rdoMand.setToggleGroup(tg);
-        rdoKvinde.setToggleGroup(tg);
+        rdMale.setToggleGroup(tg);
+        rdFemale.setToggleGroup(tg);
 
         loadInfo();
 
-        xTelephone.setVisible(false);
-        xFirstName.setVisible(false);
-        xLastName.setVisible(false);
-        lblUdfyldVenligst.setVisible(false);
+        lblXTelephone.setVisible(false);
+        lblXFirstName.setVisible(false);
+        lblXLastName.setVisible(false);
+        lblPleaseFill.setVisible(false);
 
         if (volunteer.isActive())
         {
@@ -141,49 +141,49 @@ public class EditVolunteerController implements Initializable
         txtPhoneNumber3.setText(volunteer.getPhoneNumber3());
         txtAddress.setText(volunteer.getAddress());
         txtAddress2.setText(volunteer.getAddress2());
-        txtNationalitet.setText(volunteer.getNationality());
+        txtNationality.setText(volunteer.getNationality());
         txtNote.setText(volunteer.getNote());
         imgProfilePicture.setImage(volunteer.getPicture());
         img = volunteer.getBufferedPicture();
 
         if (volunteer.getGender().equals("Mand"))
         {
-            tg.selectToggle(rdoMand);
+            tg.selectToggle(rdMale);
         } else
         {
-            tg.selectToggle(rdoKvinde);
+            tg.selectToggle(rdFemale);
         }
     }
 
     @FXML
-    private void handleGodkend(ActionEvent event) throws IOException
+    private void handleApproval(ActionEvent event) throws IOException
     {
         if (txtFName.getText().isEmpty())
         {
-            xFirstName.setVisible(true);
-            lblUdfyldVenligst.setVisible(true);
+            lblXFirstName.setVisible(true);
+            lblPleaseFill.setVisible(true);
         }
         if (txtLName.getText().isEmpty())
         {
-            xLastName.setVisible(true);
-            lblUdfyldVenligst.setVisible(true);
+            lblXLastName.setVisible(true);
+            lblPleaseFill.setVisible(true);
         }
         if (txtPhoneNumber.getText().isEmpty())
         {
-            xTelephone.setVisible(true);
-            lblUdfyldVenligst.setVisible(true);
+            lblXTelephone.setVisible(true);
+            lblPleaseFill.setVisible(true);
         }
-        if (xFirstName.isVisible() && !txtFName.getText().isEmpty())
+        if (lblXFirstName.isVisible() && !txtFName.getText().isEmpty())
         {
-            xFirstName.setVisible(false);
+            lblXFirstName.setVisible(false);
         }
-        if (xLastName.isVisible() && !txtLName.getText().isEmpty())
+        if (lblXLastName.isVisible() && !txtLName.getText().isEmpty())
         {
-            xLastName.setVisible(false);
+            lblXLastName.setVisible(false);
         }
-        if (xTelephone.isVisible() && !txtPhoneNumber.getText().isEmpty())
+        if (lblXTelephone.isVisible() && !txtPhoneNumber.getText().isEmpty())
         {
-            xTelephone.setVisible(false);
+            lblXTelephone.setVisible(false);
         }
         if (!txtFName.getText().isEmpty() && !txtLName.getText().isEmpty() && !txtPhoneNumber.getText().isEmpty())
         {
@@ -210,7 +210,7 @@ public class EditVolunteerController implements Initializable
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
         goBack();
     }
@@ -298,14 +298,14 @@ public class EditVolunteerController implements Initializable
         volunteer.setPhoneNumber3(txtPhoneNumber3.getText());
         volunteer.setAddress(txtAddress.getText());
         volunteer.setAddress2(txtAddress2.getText());
-        volunteer.setNationality(txtNationalitet.getText());
+        volunteer.setNationality(txtNationality.getText());
         volunteer.setNote(txtNote.getText());
         volunteer.setPicture(img);
 
-        if (tg.getSelectedToggle().equals(rdoMand))
+        if (tg.getSelectedToggle().equals(rdMale))
         {
             volunteer.setGender("Mand");
-        } else if (tg.getSelectedToggle().equals(rdoKvinde))
+        } else if (tg.getSelectedToggle().equals(rdFemale))
         {
             volunteer.setGender("Kvinde");
         }

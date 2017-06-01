@@ -84,14 +84,8 @@ public class HoursViewController implements Initializable
         guild = mainViewModel.getLastSelectedGuild();
 
         datePicker.setValue(LocalDate.now());
-        if (user.getLastInputDate() != null)
-        {
-            lblLastUpdated.setText("Sidst opdateret:\n" + user.getLastInputDate().toString());
-        }
-        lblName.setText(user.getFirstName() + " " + user.getLastName());
 
-        txtFieldHours.setTextFormatter(new TextFormatter<>(new NumberStringConverter()));
-        changeLanguage();
+        setText();
 
         imgProfilePicture.setImage(user.getPicture());
     }
@@ -142,7 +136,6 @@ public class HoursViewController implements Initializable
             inputHours = Integer.parseInt(txtFieldHours.getText());
         } catch (NumberFormatException e)
         {
-            showError();
             return false;
         }
         if (inputHours >= 1 && inputHours <= 24)
@@ -150,14 +143,14 @@ public class HoursViewController implements Initializable
             validHours = true;
 
             //Change view to mainView (LaugView) after validation has been confirmed
-            vcm.showLaugView((Stage) imgProfilePicture.getScene().getWindow());
+            vcm.showLaugSelectionView((Stage) imgProfilePicture.getScene().getWindow());
         }
         // Boolean validHours is set to true if there is a match
         return validHours;
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
         vcm.showVolunteersView((Stage) imgProfilePicture.getScene().getWindow());
     }
@@ -196,8 +189,9 @@ public class HoursViewController implements Initializable
         return str;
     }
 
-    private void changeLanguage()
+    private void setText()
     {
+        lblName.setText(user.getFirstName() + " " + user.getLastName());
 
         if (user.getLastInputDate() != null)
         {
@@ -211,4 +205,5 @@ public class HoursViewController implements Initializable
         btnConfirmHours.setText(rb.getString("HoursSpecial.btnConfirmHours.text"));
         btnBack.setText(rb.getString("HoursSpecial.btnBack.text"));
     }
+
 }

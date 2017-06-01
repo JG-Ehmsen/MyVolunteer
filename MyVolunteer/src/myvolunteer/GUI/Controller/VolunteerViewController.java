@@ -116,13 +116,13 @@ public class VolunteerViewController implements Initializable
 
     private void handleUserImage()
     {
-        vcm.showHoursView((Stage) MainFlowPane.getScene().getWindow());
+        vcm.showHoursInputView((Stage) MainFlowPane.getScene().getWindow());
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
-        vcm.showLaugView((Stage) MainFlowPane.getScene().getWindow());
+        vcm.showLaugSelectionView((Stage) MainFlowPane.getScene().getWindow());
     }
 
     private void changeLanguage()

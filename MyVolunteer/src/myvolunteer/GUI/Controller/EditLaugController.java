@@ -41,6 +41,7 @@ import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 
 /**
  * FXML Controller class
@@ -55,9 +56,10 @@ public class EditLaugController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
-    private Button btnGodkend;
+    private Button btnApprove;
     @FXML
     private Button btnBack;
     @FXML
@@ -75,7 +77,7 @@ public class EditLaugController implements Initializable
     @FXML
     private TextField txtSearchFilterAvailable;
     @FXML
-    private Text lblAntalFrivillige;
+    private Text lblAmountOfVolunteers;
     @FXML
     private Button btnChangeStatus;
     @FXML
@@ -118,7 +120,7 @@ public class EditLaugController implements Initializable
         loadInformation();
         initialSortLists();
 
-        lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
+        lblAmountOfVolunteers.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
 
         if (guild.isIsActive())
         {
@@ -160,7 +162,7 @@ public class EditLaugController implements Initializable
     }
 
     @FXML
-    private void handleGodkend(ActionEvent event) throws IOException
+    private void handleApproval(ActionEvent event) throws IOException
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Rediger laug");
@@ -215,7 +217,7 @@ public class EditLaugController implements Initializable
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
         goBack();
     }
@@ -225,7 +227,6 @@ public class EditLaugController implements Initializable
     {
         String filter = txtSearchFilterAvailable.getText();
         listAvailableVolunteers.setItems(dp.filter(filter, allUsers));
-
     }
 
     @FXML
@@ -243,7 +244,7 @@ public class EditLaugController implements Initializable
     }
 
     @FXML
-    private void btnAddVolunteer(ActionEvent event)
+    private void handleAddVolunteer(ActionEvent event)
     {
         addVolunteer();
     }
@@ -257,12 +258,12 @@ public class EditLaugController implements Initializable
             allUsers.remove(volunteer);
             listAvailableVolunteers.getItems().remove(volunteer);
 
-            lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
+            lblAmountOfVolunteers.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
         }
     }
 
     @FXML
-    private void btnRemoveVolunteer(ActionEvent event)
+    private void handleRemoveVolunteer(ActionEvent event)
     {
         removeVolunteer();
     }
@@ -276,28 +277,19 @@ public class EditLaugController implements Initializable
             chosenUsers.remove(volunteer);
             listChosenVolunteers.getItems().remove(volunteer);
 
-            lblAntalFrivillige.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
+            lblAmountOfVolunteers.setText("Antal frivillige: " + listChosenVolunteers.getItems().size());
         }
     }
 
     private void goBack() throws IOException
     {
-        String path = "";
-        String title = "";
         if (mainViewModel.getLoggedInManager().isAdmin())
         {
-            path = "GUI/View/AdminView.fxml";
-            title = "Admin";
+            vcm.showAdminView((Stage) btnBack.getScene().getWindow());
         } else if (!mainViewModel.getLoggedInManager().isAdmin())
         {
-            path = "GUI/View/ManagerView.fxml";
-            title = "Manager";
+            vcm.showManagerView((Stage) btnBack.getScene().getWindow());
         }
-        mainViewModel.changeView(title, path);
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
     }
 
     @FXML

@@ -24,9 +24,9 @@
         <Text layoutX="10.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
         <TextField fx:id="txtEmail" layoutX="10.0" layoutY="389.0" promptText="Indtast email" />
         <TextField fx:id="txtPassword" layoutX="10.0" layoutY="446.0" promptText="Indtast password" />
-        <Button fx:id="btnGodkend" layoutX="316.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+        <Button fx:id="btnApprove" layoutX="316.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleApproval" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
         <Button fx:id="btnUploadImage" layoutX="290.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Tilføg billede" AnchorPane.rightAnchor="10.0" />
-        <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbage" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+        <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleGoBack" text="Tilbage" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
         <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <image>
                 <Image url="@Resource/UserPicture.png" />

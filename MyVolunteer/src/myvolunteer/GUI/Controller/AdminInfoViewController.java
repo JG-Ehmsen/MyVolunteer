@@ -27,13 +27,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 import myvolunteer.GUI.Utility.ClipBoardUtility;
 
 /**
@@ -51,6 +51,7 @@ public class AdminInfoViewController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     private Guild lastSelectedGuild;
     private List<Guild> guildList = new ArrayList<>();
@@ -134,8 +135,7 @@ public class AdminInfoViewController implements Initializable
     private void handleBack(ActionEvent event) throws IOException
     {
         // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showAdminView((Stage) btnBack.getScene().getWindow());
     }
 
     @FXML
@@ -201,7 +201,7 @@ public class AdminInfoViewController implements Initializable
     }
 
     /*
-    Exports the data in the tableView to a .xls file.
+    Exports the selected data in the tableView to a .xls file.
      */
     private void saveData() throws Exception
     {
@@ -210,13 +210,15 @@ public class AdminInfoViewController implements Initializable
         {
             FileChooser fileChooser = new FileChooser();
 
+            // Todays date
             Date todaysDate = new Date();
-            SimpleDateFormat ft
+            SimpleDateFormat dateFormat
                     = new SimpleDateFormat("dd.MM.yyyy");
 
             //Show save file dialog
             Stage stage = (Stage) btnAllVolunteers.getScene().getWindow();
-            File fileName = new File("Laug information " + ft.format(todaysDate) + ".xls");
+
+            File fileName = new File("Laug information " + dateFormat.format(todaysDate) + ".xls");
             fileChooser.setInitialFileName(fileName.toString());
             File file = fileChooser.showSaveDialog(stage);
             if (file != null)

@@ -55,22 +55,6 @@ public class MainViewModel
     private String btn = "LaugViewSpecial.btnLogin.text";
     ResourceBundle rb = ResourceBundle.getBundle(bundle, lastSelectedLocale);
 
-    public void changeView(String title, String path) throws IOException
-    {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(App.class.getResource(path));
-        Pane page = (Pane) loader.load();
-
-        Stage dialogStage = new Stage();
-        dialogStage.initModality(Modality.WINDOW_MODAL);
-        Scene scene = new Scene(page);
-        dialogStage.setScene(scene);
-        dialogStage.setTitle(title);
-
-        //dialogStage.setOnCloseRequest(value);
-        dialogStage.show();
-    }
-
     public Volunteer getLastSelectedUser()
     {
         return lastSelectedUser;
