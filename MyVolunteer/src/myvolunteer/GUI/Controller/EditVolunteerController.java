@@ -91,8 +91,6 @@ public class EditVolunteerController implements Initializable
     @FXML
     private TextField txtAddress2;
     @FXML
-    private TextField tblBDay;
-    @FXML
     private Button btnUploadImage;
     @FXML
     private ImageView imgProfilePicture;
@@ -134,7 +132,6 @@ public class EditVolunteerController implements Initializable
     {
         txtFName.setText(volunteer.getFirstName());
         txtLName.setText(volunteer.getLastName());
-        tblBDay.setText(volunteer.getBDay().toString());
         txtEmail.setText(volunteer.getEmail());
         txtPhoneNumber.setText(volunteer.getPhoneNumber());
         txtPhoneNumber2.setText(volunteer.getPhoneNumber2());
