@@ -172,13 +172,13 @@ public class AdminViewController implements Initializable
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException
     {
-        vcm.showLaugView((Stage) btnBack.getScene().getWindow());
+        vcm.showLaugSelectionView((Stage) btnBack.getScene().getWindow());
     }
 
     @FXML
     private void handleGoToCreateVolunteer(ActionEvent event) throws IOException
     {
-        vcm.showCreateVolunteer((Stage) btnCreateVolunteer.getScene().getWindow());
+        vcm.showCreateVolunteerView((Stage) btnCreateVolunteer.getScene().getWindow());
     }
 
     @FXML
@@ -193,7 +193,7 @@ public class AdminViewController implements Initializable
         if (lastSelectedVolunteer != null)
         {
             mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
-            vcm.showEditVolunteer((Stage) btnEditVolunteer.getScene().getWindow());
+            vcm.showEditVolunteerView((Stage) btnEditVolunteer.getScene().getWindow());
         } else
         {
             // Displays an alertbox if the user haven't selected a laug.
@@ -211,7 +211,7 @@ public class AdminViewController implements Initializable
         if (lastSelectedGuild != null)
         {
             mainViewModel.setLastSelectedGuild(lastSelectedGuild);
-            vcm.showEditGuild((Stage) btnEditLaug.getScene().getWindow());
+            vcm.showEditLaugView((Stage) btnEditLaug.getScene().getWindow());
         } else
         {
             // Displays an alertbox if the user haven't selected a laug.
@@ -345,13 +345,13 @@ public class AdminViewController implements Initializable
     @FXML
     private void handleGoToCreateManager(ActionEvent event) throws IOException
     {
-        vcm.showCreateManager((Stage) btnCreateManager.getScene().getWindow());
+        vcm.showCreateManagerView((Stage) btnCreateManager.getScene().getWindow());
     }
 
     @FXML
     private void handleGoToEditManager(ActionEvent event) throws IOException
     {
-        vcm.showEditManager((Stage) btnEditManager.getScene().getWindow());
+        vcm.showEditManagerView((Stage) btnEditManager.getScene().getWindow());
     }
 
     @FXML

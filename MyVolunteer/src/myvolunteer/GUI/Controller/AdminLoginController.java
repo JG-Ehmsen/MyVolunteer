@@ -110,7 +110,7 @@ public class AdminLoginController implements Initializable
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException
     {
-        vcm.showLaugView((Stage) btnBack.getScene().getWindow());
+        vcm.showLaugSelectionView((Stage) btnBack.getScene().getWindow());
     }
 
 }
