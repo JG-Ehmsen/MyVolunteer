@@ -104,7 +104,6 @@ public class ViewChangerModel
 
     public void showLoginView(Stage stage)
     {
-        updateResourceBundle();
         try
         {
             changeView(rb.getString("Login.text"), "GUI/View/AdminLogin.fxml");

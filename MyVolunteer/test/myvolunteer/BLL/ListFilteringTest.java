@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+import static junit.framework.Assert.assertEquals;
 import myvolunteer.BE.Volunteer;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
@@ -22,6 +23,7 @@ public class ListFilteringTest
     /**
      * Test of filter method, of class ListFiltering.
      */
+   @Ignore
     @Test
     public void testFilter()
     {
