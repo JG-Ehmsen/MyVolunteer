@@ -208,7 +208,6 @@ public class ViewChangerModel
         try
         {
             changeView("Kontaktliste for frivillige", "GUI/View/ManagerContactListView.fxml");
-            stage.close();
         } catch (IOException ex)
         {
             Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);

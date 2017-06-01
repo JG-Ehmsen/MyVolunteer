@@ -204,7 +204,6 @@ public class EditManagerController implements Initializable
         {
             alert.close();
         }
-
     }
 
     @FXML
