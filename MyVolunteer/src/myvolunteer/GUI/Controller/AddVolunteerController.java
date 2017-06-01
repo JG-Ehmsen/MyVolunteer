@@ -54,8 +54,6 @@ public class AddVolunteerController implements Initializable
     @FXML
     private TextField txtFName;
     @FXML
-    private TextField txtBday;
-    @FXML
     private RadioButton rbMale;
     @FXML
     private RadioButton rbFemale;
@@ -160,7 +158,6 @@ public class AddVolunteerController implements Initializable
     {
         String fName = txtFName.getText();
         String lName = txtLName.getText();
-        String bDay = txtBday.getText();
         String phoneNumber = txtPhoneNumber.getText();
         String phoneNumber2 = txtPhoneNumberTwo.getText();
         String phoneNumber3 = txtPhoneNumberthree.getText();
