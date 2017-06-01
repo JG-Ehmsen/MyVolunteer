@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="581.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.EditManagerController">
+<AnchorPane id="AnchorPane" prefHeight="525.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.EditManagerController">
     <children>
         <Text layoutX="10.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fornavn:" AnchorPane.leftAnchor="10.0" />
         <TextField fx:id="txtFName" layoutX="10.0" layoutY="139.0" promptText="Indtast fornavn" AnchorPane.leftAnchor="10.0" />
@@ -23,8 +23,7 @@
       <TextField fx:id="txtAddress" layoutX="10.0" layoutY="369.0" promptText="1. adresse" AnchorPane.leftAnchor="10.0" />
       <TextField fx:id="txtAddress2" layoutX="10.0" layoutY="404.0" promptText="2. adresse" AnchorPane.leftAnchor="10.0" />
         <Text layoutX="10.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" AnchorPane.leftAnchor="10.0" />
-        <TextField fx:id="txtEmail" layoutX="10.0" layoutY="461.0" promptText="Indtast email" AnchorPane.leftAnchor="10.0" />
-        <TextField fx:id="txtPassword" layoutX="10.0" layoutY="513.0" promptText="Indtast password" AnchorPane.leftAnchor="10.0" />       
+        <TextField fx:id="txtEmail" layoutX="10.0" layoutY="461.0" promptText="Indtast email" AnchorPane.leftAnchor="10.0" />       
         <Button fx:id="btnChangeStatus" layoutX="224.0" layoutY="394.0" mnemonicParsing="false" onAction="#handleChangeStatus" text="Gør inaktiv" AnchorPane.bottomAnchor="10.0" />
         <Button fx:id="btnApprove" layoutX="321.0" layoutY="394.0" mnemonicParsing="false" onAction="#handleApproval" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
         <Button fx:id="btnUploadImage" layoutX="290.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Tilføg billede" AnchorPane.rightAnchor="10.0" />
@@ -34,12 +33,10 @@
                 <Image url="@Resource/UserPicture.png" />
             </image>
         </ImageView>
-        <Text layoutX="10.0" layoutY="509.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" AnchorPane.leftAnchor="10.0" />
         <ComboBox fx:id="cbBoxManager" layoutX="14.0" layoutY="85.0" onAction="#handleComboClick" prefWidth="150.0" promptText="Tovholder..." AnchorPane.leftAnchor="10.0" />
         <Text layoutX="18.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg tovholder" AnchorPane.leftAnchor="10.0" />
       <Label layoutX="178.0" layoutY="146.0" text="*" />
       <Label layoutX="178.0" layoutY="200.0" text="*" />
-      <Label layoutX="178.0" layoutY="519.0" text="*" />
       <Label layoutX="10.0" layoutY="552.0" text="Udfyld felterne markeret med *" AnchorPane.bottomAnchor="12.0" />
       <Label layoutX="178.0" layoutY="467.0" text="*" />
     </children>

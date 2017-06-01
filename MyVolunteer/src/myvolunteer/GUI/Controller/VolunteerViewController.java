@@ -28,12 +28,13 @@ public class VolunteerViewController implements Initializable
 {
 
     /**
-     * Gets the singleton instance of the MainViewModel, ViewChangerModel and
-     * DateParser.
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
     ViewChangerModel vcm = new ViewChangerModel();
+
     Guild guild;
     Manager manager;
 
@@ -84,15 +85,12 @@ public class VolunteerViewController implements Initializable
                         {
                             mainViewModel.setLastSelectedUser(button.getUser());
                             handleUserImage();
-
                         }
                     }
                     );
                     MainFlowPane.getChildren().add(button);
-
                 }
             }
-
         }
     }
 
