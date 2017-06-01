@@ -39,7 +39,8 @@ public class HoursViewController implements Initializable
 {
 
     /**
-     * Gets the singleton instance of the model.
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dataParserModel = DataParserModel.getInstance();

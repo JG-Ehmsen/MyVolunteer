@@ -231,15 +231,20 @@ public class EditVolunteerController implements Initializable
     {
         if (volunteer.isActive())
         {
-            deactivate();
+            deactivateVolunteer();
         } else
         {
-            activate();
+            activateVolunteer();
         }
 
     }
 
-    private void deactivate() throws IOException
+    /**
+     * Changes the status of the selected manager to inactive
+     *
+     * @throws IOException
+     */
+    private void deactivateVolunteer() throws IOException
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Deaktiver frivillig");
@@ -263,7 +268,12 @@ public class EditVolunteerController implements Initializable
         }
     }
 
-    private void activate() throws IOException
+    /**
+     * Changes the status of the selected manager to active
+     *
+     * @throws IOException
+     */
+    private void activateVolunteer() throws IOException
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Aktiver frivillig");

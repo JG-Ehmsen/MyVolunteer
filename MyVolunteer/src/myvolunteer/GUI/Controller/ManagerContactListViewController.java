@@ -36,6 +36,10 @@ import myvolunteer.GUI.Utility.ClipBoardUtility;
 public class ManagerContactListViewController implements Initializable
 {
 
+    /**
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
+     */
     DataParserModel dp = DataParserModel.getInstance();
     MainViewModel mainViewModel = MainViewModel.getInstance();
     ViewChangerModel vcm = new ViewChangerModel();
