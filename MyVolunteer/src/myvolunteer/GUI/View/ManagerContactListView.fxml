@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="498.0" prefWidth="606.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.ManagerContactListViewController">
    <children>
-      <TableView fx:id="tblViewContact" layoutX="14.0" layoutY="75.0" onKeyPressed="#handleCopyContent" prefHeight="413.0" prefWidth="578.0">
+      <TableView fx:id="tblViewContact" layoutX="14.0" layoutY="75.0" prefHeight="413.0" prefWidth="578.0">
         <columns>
             <TableColumn fx:id="tblColumnName" prefWidth="213.0" text="Navn" />
             <TableColumn fx:id="tblColumnPhone1" prefWidth="109.0" text="Telefon 1" />
