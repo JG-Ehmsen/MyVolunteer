@@ -11,13 +11,13 @@
 
 <AnchorPane id="AnchorPane" maxWidth="570.0" prefHeight="400.0" prefWidth="570.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.VolunteerViewController">
    <children>
-      <ScrollPane id="laugscrollpane" fx:id="laugScroll" layoutX="12.0" layoutY="101.0" prefHeight="299.0" prefWidth="591.0">
+      <ScrollPane id="laugscrollpane" fx:id="laugScroll" layoutX="12.0" layoutY="101.0" prefHeight="292.0" prefWidth="591.0">
          <content>
-            <FlowPane id="laugpane" fx:id="MainFlowPane" prefHeight="300.0" prefWidth="565.0" stylesheets="@Resource/equalityStyleSheet.css" />
+            <FlowPane id="laugpane" fx:id="MainFlowPane" prefHeight="297.0" prefWidth="565.0" stylesheets="@Resource/equalityStyleSheet.css" />
          </content>
       </ScrollPane>
       <ImageView fitHeight="100.0" fitWidth="304.0" pickOnBounds="true" preserveRatio="true" />
-      <Button id="homebutton" fx:id="btnBack" layoutX="6.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="35.0" prefWidth="125.0" text="     Tilbage" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button id="homebutton" fx:id="btnBack" layoutX="6.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleGoBack" prefHeight="35.0" prefWidth="125.0" text="     Tilbage" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <ImageView fitHeight="19.0" fitWidth="600.0" layoutX="5.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="75.0">
          <image>
             <Image url="@Resource/toolsmenu_bg.png" />

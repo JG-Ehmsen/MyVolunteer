@@ -11,13 +11,13 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 
 /**
  * FXML Controller class
@@ -32,6 +32,7 @@ public class AdminLoginController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dataParserModel = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     private Stage previousStage;
 
@@ -44,11 +45,11 @@ public class AdminLoginController implements Initializable
     @FXML
     private Button btnBack;
     @FXML
-    private Label xUsername;
+    private Label lblXUsername;
     @FXML
-    private Label xPassword;
+    private Label lblXPassword;
     @FXML
-    private Label lblUdfyldVenligst;
+    private Label lblPleaseFill;
     @FXML
     private Label lblInvalidUser;
 
@@ -58,58 +59,58 @@ public class AdminLoginController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        xUsername.setVisible(false);
-        xPassword.setVisible(false);
-        lblUdfyldVenligst.setVisible(false);
+        lblXUsername.setVisible(false);
+        lblXPassword.setVisible(false);
+        lblPleaseFill.setVisible(false);
         lblInvalidUser.setVisible(false);
     }
 
     @FXML
     private void handleLogin(ActionEvent event) throws IOException
-    {        
-        if(!UsernameField.getText().isEmpty() && !codeField.getText().isEmpty())
+    {
+        if (!UsernameField.getText().isEmpty() && !codeField.getText().isEmpty())
         {
+            
             Stage stage = (Stage) btnLogin.getScene().getWindow();
 
             dataParserModel.tryLogin(UsernameField.getText(), codeField.getText(), stage);
 
-            
-            xUsername.setVisible(false);
-            xPassword.setVisible(false);
-            lblUdfyldVenligst.setVisible(false);
-            
+            lblXUsername.setVisible(false);
+            lblXPassword.setVisible(false);
+            lblPleaseFill.setVisible(false);
+
             lblInvalidUser.setVisible(true);
-            
-        }if(UsernameField.getText().isEmpty())
-        {
-            lblInvalidUser.setVisible(false);
-            xUsername.setVisible(true);
-            lblUdfyldVenligst.setVisible(true);
-        }if(codeField.getText().isEmpty())
-        {
-            lblInvalidUser.setVisible(false);
-            xPassword.setVisible(true);
-            lblUdfyldVenligst.setVisible(true);
-            
-        }if(xUsername.isVisible() && !UsernameField.getText().isEmpty())
-        {
-            xUsername.setVisible(false);
-            
-        }if(xPassword.isVisible() && !codeField.getText().isEmpty())
-        {
-            xPassword.setVisible(false);
+
         }
-       
+        if (UsernameField.getText().isEmpty())
+        {
+            lblInvalidUser.setVisible(false);
+            lblXUsername.setVisible(true);
+            lblPleaseFill.setVisible(true);
+        }
+        if (codeField.getText().isEmpty())
+        {
+            lblInvalidUser.setVisible(false);
+            lblXPassword.setVisible(true);
+            lblPleaseFill.setVisible(true);
+
+        }
+        if (lblXUsername.isVisible() && !UsernameField.getText().isEmpty())
+        {
+            lblXUsername.setVisible(false);
+
+        }
+        if (lblXPassword.isVisible() && !codeField.getText().isEmpty())
+        {
+            lblXPassword.setVisible(false);
+        }
+
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Laug", "GUI/View/LaugViewSpecial.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showLaugSelectionView((Stage) btnBack.getScene().getWindow());
     }
 
 }

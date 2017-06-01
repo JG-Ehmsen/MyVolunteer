@@ -5,21 +5,19 @@
  */
 package myvolunteer.GUI.Controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 
 /**
  * FXML Controller class
@@ -28,15 +26,23 @@ import myvolunteer.GUI.Model.MainViewModel;
  */
 public class GuideViewController implements Initializable
 {
+
     MainViewModel mainViewModel = MainViewModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
     private Button btnBack;
-    @FXML
-    private MediaView mediaGuide;
-    
+
     private MediaPlayer mpGuide;
     private Media meGuide;
+    @FXML
+    private Label step1lbl;
+    @FXML
+    private Label step2lbl;
+    @FXML
+    private Label step3lbl;
+    @FXML
+    private Label lblToDo;
 
     /**
      * Initializes the controller class.
@@ -45,6 +51,7 @@ public class GuideViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
+        changeLanguage();
 //        String path = new File("/GUI/Utility/GuideMovie2.mp4").getAbsolutePath();
 //        meGuide = new Media(new File(path).toURI().toString());
 //        mpGuide = new MediaPlayer(meGuide);
@@ -56,16 +63,23 @@ public class GuideViewController implements Initializable
 //        
 //        width.bind(Bindings.selectDouble(mediaGuide.sceneProperty(), "width"));
 //        height.bind(Bindings.selectDouble(mediaGuide.sceneProperty(), "height"));
-    }    
+    }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Laug", "GUI/View/LaugViewSpecial.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showLaugSelectionView((Stage) btnBack.getScene().getWindow());
     }
-    
+
+    private void changeLanguage()
+    {
+        ResourceBundle rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
+        step1lbl.setText(rb.getString("GuideView.step1lbl.text"));
+        step2lbl.setText(rb.getString("GuideView.step2lbl.text"));
+        step3lbl.setText(rb.getString("GuideView.step3lbl.text"));
+        btnBack.setText(rb.getString("GuideView.btnBack.text"));
+        lblToDo.setText(rb.getString("GuideView.lblToDo.text"));
+
+    }
+
 }

@@ -4,7 +4,6 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
@@ -85,6 +84,7 @@ public class DBUserAccess
             user.setAddress2(Address2);
             user.setPhoneNumber2(phoneNumber2);
             user.setPhoneNumber3(phoneNumber3);
+            user.setTotalHours(getHoursWorkedForVolunteer(user, con));
 
             userList.add(user);
         }

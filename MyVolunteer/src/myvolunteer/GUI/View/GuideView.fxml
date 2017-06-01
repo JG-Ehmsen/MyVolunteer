@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="510.0" prefWidth="625.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.GuideViewController">
+<AnchorPane id="AnchorPane" prefHeight="510.0" prefWidth="653.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.GuideViewController">
    <children>
-      <ImageView fitHeight="222.0" fitWidth="581.0" layoutX="11.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="259.0" fitWidth="623.0" layoutX="11.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Resource/Skærmbillede%202017-05-16%20kl.%2012.33.36.png" />
          </image>
@@ -19,11 +19,11 @@
             <Image url="@Resource/toolsmenu_bg.png" />
          </image>
       </ImageView>
-      <Label layoutX="16.0" layoutY="319.0" prefHeight="22.0" prefWidth="213.0" text="Vælg tilhørende Laug" />
-      <Label layoutX="250.0" layoutY="319.0" prefHeight="22.0" prefWidth="213.0" text="Vælg dig selv" />
-      <Label layoutX="510.0" layoutY="320.0" prefHeight="22.0" prefWidth="98.0" text="Indtast timer" />
-      <Button id="homebutton" fx:id="btnBack" alignment="CENTER" layoutX="11.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="35.0" prefWidth="125.0" text=" Tilbage" />
-      <Label layoutX="16.0" layoutY="379.0" prefHeight="102.0" prefWidth="581.0" text="How-To-Do &quot;3 steps&quot;">
+      <Label fx:id="step1lbl" layoutX="16.0" layoutY="332.0" prefHeight="22.0" prefWidth="213.0" text="Vælg tilhørende Laug" />
+      <Label fx:id="step2lbl" layoutX="250.0" layoutY="332.0" prefHeight="22.0" prefWidth="213.0" text="Vælg dig selv" />
+      <Label fx:id="step3lbl" layoutX="527.0" layoutY="332.0" prefHeight="22.0" prefWidth="119.0" text="Indtast timer" />
+      <Button id="homebutton" fx:id="btnBack" alignment="CENTER" layoutX="11.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleGoBack" prefHeight="35.0" prefWidth="125.0" text=" Tilbage" />
+      <Label fx:id="lblToDo" layoutX="5.0" layoutY="379.0" prefHeight="102.0" prefWidth="647.0" text="1,2,3 - SIMPLE TRIN">
          <font>
             <Font size="48.0" />
          </font>

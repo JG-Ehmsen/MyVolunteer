@@ -11,7 +11,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
@@ -23,6 +22,7 @@ import javafx.stage.Stage;
 import myvolunteer.BE.Guild;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 import myvolunteer.GUI.Utility.PictureButton;
 
 /**
@@ -38,6 +38,13 @@ public class LaugViewController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
+
+    ResourceBundle rb;
+
+    private Locale german = new Locale("de", "DE");
+    private Locale danish = new Locale("da", "DK");
+    private Locale english = new Locale("en", "GB");
 
     @FXML
     private Button btnLogin;
@@ -68,6 +75,10 @@ public class LaugViewController implements Initializable
 
         initGuildButtons();
         adjustScrollPane();
+
+        rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
+
+        setBundleLocale();
 
     }
 
@@ -109,46 +120,84 @@ public class LaugViewController implements Initializable
 
     private void handleGuildClick()
     {
-        try
-        {
-            mainViewModel.changeView("Frivillig", "GUI/View/VolunteerView.fxml");
+        vcm.showVolunteersView((Stage) MainFlowPane.getScene().getWindow());
+    }
 
-            // Closes the primary stage
-            Stage stage = (Stage) MainFlowPane.getScene().getWindow();
-            stage.close();
-        } catch (IOException ex)
+    @FXML
+    private void handleGoToLogin(ActionEvent event) throws IOException
+    {
+        vcm.showLoginView((Stage) MainFlowPane.getScene().getWindow());
+    }
+
+    @FXML
+    private void handleGoToGuide(ActionEvent event) throws IOException
+    {
+        vcm.showGuideView((Stage) MainFlowPane.getScene().getWindow());
+    }
+
+    @FXML
+    private void handleLanguageDan(ActionEvent event)
+    {
+        mainViewModel.setLastSelectedLocale(danish);
+        mainViewModel.setLastSelectedBundle("myvolunteer.GUI.Utility.MyLanguage");
+        updateLanguage();
+        englishBtn.setDisable(false);
+        germanBtn.setDisable(false);
+        danishBtn.setDisable(true);
+    }
+
+    @FXML
+    private void handleLanguageGer(ActionEvent event)
+    {
+        mainViewModel.setLastSelectedLocale(german);
+        mainViewModel.setLastSelectedBundle("myvolunteer.GUI.Utility.MyLanguage_de_DE");
+        updateLanguage();
+        englishBtn.setDisable(false);
+        germanBtn.setDisable(true);
+        danishBtn.setDisable(false);
+    }
+
+    @FXML
+    private void handleLanguageEng(ActionEvent event)
+    {
+        mainViewModel.setLastSelectedLocale(english);
+        mainViewModel.setLastSelectedBundle("myvolunteer.GUI.Utility.MyLanguage_en_GB");
+        updateLanguage();
+        englishBtn.setDisable(true);
+        germanBtn.setDisable(false);
+        danishBtn.setDisable(false);
+
+    }
+
+    private void setBundleLocale()
+    {
+        rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
+
+        if (mainViewModel.getLastSelectedLocale().equals(german))
         {
-            Logger.getLogger(LaugViewController.class.getName()).log(Level.SEVERE, null, ex);
+            englishBtn.setDisable(false);
+            germanBtn.setDisable(true);
+            danishBtn.setDisable(false);
+        }
+        if (mainViewModel.getLastSelectedLocale().equals(english))
+        {
+            englishBtn.setDisable(true);
+            germanBtn.setDisable(false);
+            danishBtn.setDisable(false);
+        }
+        if (mainViewModel.getLastSelectedLocale().equals(danish))
+        {
+            englishBtn.setDisable(false);
+            germanBtn.setDisable(false);
+            danishBtn.setDisable(true);
         }
     }
 
-    @FXML
-    private void handleLogin(ActionEvent event) throws IOException
+    private void updateLanguage()
     {
-        mainViewModel.changeView("Login", "GUI/View/AdminLogin.fxml");
+        rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
 
-        // Closes the primary stage
         Stage stage = (Stage) MainFlowPane.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    private void handleGuide(ActionEvent event) throws IOException
-    {
-        mainViewModel.changeView("Step-by-Step guide", "GUI/View/GuideView.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) MainFlowPane.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    private void handleLanguageChange(ActionEvent event) throws IOException
-    {   
-        Locale german = new Locale("de", "DE");
-        ResourceBundle rb = ResourceBundle.getBundle("myvolunteer.GUI.Utility.MyLanguage", german);
-        
-        btnLogin.setText(rb.getString("LaugViewSpecial.btnLogin.text"));
-        
+        stage.setTitle(rb.getString("Guild.text"));
     }
 }

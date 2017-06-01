@@ -18,12 +18,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 import myvolunteer.GUI.Utility.PictureButton;
 
 public class VolunteerViewController implements Initializable
@@ -34,6 +34,7 @@ public class VolunteerViewController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
     private Button btnBack;
@@ -57,14 +58,13 @@ public class VolunteerViewController implements Initializable
     {
         guild = mainViewModel.getLastSelectedGuild();
         manager = dp.getManagerForGuild(guild);
-        
-        
+
         guildNameLbl.setText(guild.getName());
         contactNameLbl.setText("Kontaktperson \n" + manager.getFirstName() + " " + manager.getLastName()
-        + "\n" + manager.getPhoneNumber() + "\n" + manager.getEmail());
+                + "\n" + manager.getPhoneNumber() + "\n" + manager.getEmail());
         generateButtons();
-        
         adjustScrollPane();
+        changeLanguage();
     }
 
     private void generateButtons()
@@ -97,12 +97,12 @@ public class VolunteerViewController implements Initializable
 
         }
     }
-    
+
     private void adjustScrollPane()
     {
         laugScroll.viewportBoundsProperty().addListener(new ChangeListener<Bounds>()
         {
-            
+
             @Override
             public void changed(ObservableValue<? extends Bounds> ov, Bounds oldBounds, Bounds bounds)
             {
@@ -112,32 +112,25 @@ public class VolunteerViewController implements Initializable
             }
         });
 
-    
     }
 
     private void handleUserImage()
     {
-        try
-        {
-            mainViewModel.changeView("Indtast timer", "GUI/View/HoursSpecial.fxml");
-            
-            // Closes the primary stage
-            Stage stage = (Stage) btnBack.getScene().getWindow();
-            stage.close();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        vcm.showHoursInputView((Stage) MainFlowPane.getScene().getWindow());
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Laug", "GUI/View/LaugViewSpecial.fxml");
+        vcm.showLaugSelectionView((Stage) MainFlowPane.getScene().getWindow());
+    }
 
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+    private void changeLanguage()
+    {
+        ResourceBundle rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
+        btnBack.setText(rb.getString("VolunteerView.btnBack.text"));
+        contactNameLbl.setText(rb.getString("VolunteerView.contactNameLbl.text") + "\n" + manager.getFirstName() + " " + manager.getLastName()
+                + "\n" + manager.getPhoneNumber() + "\n" + manager.getEmail());
     }
 
 }

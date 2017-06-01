@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="673.0" prefWidth="373.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AddVolunteerController">
+<AnchorPane id="AnchorPane" prefHeight="699.0" prefWidth="373.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AddVolunteerController">
     <children>
         <TextField fx:id="txtFName" layoutX="15.0" layoutY="28.0" prefHeight="25.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
         <TextField fx:id="txtLName" layoutX="17.0" layoutY="73.0" prefHeight="25.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
@@ -24,9 +24,9 @@
         <TextField fx:id="txtAddress" layoutX="15.0" layoutY="363.0" prefHeight="25.0" prefWidth="167.0" promptText="Adresse 1" AnchorPane.leftAnchor="15.0" />
         <TextField fx:id="txtAddressTwo" layoutX="15.0" layoutY="398.0" prefHeight="25.0" prefWidth="167.0" promptText="Adresse 2" AnchorPane.leftAnchor="15.0" />
         <TextField fx:id="txtEmail" layoutX="15.0" layoutY="450.0" prefHeight="27.0" prefWidth="167.0" promptText="eksempel@domæne.dk" AnchorPane.leftAnchor="15.0" />
-        <TextField fx:id="txtNationalitet" layoutX="15.0" layoutY="499.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
+        <TextField fx:id="txtNationality" layoutX="15.0" layoutY="499.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
         <TextArea fx:id="txtNote" layoutX="15.0" layoutY="552.0" prefHeight="77.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="552.0" />
-        <Button fx:id="btnGodkend" defaultButton="true" layoutX="291.0" layoutY="514.0" mnemonicParsing="false" onAction="#handleGodkend" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="14.0" />
+        <Button fx:id="btnApprove" defaultButton="true" layoutX="291.0" layoutY="514.0" mnemonicParsing="false" onAction="#handleApproval" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="14.0" />
         <ImageView fx:id="imgProfilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="259.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Resource/UserPicture.png" />
@@ -41,23 +41,23 @@
         <Label layoutX="15.0" layoutY="224.0" text="Telefon:" AnchorPane.leftAnchor="15.0" />
         <Label layoutX="15.0" layoutY="433.0" prefHeight="17.0" prefWidth="52.0" text="Email:" AnchorPane.leftAnchor="15.0" />
         <Label layoutX="15.0" layoutY="482.0" text="Nationalitet:" AnchorPane.leftAnchor="15.0" />
-        <Button fx:id="btnBack" layoutX="214.0" layoutY="638.0" mnemonicParsing="false" onAction="#handleBack" text="Tilbage" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="214.0" />
-        <Label layoutX="190.0" layoutY="34.0" text="X" textAlignment="CENTER" textFill="RED" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="175.0" fx:id="xFirstName">
+        <Button fx:id="btnBack" layoutX="214.0" layoutY="638.0" mnemonicParsing="false" onAction="#handleGoBack" text="Tilbage" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="214.0" />
+        <Label fx:id="lblXFirstName" layoutX="190.0" layoutY="34.0" text="X" textAlignment="CENTER" textFill="RED" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="175.0">
             <effect>
                 <Glow />
             </effect>
         </Label>
-        <Label layoutX="190.0" layoutY="78.0" text="X" textAlignment="CENTER" textFill="RED" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="175.0" fx:id="xLastName">
+        <Label fx:id="lblXLastName" layoutX="190.0" layoutY="78.0" text="X" textAlignment="CENTER" textFill="RED" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="175.0">
             <effect>
                 <Glow />
             </effect>
         </Label>
-        <Label layoutX="190.0" layoutY="246.0" text="X" textAlignment="CENTER" textFill="RED" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="175.0" fx:id="xTelephone">
+        <Label fx:id="lblXTelephone" layoutX="190.0" layoutY="246.0" text="X" textAlignment="CENTER" textFill="RED" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="175.0">
             <effect>
                 <Glow />
             </effect>
         </Label>
-        <Label fx:id="lblUdfyldVenligst" layoutX="15.0" layoutY="650.0" text="Udfyld venligst de markede felter." textFill="RED" AnchorPane.leftAnchor="15.0" />
+        <Label fx:id="lblPleaseFill" layoutX="15.0" layoutY="650.0" text="Udfyld venligst de markede felter." textFill="RED" AnchorPane.leftAnchor="15.0" />
         <Label contentDisplay="CENTER" layoutX="5.0" layoutY="34.0" text="*" textAlignment="CENTER" />
         <Label contentDisplay="CENTER" layoutX="5.0" layoutY="79.0" text="*" textAlignment="CENTER" />
         <Label contentDisplay="CENTER" layoutX="5.0" layoutY="247.0" text="*" textAlignment="CENTER" />

@@ -29,6 +29,7 @@ import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 
 /**
  * FXML Controller class
@@ -43,6 +44,7 @@ public class AdminViewController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
     private ComboBox<Guild> comboBoxGuild;
@@ -53,15 +55,15 @@ public class AdminViewController implements Initializable
     @FXML
     private Button btnBack;
     @FXML
-    private Button opretFrivillig;
+    private Button btnCreateVolunteer;
     @FXML
-    private Button opretLaug;
+    private Button btnCreateLaug;
     @FXML
-    private Button redigerFrivillig;
+    private Button btnEditVolunteer;
     @FXML
-    private Button redigerLaug;
+    private Button btnEditLaug;
     @FXML
-    private Label lblTovholder;
+    private Label lblManager;
     @FXML
     private Label lblTotalGuildHours;
     @FXML
@@ -85,11 +87,11 @@ public class AdminViewController implements Initializable
     @FXML
     private Label lblGuildNote;
     @FXML
-    private Button btnRedigerTovholder;
+    private Button btnEditManager;
     @FXML
     private Button btnInfo;
     @FXML
-    private Button btnOpretTovholder;
+    private Button btnCreateManager;
     @FXML
     private Button btnAllLaug;
     @FXML
@@ -100,6 +102,10 @@ public class AdminViewController implements Initializable
     private Label lblVolunteerAddress;
     @FXML
     private Label lblVolunteerAddress2;
+    @FXML
+    private Label lblAllVolunteers;
+    @FXML
+    private Label lblLastUpdated;
 
     private List<Guild> guildList = new ArrayList<>();
     private List<Volunteer> userList = new ArrayList<>();
@@ -108,11 +114,13 @@ public class AdminViewController implements Initializable
     private Guild lastSelectedGuild;
     private Volunteer lastSelectedVolunteer;
     private Manager lastManager;
+    String allVolunteers = Integer.toString(dp.getAllUsers().size());
 
     /**
      * Initializes the controller class.
      */
     @Override
+
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
@@ -124,6 +132,7 @@ public class AdminViewController implements Initializable
 
     private void populateList()
     {
+        lblAllVolunteers.setText("Total antal frivillige: " + allVolunteers);
         if (lastSelectedGuild == null)
         {
             users.setAll(userList);
@@ -150,21 +159,8 @@ public class AdminViewController implements Initializable
     private void searchFilter()
     {
         String filter = searchBar.getText();
-        ObservableList<Volunteer> filteredList = FXCollections.observableArrayList();
-        if (filter.equals(""))
-        {
-            volunteerList.setItems(users);
-        } else
-        {
-            for (Volunteer vol : users)
-            {
-                if (vol.toString().toLowerCase().contains(filter.toLowerCase()))
-                {
-                    filteredList.add(vol);
-                }
-            }
-            volunteerList.setItems(filteredList);
-        }
+        volunteerList.setItems(dp.filter(filter, userList));
+
     }
 
     private void comboContent()
@@ -174,46 +170,30 @@ public class AdminViewController implements Initializable
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Laug", "GUI/View/LaugViewSpecial.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showLaugSelectionView((Stage) btnBack.getScene().getWindow());
     }
 
     @FXML
-    private void handleOpretFrivillig(ActionEvent event) throws IOException
+    private void handleGoToCreateVolunteer(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Opret frivillig", "GUI/View/AddVolunteer.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) opretFrivillig.getScene().getWindow();
-        stage.close();
+        vcm.showCreateVolunteerView((Stage) btnCreateVolunteer.getScene().getWindow());
     }
 
     @FXML
-    private void handleOpretLaug(ActionEvent event) throws IOException
+    private void handleGoToCreateLaug(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Opret laug", "GUI/View/AddLaug.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) opretLaug.getScene().getWindow();
-        stage.close();
+        vcm.showCreateLaugView((Stage) btnCreateLaug.getScene().getWindow());
     }
 
     @FXML
-    private void handleRedigerFrivillig(ActionEvent event) throws IOException
+    private void handleGoToEditVolunteer(ActionEvent event) throws IOException
     {
         if (lastSelectedVolunteer != null)
         {
             mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
-            mainViewModel.changeView("Rediger frivillig", "GUI/View/EditVolunteer.fxml");
-
-            // Closes the primary stage
-            Stage stage = (Stage) redigerFrivillig.getScene().getWindow();
-            stage.close();
+            vcm.showEditVolunteerView((Stage) btnEditVolunteer.getScene().getWindow());
         } else
         {
             // Displays an alertbox if the user haven't selected a laug.
@@ -226,16 +206,12 @@ public class AdminViewController implements Initializable
     }
 
     @FXML
-    private void handleRedigerLaug(ActionEvent event) throws IOException
+    private void handleGoToEditLaug(ActionEvent event) throws IOException
     {
         if (lastSelectedGuild != null)
         {
             mainViewModel.setLastSelectedGuild(lastSelectedGuild);
-            mainViewModel.changeView("Rediger Laug", "GUI/View/EditLaug.fxml");
-
-            // Closes the primary stage
-            Stage stage = (Stage) redigerLaug.getScene().getWindow();
-            stage.close();
+            vcm.showEditLaugView((Stage) btnEditLaug.getScene().getWindow());
         } else
         {
             // Displays an alertbox if the user haven't selected a laug.
@@ -250,7 +226,7 @@ public class AdminViewController implements Initializable
     private void showGuildInfo()
     {
         lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size()));
-        lblTovholder.setText("Tovholder: " + lastManager.getFirstName() + " " + lastManager.getLastName());
+        lblManager.setText("Tovholder: " + lastManager.getFirstName() + " " + lastManager.getLastName());
         lblTotalGuildHours.setText("Total antal timer: " + Integer.toString(dp.getHoursWorkedForGuild(lastSelectedGuild)));
         lblGuildNote.setText("Note: " + lastSelectedGuild.getDescription().toString());
     }
@@ -284,12 +260,13 @@ public class AdminViewController implements Initializable
         lblVolunteerNationality.setText("Nationalitet: ");
         lblVolunteerHours.setText("Timer: ");
         lblVolunteerNote.setText("");
+        lblLastUpdated.setText("Sidst opdateret: ");
     }
 
     private void clearGuildInfo()
     {
         lblGuildVolunteers.setText("Frivillige: ");
-        lblTovholder.setText("Tovholder: ");
+        lblManager.setText("Tovholder: ");
         lblTotalGuildHours.setText("Total antal timer: ");
         lblGuildNote.setText("Note: ");
     }
@@ -350,6 +327,7 @@ public class AdminViewController implements Initializable
         lblVolunteerNationality.setText("Nationalitet: " + lastSelectedVolunteer.getNationality());
         lblVolunteerNote.setText(lastSelectedVolunteer.getNote());
         lblVolunteerHours.setText("Timer: " + Integer.toString(dp.getHoursWorkedForVolunteer(lastSelectedVolunteer)));
+        lblLastUpdated.setText("Sidst opdateret: " + lastSelectedVolunteer.getLastInputDate());
     }
 
     @FXML
@@ -359,32 +337,21 @@ public class AdminViewController implements Initializable
     }
 
     @FXML
-    private void handleInfo(ActionEvent event) throws IOException
+    private void handleGoToInfo(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Information", "GUI/View/AdminInfoView.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnInfo.getScene().getWindow();
+        vcm.showInformationView((Stage) btnInfo.getScene().getWindow());
     }
 
     @FXML
-    private void handleOpretTovholder(ActionEvent event) throws IOException
+    private void handleGoToCreateManager(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Opret tovholder", "GUI/View/AddManager.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnOpretTovholder.getScene().getWindow();
-        stage.close();
+        vcm.showCreateManagerView((Stage) btnCreateManager.getScene().getWindow());
     }
 
     @FXML
-    private void handleRedigerTovholder(ActionEvent event) throws IOException
+    private void handleGoToEditManager(ActionEvent event) throws IOException
     {
-        mainViewModel.changeView("Rediger tovholder", "GUI/View/EditManager.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnRedigerTovholder.getScene().getWindow();
-        stage.close();
+        vcm.showEditManagerView((Stage) btnEditManager.getScene().getWindow());
     }
 
     @FXML
@@ -409,5 +376,4 @@ public class AdminViewController implements Initializable
             populateList();
         }
     }
-
 }

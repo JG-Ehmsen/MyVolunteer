@@ -1,6 +1,8 @@
 package myvolunteer.BE;
 
 import java.util.Date;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -11,13 +13,39 @@ public class Volunteer extends User
     private StringProperty nationality = new SimpleStringProperty();
     private Date lastInputDate = new Date();
     private StringProperty note = new SimpleStringProperty();
+    private StringProperty lastInput = new SimpleStringProperty();
+    private int totalHours;
+
+    public StringProperty getTotalHoursProperty()
+    {
+        StringProperty totalHoursProperty = new SimpleStringProperty();
+        totalHoursProperty.set(Integer.toString(totalHours));
+
+        return totalHoursProperty;
+    }
+
+    public void setTotalHours(int totalHours)
+    {
+        this.totalHours = totalHours;
+    }
+
+    public StringProperty getLastInputProperty()
+    {
+        this.lastInput.set(lastInputDate.toString());
+        return lastInput;
+    }
+
+    public StringProperty getLastInput()
+    {
+        return lastInput;
+    }
 
     private boolean isActive;
 
-    public Volunteer(int id, String name, String phoneNumber)
+    public Volunteer(int id, String fName, String phoneNumber)
     {
         super(id);
-        this.firstName.set(name);
+        this.firstName.set(fName);
         this.phoneNumber.set(phoneNumber);
     }
 

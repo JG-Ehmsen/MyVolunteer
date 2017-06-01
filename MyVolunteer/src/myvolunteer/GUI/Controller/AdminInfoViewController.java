@@ -22,7 +22,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
@@ -31,6 +33,8 @@ import myvolunteer.BE.Guild;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
+import myvolunteer.GUI.Utility.ClipBoardUtility;
 
 /**
  * FXML Controller class
@@ -40,7 +44,6 @@ import myvolunteer.GUI.Model.MainViewModel;
 public class AdminInfoViewController implements Initializable
 {
 
-    private List<Guild> guildList = new ArrayList<>();
     ObservableList<Volunteer> users = FXCollections.observableArrayList();
 
     /**
@@ -48,7 +51,13 @@ public class AdminInfoViewController implements Initializable
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
+
     private Guild lastSelectedGuild;
+    private List<Guild> guildList = new ArrayList<>();
+
+    private String documentHeader = "Fornavn" + "	" + "Efternavn" + "	";
+    private String documentText;
 
     @FXML
     private Button btnBack;
@@ -78,6 +87,32 @@ public class AdminInfoViewController implements Initializable
     private TableColumn<Volunteer, String> tblColumnAddress;
     @FXML
     private TableColumn<Volunteer, String> tblColumnAddress2;
+    @FXML
+    private TableColumn<Volunteer, String> tblColumnLastInput;
+    @FXML
+    private TableColumn<Volunteer, String> tblColumnTotalHours;
+    @FXML
+    private Button btnSave;
+    @FXML
+    private CheckBox cBoxPhone;
+    @FXML
+    private CheckBox cBoxPhone2;
+    @FXML
+    private CheckBox cBoxPhone3;
+    @FXML
+    private CheckBox cBoxEmail;
+    @FXML
+    private CheckBox cBoxNationality;
+    @FXML
+    private CheckBox cBoxAddress;
+    @FXML
+    private CheckBox cBoxAddress2;
+    @FXML
+    private CheckBox cBoxGender;
+    @FXML
+    private CheckBox cBoxLastInput;
+    @FXML
+    private CheckBox cBoxTotalHours;
 
     /**
      * Initializes the controller class.
@@ -89,21 +124,18 @@ public class AdminInfoViewController implements Initializable
         guildList = dp.getActiveGuilds();
         initializeTable();
         comboContent();
-    }
 
-    private void handleGodkend(ActionEvent event) throws IOException
-    {
-        // Closes the primary stage
-        Stage stage = (Stage) btnAllVolunteers.getScene().getWindow();
-        stage.close();
+        tblViewInfo.getSelectionModel().setCellSelectionEnabled(true);
+        tblViewInfo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        ClipBoardUtility.installCopyPasteHandler(tblViewInfo);
     }
 
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
         // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showAdminView((Stage) btnBack.getScene().getWindow());
     }
 
     @FXML
@@ -155,6 +187,8 @@ public class AdminInfoViewController implements Initializable
         tblColumnNationality.setCellValueFactory(celldata -> celldata.getValue().getNationalityProperty());
         tblColumnAddress.setCellValueFactory(celldata -> celldata.getValue().getAddressProperty());
         tblColumnAddress2.setCellValueFactory(celldata -> celldata.getValue().getAddress2Property());
+        tblColumnLastInput.setCellValueFactory(celldata -> celldata.getValue().getLastInputProperty());
+        tblColumnTotalHours.setCellValueFactory(celldata -> celldata.getValue().getTotalHoursProperty());
 
         ObservableList nameArrayList = FXCollections.observableArrayList(dp.getActiveUsers());
         tblViewInfo.setItems(nameArrayList);
@@ -167,7 +201,7 @@ public class AdminInfoViewController implements Initializable
     }
 
     /*
-    Exports the data in the tableView to a .xls file.
+    Exports the selected data in the tableView to a .xls file.
      */
     private void saveData() throws Exception
     {
@@ -176,29 +210,121 @@ public class AdminInfoViewController implements Initializable
         {
             FileChooser fileChooser = new FileChooser();
 
+            // Todays date
             Date todaysDate = new Date();
-            SimpleDateFormat ft
+            SimpleDateFormat dateFormat
                     = new SimpleDateFormat("dd.MM.yyyy");
 
             //Show save file dialog
             Stage stage = (Stage) btnAllVolunteers.getScene().getWindow();
-            File fileName = new File("Laug information " + ft.format(todaysDate) + ".xls");
+
+            File fileName = new File("Laug information " + dateFormat.format(todaysDate) + ".xls");
             fileChooser.setInitialFileName(fileName.toString());
             File file = fileChooser.showSaveDialog(stage);
-
-            writer = new BufferedWriter(new FileWriter(file));
-            for (Volunteer user : tblViewInfo.getItems())
+            if (file != null)
             {
-                String text = user.getGender() + "	" + user.getFirstName() + "	" + user.getLastName() + "	" + user.getEmail() + "	" + user.getPhoneNumber() + "	" + user.getPhoneNumber2() + "	" + user.getPhoneNumber3() + "	" + user.getNationality() + "	" + user.getAddress() + "	" + user.getAddress2() + "\n";
+                writer = new BufferedWriter(new FileWriter(file));
+                if (cBoxAddress.isSelected())
+                {
+                    documentHeader = documentHeader + "Adresse" + "	";
+                }
+                if (cBoxAddress2.isSelected())
+                {
+                    documentHeader = documentHeader + "Adresse 2" + "	";
+                }
+                if (cBoxEmail.isSelected())
+                {
+                    documentHeader = documentHeader + "Email" + "	";
+                }
+                if (cBoxNationality.isSelected())
+                {
+                    documentHeader = documentHeader + "Nationalitet" + "	";
+                }
+                if (cBoxPhone.isSelected())
+                {
+                    documentHeader = documentHeader + "Telefon" + "	";
+                }
+                if (cBoxPhone2.isSelected())
+                {
+                    documentHeader = documentHeader + "Telefon 2" + "	";
+                }
+                if (cBoxPhone3.isSelected())
+                {
+                    documentHeader = documentHeader + "Telefon 3" + "	";
+                }
+                if (cBoxGender.isSelected())
+                {
+                    documentHeader = documentHeader + "Køn" + "	";
+                }
+                if (cBoxLastInput.isSelected())
+                {
+                    documentHeader = documentHeader + "Sidst opdateret" + "	";
+                }
+                if (cBoxTotalHours.isSelected())
+                {
+                    documentHeader = documentHeader + "Total timer" + "	";
+                }
+                documentHeader = documentHeader + "\n";
+                writer.write(documentHeader);
+                documentHeader = "Fornavn" + "	" + "Efternavn" + "	";
 
-                writer.write(text);
+                for (Volunteer user : tblViewInfo.getItems())
+                {
+                    documentText = user.getFirstName() + "	" + user.getLastName() + "	";
+                    if (cBoxAddress.isSelected())
+                    {
+                        documentText = documentText + user.getAddress() + "	";
+                    }
+                    if (cBoxAddress2.isSelected())
+                    {
+                        documentText = documentText + user.getAddress2() + "	";
+                    }
+                    if (cBoxEmail.isSelected())
+                    {
+                        documentText = documentText + user.getEmail() + "	";
+                    }
+                    if (cBoxNationality.isSelected())
+                    {
+                        documentText = documentText + user.getNationality() + "	";
+                    }
+                    if (cBoxPhone.isSelected())
+                    {
+                        documentText = documentText + user.getPhoneNumber() + "	";
+                    }
+                    if (cBoxPhone2.isSelected())
+                    {
+                        documentText = documentText + user.getPhoneNumber2() + "	";
+                    }
+                    if (cBoxPhone3.isSelected())
+                    {
+                        documentText = documentText + user.getPhoneNumber3() + "	";
+                    }
+                    if (cBoxGender.isSelected())
+                    {
+                        documentText = documentText + user.getGender() + "	";
+                    }
+                    if (cBoxLastInput.isSelected())
+                    {
+                        documentText = documentText + user.getLastInputDate() + "	";
+                    }
+                    if (cBoxTotalHours.isSelected())
+                    {
+                        documentText = documentText + dp.getHoursWorkedForVolunteer(user) + "	";
+                    }
+                    documentText = documentText + "\n";
+                    writer.write(documentText);
+                    documentText = documentText = user.getFirstName() + "	" + user.getLastName() + "	";
+                }
             }
         } catch (Exception ex)
         {
             ex.printStackTrace();
         } finally
         {
-            writer.close();
+            if (writer != null)
+            {
+                writer.close();
+            }
         }
     }
 

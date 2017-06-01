@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import myvolunteer.BE.Manager;
 import myvolunteer.GUI.Model.DataParserModel;
 import myvolunteer.GUI.Model.MainViewModel;
+import myvolunteer.GUI.Model.ViewChangerModel;
 
 /**
  * FXML Controller class
@@ -34,6 +35,7 @@ public class EditManagerController implements Initializable
 
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     @FXML
     private Button btnBack;
@@ -48,11 +50,11 @@ public class EditManagerController implements Initializable
     @FXML
     private Button btnUploadImage;
     @FXML
-    private Button btnGodkend;
+    private Button btnApprove;
     @FXML
     private TextField txtPassword;
     @FXML
-    private ComboBox<Manager> comboTovholder;
+    private ComboBox<Manager> cbBoxManager;
 
     Manager manager;
     Manager managers;
@@ -66,14 +68,13 @@ public class EditManagerController implements Initializable
     private TextField txtAddress;
     @FXML
     private TextField txtAddress2;
-    
-  
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         managers = mainViewModel.getLoggedInManager();
         ObservableList manager = FXCollections.observableArrayList(dp.getAllManagers());
-        comboTovholder.setItems(manager);
+        cbBoxManager.setItems(manager);
 
         if (managers.isIsActive())
         {
@@ -99,22 +100,18 @@ public class EditManagerController implements Initializable
     }
 
     @FXML
-    private void handleBack(ActionEvent event) throws IOException
+    private void handleGoBack(ActionEvent event) throws IOException
     {
         goBack();
     }
 
     private void goBack() throws IOException
     {
-        mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
-
-        // Closes the primary stage
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        stage.close();
+        vcm.showAdminView((Stage) btnBack.getScene().getWindow());
     }
 
     @FXML
-    private void handleGodkend(ActionEvent event) throws IOException
+    private void handleApproval(ActionEvent event) throws IOException
     {
         if (!txtEmail.getText().isEmpty() && !txtFName.getText().isEmpty() && !txtLName.getText().isEmpty() && !txtPassword.getText().isEmpty())
         {
@@ -211,7 +208,7 @@ public class EditManagerController implements Initializable
     @FXML
     private void handleComboClick(ActionEvent event)
     {
-        manager = comboTovholder.getSelectionModel().getSelectedItem();
+        manager = cbBoxManager.getSelectionModel().getSelectedItem();
 
         loadInfo();
     }

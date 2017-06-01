@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="498.0" prefWidth="606.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.ManagerContactListViewController">
+   <children>
+      <TableView fx:id="tblViewContact" layoutX="14.0" layoutY="75.0" onKeyPressed="#handleCopyContent" prefHeight="413.0" prefWidth="578.0">
+        <columns>
+            <TableColumn fx:id="tblColumnName" prefWidth="213.0" text="Navn" />
+            <TableColumn fx:id="tblColumnPhone1" prefWidth="109.0" text="Telefon 1" />
+          <TableColumn fx:id="tblColumnPhone2" prefWidth="117.0" text="Telefon 2" />
+            <TableColumn fx:id="tblColumnMail" prefWidth="138.0" text="Email" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleGoBack" text="Tilbage" />
+      <TextField fx:id="searchBar" layoutX="429.0" layoutY="14.0" onKeyReleased="#searchFilter" promptText="Søg" />
+   </children>
+</AnchorPane>

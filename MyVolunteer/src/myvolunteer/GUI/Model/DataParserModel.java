@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.control.Alert;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
@@ -29,6 +29,7 @@ public class DataParserModel
     private static DataParserModel instance;
 
     MainViewModel mainViewModel = MainViewModel.getInstance();
+    ViewChangerModel vcm = new ViewChangerModel();
 
     public static DataParserModel getInstance()
     {
@@ -65,20 +66,20 @@ public class DataParserModel
     {
         return bllFacade.getGuilds();
     }
-    
+
     public List<Guild> getGuildForManager(Manager manager)
     {
         List<Guild> returnList = new ArrayList();
-        
+
         for (Integer i : manager.getManagerGuilds())
         {
             for (Guild guild : getActiveGuilds())
             {
-                if(guild.getID() == i)
+                if (guild.getID() == i)
                 {
                     returnList.add(guild);
                 }
-            }    
+            }
         }
         return returnList;
     }
@@ -102,22 +103,22 @@ public class DataParserModel
     {
         return bllFacade.getUsers();
     }
-    
+
     public List<Manager> getActiveManagers()
     {
         List<Manager> activeManagers = new ArrayList();
         List<Manager> allManagers = bllFacade.getManagers();
-        
+
         for (Manager manager : allManagers)
         {
-            if(manager.isIsActive())
+            if (manager.isIsActive())
             {
                 activeManagers.add(manager);
             }
         }
         return activeManagers;
     }
-    
+
     public List<Manager> getAllManagers()
     {
         return bllFacade.getManagers();
@@ -195,22 +196,14 @@ public class DataParserModel
 
         if (manager != null)
         {
-
-            try
-            {
                 mainViewModel.setLoggedInManager(manager);
                 if (!manager.isAdmin())
                 {
-                    mainViewModel.changeView("Manager", "GUI/View/ManagerView.fxml");
+                    vcm.showManagerView(stage);
                 } else
                 {
-                    mainViewModel.changeView("Admin", "GUI/View/AdminView.fxml");
-                }
-                stage.close();
-            } catch (IOException ex)
-            {
-                Logger.getLogger(DataParserModel.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                    vcm.showAdminView(stage);
+                }   
         }/*else
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -249,5 +242,10 @@ public class DataParserModel
     public void setManagerStatus(Manager manager, boolean active)
     {
         bllFacade.setManagerStatus(manager, active);
+    }
+
+    public ObservableList<Volunteer> filter(String filter, List<Volunteer> allUsers)
+    {
+        return bllFacade.filter(filter, allUsers);
     }
 }

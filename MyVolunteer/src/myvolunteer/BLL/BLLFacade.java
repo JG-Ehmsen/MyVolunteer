@@ -4,6 +4,7 @@ import java.util.List;
 import myvolunteer.BE.Guild;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.Date;
+import javafx.collections.ObservableList;
 import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
 import myvolunteer.DAL.DALFacade;
@@ -45,6 +46,8 @@ public class BLLFacade
     }
 
     DALFacade dalFacade = DALFacade.getInstance();
+    
+    ListFiltering filtering = new ListFiltering();
 
     public List<Guild> getGuilds()
     {
@@ -141,25 +144,30 @@ public class BLLFacade
     {
         dalFacade.setVolunteerStatus(volunteer, active);
     }
-    
+
     public void deactivateGuild(Guild guild)
     {
         dalFacade.deactivateGuild(guild);
     }
-    
+
     public void setGuildStatus(Guild guild, boolean active)
     {
         dalFacade.setGuildStatus(guild, active);
     }
-    
+
     public void deactivateManager(Manager manager)
     {
         dalFacade.deactivateManager(manager);
     }
-    
+
     public void setManagerStatus(Manager manager, boolean active)
     {
         dalFacade.setManagerStatus(manager, active);
+    }
+    
+    public ObservableList<Volunteer> filter(String filter, List<Volunteer> allUsers)
+    {
+        return filtering.filter(filter, allUsers);
     }
 
 }
