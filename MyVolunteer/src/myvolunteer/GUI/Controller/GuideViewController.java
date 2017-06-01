@@ -32,9 +32,6 @@ public class GuideViewController implements Initializable
 
     @FXML
     private Button btnBack;
-
-    private MediaPlayer mpGuide;
-    private Media meGuide;
     @FXML
     private Label step1lbl;
     @FXML
@@ -52,17 +49,6 @@ public class GuideViewController implements Initializable
     {
         // TODO
         changeLanguage();
-//        String path = new File("/GUI/Utility/GuideMovie2.mp4").getAbsolutePath();
-//        meGuide = new Media(new File(path).toURI().toString());
-//        mpGuide = new MediaPlayer(meGuide);
-//        mediaGuide.setMediaPlayer(mpGuide);
-//        mpGuide.setAutoPlay(true);
-//        
-//        DoubleProperty width = mediaGuide.fitWidthProperty();
-//        DoubleProperty height = mediaGuide.fitHeightProperty();
-//        
-//        width.bind(Bindings.selectDouble(mediaGuide.sceneProperty(), "width"));
-//        height.bind(Bindings.selectDouble(mediaGuide.sceneProperty(), "height"));
     }
 
     @FXML
@@ -79,7 +65,6 @@ public class GuideViewController implements Initializable
         step3lbl.setText(rb.getString("GuideView.step3lbl.text"));
         btnBack.setText(rb.getString("GuideView.btnBack.text"));
         lblToDo.setText(rb.getString("GuideView.lblToDo.text"));
-
     }
 
 }

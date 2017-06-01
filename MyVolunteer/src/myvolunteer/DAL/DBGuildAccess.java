@@ -158,7 +158,6 @@ public class DBGuildAccess
                 setGuildRelationStatus(GID, UID, true, con);
             }
         }
-
     }
 
     public void deactivateGuildRelations(Guild guild, List<Integer> out, Connection con) throws SQLException

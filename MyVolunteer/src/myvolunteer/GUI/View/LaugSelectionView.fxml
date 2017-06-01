@@ -18,7 +18,7 @@
       </ImageView>
       <ScrollPane id="laugscrollpane" fx:id="laugScroll" layoutX="12.0" layoutY="122.0" prefHeight="313.0" prefWidth="600.0" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="122.0">
          <content>
-            <FlowPane id="laugpane" fx:id="MainFlowPane" maxHeight="407.0" maxWidth="570.0" prefHeight="294.0" prefWidth="570.0">
+            <FlowPane id="laugpane" fx:id="mainFlowPane" maxHeight="407.0" maxWidth="570.0" prefHeight="294.0" prefWidth="570.0">
                <padding>
                   <Insets bottom="10.0" left="40.0" top="10.0" />
                </padding></FlowPane>

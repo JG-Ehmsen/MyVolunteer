@@ -1,14 +1,7 @@
 package myvolunteer.GUI.Model;
 
-import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import myvolunteer.App;
 import myvolunteer.BE.Guild;
 import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
