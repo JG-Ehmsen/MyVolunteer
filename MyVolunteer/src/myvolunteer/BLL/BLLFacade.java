@@ -46,7 +46,7 @@ public class BLLFacade
     }
 
     DALFacade dalFacade = DALFacade.getInstance();
-    
+
     ListFiltering filtering = new ListFiltering();
 
     public List<Guild> getGuilds()
@@ -164,7 +164,7 @@ public class BLLFacade
     {
         dalFacade.setManagerStatus(manager, active);
     }
-    
+
     public ObservableList<Volunteer> filter(String filter, List<Volunteer> allUsers)
     {
         return filtering.filter(filter, allUsers);

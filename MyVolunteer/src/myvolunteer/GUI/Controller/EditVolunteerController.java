@@ -45,7 +45,8 @@ public class EditVolunteerController implements Initializable
 {
 
     /**
-     * Gets the singleton instance of the model.
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
@@ -81,9 +82,6 @@ public class EditVolunteerController implements Initializable
     private Label lblXTelephone;
     @FXML
     private Label lblPleaseFill;
-
-    Volunteer volunteer;
-    final ToggleGroup tg = new ToggleGroup();
     @FXML
     private TextField txtPhoneNumber2;
     @FXML
@@ -99,6 +97,8 @@ public class EditVolunteerController implements Initializable
     @FXML
     private ImageView imgProfilePicture;
 
+    Volunteer volunteer;
+    final ToggleGroup tg = new ToggleGroup();
     BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
 
     /**
@@ -292,7 +292,6 @@ public class EditVolunteerController implements Initializable
         volunteer.setEmail(txtEmail.getText());
         volunteer.setFirstName(txtFName.getText());
         volunteer.setLastName(txtLName.getText());
-        //BDay
         volunteer.setPhoneNumber(txtPhoneNumber.getText());
         volunteer.setPhoneNumber2(txtPhoneNumber2.getText());
         volunteer.setPhoneNumber3(txtPhoneNumber3.getText());

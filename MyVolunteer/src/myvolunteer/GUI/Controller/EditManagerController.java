@@ -36,6 +36,8 @@ public class EditManagerController implements Initializable
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
     ViewChangerModel vcm = new ViewChangerModel();
+    Manager manager;
+    Manager managers;
 
     @FXML
     private Button btnBack;
@@ -55,9 +57,6 @@ public class EditManagerController implements Initializable
     private TextField txtPassword;
     @FXML
     private ComboBox<Manager> cbBoxManager;
-
-    Manager manager;
-    Manager managers;
     @FXML
     private Button btnChangeStatus;
     @FXML

@@ -35,6 +35,7 @@ import myvolunteer.GUI.Utility.ClipBoardUtility;
  */
 public class ManagerContactListViewController implements Initializable
 {
+
     DataParserModel dp = DataParserModel.getInstance();
     MainViewModel mainViewModel = MainViewModel.getInstance();
     ViewChangerModel vcm = new ViewChangerModel();
@@ -80,7 +81,7 @@ public class ManagerContactListViewController implements Initializable
         tblColumnPhone1.setCellValueFactory(cellDate -> cellDate.getValue().getPhoneProperty());
         tblColumnPhone2.setCellValueFactory(cellDate -> cellDate.getValue().getPhone2Property());
         tblColumnMail.setCellValueFactory(cellDate -> cellDate.getValue().getMailProperty());
-        
+
         tblViewContact.getSelectionModel().setCellSelectionEnabled(true);
         tblViewContact.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         ClipBoardUtility.installCopyPasteHandler(tblViewContact);

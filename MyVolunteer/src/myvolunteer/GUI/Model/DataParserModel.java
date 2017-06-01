@@ -8,11 +8,8 @@ package myvolunteer.GUI.Model;
 import java.util.List;
 import myvolunteer.BE.Guild;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import myvolunteer.BE.Manager;
@@ -47,6 +44,9 @@ public class DataParserModel
 
     BLLFacade bllFacade = BLLFacade.getInstance();
 
+    /*
+    Gets all active guilds
+     */
     public List<Guild> getActiveGuilds()
     {
         List<Guild> activeGuilds = new ArrayList();
@@ -62,6 +62,9 @@ public class DataParserModel
         return activeGuilds;
     }
 
+    /*
+    Gets all guilds
+     */
     public List<Guild> getAllGuilds()
     {
         return bllFacade.getGuilds();
@@ -196,14 +199,14 @@ public class DataParserModel
 
         if (manager != null)
         {
-                mainViewModel.setLoggedInManager(manager);
-                if (!manager.isAdmin())
-                {
-                    vcm.showManagerView(stage);
-                } else
-                {
-                    vcm.showAdminView(stage);
-                }   
+            mainViewModel.setLoggedInManager(manager);
+            if (!manager.isAdmin())
+            {
+                vcm.showManagerView(stage);
+            } else
+            {
+                vcm.showAdminView(stage);
+            }
         }/*else
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);

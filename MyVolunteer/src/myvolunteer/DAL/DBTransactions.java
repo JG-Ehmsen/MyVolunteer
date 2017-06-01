@@ -17,7 +17,6 @@ public class DBTransactions
 {
 
     private final ConnectionManager cm = new ConnectionManager();
-
     private final DBGuildAccess ga = new DBGuildAccess();
     private final DBUserAccess ua = new DBUserAccess();
 

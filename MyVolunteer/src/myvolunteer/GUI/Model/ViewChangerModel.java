@@ -32,6 +32,9 @@ public class ViewChangerModel
         this.rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
     }
 
+    /*
+    Changes the view - Has the window title and path as parameters (Strings)
+     */
     private void changeView(String title, String path) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
@@ -94,7 +97,6 @@ public class ViewChangerModel
         try
         {
             changeView("Informations side", "GUI/View/AdminInfoView.fxml");
-            stage.close();
         } catch (IOException ex)
         {
             Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
