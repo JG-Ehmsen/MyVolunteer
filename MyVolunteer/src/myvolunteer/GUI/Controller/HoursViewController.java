@@ -143,7 +143,7 @@ public class HoursViewController implements Initializable
             validHours = true;
 
             //Change view to mainView (LaugView) after validation has been confirmed
-            vcm.showLaugView((Stage) imgProfilePicture.getScene().getWindow());
+            vcm.showLaugSelectionView((Stage) imgProfilePicture.getScene().getWindow());
         }
         // Boolean validHours is set to true if there is a match
         return validHours;

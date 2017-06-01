@@ -249,7 +249,7 @@ public class ManagerViewController implements Initializable
     @FXML
     private void handleGoToCreateVolunteer(ActionEvent event) throws IOException
     {
-        vcm.showCreateVolunteer((Stage) btnCreateVolunteer.getScene().getWindow());
+        vcm.showCreateVolunteerView((Stage) btnCreateVolunteer.getScene().getWindow());
     }
 
     @FXML
@@ -258,7 +258,7 @@ public class ManagerViewController implements Initializable
         if (lastSelectedVolunteer != null)
         {
            mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
-        vcm.showEditVolunteer((Stage) btnEditVolunteer.getScene().getWindow());
+        vcm.showEditVolunteerView((Stage) btnEditVolunteer.getScene().getWindow());
         } else
         {
             // Displays an alertbox if the user haven't selected a laug.
@@ -276,7 +276,7 @@ public class ManagerViewController implements Initializable
         if (lastSelectedGuild != null)
         {
             mainViewModel.setLastSelectedGuild(lastSelectedGuild);
-        vcm.showEditGuild((Stage) btnEditVolunteer.getScene().getWindow());
+        vcm.showEditLaugView((Stage) btnEditVolunteer.getScene().getWindow());
         } else
         {
             // Displays an alertbox if the user haven't selected a laug.
@@ -291,7 +291,7 @@ public class ManagerViewController implements Initializable
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException
     {
-        vcm.showLaugView((Stage) btnBack.getScene().getWindow());
+        vcm.showLaugSelectionView((Stage) btnBack.getScene().getWindow());
     }
 
     private void loadVolunteerInfo()
@@ -364,7 +364,7 @@ public class ManagerViewController implements Initializable
     @FXML
     private void handleGoToContactList(ActionEvent event) throws IOException
     {
-        vcm.showContactList((Stage) btnContactList.getScene().getWindow());
+        vcm.showManagerContactListView((Stage) btnContactList.getScene().getWindow());
     }
 
 }
