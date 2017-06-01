@@ -48,6 +48,10 @@ public class ManagerViewController implements Initializable
     private Manager lastManager;
     private Volunteer lastSelectedVolunteer;
 
+    /**
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
+     */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
     ViewChangerModel vcm = new ViewChangerModel();
@@ -185,6 +189,9 @@ public class ManagerViewController implements Initializable
         }
     }
 
+    /**
+     * Clears the values in the volunteer info labels.
+     */
     private void clearVolunteerInfo()
     {
         lblVolunteerName.setText("Fulde navn: ");
@@ -197,6 +204,9 @@ public class ManagerViewController implements Initializable
         lblVolunteerNote.setText("");
     }
 
+    /**
+     * Clears the values in the guild info labels.
+     */
     private void clearGuildInfo()
     {
         lblGuildVolunteers.setText("Frivillige: ");
@@ -205,6 +215,9 @@ public class ManagerViewController implements Initializable
         lblGuildNote.setText("Note: ");
     }
 
+    /**
+     * Loads the guild info for the labels.
+     */
     private void showGuildInfo()
     {
         lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size()));
@@ -290,6 +303,9 @@ public class ManagerViewController implements Initializable
         vcm.showLaugSelectionView((Stage) btnBack.getScene().getWindow());
     }
 
+    /**
+     * Loads the volunteer info for the labels.
+     */
     private void loadVolunteerInfo()
     {
         String phone2;

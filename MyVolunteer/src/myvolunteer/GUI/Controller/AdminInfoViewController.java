@@ -47,7 +47,8 @@ public class AdminInfoViewController implements Initializable
     ObservableList<Volunteer> users = FXCollections.observableArrayList();
 
     /**
-     * Gets the singleton instances.
+     * Gets the singleton instances of the MainViewModel, DateParserModel and
+     * ViewChangerModel.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
@@ -134,7 +135,7 @@ public class AdminInfoViewController implements Initializable
     private void handleBack(ActionEvent event) throws IOException
     {
         // Closes the primary stage
-        vcm.showAdminView((Stage) btnBack.getScene().getWindow());
+        vcm.closeView((Stage) btnBack.getScene().getWindow());
     }
 
     @FXML
@@ -199,8 +200,9 @@ public class AdminInfoViewController implements Initializable
         saveData();
     }
 
-    /*
-    Exports the selected data in the tableView to a .xls file.
+    /**
+     * Exports the selected data in the tableView to a .xls file.
+     *
      */
     private void saveData() throws Exception
     {

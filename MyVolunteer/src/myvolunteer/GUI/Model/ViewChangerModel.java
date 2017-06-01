@@ -32,8 +32,8 @@ public class ViewChangerModel
         this.rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
     }
 
-    /*
-    Changes the view - Has the window title and path as parameters (Strings)
+    /**
+     * Changes the view - Has the window title and path as parameters (Strings)
      */
     private void changeView(String title, String path) throws IOException
     {
@@ -240,4 +240,8 @@ public class ViewChangerModel
         }
     }
 
+    public void closeView(Stage stage)
+    {
+        stage.close();
+    }
 }

@@ -362,7 +362,6 @@ public class DBTransactions
     {
         try
         {
-
             Manager manager;
 
             manager = ua.loginQuery(login, pass, transactionConnection);

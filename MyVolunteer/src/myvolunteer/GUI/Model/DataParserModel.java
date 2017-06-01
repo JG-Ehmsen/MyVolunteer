@@ -11,6 +11,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import myvolunteer.BE.Manager;
 import myvolunteer.BE.Volunteer;
@@ -114,7 +115,7 @@ public class DataParserModel
 
         for (Manager manager : allManagers)
         {
-            if (manager.isIsActive())
+            if (manager.isActive())
             {
                 activeManagers.add(manager);
             }
@@ -199,22 +200,25 @@ public class DataParserModel
 
         if (manager != null)
         {
-            mainViewModel.setLoggedInManager(manager);
-            if (!manager.isAdmin())
+            if (!manager.isActive())
             {
-                vcm.showManagerView(stage);
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Inaktiv bruger");
+                alert.setContentText("Denne bruger er deaktiveret. Kontakt en administrator.");
+
+                alert.showAndWait();
             } else
             {
-                vcm.showAdminView(stage);
+                mainViewModel.setLoggedInManager(manager);
+                if (!manager.isAdmin())
+                {
+                    vcm.showManagerView(stage);
+                } else
+                {
+                    vcm.showAdminView(stage);
+                }
             }
-        }/*else
-        {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Wrong Login");
-            alert.setContentText("Wrong username or password. Try again.");
-
-            alert.showAndWait();
-        }*/
+        }
     }
 
     public void deactiveVolunteer(Volunteer volunteer)

@@ -316,15 +316,20 @@ public class EditLaugController implements Initializable
     {
         if (guild.isIsActive())
         {
-            deactivate();
+            deactivateLaug();
         } else
         {
-            activate();
+            activateLaug();
         }
 
     }
 
-    private void deactivate() throws IOException
+    /**
+     * Changes the status of the selected laug to inactive
+     *
+     * @throws IOException
+     */
+    private void deactivateLaug() throws IOException
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Deaktiver Laug");
@@ -351,7 +356,12 @@ public class EditLaugController implements Initializable
 
     }
 
-    private void activate() throws IOException
+    /**
+     * Changes the status of the selected laug to active
+     *
+     * @throws IOException
+     */
+    private void activateLaug() throws IOException
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Aktiver Laug");

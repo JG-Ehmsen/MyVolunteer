@@ -13,8 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import myvolunteer.GUI.Model.MainViewModel;
 import myvolunteer.GUI.Model.ViewChangerModel;
@@ -27,6 +25,10 @@ import myvolunteer.GUI.Model.ViewChangerModel;
 public class GuideViewController implements Initializable
 {
 
+    /**
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
+     */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     ViewChangerModel vcm = new ViewChangerModel();
 
