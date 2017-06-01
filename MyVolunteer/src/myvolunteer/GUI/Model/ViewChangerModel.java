@@ -53,72 +53,6 @@ public class ViewChangerModel
         this.rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
     }
 
-    public void showGuideView(Stage stage)
-    {
-        updateResourceBundle();
-        try
-        {
-            changeView(rb.getString("Guide.text"), "GUI/View/GuideView.fxml");
-            stage.close();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void showLoginView(Stage stage)
-    {
-        updateResourceBundle();
-        try
-        {
-            changeView(rb.getString("Login.text"), "GUI/View/AdminLogin.fxml");
-            stage.close();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void showVolunteersView(Stage stage)
-    {
-        updateResourceBundle();
-        try
-        {
-            changeView(rb.getString("Volunteer.text"), "GUI/View/VolunteerView.fxml");
-            stage.close();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void showLaugView(Stage stage)
-    {
-        updateResourceBundle();
-        try
-        {
-            changeView(rb.getString("Guild.text"), "GUI/View/LaugViewSpecial.fxml");
-            stage.close();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    public void showHoursView(Stage stage)
-    {
-        updateResourceBundle();
-        try
-        {
-            changeView(rb.getString("Hours.text"), "GUI/View/HoursSpecial.fxml");
-            stage.close();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     public void showCreateLaugView(Stage stage)
     {
         try
@@ -131,7 +65,7 @@ public class ViewChangerModel
         }
     }
 
-    public void showCreateManager(Stage stage)
+    public void showCreateManagerView(Stage stage)
     {
         try
         {
@@ -143,20 +77,7 @@ public class ViewChangerModel
         }
     }
 
-    public void showEditManager(Stage stage)
-    {
-        try
-        {
-            changeView("Rediger Manager", "GUI/View/EditManager.fxml");
-            stage.close();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    public void showCreateVolunteer(Stage stage)
+    public void showCreateVolunteerView(Stage stage)
     {
         try
         {
@@ -168,35 +89,25 @@ public class ViewChangerModel
         }
     }
 
-    public void showEditVolunteer(Stage stage)
+    public void showInformationView(Stage stage)
     {
         try
         {
-            changeView("Rediger Frivillig", "GUI/View/EditVolunteer.fxml");
+            changeView("Informations side", "GUI/View/AdminInfoView.fxml");
             stage.close();
         } catch (IOException ex)
         {
             Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
-    public void showEditGuild(Stage stage)
+    public void showLoginView(Stage stage)
     {
+        updateResourceBundle();
         try
         {
-            changeView("Rediger Laug", "GUI/View/EditLaug.fxml");
-            stage.close();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void showContactList(Stage stage)
-    {
-        try
-        {
-            changeView("Kontaktliste for frivillige", "GUI/View/ManagerContactListView.fxml");
+            changeView(rb.getString("Login.text"), "GUI/View/AdminLogin.fxml");
             stage.close();
         } catch (IOException ex)
         {
@@ -216,6 +127,93 @@ public class ViewChangerModel
         }
     }
 
+    public void showEditLaugView(Stage stage)
+    {
+        try
+        {
+            changeView("Rediger Laug", "GUI/View/EditLaug.fxml");
+            stage.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void showEditManagerView(Stage stage)
+    {
+        try
+        {
+            changeView("Rediger Manager", "GUI/View/EditManager.fxml");
+            stage.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void showEditVolunteerView(Stage stage)
+    {
+        try
+        {
+            changeView("Rediger Frivillig", "GUI/View/EditVolunteer.fxml");
+            stage.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void showGuideView(Stage stage)
+    {
+        updateResourceBundle();
+        try
+        {
+            changeView(rb.getString("Guide.text"), "GUI/View/GuideView.fxml");
+            stage.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void showHoursInputView(Stage stage)
+    {
+        updateResourceBundle();
+        try
+        {
+            changeView(rb.getString("Hours.text"), "GUI/View/HoursInputView.fxml");
+            stage.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void showLaugSelectionView(Stage stage)
+    {
+        updateResourceBundle();
+        try
+        {
+            changeView(rb.getString("Guild.text"), "GUI/View/LaugSelectionView.fxml");
+            stage.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void showManagerContactListView(Stage stage)
+    {
+        try
+        {
+            changeView("Kontaktliste for frivillige", "GUI/View/ManagerContactListView.fxml");
+            stage.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void showManagerView(Stage stage)
     {
         try
@@ -227,18 +225,18 @@ public class ViewChangerModel
             Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void showInformationView(Stage stage)
+
+    public void showVolunteersView(Stage stage)
     {
+        updateResourceBundle();
         try
         {
-            changeView("Informations side", "GUI/View/AdminInfoView.fxml");
+            changeView(rb.getString("Volunteer.text"), "GUI/View/VolunteerView.fxml");
             stage.close();
         } catch (IOException ex)
         {
             Logger.getLogger(ViewChangerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
     }
 
 }
