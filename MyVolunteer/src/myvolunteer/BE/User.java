@@ -136,7 +136,7 @@ public abstract class User
         return this.email;
     }
 
-    public boolean isIsActive()
+    public boolean isActive()
     {
         return isActive;
     }

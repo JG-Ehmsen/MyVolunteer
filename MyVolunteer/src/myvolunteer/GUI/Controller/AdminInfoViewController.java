@@ -134,7 +134,7 @@ public class AdminInfoViewController implements Initializable
     private void handleBack(ActionEvent event) throws IOException
     {
         // Closes the primary stage
-        vcm.showAdminView((Stage) btnBack.getScene().getWindow());
+        vcm.closeView((Stage) btnBack.getScene().getWindow());
     }
 
     @FXML
