@@ -5,7 +5,6 @@
  */
 package myvolunteer.GUI.Utility;
 
-
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.TablePosition;
@@ -23,57 +22,59 @@ import javafx.scene.input.KeyEvent;
  */
 public abstract class ClipBoardUtility
 {
+
     public static void installCopyPasteHandler(TableView<?> table)
     {
         table.setOnKeyPressed(new TableKeyEventHandler());
     }
-    
+
     public static class TableKeyEventHandler implements EventHandler<KeyEvent>
     {
 
         KeyCodeCombination copyKeyCodeCombination = new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_DOWN);
-        
+
         public void handle(final KeyEvent keyEvent)
         {
-            if(copyKeyCodeCombination.match(keyEvent))
+            if (copyKeyCodeCombination.match(keyEvent))
             {
-                if(keyEvent.getSource() instanceof TableView)
+                if (keyEvent.getSource() instanceof TableView)
                 {
                     copySelectionToClipboard((TableView<?>) keyEvent.getSource());
                     keyEvent.consume();
                 }
             }
-        }   
+        }
     }
-    
+
     public static void copySelectionToClipboard(TableView<?> table)
     {
         StringBuilder clipboardString = new StringBuilder();
-        
+
         ObservableList<TablePosition> positionList = table.getSelectionModel().getSelectedCells();
-        
+
         int prevRow = -1;
-        
+
         for (TablePosition position : positionList)
         {
             int row = position.getRow();
             int col = position.getColumn();
-            
+
             Object cell = (Object) table.getColumns().get(col).getCellData(row);
-            
+
             // null-check: provide empty string for nulls
-            if(cell == null)
+            if (cell == null)
             {
                 cell = "";
             }
-            
-            // determine whether we advance in a row (tab) or a column
-            // (newline).
-            if (prevRow == row) {
+
+            // determine whether we advance in a row (tab) or a column (newline).
+            if (prevRow == row)
+            {
 
                 clipboardString.append('\t');
 
-            } else if (prevRow != -1) {
+            } else if (prevRow != -1)
+            {
 
                 clipboardString.append('\n');
 
@@ -85,7 +86,7 @@ public abstract class ClipBoardUtility
             clipboardString.append(text);
 
             // remember previous
-            prevRow = row;  
+            prevRow = row;
         }
         // create clipboard content
         final ClipboardContent clipboardContent = new ClipboardContent();
@@ -93,6 +94,6 @@ public abstract class ClipBoardUtility
 
         // set clipboard content
         Clipboard.getSystemClipboard().setContent(clipboardContent);
-    
+
     }
 }

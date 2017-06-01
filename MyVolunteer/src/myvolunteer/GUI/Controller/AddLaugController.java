@@ -44,7 +44,8 @@ public class AddLaugController implements Initializable
 {
 
     /**
-     * Gets the singleton instance of the model and date parser.
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
@@ -96,10 +97,10 @@ public class AddLaugController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        init();
+        initialize();
     }
 
-    private void init()
+    private void initialize()
     {
         lblAmountOfVolunteers.setText("Antal frivillige: " + listChosenVolunteer.getItems().size());
 
@@ -116,10 +117,15 @@ public class AddLaugController implements Initializable
         lblXManager.setVisible(false);
     }
 
+    /**
+     * Validates that everything is correct and if so the guild/laug is saved.
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void handleApproval(ActionEvent event) throws IOException
     {
-
         if (txtLaugName.getText().isEmpty())
         {
             lblXLaugName.setVisible(true);
@@ -146,6 +152,9 @@ public class AddLaugController implements Initializable
         }
     }
 
+    /**
+     * Saves the guild/laug info.
+     */
     private void handleLaugInfo()
     {
         String LaugName = txtLaugName.getText();

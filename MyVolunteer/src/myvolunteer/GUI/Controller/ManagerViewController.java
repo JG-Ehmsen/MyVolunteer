@@ -48,6 +48,10 @@ public class ManagerViewController implements Initializable
     private Manager lastManager;
     private Volunteer lastSelectedVolunteer;
 
+    /**
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
+     */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
     ViewChangerModel vcm = new ViewChangerModel();
@@ -185,22 +189,24 @@ public class ManagerViewController implements Initializable
         }
     }
 
+    /**
+     * Clears the values in the volunteer info labels.
+     */
     private void clearVolunteerInfo()
     {
         lblVolunteerName.setText("Fulde navn: ");
         lblVolunteerGender.setText("Køn: ");
         lblVolunteerAge.setText("Alder: ");
         lblVolunteerPhoneNumber.setText("Telefon: ");
-//        lblVolunteerPhoneNumber2.setText("Telefon 2: ");
-//        lblVolunteerPhoneNumber3.setText("Telefon 3: ");
-//        lblVolunteerAddress.setText("Adresse: ");
-//        lblVolunteerAddress2.setText("Adresse 2: ");
         lblVolunteerEMail.setText("Email: ");
         lblVolunteerNationality.setText("Nationalitet: ");
         lblVolunteerHours.setText("Timer: ");
         lblVolunteerNote.setText("");
     }
 
+    /**
+     * Clears the values in the guild info labels.
+     */
     private void clearGuildInfo()
     {
         lblGuildVolunteers.setText("Frivillige: ");
@@ -209,6 +215,9 @@ public class ManagerViewController implements Initializable
         lblGuildNote.setText("Note: ");
     }
 
+    /**
+     * Loads the guild info for the labels.
+     */
     private void showGuildInfo()
     {
         lblGuildVolunteers.setText("Frivillige: " + Integer.toString(lastSelectedGuild.getMemberList().size()));
@@ -257,8 +266,8 @@ public class ManagerViewController implements Initializable
     {
         if (lastSelectedVolunteer != null)
         {
-           mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
-        vcm.showEditVolunteerView((Stage) btnEditVolunteer.getScene().getWindow());
+            mainViewModel.setLastSelectedUser(lastSelectedVolunteer);
+            vcm.showEditVolunteerView((Stage) btnEditVolunteer.getScene().getWindow());
         } else
         {
             // Displays an alertbox if the user haven't selected a laug.
@@ -276,7 +285,7 @@ public class ManagerViewController implements Initializable
         if (lastSelectedGuild != null)
         {
             mainViewModel.setLastSelectedGuild(lastSelectedGuild);
-        vcm.showEditLaugView((Stage) btnEditVolunteer.getScene().getWindow());
+            vcm.showEditLaugView((Stage) btnEditVolunteer.getScene().getWindow());
         } else
         {
             // Displays an alertbox if the user haven't selected a laug.
@@ -294,6 +303,9 @@ public class ManagerViewController implements Initializable
         vcm.showLaugSelectionView((Stage) btnBack.getScene().getWindow());
     }
 
+    /**
+     * Loads the volunteer info for the labels.
+     */
     private void loadVolunteerInfo()
     {
         String phone2;
@@ -336,10 +348,6 @@ public class ManagerViewController implements Initializable
         lblVolunteerGender.setText("Køn: " + lastSelectedVolunteer.getGender());
         lblVolunteerAge.setText("Alder: ");
         lblVolunteerPhoneNumber.setText("Telefon: " + lastSelectedVolunteer.getPhoneNumber());
-//        lblVolunteerPhoneNumber2.setText("Telefon 2: " + phone2);
-//        lblVolunteerPhoneNumber3.setText("Telefon 3: " + phone3);
-//        lblVolunteerAddress.setText("Adresse: " + address);
-//        lblVolunteerAddress2.setText("Adresse 2: " + address2);
         lblVolunteerEMail.setText("Email: " + lastSelectedVolunteer.getEmail());
         lblVolunteerNationality.setText("Nationalitet: " + lastSelectedVolunteer.getNationality());
         lblVolunteerNote.setText(lastSelectedVolunteer.getNote());

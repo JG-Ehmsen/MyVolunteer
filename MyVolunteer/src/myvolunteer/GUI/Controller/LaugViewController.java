@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -34,7 +32,8 @@ public class LaugViewController implements Initializable
 {
 
     /**
-     * Gets the singleton instance of the model.
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
@@ -49,7 +48,7 @@ public class LaugViewController implements Initializable
     @FXML
     private Button btnLogin;
     @FXML
-    private FlowPane MainFlowPane;
+    private FlowPane mainFlowPane;
     @FXML
     private ButtonBar languageBtnBar;
     @FXML
@@ -70,8 +69,8 @@ public class LaugViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-        MainFlowPane.setVgap(20);
-        MainFlowPane.setHgap(50);
+        mainFlowPane.setVgap(20);
+        mainFlowPane.setHgap(50);
 
         initGuildButtons();
         adjustScrollPane();
@@ -79,7 +78,6 @@ public class LaugViewController implements Initializable
         rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
 
         setBundleLocale();
-
     }
 
     private void initGuildButtons()
@@ -98,7 +96,7 @@ public class LaugViewController implements Initializable
                 }
             }
             );
-            MainFlowPane.getChildren().add(b);
+            mainFlowPane.getChildren().add(b);
         }
     }
 
@@ -106,33 +104,31 @@ public class LaugViewController implements Initializable
     {
         laugScroll.viewportBoundsProperty().addListener(new ChangeListener<Bounds>()
         {
-
             @Override
             public void changed(ObservableValue<? extends Bounds> ov, Bounds oldBounds, Bounds bounds)
             {
-                MainFlowPane.setPrefWidth(bounds.getWidth());
-                MainFlowPane.setPrefHeight(bounds.getHeight());
+                mainFlowPane.setPrefWidth(bounds.getWidth());
+                mainFlowPane.setPrefHeight(bounds.getHeight());
                 laugScroll.setFitToHeight(true);
             }
         });
-
     }
 
     private void handleGuildClick()
     {
-        vcm.showVolunteersView((Stage) MainFlowPane.getScene().getWindow());
+        vcm.showVolunteersView((Stage) mainFlowPane.getScene().getWindow());
     }
 
     @FXML
     private void handleGoToLogin(ActionEvent event) throws IOException
     {
-        vcm.showLoginView((Stage) MainFlowPane.getScene().getWindow());
+        vcm.showLoginView((Stage) mainFlowPane.getScene().getWindow());
     }
 
     @FXML
     private void handleGoToGuide(ActionEvent event) throws IOException
     {
-        vcm.showGuideView((Stage) MainFlowPane.getScene().getWindow());
+        vcm.showGuideView((Stage) mainFlowPane.getScene().getWindow());
     }
 
     @FXML
@@ -197,7 +193,7 @@ public class LaugViewController implements Initializable
     {
         rb = ResourceBundle.getBundle(mainViewModel.getLastSelectedBundle(), mainViewModel.getLastSelectedLocale());
 
-        Stage stage = (Stage) MainFlowPane.getScene().getWindow();
+        Stage stage = (Stage) mainFlowPane.getScene().getWindow();
         stage.setTitle(rb.getString("Guild.text"));
     }
 }

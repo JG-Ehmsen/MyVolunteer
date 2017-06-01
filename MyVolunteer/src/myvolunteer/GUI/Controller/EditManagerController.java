@@ -33,9 +33,16 @@ import myvolunteer.GUI.Model.ViewChangerModel;
 public class EditManagerController implements Initializable
 {
 
+    /**
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
+     */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
     ViewChangerModel vcm = new ViewChangerModel();
+
+    Manager manager;
+    Manager managers;
 
     @FXML
     private Button btnBack;
@@ -52,12 +59,7 @@ public class EditManagerController implements Initializable
     @FXML
     private Button btnApprove;
     @FXML
-    private TextField txtPassword;
-    @FXML
     private ComboBox<Manager> cbBoxManager;
-
-    Manager manager;
-    Manager managers;
     @FXML
     private Button btnChangeStatus;
     @FXML
@@ -75,14 +77,6 @@ public class EditManagerController implements Initializable
         managers = mainViewModel.getLoggedInManager();
         ObservableList manager = FXCollections.observableArrayList(dp.getAllManagers());
         cbBoxManager.setItems(manager);
-
-        if (managers.isIsActive())
-        {
-            btnChangeStatus.setText("Gør aktiv");
-        } else if (!managers.isIsActive())
-        {
-            btnChangeStatus.setText("Gør inaktiv");
-        }
     }
 
     private void loadInfo()
@@ -91,12 +85,10 @@ public class EditManagerController implements Initializable
         txtLName.setText(manager.getLastName());
         txtEmail.setText(manager.getEmail());
         txtPNumber.setText(manager.getPhoneNumber());
-
         txtPNumber2.setText(manager.getPhoneNumber2());
         txtPNumber3.setText(manager.getPhoneNumber3());
         txtAddress.setText(manager.getAddress());
         txtAddress2.setText(manager.getAddress2());
-
     }
 
     @FXML
@@ -113,7 +105,7 @@ public class EditManagerController implements Initializable
     @FXML
     private void handleApproval(ActionEvent event) throws IOException
     {
-        if (!txtEmail.getText().isEmpty() && !txtFName.getText().isEmpty() && !txtLName.getText().isEmpty() && !txtPassword.getText().isEmpty())
+        if (!txtEmail.getText().isEmpty() && !txtFName.getText().isEmpty() && !txtLName.getText().isEmpty())
         {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Rediger frivillig");
@@ -134,7 +126,7 @@ public class EditManagerController implements Initializable
             {
                 alert.close();
             }
-        } else if (txtEmail.getText().isEmpty() || txtFName.getText().isEmpty() || txtLName.getText().isEmpty() || txtPassword.getText().isEmpty())
+        } else if (txtEmail.getText().isEmpty() || txtFName.getText().isEmpty() || txtLName.getText().isEmpty())
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Fejl");
@@ -147,20 +139,25 @@ public class EditManagerController implements Initializable
     @FXML
     public void handleChangeStatus(ActionEvent event) throws IOException
     {
-        if (manager.isIsActive())
+        if (manager.isActive())
         {
-            deactivate();
+            deactivateManager();
         } else
         {
-            activate();
+            activateManager();
         }
     }
 
-    private void deactivate() throws IOException
+    /**
+     * Changes the status of the selected manager to inactive
+     *
+     * @throws IOException
+     */
+    private void deactivateManager() throws IOException
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Deaktiver tovholder");
-        alert.setHeaderText("Du er ved at deaktiver en tovholder. De vil også "
+        alert.setHeaderText("Du er ved at deaktivere en tovholder. De vil også "
                 + "blive fjernet fra alle laug.");
         alert.setContentText("Tryk OK for at fortsætte.");
 
@@ -180,11 +177,16 @@ public class EditManagerController implements Initializable
         }
     }
 
-    private void activate() throws IOException
+    /**
+     * Changes the status of the selected manager to active
+     *
+     * @throws IOException
+     */
+    private void activateManager() throws IOException
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Aktiver tovholder");
-        alert.setHeaderText("Du er ved at aktiver en tovholder. De skal manuelt "
+        alert.setHeaderText("Du er ved at aktivere en tovholder. De skal manuelt "
                 + "tilføjes til alle laug igen.");
         alert.setContentText("Tryk OK for at fortsætte.");
 
@@ -202,7 +204,6 @@ public class EditManagerController implements Initializable
         {
             alert.close();
         }
-
     }
 
     @FXML
@@ -211,6 +212,7 @@ public class EditManagerController implements Initializable
         manager = cbBoxManager.getSelectionModel().getSelectedItem();
 
         loadInfo();
+        activeLabelUpdate();
     }
 
     private void editInfo()
@@ -226,6 +228,19 @@ public class EditManagerController implements Initializable
         manager.setAddress2(txtAddress2.getText());
 
         dp.UpdateManager(manager);
+    }
+
+    private void activeLabelUpdate()
+    {
+        if (!manager.isActive())
+        {
+            btnChangeStatus.setText("Gør aktiv");
+        }
+        if (manager.isActive())
+        {
+            btnChangeStatus.setText("Gør inaktiv");
+        }
+
     }
 
 }

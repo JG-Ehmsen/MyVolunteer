@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="498.0" prefWidth="606.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.ManagerContactListViewController">
    <children>
-      <TableView fx:id="tblViewContact" layoutX="14.0" layoutY="75.0" onKeyPressed="#handleCopyContent" prefHeight="413.0" prefWidth="578.0">
+      <TableView fx:id="tblViewContact" layoutX="14.0" layoutY="49.0" prefHeight="439.0" prefWidth="578.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
         <columns>
             <TableColumn fx:id="tblColumnName" prefWidth="213.0" text="Navn" />
             <TableColumn fx:id="tblColumnPhone1" prefWidth="109.0" text="Telefon 1" />
@@ -16,7 +16,7 @@
             <TableColumn fx:id="tblColumnMail" prefWidth="138.0" text="Email" />
         </columns>
       </TableView>
-      <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleGoBack" text="Tilbage" />
-      <TextField fx:id="searchBar" layoutX="429.0" layoutY="14.0" onKeyReleased="#searchFilter" promptText="Søg" />
+      <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleGoBack" text="Tilbage" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <TextField fx:id="searchBar" layoutX="429.0" layoutY="14.0" onKeyReleased="#searchFilter" promptText="Søg" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
    </children>
 </AnchorPane>

@@ -3,8 +3,6 @@ package myvolunteer.GUI.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -30,19 +28,20 @@ public class VolunteerViewController implements Initializable
 {
 
     /**
-     * Gets the singleton instance of the model and dateParser.
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
     ViewChangerModel vcm = new ViewChangerModel();
 
+    Guild guild;
+    Manager manager;
+
     @FXML
     private Button btnBack;
     @FXML
     private FlowPane MainFlowPane;
-
-    Guild guild;
-    Manager manager;
     @FXML
     private Label guildNameLbl;
     @FXML
@@ -86,15 +85,12 @@ public class VolunteerViewController implements Initializable
                         {
                             mainViewModel.setLastSelectedUser(button.getUser());
                             handleUserImage();
-
                         }
                     }
                     );
                     MainFlowPane.getChildren().add(button);
-
                 }
             }
-
         }
     }
 

@@ -28,6 +28,10 @@ public class ConnectionManager
         return ds.getConnection();
     }
 
+    /**
+     * Setup for the database connection.
+     *
+     */
     public void setupDB()
     {
         try
