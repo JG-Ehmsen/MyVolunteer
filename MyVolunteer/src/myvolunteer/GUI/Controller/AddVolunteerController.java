@@ -42,7 +42,8 @@ public class AddVolunteerController implements Initializable
 {
 
     /**
-     * Gets the singleton instance of the model.
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
@@ -68,8 +69,6 @@ public class AddVolunteerController implements Initializable
     private TextArea txtNote;
     @FXML
     private TextField txtLName;
-
-    final ToggleGroup tg = new ToggleGroup();
     @FXML
     private Button btnUploadImage;
     @FXML
@@ -93,6 +92,7 @@ public class AddVolunteerController implements Initializable
     @FXML
     private ImageView imgProfilePicture;
 
+    final ToggleGroup tg = new ToggleGroup();
     BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
     private String defaultImage = "Resource/UserPicture.png";
     boolean imageSet = false;

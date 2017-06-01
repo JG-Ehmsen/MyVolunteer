@@ -45,7 +45,8 @@ public class EditVolunteerController implements Initializable
 {
 
     /**
-     * Gets the singleton instance of the model.
+     * Gets the singleton instance of the MainViewModel, DateParser and
+     * ViewChangerModel.
      */
     MainViewModel mainViewModel = MainViewModel.getInstance();
     DataParserModel dp = DataParserModel.getInstance();
@@ -81,9 +82,6 @@ public class EditVolunteerController implements Initializable
     private Label lblXTelephone;
     @FXML
     private Label lblPleaseFill;
-
-    Volunteer volunteer;
-    final ToggleGroup tg = new ToggleGroup();
     @FXML
     private TextField txtPhoneNumber2;
     @FXML
@@ -99,6 +97,8 @@ public class EditVolunteerController implements Initializable
     @FXML
     private ImageView imgProfilePicture;
 
+    Volunteer volunteer;
+    final ToggleGroup tg = new ToggleGroup();
     BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
 
     /**
@@ -231,15 +231,20 @@ public class EditVolunteerController implements Initializable
     {
         if (volunteer.isActive())
         {
-            deactivate();
+            deactivateVolunteer();
         } else
         {
-            activate();
+            activateVolunteer();
         }
 
     }
 
-    private void deactivate() throws IOException
+    /**
+     * Changes the status of the selected manager to inactive
+     *
+     * @throws IOException
+     */
+    private void deactivateVolunteer() throws IOException
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Deaktiver frivillig");
@@ -263,7 +268,12 @@ public class EditVolunteerController implements Initializable
         }
     }
 
-    private void activate() throws IOException
+    /**
+     * Changes the status of the selected manager to active
+     *
+     * @throws IOException
+     */
+    private void activateVolunteer() throws IOException
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Aktiver frivillig");
@@ -292,7 +302,6 @@ public class EditVolunteerController implements Initializable
         volunteer.setEmail(txtEmail.getText());
         volunteer.setFirstName(txtFName.getText());
         volunteer.setLastName(txtLName.getText());
-        //BDay
         volunteer.setPhoneNumber(txtPhoneNumber.getText());
         volunteer.setPhoneNumber2(txtPhoneNumber2.getText());
         volunteer.setPhoneNumber3(txtPhoneNumber3.getText());
