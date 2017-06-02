@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="468.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AdminInfoViewController">
+<AnchorPane id="AnchorPane" prefHeight="468.0" prefWidth="706.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AdminInfoViewController">
    <children>
       <TableView fx:id="tblViewInfo" layoutX="133.0" layoutY="84.0" prefHeight="373.0" prefWidth="563.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
         <columns>
