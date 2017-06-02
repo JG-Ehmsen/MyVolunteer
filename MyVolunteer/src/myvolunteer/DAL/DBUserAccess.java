@@ -24,7 +24,7 @@ public class DBUserAccess
 
     /**
      * Given a database connection, queries the database for every user entry,
-     * disregards ones that are noted as managers and interprets the data into
+     * and interprets the data into
      * Volunteer BE's, then returns them in a list.
      *
      * @param con
@@ -164,6 +164,17 @@ public class DBUserAccess
 
     }
 
+    /**
+     * Inputting both a manager and a guild with valid ID's, this method
+     * queries the database and returns the ID of a ManagerReleation if one
+     * exists, otherwise returns 0.
+     * 
+     * @param manager
+     * @param guild
+     * @param con
+     * @return
+     * @throws SQLException 
+     */
     public int getManagerRelationID(Manager manager, Guild guild, Connection con) throws SQLException
     {
         int returnInt = 0;
@@ -625,6 +636,17 @@ public class DBUserAccess
         return returnList;
     }
 
+    
+    /**
+     * This method, given a manager BE, populates the internal list of guild
+     * ID's that exists within it with the ID of every guild the given
+     * manager is manager for.
+     * 
+     * @param manager
+     * @param con
+     * @return
+     * @throws SQLException 
+     */
     public Manager addGuildsToManager(Manager manager, Connection con) throws SQLException
     {
         Manager man = manager;
@@ -682,6 +704,16 @@ public class DBUserAccess
         return returnInt;
     }
 
+    /**
+     * Composite method that when given a manager and a password utilizes
+     * a number of other methods to create it in the database and add a
+     * password for it.
+     * 
+     * @param manager
+     * @param password
+     * @param con
+     * @throws SQLException 
+     */
     public void CreateNewManager(Manager manager, String password, Connection con) throws SQLException
     {
         Manager man = manager;
@@ -693,6 +725,15 @@ public class DBUserAccess
         createNewPassword(MID, password, con);
     }
 
+    /**
+     * Given a 'mock' manager, to contain information that is passed down
+     * from the views when a new manager is created, this method
+     * inserts that into the database. 
+     * 
+     * @param manager
+     * @param con
+     * @throws SQLException 
+     */
     public void addManager(Manager manager, Connection con) throws SQLException
     {
         String sql = ""
@@ -712,6 +753,15 @@ public class DBUserAccess
         ps.execute();
     }
 
+    /**
+     * Given a manager, references the information stored within it and returns
+     * the id of a manager record on the database that matches.
+     * 
+     * @param manager
+     * @param con
+     * @return
+     * @throws SQLException 
+     */
     private int getManagerID(Manager manager, Connection con) throws SQLException
     {
         int returnInt = 0;
@@ -737,6 +787,14 @@ public class DBUserAccess
         return returnInt;
     }
 
+    /**
+     * Creates a new password, pass, for a manager with the given ID, MID.
+     * 
+     * @param MID
+     * @param pass
+     * @param con
+     * @throws SQLException 
+     */
     public void createNewPassword(int MID, String pass, Connection con) throws SQLException
     {
         String sql = ""
@@ -750,9 +808,20 @@ public class DBUserAccess
         ps.execute();
     }
 
+    /**
+     * Given a login and a password, queries the database for a
+     * manager/admin that matches, and if found, returns it.
+     * 
+     * @param login
+     * @param pass
+     * @param con
+     * @return
+     * @throws SQLException 
+     */
     public Manager loginQuery(String login, String pass, Connection con) throws SQLException
     {
 
+        
         String sql = ""
                 + "SELECT * "
                 + "FROM Managers m, Login l "
@@ -787,6 +856,15 @@ public class DBUserAccess
         return null;
     }
 
+    /**
+     * Updates the ManagerRelation pertaining to the given guild, and changes
+     * the manager to be the one supplied in the parameters.
+     * 
+     * @param guild
+     * @param manager
+     * @param con
+     * @throws SQLException 
+     */
     public void changeGuildManager(Guild guild, Manager manager, Connection con) throws SQLException
     {
         String sql = ""
@@ -802,12 +880,29 @@ public class DBUserAccess
         ps.execute();
     }
 
+    /**
+     * Marks the given volunteer as inactive on the database, and also
+     * deactivates all GuildRelation that contain the given volunteers ID.
+     * 
+     * @param volunteer
+     * @param con
+     * @throws SQLException 
+     */
     public void deactivateVolunteer(Volunteer volunteer, Connection con) throws SQLException
     {
         setVolunteerStatus(volunteer, false, con);
         deactivateVolunteerInAllGuilds(volunteer, con);
     }
 
+    /**
+     * Given a volunteer and a boolean, sets the volunteers status as either
+     * active or inactive.
+     * 
+     * @param volunteer
+     * @param active
+     * @param con
+     * @throws SQLException 
+     */
     public void setVolunteerStatus(Volunteer volunteer, boolean active, Connection con) throws SQLException
     {
         String sql = ""
@@ -823,6 +918,14 @@ public class DBUserAccess
         ps.execute();
     }
 
+    /**
+     * Given a volunteer, marks them as inactive in all GuildRelations where
+     * their ID appears.
+     * 
+     * @param volunteer
+     * @param con
+     * @throws SQLException 
+     */
     public void deactivateVolunteerInAllGuilds(Volunteer volunteer, Connection con) throws SQLException
     {
         String sql = ""
@@ -838,12 +941,29 @@ public class DBUserAccess
 
     }
 
+    /**
+     * Given a manager, utilizes other methods to set them as inactive
+     * and remove them from all guilds.
+     * 
+     * @param manager
+     * @param con
+     * @throws SQLException 
+     */
     public void deactivateManager(Manager manager, Connection con) throws SQLException
     {
         setManagerStatus(manager, false, con);
         deactivateManagerInAllGuilds(manager, con);
     }
 
+    /**
+     * Given a manager and a boolean, sets the managers status as either
+     * active or inactive.
+     * 
+     * @param manager
+     * @param active
+     * @param con
+     * @throws SQLException 
+     */
     public void setManagerStatus(Manager manager, boolean active, Connection con) throws SQLException
     {
         String sql = ""
@@ -859,6 +979,14 @@ public class DBUserAccess
         ps.execute();
     }
 
+    /**
+     * Sets all ManagerRelations where the given manager's ID
+     * appears as inactive.
+     * 
+     * @param manager
+     * @param con
+     * @throws SQLException 
+     */
     public void deactivateManagerInAllGuilds(Manager manager, Connection con) throws SQLException
     {
         String sql = ""

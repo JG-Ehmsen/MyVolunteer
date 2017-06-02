@@ -5,18 +5,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import myvolunteer.BE.Volunteer;
 
-/**
- *
- * @author jeppe
- */
 public class ListFiltering
 {
+
     /**
-     * Given a list of volunteers, filters them by the given string and
-     * returns an observable list containing only the objects that match.
+     * Given a list of volunteers, filters them by the given string and returns
+     * an observable list containing only the objects that match.
+     *
      * @param filter
      * @param allUsers
-     * @return 
+     * @return
      */
     public ObservableList<Volunteer> filter(String filter, List<Volunteer> allUsers)
     {

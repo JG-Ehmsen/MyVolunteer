@@ -134,6 +134,19 @@ public class DBGuildAccess
         createManagerRelation(GID, MID, con);
     }
 
+    /**
+     * Composite method for updating a guild, utilizing other methods to update
+     * the information about the guild, change the manager and add/remove
+     * volunteers from the guild.
+     *
+     * @param guild
+     * @param manager
+     * @param in
+     * @param out
+     * @param con
+     * @throws SQLException
+     * @throws IOException
+     */
     public void UpdateGuild(Guild guild, Manager manager, List<Integer> in, List<Integer> out, Connection con) throws SQLException, IOException
     {
         setGuildInfo(guild, con);
@@ -142,6 +155,19 @@ public class DBGuildAccess
         deactivateGuildRelations(guild, out, con);
     }
 
+    /**
+     * Given a guild, and a list of integers containing ID's of people who
+     * should be in the guild.
+     *
+     * Queries the database for a guild matching the information. Then, for each
+     * ID in the given list, it either creates new guild relations if the do not
+     * exist, or sets them as active if already existing.
+     *
+     * @param guild
+     * @param in
+     * @param con
+     * @throws SQLException
+     */
     public void addOrActivateGuildRelations(Guild guild, List<Integer> in, Connection con) throws SQLException
     {
         int GID = guild.getID();
@@ -160,6 +186,15 @@ public class DBGuildAccess
         }
     }
 
+    /**
+     * Given a guild, and a list of volunteer ID's that should NOT be in the
+     * guild, it runs a loop to deactivate each of them.
+     *
+     * @param guild
+     * @param out
+     * @param con
+     * @throws SQLException
+     */
     public void deactivateGuildRelations(Guild guild, List<Integer> out, Connection con) throws SQLException
     {
         int GID = guild.getID();
@@ -169,6 +204,16 @@ public class DBGuildAccess
         }
     }
 
+    /**
+     * Given a guild BE that has been modified to contain different information,
+     * this method queries the database to update the record with a matching ID
+     * to match the information given.
+     *
+     * @param guild
+     * @param con
+     * @throws SQLException
+     * @throws IOException
+     */
     public void setGuildInfo(Guild guild, Connection con) throws SQLException, IOException
     {
         String sql = ""
@@ -197,6 +242,15 @@ public class DBGuildAccess
         ps.execute();
     }
 
+    /**
+     * Given a guild and a manager, updates the manager relation to change the
+     * manager to the one that is given.
+     *
+     * @param guild
+     * @param manager
+     * @param con
+     * @throws SQLException
+     */
     public void changeGuildManager(Guild guild, Manager manager, Connection con) throws SQLException
     {
         String sql = ""
@@ -212,6 +266,17 @@ public class DBGuildAccess
         ps.execute();
     }
 
+    /**
+     * Given a guild BE, queries the database for a guild with a matching name
+     * and then returns the ID of that.
+     *
+     * If one exists, returns the ID. If not, returns 0.
+     *
+     * @param guild
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     private int getGuildID(Guild guild, Connection con) throws SQLException
     {
         int returnInt = 0;
@@ -232,6 +297,15 @@ public class DBGuildAccess
         return returnInt;
     }
 
+    /**
+     * Given a guild ID and a user ID, creates a new GuildRelation with that
+     * information, thus adding a volunteer to a guild.
+     *
+     * @param GID
+     * @param UID
+     * @param con
+     * @throws SQLException
+     */
     private void createGuildRelation(int GID, int UID, Connection con) throws SQLException
     {
         String sql = ""
@@ -245,6 +319,15 @@ public class DBGuildAccess
         ps.execute();
     }
 
+    /**
+     * Given a guild ID and a manager ID, creates a new ManagerRelation with the
+     * given information, thus adding a manager to the guild.
+     *
+     * @param GID
+     * @param MID
+     * @param con
+     * @throws SQLException
+     */
     private void createManagerRelation(int GID, int MID, Connection con) throws SQLException
     {
         String sql = ""
@@ -258,6 +341,15 @@ public class DBGuildAccess
         ps.execute();
     }
 
+    /**
+     * Given a guild, returns an integer of the total number of hours that have
+     * been volunteered in that guild.
+     *
+     * @param guild
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public int getHoursWorkedForGuild(Guild guild, Connection con) throws SQLException
     {
         int returnInt = 0;
@@ -282,6 +374,14 @@ public class DBGuildAccess
         return returnInt;
     }
 
+    /**
+     * Returns the total number of hours that have been volunteered across all
+     * guilds and volunteers.
+     *
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public int getTotalHoursWorked(Connection con) throws SQLException
     {
         int returnInt = 0;
@@ -303,6 +403,16 @@ public class DBGuildAccess
         return returnInt;
     }
 
+    /**
+     * Given a guild ID and a volunteer ID, sets the matching guild relation as
+     * either active or inactive.
+     *
+     * @param GID
+     * @param UID
+     * @param active
+     * @param con
+     * @throws SQLException
+     */
     public void setGuildRelationStatus(int GID, int UID, boolean active, Connection con) throws SQLException
     {
 
@@ -320,6 +430,17 @@ public class DBGuildAccess
         ps.execute();
     }
 
+    /**
+     * Given a GID and UID, returns the ID of a matching GuildRelation if it
+     * exists, and if not, returns -1. Alternatively, if the relation is
+     * inactive, returns 0.
+     *
+     * @param GID
+     * @param UID
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public Integer getGuildRelationID(int GID, int UID, Connection con) throws SQLException
     {
         int returnInt = -1;
@@ -350,6 +471,14 @@ public class DBGuildAccess
         return returnInt;
     }
 
+    /**
+     * Utilizing other methods, marks a guild as inactive, and removes all
+     * volunteers from the guild.
+     *
+     * @param guild
+     * @param con
+     * @throws SQLException
+     */
     public void deactivateGuild(Guild guild, Connection con) throws SQLException
     {
         setGuildStatus(guild, false, con);
@@ -357,6 +486,15 @@ public class DBGuildAccess
 
     }
 
+    /**
+     * Given a guild BE and a boolean, sets the guild status to either active or
+     * inactive.
+     *
+     * @param guild
+     * @param active
+     * @param con
+     * @throws SQLException
+     */
     public void setGuildStatus(Guild guild, boolean active, Connection con) throws SQLException
     {
         String sql = ""
@@ -372,6 +510,13 @@ public class DBGuildAccess
         ps.execute();
     }
 
+    /**
+     * Given a guild, deactivates all guild relations containing its ID.
+     *
+     * @param guild
+     * @param con
+     * @throws SQLException
+     */
     public void deactivateGuildForAllUsers(Guild guild, Connection con) throws SQLException
     {
         String sql = ""
