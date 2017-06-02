@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package myvolunteer.GUI.Model;
 
 import java.io.IOException;
@@ -16,10 +11,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import myvolunteer.App;
 
-/**
- *
- * @author Fjord82
- */
 public class ViewChangerModel
 {
 
