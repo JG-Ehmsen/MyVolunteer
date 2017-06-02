@@ -76,7 +76,7 @@ public class ManagerContactListViewController implements Initializable
     @FXML
     private void handleGoBack(ActionEvent event)
     {
-        vcm.showManagerView((Stage) btnBack.getScene().getWindow());
+        vcm.closeView((Stage) btnBack.getScene().getWindow());
     }
 
     private void initializeTable()

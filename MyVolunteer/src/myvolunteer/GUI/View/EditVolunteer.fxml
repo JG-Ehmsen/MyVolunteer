@@ -11,12 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="716.0" prefWidth="327.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.EditVolunteerController">
+<AnchorPane id="AnchorPane" prefHeight="716.0" prefWidth="327.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.EditVolunteerController">
     <children>
         <Label layoutX="16.0" layoutY="11.0" text="Navn:" AnchorPane.topAnchor="11.0" />
         <TextField fx:id="txtFName" layoutX="15.0" layoutY="28.0" prefHeight="25.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
         <TextField fx:id="txtLName" layoutX="17.0" layoutY="73.0" prefHeight="25.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
-        <TextField fx:id="tblBDay" alignment="CENTER" layoutX="15.0" layoutY="120.0" prefHeight="27.0" prefWidth="167.0" promptText="DD-MM-YYYY" AnchorPane.leftAnchor="15.0" />
         <RadioButton fx:id="rdMale" layoutX="15.0" layoutY="174.0" mnemonicParsing="false" text="Mand" AnchorPane.leftAnchor="15.0" />
         <RadioButton fx:id="rdFemale" layoutX="15.0" layoutY="200.0" mnemonicParsing="false" text="Kvinde" AnchorPane.leftAnchor="15.0" />
         <TextField fx:id="txtPhoneNumber" layoutX="15.0" layoutY="241.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
@@ -27,7 +26,6 @@
         <TextField fx:id="txtEmail" layoutX="15.0" layoutY="455.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
         <TextField fx:id="txtNationality" layoutX="15.0" layoutY="504.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" />
         <TextArea fx:id="txtNote" layoutX="15.0" layoutY="557.0" prefHeight="77.0" prefWidth="167.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="557.0" />
-        <Label layoutX="15.0" layoutY="103.0" text="Fødselsdato:" AnchorPane.leftAnchor="15.0" />
         <Label layoutX="15.0" layoutY="156.0" text="Køn:" AnchorPane.leftAnchor="15.0" />
         <Label layoutX="15.0" layoutY="224.0" text="Telefon:" AnchorPane.leftAnchor="15.0" />
         <Label layoutX="15.0" layoutY="438.0" text="Email:" AnchorPane.leftAnchor="15.0" />
