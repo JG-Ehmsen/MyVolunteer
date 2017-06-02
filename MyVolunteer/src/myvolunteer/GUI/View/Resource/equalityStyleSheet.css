@@ -1,0 +1,158 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04-05-2017, 09:40:16
+    Author     : Fjord82
+*/
+
+.root
+{
+    -fx-background-color: /*#e5e5e5;*/
+        linear-gradient(from 25% 25% to 75% 100%, #ffffff, #d2d4dc);
+
+    /*-fx-padding: 5 5 5 5;*/
+}
+
+#projectview
+{
+    -fx-padding: 0 0 10 0;
+
+    -fx-background-color: linear-gradient(from 25% 25% to 75% 100%, #f8f8fa, #e5e5e5);
+
+    /*-fx-background-color:
+        linear-gradient(#ffffff 0%, #f8f8fa 25%, #373837 75%, #757575 100%),
+        linear-gradient(#020b02, #3a3a3a),
+        linear-gradient(#ffffff 0%, #f8f8fa 20%, #343534 80%, #242424 100%),
+        linear-gradient(#ffffff 0%, #f8f8fa 20%, #343534 80%, #e5e6eb 100%),
+        linear-gradient(#ffffff 0%, #606060 50%, #505250 51%, #c0c2ce 100%);*/
+}
+
+#volunteerlist
+{
+    -fx-background-color:
+        linear-gradient(#333 0%, #f8f8fa 15%, #f8f8fa 55%, #f8f8fa 100%),
+        linear-gradient(#faf0e6, #f8f8fa);
+
+}
+
+#textpane
+{
+    -fx-background-color:
+        linear-gradient(#333 0%, #f8f8fa 15%, #f8f8fa 55%, #f8f8fa 100%),
+        linear-gradient(#faf0e6, #f8f8fa);
+    /*linear-gradient(#ffffff 0%, #f8f8fa 20%, #343534 80%, #242424 100%),
+    linear-gradient(#ffffff 0%, #f8f8fa 20%, #343534 80%, #e5e6eb 100%),
+    linear-gradient(#ffffff 0%, #606060 50%, #505250 51%, #c0c2ce 100%);*/
+}
+
+#laugscrollpane 
+{
+    -fx-background-color: transparent; 
+    -fx-padding: 15 0 0 0;
+
+}
+
+.scroll-pane > .viewport { 
+    -fx-background-color: transparent;
+
+
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #5a5255;
+
+    -fx-background-insets: 0;
+    -fx-background-radius: 0.5em;
+}
+
+#laugpane
+{
+    -fx-background-color: transparent; 
+    /*-fx-border-width: 10;
+    -fx-border-color:#333;*/
+
+}
+
+#topseparator
+{
+    /*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );*/
+    -fx-background-color: #b2b2b2;
+    -fx-border-color: transparent;
+}
+
+#arrowimage
+{
+    -fx-background-color: transparent; 
+}
+
+
+.button
+{
+    /*-fx-background-color: #f7f7f7;*/
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-border-width: 1;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-background-color: #5a5255;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px; 
+}
+
+#specialbutton
+{
+    -fx-background-color: transparent;
+
+}
+
+#adminbutton
+{
+    -fx-background-color: /*#e5e5e5;*/
+        linear-gradient(from 25% 25% to 75% 100%, #5a5255, #372e29);
+    -fx-font-weight: bold;
+
+}
+
+#homebutton
+{
+    -fx-background-color: #5a5255;
+    -fx-text-fill: white;
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+
+}
+
+#homebutton:hover
+{
+    -fx-text-fill: #cc9112;
+
+}
+
+.button:hover
+{   
+    -fx-border-color: #cc9112;
+    -fx-text-fill: #cc9112;
+    /*-fx-background-radius: 5;
+    -fx-border-radius: 5;*/
+}
+
+#guildnamelabel
+{
+    -fx-text-fill: white;
+    -fx-font-family: 'Muli', sans-serif; 
+    -fx-font-size: 32px; 
+    -fx-font-weight: bold;
+    /*-fx-background-color: #5a5255;*/
+    -fx-background-radius: 10;
+    -fx-background-color: linear-gradient(from 5% 5% to 40% 100%, #fff4e6, #5a5255);
+}
+
+#contactlabel
+{
+    -fx-text-fill: #5a5255;
+    -fx-font-weight: bold;
+
+}

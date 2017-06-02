@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="400.0" stylesheets="@Resource/equalityStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myvolunteer.GUI.Controller.AddManagerController">
+    <children>
+        <Text layoutX="10.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fornavn:" AnchorPane.leftAnchor="10.0" />
+        <TextField fx:id="txtFName" layoutX="10.0" layoutY="67.0" promptText="Indtast fornavn" />
+        <Text layoutX="10.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Efternavn:" AnchorPane.leftAnchor="10.0" />
+        <TextField fx:id="txtLName" layoutX="10.0" layoutY="124.0" promptText="Indtast efternavn" />
+        <Text layoutX="10.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefon nr." />
+        <TextField fx:id="txtPNumber" layoutX="10.0" layoutY="182.0" promptText="Indtast telefon nummer" />
+      <TextField fx:id="txtPNumber2" layoutX="10.0" layoutY="215.0" promptText="Indtast telefon nummer" />
+      <TextField fx:id="txtPNumber3" layoutX="10.0" layoutY="249.0" promptText="Indtast telefon nummer" />
+      <Text layoutX="10.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse" AnchorPane.leftAnchor="10.0" />
+      <TextField fx:id="txtAddress" layoutX="10.0" layoutY="300.0" promptText="1. adresse" />
+      <TextField fx:id="txtAddress2" layoutX="10.0" layoutY="335.0" promptText="2. adresse" />
+        <Text layoutX="10.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
+        <TextField fx:id="txtEmail" layoutX="10.0" layoutY="389.0" promptText="Indtast email" />
+        <TextField fx:id="txtPassword" layoutX="10.0" layoutY="446.0" promptText="Indtast password" />
+        <Button fx:id="btnApprove" layoutX="316.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleApproval" text="Godkend" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+        <Button fx:id="btnUploadImage" layoutX="290.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Tilføg billede" AnchorPane.rightAnchor="10.0" />
+        <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleGoBack" text="Tilbage" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <image>
+                <Image url="@Resource/UserPicture.png" />
+            </image>
+        </ImageView>
+        <Text layoutX="10.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" AnchorPane.leftAnchor="10.0" />
+      <Label layoutX="178.0" layoutY="72.0" text="*" />
+      <Label layoutX="178.0" layoutY="129.0" text="*" />
+      <Label layoutX="179.0" layoutY="451.0" text="*" />
+      <Label layoutX="10.0" layoutY="465.0" text="Udfyld felterne markeret med *" AnchorPane.bottomAnchor="15.0" />
+      <Label layoutX="179.0" layoutY="394.0" text="*" />
+    </children>
+</AnchorPane>

@@ -1,22 +1,36 @@
+### Java ###
+# Compiled class file
 *.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
+*.zip
+*.tar.gz
+*.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-/build/
-/dist/
-/nbproject/private/
-nbproject/jfx-impl_backup_*.xml
-nbproject/jfx-impl_backup.xml
-nbproject/jfx-impl.xml
-/MyVolunteer/nbproject/private/
-/MyVolunteer/build/
-/MyVolunteer/dist/
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+jfx-impl_backup_*.xml
+jfx-impl_backup.xml
+jfx-impl.xml
+DB.cfg
+private.xml
+MyVolunteer/nbproject/private/private.properties
