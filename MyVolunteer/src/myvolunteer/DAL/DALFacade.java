@@ -43,8 +43,6 @@ public class DALFacade
 
     }
 
-    DBUserAccess dbUserAccess = new DBUserAccess();
-
     public void writeHoursToDatabase(Volunteer volunteer, int hours, Guild guild, Date date) throws SQLServerException
     {
         //reference to writeToDatabase method in DAL ConnectionManager
